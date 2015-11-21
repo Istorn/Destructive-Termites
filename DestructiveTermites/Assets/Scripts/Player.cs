@@ -4,34 +4,55 @@ using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
 
-    Animator animator;
-    IEnumerator Start()
+    private Animator animator;
+    public int actualNode = 0;
+    private bool isMoving = false;
+
+    void Start()
     {
-        
         animator = GetComponent<Animator>();
+        StartCoroutine(YourFunctionName());
+    }
 
-        LevelData.provaXML("Assets/Levels/level1.xml");
 
+    IEnumerator YourFunctionName()
+    {
+        while (true)
+        {
+            if (!isMoving)
+            {
+                StartCoroutine(move());
+            }
+            yield return new WaitForSeconds(3);
+        }
+    }
+
+
+
+    IEnumerator move()
+    {
+        isMoving = true;
+        int endNode = 0;
+        do
+        {
+            endNode = Random.Range(0, 5);
+        }
+        while (endNode == actualNode);
         //Graph graph = Costanti.generateGraph();
-
-        List<Graph.Node> path = Graph.getPath(0, 3);
+        List<Graph.Node> path = Graph.getPath(actualNode, endNode);
         //path.AddRange(graph.getPath(2, 4));
 
         while (path.Count > 1)
         {
             Graph.Node start = path[0];
             Graph.Node end = path[1];
-
-            
-            
+            //Debug.Log(start.number + "(" + start.coordinates + ")->" + end.number + "(" + end.coordinates + ")");
             int sign = System.Math.Sign(end.coordinates.x - start.coordinates.x);
-
             transform.localScale = new Vector3(System.Math.Abs(transform.localScale.x) * sign, transform.localScale.y, transform.localScale.z);
             path.RemoveAt(0);
-            yield return  StartCoroutine(MoveObject(transform, start, end, LevelData.HUMAN_SPEED));
-            
+            yield return StartCoroutine(MoveObject(transform, start, end, LevelData.HUMAN_SPEED)); 
         }
-        yield return null;
+        isMoving = false;
     }
 
     IEnumerator MoveObject(Transform thisTransform, Graph.Node start, Graph.Node end, float time)
@@ -62,9 +83,4 @@ public class Player : MonoBehaviour {
        }
  
     }
-
-    /*void PlayAnimation(string animName) {
-    if (!animation.IsPlaying(animName))
-        animation.CrossFadeQueued(animName, 0.3f, QueueMode.PlayNow);
-}*/
-}
+ }

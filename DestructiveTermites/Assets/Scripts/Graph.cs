@@ -9,7 +9,7 @@ public static class Graph {
     public static List<Node> nodes = new List<Node>();
 
     //Aggiunge un nodo al grafo
-    public static void addNode(int number, Vector3 coordinates, int type)
+    public static void addNode(int number, Vector2 coordinates, int type)
     {
         Node node = new Node(number, coordinates, type);
         nodes.Add(node);
@@ -138,11 +138,11 @@ public static class Graph {
     {
         public int number;
         public int type;
-        public Vector3 coordinates;
+        public Vector2 coordinates;
         public List<Neighbor> neighbors;
 
         //Costruttore
-        public Node(int number, Vector3 coordinates, int type)
+        public Node(int number, Vector2 coordinates, int type)
         {
             this.number = number;
             this.coordinates = coordinates;
