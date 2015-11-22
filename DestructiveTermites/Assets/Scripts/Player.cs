@@ -5,15 +5,23 @@ using System.Collections.Generic;
 public class Player : MonoBehaviour {
 
     private Animator animator;
-    public int actualNode = 0;
+
+    private int actualNodeNumber;
+
     private bool isMoving = false;
 
     void Start()
     {
+        gameObject.layer = LayerMask.NameToLayer("Persone");
         animator = GetComponent<Animator>();
         StartCoroutine(YourFunctionName());
     }
 
+    private void updatePosition()
+    {
+        Vector2 coordinates = Graph.findNode(actualNodeNumber).coordinates;
+        transform.position = coordinates;
+    }
 
     IEnumerator YourFunctionName()
     {
@@ -37,9 +45,9 @@ public class Player : MonoBehaviour {
         {
             endNode = Random.Range(0, 5);
         }
-        while (endNode == actualNode);
+        while (endNode == actualNodeNumber);
         //Graph graph = Costanti.generateGraph();
-        List<Graph.Node> path = Graph.getPath(actualNode, endNode);
+        List<Graph.Node> path = Graph.getPath(actualNodeNumber, endNode);
         //path.AddRange(graph.getPath(2, 4));
 
         while (path.Count > 1)
@@ -52,6 +60,7 @@ public class Player : MonoBehaviour {
             path.RemoveAt(0);
             yield return StartCoroutine(MoveObject(transform, start, end, LevelData.HUMAN_SPEED)); 
         }
+        actualNodeNumber = endNode;
         isMoving = false;
     }
 
@@ -75,12 +84,17 @@ public class Player : MonoBehaviour {
         }
     }
 
-   void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision) {
 
-       if (collision.gameObject.tag == "LiveObject")
-       {
-           Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-       }
- 
+        if (collision.gameObject.tag == "LiveObject")
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+        }
     }
- }
+
+    public void setActualNodeNumber(int actualNodeNumber)
+    {
+        this.actualNodeNumber = actualNodeNumber;
+        updatePosition();  
+    }
+}

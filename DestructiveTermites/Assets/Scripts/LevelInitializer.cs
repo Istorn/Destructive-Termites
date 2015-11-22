@@ -1,24 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Xml;
 using System;
 using System.Globalization;
 
 public class LevelInitializer : MonoBehaviour {
 
-    public int level = 1;
+
+    public int level = 0;
     private string levelStr = "Assets/Levels/level";
 
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this);
-        loadLevelXML(levelStr + level + ".xml");
+        levelUp();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    
 	}
+
+    void levelUp()
+    {
+        level++;
+        Debug.Log("LIVELLO: " + level);
+        Graph.reset();
+        switch (level)
+        {
+            case 1:
+                initGraphLevel1();
+                break;
+        }
+
+    }
+
+    private void initGraphLevel1()
+    {
+        Graph.addNode(0, new Vector2(-7.46f, -3.7f), 0);
+        Graph.addNode(1, new Vector2(8.19f, -3.7f), 0);
+        Graph.addNode(2, new Vector2(-0.8f, -3.7f), 0);
+        Graph.addNode(3, new Vector2(0f, 2.1f), 0);
+        Graph.addNode(4, new Vector2(-8.85f, 2.1f), 0);
+        Graph.addNode(5, new Vector2(7.1f, 2.2f), 1);
+
+        Graph.addLink(0, 2, 1);
+        Graph.addLink(1, 2, 1);
+        Graph.addLink(2, 5, 1);
+        Graph.addLink(5, 3, 1);
+        Graph.addLink(3, 4, 1);
+
+        int[] humanInitialNodeNumbers = {0, 3, 5};
+        foreach (int humanInitialNodeNumber in humanInitialNodeNumbers)
+        {
+            GameObject human = Instantiate(Resources.Load("Prefabs/Player", typeof(GameObject))) as GameObject;
+            human.GetComponent<Player>().setActualNodeNumber(humanInitialNodeNumber);
+        }
+    }
 
     public static void loadLevelXML(string XMLPath)
     {
