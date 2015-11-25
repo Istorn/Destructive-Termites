@@ -11,6 +11,7 @@ public class LevelInitializer : MonoBehaviour {
 
     public int level = 0;
     private string levelStr = "Assets/Levels/level";
+    public Vector2[] cameraBounds;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +27,6 @@ public class LevelInitializer : MonoBehaviour {
     void levelUp()
     {
         level++;
-        Debug.Log("LIVELLO: " + level);
         Graph.reset();
         switch (level)
         {
@@ -39,18 +39,26 @@ public class LevelInitializer : MonoBehaviour {
 
     private void initGraphLevel1()
     {
-        Graph.addNode(0, new Vector2(-7.46f, -3.7f), 0);
-        Graph.addNode(1, new Vector2(8.19f, -3.7f), 0);
-        Graph.addNode(2, new Vector2(-0.8f, -3.7f), 0);
-        Graph.addNode(3, new Vector2(0f, 2.1f), 0);
-        Graph.addNode(4, new Vector2(-8.85f, 2.1f), 0);
-        Graph.addNode(5, new Vector2(7.1f, 2.2f), 1);
+        Graph.addNode(0, new Vector2(-7.60f, -3.76f), 0);
+        Graph.addNode(1, new Vector2( 6.60f, -3.76f), 0);
+        Graph.addNode(2, new Vector2(-1.12f, -3.76f), 1);
+
+        Graph.addNode(3, new Vector2( 6.20f,  2.10f), 1);
+        Graph.addNode(4, new Vector2(-2.80f,  2.10f), 0);
+        Graph.addNode(5, new Vector2(-7.50f,  2.10f), 0);
 
         Graph.addLink(0, 2, 1);
         Graph.addLink(1, 2, 1);
-        Graph.addLink(2, 5, 1);
-        Graph.addLink(5, 3, 1);
+        Graph.addLink(2, 3, 1);
         Graph.addLink(3, 4, 1);
+        Graph.addLink(4, 5, 1);
+
+        GameObject camera = Instantiate(Resources.Load("Prefabs/Main Camera", typeof(GameObject))) as GameObject;
+        //camera.GetComponent<Camera>().setCenter(new Vector3(0, -2.9f, -1));
+        //camera.GetComponent<Camera>().setBouds(new Vector2(-7.2f, -2.9f), new Vector2(7.2f, 2.0f));
+        camera.GetComponent<Camera>().setCenter(new Vector3(0, 0, -1));
+        camera.GetComponent<Camera>().setBouds(new Vector2(0, 0), new Vector2(0, 0));
+
 
         int[] humanInitialNodeNumbers = {0, 3, 5};
         foreach (int humanInitialNodeNumber in humanInitialNodeNumbers)

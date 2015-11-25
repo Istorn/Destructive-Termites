@@ -40,6 +40,7 @@ public class Player : MonoBehaviour {
     IEnumerator move()
     {
         isMoving = true;
+        animator.SetBool("isWalking", true);
         int endNode = 0;
         do
         {
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour {
             yield return StartCoroutine(MoveObject(transform, start, end, LevelData.HUMAN_SPEED)); 
         }
         actualNodeNumber = endNode;
+        animator.SetBool("isWalking", false);
         isMoving = false;
     }
 
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour {
     {
         //ann.Play("Walking");
         //if (end.type == 1)
-            animator.SetBool("isOnStairs", end.type == 1);
+        animator.SetBool("isOnStairs", (end.type == 1) && (start.type == 1));
        // else
         //    animator.SetBool("isOnStairs", end.type == 1);
         //an.SetBool("isOnStairs", end.type == 1);

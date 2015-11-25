@@ -6,17 +6,13 @@ public class Camera : MonoBehaviour {
 
     private float speed = 5.0f;
     private GameObject border;
-    private RectTransform cameraRect;
-    private SpriteRenderer cameraSpriteRenderer;
-    private SpriteRenderer borderSpriteRenderer;
+    private Vector3 center;
+    private Vector2 point1, point2;
 
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this);
         border = Instantiate(Resources.Load("Prefabs/Test", typeof(GameObject))) as GameObject;
-        borderSpriteRenderer = border.GetComponent<SpriteRenderer>();
-        cameraRect = GetComponent<RectTransform>();
-        cameraSpriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 
@@ -68,11 +64,20 @@ public class Camera : MonoBehaviour {
            Mathf.Clamp(translation.z, -10, 10)));
 
        transform.position = new Vector3(
-          Mathf.Clamp(transform.position.x, -6.6f, 6.6f),
-          Mathf.Clamp(transform.position.y, -6.2f, 6.2f),
+          Mathf.Clamp(transform.position.x, point1.x, point2.x),
+          Mathf.Clamp(transform.position.y, point1.y, point2.y),
           Mathf.Clamp(transform.position.z, -10.0f, 10.0f));
     }
 
-    //Set moveDirection to the vertical axis (up and down keys) * speed
-           
+    public void setBouds(Vector2 point1, Vector2 point2)
+    {
+        this.point1 = point1;
+        this.point2 = point2;
+    }
+
+    public void setCenter(Vector3 center)
+    {
+        this.center = center;
+        transform.position = center;
+    }
 }
