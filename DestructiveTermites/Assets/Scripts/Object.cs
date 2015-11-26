@@ -3,47 +3,46 @@ using System.Collections;
 
 public class Object : MonoBehaviour {
 
-    public enum ObjectType {Soft, Hard, Live};
-    
-    public ObjectType tipology = ObjectType.Soft;
+    public enum Types { Soft, Hard, Live}
 
-    public float strenghtCoefficient = 0.0f;
+    protected Types type;
 
-    public float integrity = 100.0f;
-    private float oldIntegrity = 100.0f;
+    protected int roomNumber;
 
-    public string objectName = "Chair";
+    protected float strenghtCoefficient = 0.2f;
 
-    public Sprite[] sprites;
+    protected float integrity = 100.0f;
+    protected float oldIntegrity = 100.0f;
 
-	// Use this for initialization
-	void Start () {
+    protected Sprite[] sprites;
+
+    public void setPosition(int roomNumber, Vector2 coordinates)
+    {
+        this.roomNumber = roomNumber;
+        gameObject.transform.position = coordinates; 
+    }
+
+    public virtual void setObjectName(string objectName)
+    {
         sprites = Resources.LoadAll<Sprite>(objectName);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (integrity > 0)
-        {
-            if (oldIntegrity != integrity)
-            {
-                int i = (int)((100- integrity) * (sprites.Length - 1) / 100);
-                GetComponent<SpriteRenderer>().sprite = sprites[i];
-                oldIntegrity = integrity;
-            }
-        }
-        else
-            Destroy(gameObject);
-	}
+        GetComponent<SpriteRenderer>().sprite = sprites[0];
+    }
 
     void attack(int numberOfAttackers)
     {
         if (integrity > 0)
+        {
             integrity -= numberOfAttackers * strenghtCoefficient;
+            int i = (int)((100 - integrity) * (sprites.Length - 1) / 100);
+            GetComponent<SpriteRenderer>().sprite = sprites[i];
+            oldIntegrity = integrity;
+        }
+        else
+            Destroy(gameObject);
     }
 
     void OnMouseDown()
     {
         attack(100);
-    }  
+    }
 }

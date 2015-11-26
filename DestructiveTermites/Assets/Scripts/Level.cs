@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Level : MonoBehaviour {
 
-    private int level;
-
     private GameObject levelManager = null;
 
     private LevelDataInterface levelData = null;
@@ -15,13 +13,14 @@ public class Level : MonoBehaviour {
     private GameObject foreground = null;
     private SpriteRenderer foregroundSpriteRenderer = null;
 
-    private Camera camera = null;
+    private Camera mainCamera = null;
 
     private GameObject infoBox = null;
 
     void Awake()
     {
         infoBox = Instantiate(Resources.Load("Prefabs/InfoBox", typeof(GameObject))) as GameObject;
+        infoBox.name = "InfoBox";
 
         background = new GameObject();
         background.name = "Background";
@@ -39,7 +38,12 @@ public class Level : MonoBehaviour {
         foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
         foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
 
-        camera = GameObject.Find("Main Camera").GetComponent<Camera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
+
+        GameObject provaObj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        ObjectLive script = provaObj.AddComponent<ObjectLive>();
+        script.setPosition(0, new Vector2(1, 1));
+        script.setObjectName("Chair");
     }
 
     public void setLevelManager(GameObject levelManager)
@@ -49,15 +53,13 @@ public class Level : MonoBehaviour {
 
     public void setLevel(int level)
     {
-        this.level = level;
-
         levelData = levelManager.GetComponent("LevelData" + level) as LevelDataInterface;
 
         backgroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Background");
         foregroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Foreground");
 
-        camera.setCenter(levelData.cameraSettings[0]);
-        camera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);
+        mainCamera.setCenter(levelData.cameraSettings[0]);
+        mainCamera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);
     }
 
     public void addCollider(Vector2 offset, Vector2 size)
