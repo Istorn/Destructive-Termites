@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Camera : MonoBehaviour {
+public class MainCamera : MonoBehaviour {
 
     private float speed = 5.0f;
 

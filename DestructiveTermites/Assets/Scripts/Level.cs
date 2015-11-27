@@ -13,11 +13,23 @@ public class Level : MonoBehaviour {
     private GameObject foreground = null;
     private SpriteRenderer foregroundSpriteRenderer = null;
 
-    private Camera mainCamera = null;
+    private MainCamera mainCamera = null;
 
     private GameObject infoBox = null;
 
+    private int availableTermites = 0;
+
     void Awake()
+    {
+        loadGUI();
+
+        GameObject provaObj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        Human script = provaObj.AddComponent<Human>();
+        script.setPosition(0, new Vector2(1, 1), Costants.Z_INDEX_HUMANS);
+        script.setObjectName("Chair");
+    }
+
+    private void loadGUI()
     {
         infoBox = Instantiate(Resources.Load("Prefabs/InfoBox", typeof(GameObject))) as GameObject;
         infoBox.name = "InfoBox";
@@ -38,12 +50,18 @@ public class Level : MonoBehaviour {
         foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
         foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
 
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
+    }
 
-        GameObject provaObj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        ObjectLive script = provaObj.AddComponent<ObjectLive>();
-        script.setPosition(0, new Vector2(1, 1));
-        script.setObjectName("Chair");
+    private void loadGraph()
+    {
+        Graph.reset();
+
+        foreach (Graph.Node node in levelData.nodes)
+            Graph.addNode(node);
+
+        foreach (Graph.Connection connection in levelData.links)
+            Graph.addLink(connection);
     }
 
     public void setLevelManager(GameObject levelManager)
@@ -55,11 +73,15 @@ public class Level : MonoBehaviour {
     {
         levelData = levelManager.GetComponent("LevelData" + level) as LevelDataInterface;
 
+        availableTermites = levelData.availableTermites;
+
         backgroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Background");
         foregroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Foreground");
 
         mainCamera.setCenter(levelData.cameraSettings[0]);
         mainCamera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);
+
+        loadGraph();
     }
 
     public void addCollider(Vector2 offset, Vector2 size)

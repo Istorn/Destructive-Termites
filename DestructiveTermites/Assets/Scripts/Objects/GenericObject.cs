@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Object : MonoBehaviour {
+public class GenericObject : MonoBehaviour {
 
     public enum Types { Soft, Hard, Live}
 
@@ -16,10 +16,11 @@ public class Object : MonoBehaviour {
 
     protected Sprite[] sprites;
 
-    public void setPosition(int roomNumber, Vector2 coordinates)
+    public void setPosition(int roomNumber, Vector2 coordinates, int z_index)
     {
         this.roomNumber = roomNumber;
-        gameObject.transform.position = coordinates; 
+        gameObject.transform.position = coordinates;
+        GetComponent<SpriteRenderer>().sortingOrder = z_index;
     }
 
     public virtual void setObjectName(string objectName)

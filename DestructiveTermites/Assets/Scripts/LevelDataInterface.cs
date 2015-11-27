@@ -10,4 +10,6 @@ public interface LevelDataInterface{
     Vector3[] cameraSettings { get; }
 
     HumanPlaceholder[] humans { get; }
+
+    int availableTermites { get; }
 }

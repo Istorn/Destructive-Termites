@@ -9,14 +9,24 @@ public static class Graph {
     public static List<Node> nodes = new List<Node>();
 
     //Aggiunge un nodo al grafo
-    public static void addNode(int nodeNumber, int roomNumber, Vector2 coordinates, int type)
+    public static void addNode(int nodeNumber, int roomNumber, Vector2 coordinates, Node.Type type)
     {
         Node node = new Node(nodeNumber, roomNumber, coordinates, type);
+        addNode(node);
+    }
+
+    public static void addNode(Node node)
+    {
         nodes.Add(node);
     }
 
+    public static void addLink(Connection connection)
+    {
+        addLink(connection.nodeNumber1, connection.nodeNumber2, connection.distance, connection.z_index);
+    }
+
     //Aggiunge un collegamento pesato tra due nodi nel grafo
-    public static void addLink(int nodeNumber1, int nodeNumber2, int distance)
+    public static void addLink(int nodeNumber1, int nodeNumber2, int distance, int z_index)
     {
         Node node1 = null;
         Node node2 = null;
@@ -29,8 +39,8 @@ public static class Graph {
                 if (node.number == nodeNumber2)
                     node2 = node;
         }
-        node1.addNeighbor(new Neighbor(node2, distance));
-        node2.addNeighbor(new Neighbor(node1, distance));
+        node1.addNeighbor(new Neighbor(node2, distance, z_index));
+        node2.addNeighbor(new Neighbor(node1, distance, z_index));
     }
 
     //Dato un identificativo per il nodo, lo cerca nel grafo e restituisce il nodo stesso
@@ -136,20 +146,30 @@ public static class Graph {
     //Classe Nodo
     public class Node
     {
+        public enum Type { Main, Generic };
+
         public int number;
         public int roomNumber;
-        public int type;
+        public Type type;
         public Vector2 coordinates;
         public List<Neighbor> neighbors;
 
         //Costruttore
-        public Node(int number, int roomNumber, Vector2 coordinates, int type)
+        public Node(int number, int roomNumber, Vector2 coordinates, Type type)
         {
             this.number = number;
             this.roomNumber = roomNumber;
             this.coordinates = coordinates;
             this.type = type;
             neighbors = new List<Neighbor>();
+        }
+
+        public int getZIndex(Node node)
+        {
+            foreach(Neighbor n in neighbors)
+                if (n.node.number == node.number)
+                    return n.z_index;
+            return -1;
         }
 
         //Aggiunge un vicino al nodo
@@ -172,13 +192,15 @@ public static class Graph {
     public class Neighbor
     {
         public Node node;
+        public int z_index;
         public int distance;
 
         //Costruttore
-        public Neighbor(Node neighbor, int distance)
+        public Neighbor(Node neighbor, int distance, int z_index)
         {
             this.node = neighbor;
             this.distance = distance;
+            this.z_index = z_index;
         }
     }
 
@@ -187,12 +209,14 @@ public static class Graph {
         public int nodeNumber1;
         public int nodeNumber2;
         public int distance;
+        public int z_index;
 
-        public Connection(int nodeNumber1, int nodeNumber2, int distance)
+        public Connection(int nodeNumber1, int nodeNumber2, int distance, int z_index)
         {
             this.nodeNumber1 = nodeNumber1;
             this.nodeNumber2 = nodeNumber2;
             this.distance = distance;
+            this.z_index = z_index;
         }
     }
 }

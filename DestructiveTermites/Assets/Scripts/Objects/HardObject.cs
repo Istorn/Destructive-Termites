@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ObjectSoft: Object {
+public class HardObject : GenericObject {
 
     void Awake()
     {
-        this.type = Types.Soft;
+        this.type = Types.Hard;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_SOFT_HARD_OBJECTS);
     }
 }
