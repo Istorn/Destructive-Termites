@@ -19,14 +19,15 @@ public class Level : MonoBehaviour {
 
     private int availableTermites = 0;
 
+    public Graph graphLiveObjects = null;
+    public Graph graphTermites = null;
+
     void Awake()
     {
-        loadGUI();
+        graphLiveObjects = new Graph();
+        graphTermites = new Graph();
 
-        GameObject provaObj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        Human script = provaObj.AddComponent<Human>();
-        script.setPosition(0, new Vector2(1, 1), Costants.Z_INDEX_HUMANS);
-        script.setObjectName("Chair");
+        loadGUI();    
     }
 
     private void loadGUI()
@@ -55,13 +56,19 @@ public class Level : MonoBehaviour {
 
     private void loadGraph()
     {
-        Graph.reset();
+        graphLiveObjects.reset();
 
-        foreach (Graph.Node node in levelData.nodes)
-            Graph.addNode(node);
+        foreach (Graph.Node node in levelData.liveObjectsNodes)
+            graphLiveObjects.addNode(node);
 
-        foreach (Graph.Connection connection in levelData.links)
-            Graph.addLink(connection);
+        foreach (Graph.Connection connection in levelData.liveObjectsLinks)
+            graphLiveObjects.addLink(connection);
+
+        GameObject provaObj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        Human script = provaObj.AddComponent<Human>();
+        script.setLevel(this);
+        script.setPosition(0, new Vector2(1, 1), Costants.Z_INDEX_HUMANS);
+        script.setObjectName("Chair");
     }
 
     public void setLevelManager(GameObject levelManager)
@@ -71,7 +78,8 @@ public class Level : MonoBehaviour {
 
     public void setLevel(int level)
     {
-        levelData = levelManager.GetComponent("LevelData" + level) as LevelDataInterface;
+        levelData = levelManager.GetComponent("Level" + level + "Data") as LevelDataInterface;
+        levelData.initialize();
 
         availableTermites = levelData.availableTermites;
 
@@ -82,6 +90,7 @@ public class Level : MonoBehaviour {
         mainCamera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);
 
         loadGraph();
+
     }
 
     public void addCollider(Vector2 offset, Vector2 size)

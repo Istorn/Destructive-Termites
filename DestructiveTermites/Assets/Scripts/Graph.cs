@@ -3,30 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 
 //Classe Singleton condivisa da tutti gli oggetti per in movimento per gestire gli spostamenti autonomi
-public static class Graph {
+public class Graph {
 
     //Lista dei nodi di riferimento nella mappa
-    public static List<Node> nodes = new List<Node>();
+    public List<Node> nodes = new List<Node>();
 
     //Aggiunge un nodo al grafo
-    public static void addNode(int nodeNumber, int roomNumber, Vector2 coordinates, Node.Type type)
+    private void addNode(int nodeNumber, int roomNumber, Vector2 coordinates, Node.Type type)
     {
         Node node = new Node(nodeNumber, roomNumber, coordinates, type);
         addNode(node);
     }
 
-    public static void addNode(Node node)
+    public void addNode(Node node)
     {
         nodes.Add(node);
     }
 
-    public static void addLink(Connection connection)
+    public void addLink(Connection connection)
     {
         addLink(connection.nodeNumber1, connection.nodeNumber2, connection.distance, connection.z_index);
     }
 
     //Aggiunge un collegamento pesato tra due nodi nel grafo
-    public static void addLink(int nodeNumber1, int nodeNumber2, int distance, int z_index)
+    private void addLink(int nodeNumber1, int nodeNumber2, int distance, int z_index)
     {
         Node node1 = null;
         Node node2 = null;
@@ -44,7 +44,7 @@ public static class Graph {
     }
 
     //Dato un identificativo per il nodo, lo cerca nel grafo e restituisce il nodo stesso
-    public static Node findNode(int number)
+    public Node findNode(int number)
     {
         foreach(Node n in nodes)
             if (number == n.number)
@@ -53,7 +53,7 @@ public static class Graph {
     }
     
     //Resetta il grafo, cancellandone nodi e link
-    public static void reset()
+    public void reset()
     {
         foreach (Node node in nodes)
         {
@@ -63,7 +63,7 @@ public static class Graph {
     }
 
     //Restituisce il percordo minimo (Calcolato tramite l'algoritmo di Dijkstra) tra due nodi
-    public static List<Node> getPath(int startNodeNumber, int endNodeNumber)
+    public List<Node> getPath(int startNodeNumber, int endNodeNumber)
     {
 
         //Recupero il nodo iniziale e quello finale

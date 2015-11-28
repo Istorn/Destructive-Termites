@@ -42,11 +42,11 @@ public class Human : LiveObject {
         int endNode = 0;
         do
         {
-            endNode = Random.Range(0, Graph.nodes.Count);
+            endNode = Random.Range(0, level.graphLiveObjects.nodes.Count);
         }
-        while ((endNode == actualNodeNumber) || (Graph.findNode(endNode).type.Equals(Graph.Node.Type.Generic)));
+        while ((endNode == actualNodeNumber) || (level.graphLiveObjects.findNode(endNode).type.Equals(Graph.Node.Type.Generic)));
 
-        List<Graph.Node> path = Graph.getPath(actualNodeNumber, endNode);
+        List<Graph.Node> path = level.graphLiveObjects.getPath(actualNodeNumber, endNode);
 
         while (path.Count > 1)
         {
@@ -54,13 +54,12 @@ public class Human : LiveObject {
             Graph.Node end = path[1];
 
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = start.getZIndex(end);
-            Debug.Log(start.getZIndex(end));
 
             //Debug.Log(start.number + "(" + start.coordinates + ")->" + end.number + "(" + end.coordinates + ")");
             int sign = System.Math.Sign(end.coordinates.x - start.coordinates.x);
             transform.localScale = new Vector3(System.Math.Abs(transform.localScale.x) * sign, transform.localScale.y, transform.localScale.z);
             path.RemoveAt(0);
-            yield return StartCoroutine(MoveObject(transform, start, end, LevelData.HUMAN_SPEED));
+            yield return StartCoroutine(MoveObject(transform, start, end, Costants.HUMAN_SPEED));
         }
         actualNodeNumber = endNode;
         animator.SetBool("isWalking", false);
