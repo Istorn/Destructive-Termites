@@ -16,6 +16,13 @@ public class GenericObject : MonoBehaviour {
 
     protected Sprite[] sprites;
 
+    protected Level level = null;
+
+    public void setLevel(Level level)
+    {
+        this.level = level;
+    }
+
     public void setPosition(int roomNumber, Vector2 coordinates, int z_index)
     {
         this.roomNumber = roomNumber;
