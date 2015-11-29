@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Human : LiveObject {
 
     private float alertPercentage = 0f;
-    private float WAIT_TIME = 3;
+    private float WAIT_TIME = 0.1f;
     private int actualNodeNumber = 11;
 
     public override void setObjectName(string objectName)

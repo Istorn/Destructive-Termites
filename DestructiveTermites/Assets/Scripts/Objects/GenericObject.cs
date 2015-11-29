@@ -32,7 +32,7 @@ public class GenericObject : MonoBehaviour {
 
     public virtual void setObjectName(string objectName)
     {
-        sprites = Resources.LoadAll<Sprite>(objectName);
+        sprites = Resources.LoadAll<Sprite>("SpriteSheets/" + objectName);
         GetComponent<SpriteRenderer>().sprite = sprites[0];
     }
 

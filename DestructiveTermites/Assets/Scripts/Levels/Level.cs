@@ -64,11 +64,36 @@ public class Level : MonoBehaviour {
         foreach (Graph.Connection connection in levelData.liveObjectsLinks)
             graphLiveObjects.addLink(connection);
 
-        GameObject provaObj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        Human script = provaObj.AddComponent<Human>();
-        script.setLevel(this);
-        script.setPosition(0, new Vector2(1, 1), Costants.Z_INDEX_HUMANS);
-        script.setObjectName("Chair");
+        GameObject chair = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        SoftObject chairScript = chair.AddComponent<SoftObject>();
+        chairScript.setLevel(this);
+        chairScript.setPosition(0, new Vector2(0, 2), Costants.Z_INDEX_HUMANS);
+        chairScript.setObjectName("Chair");
+
+        GameObject batDrawer = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        HardObject batDrawerScript = batDrawer.AddComponent<HardObject>();
+        batDrawerScript.setLevel(this);
+        batDrawerScript.setPosition(0, new Vector2(3, -3), Costants.Z_INDEX_HUMANS);
+        batDrawerScript.setObjectName("Bat drawer");
+
+        GameObject batSink = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        HardObject batSinkScript = batSink.AddComponent<HardObject>();
+        batSinkScript.setLevel(this);
+        batSinkScript.setPosition(0, new Vector2(-3, -4), Costants.Z_INDEX_HUMANS);
+        batSinkScript.setObjectName("Bat sink");
+
+        GameObject batTub = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        HardObject batTubScript = batTub.AddComponent<HardObject>();
+        batTubScript.setLevel(this);
+        batTubScript.setPosition(0, new Vector2(5, 2.5f), Costants.Z_INDEX_HUMANS);
+        batTubScript.setObjectName("Bat tub");
+
+        GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        Human humanScript = human.AddComponent<Human>();
+        humanScript.setLevel(this);
+        humanScript.setPosition(0, new Vector2(-4, 0), Costants.Z_INDEX_HUMANS);
+        humanScript.setObjectName("Chair");
+
     }
 
     public void setLevelManager(GameObject levelManager)
