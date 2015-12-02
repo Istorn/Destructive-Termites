@@ -17,5 +17,7 @@ public interface LevelDataInterface
 
     int availableTermites { get; }
 
+    Room[] rooms { get; }
+
     void initialize();
 }

@@ -7,7 +7,7 @@ public class GenericObject : MonoBehaviour {
 
     protected Types type;
 
-    protected int roomNumber;
+    public int roomNumber;
 
     protected float strenghtCoefficient = 0.2f;
 

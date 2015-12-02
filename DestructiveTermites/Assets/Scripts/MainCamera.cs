@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityStandardAssets.ImageEffects;
+using System.Threading;
 
 public class MainCamera : MonoBehaviour {
 
+    public Canvas messageBox;
+    
     private float speed = 5.0f;
 
     private Vector2 point1, point2;
 
     private int MOUSE_DRAG_BUTTON = 1;
+
     private Vector3 mousePos;
     public Texture2D cursorTexture;
+
+    private bool gamePaused = false;
+    private bool escPressed = false;
 
 
     // array for storing if the mouse button is dragging
@@ -20,14 +28,13 @@ public class MainCamera : MonoBehaviour {
     bool downInPreviousFrame;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         DontDestroyOnLoad(this);
         isDragActive = false;
         downInPreviousFrame = false;
 	}
-	
-    void Update()
-    {
+
+    void Update () {
         if (Input.GetKey(KeyCode.RightArrow))
             moveCamera(new Vector3(speed * Time.deltaTime, 0, 0));
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -36,6 +43,12 @@ public class MainCamera : MonoBehaviour {
             moveCamera(new Vector3(0, -speed * Time.deltaTime, 0));
         if (Input.GetKey(KeyCode.UpArrow))
             moveCamera(new Vector3(0, speed * Time.deltaTime, 0));
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 1f;
+            escPressed = true;
+        }
 
         if (Input.GetMouseButton(MOUSE_DRAG_BUTTON))
         {
@@ -89,9 +102,6 @@ public class MainCamera : MonoBehaviour {
     public virtual void OnDraggingStart(int mouseButton)
     {
         mousePos = Input.mousePosition;
-       // Vector2 cursorHotspot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
-        //Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);//, new Vector2(5, 0), CursorMode.Auto);
-        
     }
 
     public virtual void OnDragging(int mouseButton)
@@ -115,15 +125,33 @@ public class MainCamera : MonoBehaviour {
 
     public virtual void OnDraggingEnd(int mouseButton)
     {
-       // Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
-    /*void OnGUI()
+    private void changeGameState()
     {
+        if (gamePaused)
+        {
+            GetComponent<Blur>().enabled = true;
+            GetComponent<Tonemapping>().enabled = true;
+            messageBox.GetComponent<Canvas>().enabled = true;
+            Time.timeScale = 0;
+        }
+        else
+        {
+            //Time.timeScale = 1.0f;
+            messageBox.GetComponent<Canvas>().enabled = false;
+            GetComponent<Tonemapping>().enabled = false;
+            GetComponent<Blur>().enabled = false;
+        }
+        gamePaused = !gamePaused;
+    }
 
-        int cursorSizeX = 50;
-        int cursorSizeY = 50;
-        //if (isDragActive)
-         //   GUI.DrawTexture(new Rect(Event.current.mousePosition.x - cursorSizeX / 2, Event.current.mousePosition.y - cursorSizeY / 2, cursorSizeX, cursorSizeY), cursorTexture);
-    }*/
+    void FixedUpdate()
+    {
+        if (escPressed)
+        {
+            changeGameState();
+            escPressed = false;
+        }
+    }
 }

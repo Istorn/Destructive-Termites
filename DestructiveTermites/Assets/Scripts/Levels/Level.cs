@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Level : MonoBehaviour {
 
@@ -15,13 +16,14 @@ public class Level : MonoBehaviour {
 
     private MainCamera mainCamera = null;
 
-    private GameObject infoBox = null;
+    private GameObject infoBar = null;
 
     private int availableTermites = 0;
 
     public Graph graphLiveObjects = null;
     public Graph graphTermites = null;
 
+    public Room[] rooms = null;
     void Awake()
     {
         graphLiveObjects = new Graph();
@@ -32,8 +34,8 @@ public class Level : MonoBehaviour {
 
     private void loadGUI()
     {
-        infoBox = Instantiate(Resources.Load("Prefabs/InfoBox", typeof(GameObject))) as GameObject;
-        infoBox.name = "InfoBox";
+        infoBar = Instantiate(Resources.Load("Prefabs/InfoBar", typeof(GameObject))) as GameObject;
+        infoBar.name = "InfoBar";
 
         background = new GameObject();
         background.name = "Background";
@@ -94,6 +96,8 @@ public class Level : MonoBehaviour {
         humanScript.setPosition(0, new Vector2(-4, 0), Costants.Z_INDEX_HUMANS);
         humanScript.setObjectName("Chair");
 
+        rooms[0].addObject(human);
+
     }
 
     public void setLevelManager(GameObject levelManager)
@@ -105,6 +109,8 @@ public class Level : MonoBehaviour {
     {
         levelData = levelManager.GetComponent("Level" + level + "Data") as LevelDataInterface;
         levelData.initialize();
+
+        rooms = levelData.rooms;
 
         availableTermites = levelData.availableTermites;
 
