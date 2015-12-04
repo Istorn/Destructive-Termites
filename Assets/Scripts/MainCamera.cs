@@ -73,6 +73,15 @@ public class MainCamera : MonoBehaviour {
             }
             downInPreviousFrame = false;
         }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            gameObject.GetComponent<Camera>().orthographicSize-=0.5f;
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            gameObject.GetComponent<Camera>().orthographicSize+=0.5f;
+        }
     }
 
     private void moveCamera(Vector3 translation)

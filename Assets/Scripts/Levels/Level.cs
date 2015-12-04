@@ -50,8 +50,8 @@ public class Level : MonoBehaviour {
         foreground.layer = LayerMask.NameToLayer(Costants.LAYER_FOREGROUND);
         foreground.transform.parent = gameObject.transform;
 
-        foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
-        foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
+        //foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
+        //foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
 
         mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
     }
@@ -115,7 +115,7 @@ public class Level : MonoBehaviour {
         availableTermites = levelData.availableTermites;
 
         backgroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Background");
-        foregroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Foreground");
+        //foregroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Foreground");
 
         mainCamera.setCenter(levelData.cameraSettings[0]);
         mainCamera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);
