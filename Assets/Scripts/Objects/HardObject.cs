@@ -3,8 +3,9 @@ using System.Collections;
 
 public class HardObject : GenericObject {
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         this.type = Types.Hard;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_SOFT_HARD_OBJECTS);
     }

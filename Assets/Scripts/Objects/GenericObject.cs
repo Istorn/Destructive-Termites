@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GenericObject : MonoBehaviour {
 
@@ -18,6 +19,23 @@ public class GenericObject : MonoBehaviour {
 
     protected Level level = null;
 
+    protected GameObject cursor = null;
+
+    protected int avail = 500;
+    protected int counter = 0;
+
+    protected GameObject infoBar;
+
+    protected IEnumerator selectionCoroutine;
+
+    protected List<Colony> attackers;
+
+    protected virtual void Awake()
+    {
+        attackers = new List<Colony>();
+        selectionCoroutine = StartPressing();
+    }
+
     public void setLevel(Level level)
     {
         this.level = level;
@@ -32,7 +50,7 @@ public class GenericObject : MonoBehaviour {
 
     public virtual void setObjectName(string objectName)
     {
-        sprites = Resources.LoadAll<Sprite>("SpriteSheets/" + objectName);
+        sprites = Resources.LoadAll<Sprite>("SpriteSheets/Objects/" + objectName);
         GetComponent<SpriteRenderer>().sprite = sprites[0];
     }
 
@@ -51,6 +69,36 @@ public class GenericObject : MonoBehaviour {
 
     void OnMouseDown()
     {
-        attack(100);
+        StopCoroutine(selectionCoroutine);
+        selectionCoroutine = StartPressing();
+        StartCoroutine(selectionCoroutine);
     }
+
+    void OnMouseUp()
+    {
+        StopCoroutine(selectionCoroutine);
+        if (cursor)
+        {
+            Debug.Log("Attacco con: " + cursor.GetComponent<Cursor>().attackers);
+            Destroy(cursor);
+        }
+        else
+            Debug.Log("SELEZIONE INFO");
+        
+    }
+
+    IEnumerator StartPressing()
+    {
+        yield return new WaitForSeconds(Costants.TIME_TO_WAIT_TO_START_ATTACK);
+        cursor = Instantiate(Resources.Load("Prefabs/Cursor", typeof(GameObject))) as GameObject;
+        cursor.GetComponent<Cursor>().availableAttackers = level.availableTermites;
+        cursor.GetComponent<Cursor>().setPosition(gameObject.transform.position);
+        while (true)
+        {
+            if (!cursor.GetComponent<Cursor>().updateCursor())
+                OnMouseUp();
+            yield return new WaitForSeconds(Costants.TIME_TO_WAIT_ADD_TERMITES_TO_ATTACK);
+        }
+    }
+
 }

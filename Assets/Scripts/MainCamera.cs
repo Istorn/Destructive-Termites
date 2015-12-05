@@ -3,10 +3,13 @@ using System.Collections;
 using System;
 using UnityStandardAssets.ImageEffects;
 using System.Threading;
+using UnityEngine.UI;
 
 public class MainCamera : MonoBehaviour {
 
     public Canvas messageBox;
+
+    private Image infoBar;
     
     private float speed = 5.0f;
 
@@ -73,15 +76,20 @@ public class MainCamera : MonoBehaviour {
             }
             downInPreviousFrame = false;
         }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        /*if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             gameObject.GetComponent<Camera>().orthographicSize-=0.5f;
+            
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             gameObject.GetComponent<Camera>().orthographicSize+=0.5f;
-        }
+            this.point1.x += 0.665f;
+            this.point1.y += 0.475f;
+            this.point2.x -= 0.665f;
+            this.point2.y -= 0.475f;
+        }*/
     }
 
     private void moveCamera(Vector3 translation)
@@ -143,11 +151,14 @@ public class MainCamera : MonoBehaviour {
             GetComponent<Blur>().enabled = true;
             GetComponent<Tonemapping>().enabled = true;
             messageBox.GetComponent<Canvas>().enabled = true;
-            Time.timeScale = 0;
+            Color infoBarColor = infoBar.color;
+            infoBar.color = new Color(infoBarColor.r, infoBarColor.g, infoBarColor.b, 0.1f);
+            //infoB.a = 0;
         }
         else
         {
-            //Time.timeScale = 1.0f;
+            Color infoBarColor = infoBar.color;
+            infoBar.color = new Color(infoBarColor.r, infoBarColor.g, infoBarColor.b,1);
             messageBox.GetComponent<Canvas>().enabled = false;
             GetComponent<Tonemapping>().enabled = false;
             GetComponent<Blur>().enabled = false;
@@ -162,5 +173,10 @@ public class MainCamera : MonoBehaviour {
             changeGameState();
             escPressed = false;
         }
+    }
+
+    public void setInfoBar(GameObject infoBar)
+    {
+        this.infoBar = infoBar.transform.Find("Background").gameObject.GetComponent<Image>();
     }
 }

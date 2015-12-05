@@ -7,8 +7,9 @@ public class LiveObject : GenericObject {
 
     protected bool isMoving = false;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         this.type = Types.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
         animator = gameObject.AddComponent<Animator>();

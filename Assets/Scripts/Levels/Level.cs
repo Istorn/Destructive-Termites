@@ -18,7 +18,7 @@ public class Level : MonoBehaviour {
 
     private GameObject infoBar = null;
 
-    private int availableTermites = 0;
+    public int availableTermites = 0;
 
     public Graph graphLiveObjects = null;
     public Graph graphTermites = null;
@@ -54,6 +54,7 @@ public class Level : MonoBehaviour {
         //foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
 
         mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
+        mainCamera.setInfoBar(infoBar);
     }
 
     private void loadGraph()

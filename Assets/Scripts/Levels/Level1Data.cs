@@ -133,7 +133,7 @@ public class Level1Data: LevelData {
         _termitesLinks = new Graph.Connection[0];
 
         _cameraSettings = new Vector3[3];
-        _cameraSettings[0] = new Vector3( 7.31f, -2.93f, -1); //new Vector3(0, -0.625f, -1);
+        _cameraSettings[0] = new Vector3( 7.31f, -2.93f, -10); //new Vector3(0, -0.625f, -1);
         _cameraSettings[1] = new Vector3(-7.31f, -2.93f, -1);//new Vector2(0, -0.625f);
         _cameraSettings[2] = new Vector3( 7.31f,  1.65f, -1);//new Vector2(0, -0.625f);
 
