@@ -22,5 +22,6 @@ public class Infobar : MonoBehaviour {
     public void selected(GenericObject selectedObj)
     {
         //this.transform.Find("Background/Text1").GetComponent<Text>().text="INTEGRITY: "+selectedObj.getIntegrity().
+
     }
 }
