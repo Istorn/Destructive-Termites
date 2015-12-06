@@ -30,6 +30,10 @@ public class GenericObject : MonoBehaviour {
 
     protected Colony attacker;
 
+    public float getIntegrity()
+    {
+        return this.integrity;
+    }
     protected virtual void Awake()
     {
         attacker = null;
