@@ -31,7 +31,7 @@ public class Infobar : MonoBehaviour {
     //clicking on an object load its specs
     public void selected(GenericObject selectedObj)
     {
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "MATERIAL: " + selectedObj.getType();
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "MATERIAL: " + selectedObj.GetType();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + selectedObj.counter;
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + selectedObj.integrity;
 
