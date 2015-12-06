@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Cursor : MonoBehaviour {
 
@@ -9,9 +10,14 @@ public class Cursor : MonoBehaviour {
     public int availableAttackers = 0;
     private bool keepUdating = true;
 
+    private GUIStyle style;
+    private Rect indicatorRect;
 	// Use this for initialization
 	void Awake () {
         sprites = sprites = Resources.LoadAll<Sprite>("SpriteSheets/GUI/Cursor");
+        style = new GUIStyle(Resources.Load<GUISkin>("GUI/Cursor/CursorIndicatorSkin").box);
+
+        
 	}
 
     public void setPosition(Vector2 position)
@@ -21,34 +27,26 @@ public class Cursor : MonoBehaviour {
 
     public bool updateCursor()
     {
-        attackers = (i + 1) * availableAttackers / sprites.Length;
         if (i + 1 < sprites.Length)
         {
             i++;
             GetComponent<SpriteRenderer>().sprite = sprites[i];
+            attackers = (i + 1) * availableAttackers / sprites.Length;
             return true;
         }
         else
             return false;
     }
 
-    void OnMouseDown()
+    void OnGUI()
     {
-        StartCoroutine(StartPressing());
-    }
-
-    void OnMouseUp()
-    {
-        keepUdating = false;
-    }
-
-    IEnumerator StartPressing()
-    {
-        yield return new WaitForSeconds(Costants.TIME_TO_WAIT_TO_START_ATTACK);
-        while (keepUdating)
+        if (attackers > 0)
         {
-            updateCursor();
-            yield return new WaitForSeconds(Costants.TIME_TO_WAIT_ADD_TERMITES_TO_ATTACK);
+            Vector3 indicatorPosition = Camera.main.WorldToScreenPoint(this.transform.position + new Vector3(0, GetComponent<RectTransform>().rect.height) * 0.5f);
+            indicatorPosition.x = indicatorPosition.x - (float)Costants.OBJ_CURSOR_INDICATOR_WIDTH / 2;
+            indicatorPosition.y = Screen.height - indicatorPosition.y - Costants.OBJ_CURSOR_INDICATOR_HEIGHT + Costants.OBJ_CURSOR_INDICATOR_OFFSET_V;
+            indicatorRect = new Rect(indicatorPosition.x, indicatorPosition.y, Costants.OBJ_CURSOR_INDICATOR_WIDTH, Costants.OBJ_CURSOR_INDICATOR_HEIGHT);
+            GUI.Box(indicatorRect, attackers + "", style);
         }
     }
 }

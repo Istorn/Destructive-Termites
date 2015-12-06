@@ -22,6 +22,12 @@ public static class Costants{
 
     public static float HUMAN_SPEED = 0.3f;
 
-    public static float TIME_TO_WAIT_TO_START_ATTACK = 1f;
-    public static float TIME_TO_WAIT_ADD_TERMITES_TO_ATTACK = 0.3f;
+    //OBJECTS
+    public static float OBJ_TIME_TO_START_ATTACK = 1f;
+    public static float OBJ_TTIME_TO_ADD_ATTACKERS = 0.10f;
+
+    public static int OBJ_CURSOR_INDICATOR_OFFSET_V = -5;
+    public static int OBJ_CURSOR_INDICATOR_WIDTH = 70;
+    public static int OBJ_CURSOR_INDICATOR_HEIGHT = 25;
+    
 }

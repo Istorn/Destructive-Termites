@@ -154,6 +154,7 @@ public class MainCamera : MonoBehaviour {
             Color infoBarColor = infoBar.color;
             infoBar.color = new Color(infoBarColor.r, infoBarColor.g, infoBarColor.b, 0.1f);
             //infoB.a = 0;
+            Time.timeScale = 0f;
         }
         else
         {

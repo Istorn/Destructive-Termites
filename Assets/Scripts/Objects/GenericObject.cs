@@ -89,7 +89,7 @@ public class GenericObject : MonoBehaviour {
 
     IEnumerator StartPressing()
     {
-        yield return new WaitForSeconds(Costants.TIME_TO_WAIT_TO_START_ATTACK);
+        yield return new WaitForSeconds(Costants.OBJ_TIME_TO_START_ATTACK);
         cursor = Instantiate(Resources.Load("Prefabs/Cursor", typeof(GameObject))) as GameObject;
         cursor.GetComponent<Cursor>().availableAttackers = level.availableTermites;
         cursor.GetComponent<Cursor>().setPosition(gameObject.transform.position);
@@ -97,7 +97,7 @@ public class GenericObject : MonoBehaviour {
         {
             if (!cursor.GetComponent<Cursor>().updateCursor())
                 OnMouseUp();
-            yield return new WaitForSeconds(Costants.TIME_TO_WAIT_ADD_TERMITES_TO_ATTACK);
+            yield return new WaitForSeconds(Costants.OBJ_TTIME_TO_ADD_ATTACKERS);
         }
     }
 
