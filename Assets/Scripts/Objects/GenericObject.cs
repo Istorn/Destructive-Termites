@@ -12,7 +12,7 @@ public class GenericObject : MonoBehaviour {
 
     protected float strenghtCoefficient = 0.2f;
 
-    protected float integrity = 100.0f;
+    public float integrity = 100.0f;
     protected float oldIntegrity = 100.0f;
 
     protected Sprite[] sprites;
@@ -22,17 +22,17 @@ public class GenericObject : MonoBehaviour {
     protected GameObject cursor = null;
 
     protected int avail = 500;
-    protected int counter = 0;
+    public int counter = 0;
 
     protected GameObject infoBar;
 
     protected IEnumerator selectionCoroutine;
 
-    protected List<Colony> attackers;
+    protected Colony attacker;
 
     protected virtual void Awake()
     {
-        attackers = new List<Colony>();
+        attacker = null;
         selectionCoroutine = StartPressing();
     }
 

@@ -29,6 +29,7 @@ public class MainCamera : MonoBehaviour {
 
     // for remembering if a button was down in previous frame
     bool downInPreviousFrame;
+    
 
 	// Use this for initialization
 	void Awake () {
