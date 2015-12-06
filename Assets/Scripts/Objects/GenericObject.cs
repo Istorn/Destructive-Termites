@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 public class GenericObject : MonoBehaviour {
 
-    public enum Types { Soft, Hard, Live}
+    public enum Types {
+        [Description("Soft object: easily edible")]
+        Soft = 0,
+        [Description("Hard object: not edible without a special toothing")]
+        Hard = 1,
+        [Description("Live object: only fools would eat it")]
+        Live = 2
+    }
 
     protected Types type;
 
@@ -105,4 +113,8 @@ public class GenericObject : MonoBehaviour {
         }
     }
 
+    public string getType()
+    {
+        return Utils.GetEnumDescription(type);
+    }
 }

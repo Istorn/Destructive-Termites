@@ -97,6 +97,8 @@ public class Level : MonoBehaviour {
         humanScript.setPosition(0, new Vector2(-4, 0), Costants.Z_INDEX_HUMANS);
         humanScript.setObjectName("Chair");
 
+        Debug.Log("TYPE: " + humanScript.getType());
+
         rooms[0].addObject(human);
 
     }
