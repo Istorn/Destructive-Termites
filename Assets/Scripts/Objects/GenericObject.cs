@@ -38,6 +38,10 @@ public class GenericObject : MonoBehaviour {
 
     protected Colony attacker;
 
+    public Types getType()
+    {
+        return this.type;
+    }
     public float getIntegrity()
     {
         return this.integrity;
