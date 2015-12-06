@@ -23,9 +23,9 @@ public class Infobar : MonoBehaviour {
     //load at the starting of play
 	void Awake()
     {
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "MATERIAL: ";
+        this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: ";
+        this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: ";
     }
 	// Update is called once per frame
 	void Update () {
