@@ -35,7 +35,6 @@ public class GenericObject : MonoBehaviour {
     protected GameObject infoBar;
 
     protected IEnumerator selectionCoroutine;
-    protected IEnumerator flashingCoroutine;
 
     protected Colony attacker;
     protected Color color;
@@ -44,7 +43,6 @@ public class GenericObject : MonoBehaviour {
     {
         attacker = null;
         selectionCoroutine = StartPressing();
-        flashingCoroutine = StartFlashing();
     }
 
     public void setLevel(Level level)
@@ -52,18 +50,19 @@ public class GenericObject : MonoBehaviour {
         this.level = level;
     }
 
-    public void setPosition(int roomNumber, Vector2 coordinates, int z_index)
+    public void setPosition(int roomNumber, Vector3 coordinates, int z_index)
     {
         this.roomNumber = roomNumber;
-        gameObject.transform.position = coordinates;
+        gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index / 100);
         GetComponent<SpriteRenderer>().sortingOrder = z_index;
     }
 
     public virtual void setObjectName(string objectName)
     {
-        sprites = Resources.LoadAll<Sprite>("SpriteSheets/Objects/" + objectName);
+        sprites = Resources.LoadAll<Sprite>("Levels/1/Objects/" + objectName); //SpriteSheets/Objects/" + objectName);
         GetComponent<SpriteRenderer>().sprite = sprites[0];
         color = GetComponent<Renderer>().material.color;
+        gameObject.AddComponent<PolygonCollider2D>();
     }
 
     void attack(int numberOfAttackers)
@@ -95,25 +94,21 @@ public class GenericObject : MonoBehaviour {
             Destroy(cursor);
         }
         else
-        {
-            StopCoroutine(flashingCoroutine);
-            flashingCoroutine = StartFlashing();
-            StartCoroutine(flashingCoroutine);
-        }
-        
+            select();
     }
 
-    IEnumerator StartFlashing()
+    private void select()
     {
+        if (level.infoBarScript.selectedObject)
+            level.infoBarScript.selectedObject.deselect();
+        level.infoBarScript.selected(this);
         Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
-        while (true)
-        {
-            if (GetComponent<Renderer>().material.color == color)
-                GetComponent<Renderer>().material.color = transparentColor;
-            else
-                GetComponent<Renderer>().material.color = color;
-            yield return new WaitForSeconds(Costants.OBJ_TIME_INTERVAL_FLASHING);
-        }
+        GetComponent<Renderer>().material.color = transparentColor;
+    }
+
+    public void deselect()
+    {
+        GetComponent<Renderer>().material.color = color;
     }
 
 

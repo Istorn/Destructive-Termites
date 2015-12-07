@@ -16,7 +16,7 @@ public class Level : MonoBehaviour {
 
     private MainCamera mainCamera = null;
 
-    private GameObject infoBar = null;
+    public Infobar infoBarScript = null;
 
     public int availableTermites = 0;
 
@@ -34,8 +34,9 @@ public class Level : MonoBehaviour {
 
     private void loadGUI()
     {
-        infoBar = Instantiate(Resources.Load("Prefabs/InfoBar", typeof(GameObject))) as GameObject;
+        GameObject infoBar = Instantiate(Resources.Load("Prefabs/InfoBar", typeof(GameObject))) as GameObject;
         infoBar.name = "InfoBar";
+        infoBarScript = infoBar.GetComponent<Infobar>();
 
         background = new GameObject();
         background.name = "Background";
@@ -67,7 +68,25 @@ public class Level : MonoBehaviour {
         foreach (Graph.Connection connection in levelData.liveObjectsLinks)
             graphLiveObjects.addLink(connection);
 
-        GameObject chair = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+
+        foreach(ObjectPlaceholder objectPlaceholder in levelData.objects)
+        {
+            GameObject obj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+            GenericObject script = null;
+            if (objectPlaceholder.type == GenericObject.Types.Soft)
+                script = obj.AddComponent<SoftObject>();
+            else
+                if (objectPlaceholder.type == GenericObject.Types.Hard)
+                    script = obj.AddComponent<HardObject>();
+                else
+                    script = obj.AddComponent<LiveObject>();
+
+            script.setLevel(this);
+            script.setPosition(objectPlaceholder.roomNumber, objectPlaceholder.coordinates, objectPlaceholder.z_index);
+            script.setObjectName(objectPlaceholder.name);
+            obj.transform.parent = this.transform;
+        }
+       /* GameObject chair = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
         SoftObject chairScript = chair.AddComponent<SoftObject>();
         chairScript.setLevel(this);
         chairScript.setPosition(0, new Vector2(0, 2), Costants.Z_INDEX_HUMANS);
@@ -99,7 +118,7 @@ public class Level : MonoBehaviour {
 
         Debug.Log("TYPE: " + humanScript.getType());
 
-        rooms[0].addObject(human);
+        rooms[0].addObject(human);*/
 
     }
 

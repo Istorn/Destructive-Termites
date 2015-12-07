@@ -6,13 +6,23 @@ public static class Costants{
     
     public static int Z_INDEX_BACKGROUND = 0;
 
+    public static int Z_INDEX_OBJ_1 = 40;
+    public static int Z_INDEX_OBJ_2 = 41;
+    public static int Z_INDEX_OBJ_3 = 42;
+
     public static int Z_INDEX_HUMANS = 50;
+
+    public static int Z_INDEX_OBJ_4 = 51;
+    public static int Z_INDEX_OBJ_5 = 52;
 
     public static int Z_INDEX_LIVE_BEHIND_FOREGROUND = 98;
 
     public static int Z_INDEX_FOREGROUND = 99;
 
     public static int Z_INDEX_LIVE_OVER_FOREGROUND = 100;
+
+    
+
     
 
     public static string LAYER_SOFT_HARD_OBJECTS = "SoftHardObjects";
