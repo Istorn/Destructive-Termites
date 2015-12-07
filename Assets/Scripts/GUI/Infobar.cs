@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine.UI;
 public class Infobar : MonoBehaviour {
-    Level levelInPlay = null;
-    GenericObject selectedObject = null;
+    public Level levelInPlay = null;
+    public GenericObject selectedObject = null;
 	// Use this for initialization
 	void Start () {
 	
