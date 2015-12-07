@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using UnityEngine.UI;
 public class Infobar : MonoBehaviour {
     Level levelInPlay = null;
+    GenericObject selectedObject = null;
 	// Use this for initialization
 	void Start () {
 	
@@ -34,6 +35,7 @@ public class Infobar : MonoBehaviour {
     //clicking on an object load its specs
     public void selected(GenericObject selectedObj)
     {
+        this.selectedObject = selectedObj;
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = selectedObj.getType();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + selectedObj.counter;
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + selectedObj.integrity;
@@ -42,6 +44,7 @@ public class Infobar : MonoBehaviour {
     //deselecting an object reload main infos
     public void deselected()
     {
+        this.selectedObject = null;
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.levelInPlay.availableTermites;
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
