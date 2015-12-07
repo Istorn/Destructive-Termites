@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using UnityEngine.UI;
 public class Infobar : MonoBehaviour {
     public Level levelInPlay = null;
-    public GenericObject selectedObject = null;
+    private GenericObject selectedObject = null;
 	// Use this for initialization
 	void Start () {
 	
@@ -35,6 +35,8 @@ public class Infobar : MonoBehaviour {
     //clicking on an object load its specs
     public void selected(GenericObject selectedObj)
     {
+        if (selectedObject)
+            selectedObject.deselect();
         this.selectedObject = selectedObj;
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = selectedObj.getType();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + selectedObj.counter;
