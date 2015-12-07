@@ -35,13 +35,16 @@ public class GenericObject : MonoBehaviour {
     protected GameObject infoBar;
 
     protected IEnumerator selectionCoroutine;
+    protected IEnumerator flashingCoroutine;
 
     protected Colony attacker;
+    protected Color color;
 
     protected virtual void Awake()
     {
         attacker = null;
         selectionCoroutine = StartPressing();
+        flashingCoroutine = StartFlashing();
     }
 
     public void setLevel(Level level)
@@ -60,6 +63,7 @@ public class GenericObject : MonoBehaviour {
     {
         sprites = Resources.LoadAll<Sprite>("SpriteSheets/Objects/" + objectName);
         GetComponent<SpriteRenderer>().sprite = sprites[0];
+        color = GetComponent<Renderer>().material.color;
     }
 
     void attack(int numberOfAttackers)
@@ -91,9 +95,27 @@ public class GenericObject : MonoBehaviour {
             Destroy(cursor);
         }
         else
-            Debug.Log("SELEZIONE INFO");
+        {
+            StopCoroutine(flashingCoroutine);
+            flashingCoroutine = StartFlashing();
+            StartCoroutine(flashingCoroutine);
+        }
         
     }
+
+    IEnumerator StartFlashing()
+    {
+        Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
+        while (true)
+        {
+            if (GetComponent<Renderer>().material.color == color)
+                GetComponent<Renderer>().material.color = transparentColor;
+            else
+                GetComponent<Renderer>().material.color = color;
+            yield return new WaitForSeconds(Costants.OBJ_TIME_INTERVAL_FLASHING);
+        }
+    }
+
 
     IEnumerator StartPressing()
     {
@@ -105,7 +127,7 @@ public class GenericObject : MonoBehaviour {
         {
             if (!cursor.GetComponent<Cursor>().updateCursor())
                 OnMouseUp();
-            yield return new WaitForSeconds(Costants.OBJ_TTIME_TO_ADD_ATTACKERS);
+            yield return new WaitForSeconds(Costants.OBJ_TIME_TO_ADD_ATTACKERS);
         }
     }
 
