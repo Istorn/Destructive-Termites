@@ -23,7 +23,7 @@ public class Infobar : MonoBehaviour {
     //load at the starting of play
 	void Awake()
     {
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "MATERIAL: ";
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: ";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: ";
     }
@@ -34,7 +34,7 @@ public class Infobar : MonoBehaviour {
     //clicking on an object load its specs
     public void selected(GenericObject selectedObj)
     {
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "MATERIAL: " + selectedObj.getType();
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = selectedObj.getType();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + selectedObj.counter;
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + selectedObj.integrity;
          
