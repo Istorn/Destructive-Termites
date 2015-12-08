@@ -25,7 +25,7 @@ public class Infobar : MonoBehaviour {
     {
 
         this.transform.Find("BackGround/AvailableText").GetComponent<Text>().text = "available: "+this.levelInPlay.availableTermites;
-        
+        this.transform.Find("BackGround/CombatText").GetComponent<Text>().text = "in combat: " + this.levelInPlay.usedTermites;
     }
     //load at the starting of play
 	void Awake()
@@ -57,4 +57,5 @@ public class Infobar : MonoBehaviour {
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
     }
+    //setting boosters
 }
