@@ -141,6 +141,23 @@ public class Level1Data: LevelData {
 
         _availableTermites = 500;
 
+        _floorColliders = new Vector2[3][];
+
+        Vector2[] points = new Vector2[2];
+        points[0] = new Vector2(-10.3f,  2.90f);
+        points[1] = new Vector2( 14.1f,  2.90f);
+        _floorColliders[0] = points;
+
+        points = new Vector2[2];
+        points[0] = new Vector2(-10.3f, -1.20f);
+        points[1] = new Vector2(14.1f, -1.20f);
+        _floorColliders[1] = points;
+
+        points = new Vector2[2];
+        points[0] = new Vector2(-10.3f, -5.30f);
+        points[1] = new Vector2(14.1f, -5.30f);
+        _floorColliders[2] = points;
+
         _objects = new ObjectPlaceholder[59];
         _objects[00] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_1, new Vector3(-10.12f, -3.73f, 0), "L1_F1_KITCHEN_RACK2_00", GenericObject.Types.Soft);
         _objects[01] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_1, new Vector3(-10.12f, -4.44f, 0), "L1_F1_KITCHEN_RACK1_00", GenericObject.Types.Soft);
@@ -150,8 +167,8 @@ public class Level1Data: LevelData {
         _objects[05] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_4, new Vector3(-12.00f, -5.19f, 0), "L1_F1_KITCHEN_CHAIR2_00", GenericObject.Types.Hard);
         _objects[06] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_4, new Vector3(-11.24f, -5.19f, 0), "L1_F1_KITCHEN_CHAIR2_00", GenericObject.Types.Hard);
         _objects[07] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_5, new Vector3(-11.94f, -5.71f, 0), "L1_F1_KITCHEN_TABLE_00", GenericObject.Types.Hard);
-        _objects[08] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_5, new Vector3(-12.78f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1_00", GenericObject.Types.Hard);
-        _objects[09] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_5, new Vector3(-11.74f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1_00", GenericObject.Types.Hard);
+        _objects[08] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_6, new Vector3(-12.78f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1_00", GenericObject.Types.Hard);
+        _objects[09] = new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_6, new Vector3(-11.74f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1_00", GenericObject.Types.Hard);
 
         _objects[10] = new ObjectPlaceholder(01, Costants.Z_INDEX_OBJ_1, new Vector3(-00.21f, -3.61f, 0), "L1_F1_LIVING_POSTER5_00", GenericObject.Types.Soft);
         _objects[11] = new ObjectPlaceholder(01, Costants.Z_INDEX_OBJ_1, new Vector3(-00.25f, -4.32f, 0), "L1_F1_LIVING_COACH1_00", GenericObject.Types.Soft);
@@ -190,10 +207,10 @@ public class Level1Data: LevelData {
         _objects[39] = new ObjectPlaceholder(06, Costants.Z_INDEX_OBJ_1, new Vector3( 08.78f,  0.28f, 0), "L1_F2_ROOM5_POSTER5_00", GenericObject.Types.Hard);
         _objects[40] = new ObjectPlaceholder(06, Costants.Z_INDEX_OBJ_2, new Vector3( 06.63f,  0.06f, 0), "L1_F2_ROOM5_PC_00", GenericObject.Types.Hard);
         _objects[41] = new ObjectPlaceholder(06, Costants.Z_INDEX_OBJ_2, new Vector3( 07.76f, -0.29f, 1), "L1_F2_ROOM5_PRINTER_00", GenericObject.Types.Hard);
-        _objects[42] = new ObjectPlaceholder(06, Costants.Z_INDEX_OBJ_2, new Vector3( 06.87f, -0.53f, 0), "L1_F2_ROOM5_CHAIR-BLACK_00", GenericObject.Types.Hard);
+        _objects[42] = new ObjectPlaceholder(06, Costants.Z_INDEX_OBJ_3, new Vector3( 06.87f, -0.53f, 0), "L1_F2_ROOM5_CHAIR-BLACK_00", GenericObject.Types.Hard);
 
         _objects[43] = new ObjectPlaceholder(07, Costants.Z_INDEX_OBJ_1, new Vector3(-11.39f,  3.38f, 0), "L1_F3_ROOM1_BED_00", GenericObject.Types.Soft);
-        _objects[44] = new ObjectPlaceholder(07, Costants.Z_INDEX_OBJ_1, new Vector3(-09.07f,  3.38f, 0), "L1_F3_ROOM1_DESK_00", GenericObject.Types.Soft);
+        _objects[44] = new ObjectPlaceholder(07, Costants.Z_INDEX_OBJ_1, new Vector3(-09.07f,  3.38f, 0), "L1_F3_ROOM1_DESK", GenericObject.Types.Soft);
         _objects[45] = new ObjectPlaceholder(07, Costants.Z_INDEX_OBJ_1, new Vector3(-06.50f,  4.17f, 0), "L1_F3_ROOM1_CLOSET-S_00", GenericObject.Types.Soft);
         _objects[46] = new ObjectPlaceholder(07, Costants.Z_INDEX_OBJ_1, new Vector3(-08.76f,  5.16f, 0), "L1_F3_ROOM1_POSTER1_00", GenericObject.Types.Soft);
         _objects[47] = new ObjectPlaceholder(07, Costants.Z_INDEX_OBJ_2, new Vector3(-09.24f,  3.34f, 0), "L1_F3_ROOM1_CHAIR-BLACK_00", GenericObject.Types.Hard);

@@ -87,6 +87,7 @@ public class Level : MonoBehaviour {
             script.setObjectName(objectPlaceholder.name);
             obj.transform.SetParent(this.transform);
         }
+
        /* GameObject chair = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
         SoftObject chairScript = chair.AddComponent<SoftObject>();
         chairScript.setLevel(this);
@@ -120,7 +121,11 @@ public class Level : MonoBehaviour {
         Debug.Log("TYPE: " + humanScript.getType());
 
         rooms[0].addObject(human);*/
-
+        foreach(Vector2[] points in levelData.floorColliders)
+        {
+            EdgeCollider2D collider = background.AddComponent<EdgeCollider2D>();
+            collider.points = points;
+        }
     }
 
     public void setLevelManager(GameObject levelManager)

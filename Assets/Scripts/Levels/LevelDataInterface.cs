@@ -21,5 +21,7 @@ public interface LevelDataInterface
 
     Room[] rooms { get; }
 
+    Vector2[][] floorColliders { get; }
+
     void initialize();
 }

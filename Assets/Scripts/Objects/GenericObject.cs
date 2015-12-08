@@ -40,9 +40,12 @@ public class GenericObject : MonoBehaviour {
 
     protected Color color;
 
+    protected PolygonCollider2D primaryCollider = null;
+
     protected virtual void Awake()
     {
         attacker = null;
+        primaryCollider = gameObject.GetComponent<PolygonCollider2D>();
         selectionCoroutine = StartPressing();
     }
 
@@ -54,26 +57,44 @@ public class GenericObject : MonoBehaviour {
     public void setPosition(int roomNumber, Vector3 coordinates, int z_index)
     {
         this.roomNumber = roomNumber;
-        gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index / 100);
+        gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index/10);
         GetComponent<SpriteRenderer>().sortingOrder = z_index;
     }
 
     public virtual void setObjectName(string objectName)
     {
         sprites = Resources.LoadAll<Sprite>("Levels/1/Objects/" + objectName); //SpriteSheets/Objects/" + objectName);
-        GetComponent<SpriteRenderer>().sprite = sprites[0];
         color = GetComponent<Renderer>().material.color;
-        gameObject.AddComponent<PolygonCollider2D>();
+        updateObject();
     }
 
+    private void updateObject()
+    {
+        int i = (int)((100 - integrity) * (sprites.Length - 1) / 100);
+        GetComponent<SpriteRenderer>().sprite = sprites[i];
+
+        PolygonCollider2D tempCollider = gameObject.AddComponent<PolygonCollider2D>();
+        primaryCollider.pathCount = tempCollider.pathCount;
+        for (int p = 0; p < tempCollider.pathCount; p++ )
+        {
+            primaryCollider.SetPath(p, tempCollider.GetPath(p));
+        }
+        //primaryCollider.points = tempCollider.points;
+        Destroy(tempCollider);
+    }
     void attack(int numberOfAttackers)
     {
+        
         if (integrity > 0)
         {
             integrity -= numberOfAttackers * strenghtCoefficient;
-            int i = (int)((100 - integrity) * (sprites.Length - 1) / 100);
-            GetComponent<SpriteRenderer>().sprite = sprites[i];
+
+            updateObject();
+
+            transform.position = new Vector3 (transform.position.x, transform.position.y + 0.001f, transform.position.z);
             oldIntegrity = integrity;
+            //Debug.Log(integrity);
+           // Debug.Log(sprites.Length);
         }
         else
             Destroy(gameObject);
@@ -84,6 +105,8 @@ public class GenericObject : MonoBehaviour {
         StopCoroutine(selectionCoroutine);
         selectionCoroutine = StartPressing();
         StartCoroutine(selectionCoroutine);
+
+        attack(100);
     }
 
     void OnMouseUp()
@@ -140,5 +163,35 @@ public class GenericObject : MonoBehaviour {
     public string getType()
     {
         return Utils.GetEnumDescription(type);
+    }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("ENTER: " + name);
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+    }
+
+
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("LEAVE: " + name);
+        float distance = GetComponent<SpriteRenderer>().sortingOrder - other.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
+        if (distance > 0 & distance <= 1.5)
+        {
+            transform.Rotate(Vector3.forward * Random.Range(-15, 15));
+            GetComponent<PolygonCollider2D>().isTrigger = false;
+            GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.gameObject.tag == "Object"))
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), GetComponent<PolygonCollider2D>());
     }
 }
