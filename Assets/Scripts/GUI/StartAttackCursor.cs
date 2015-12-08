@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Cursor : MonoBehaviour {
+public class StartAttackCursor : MonoBehaviour {
 
     private Sprite[] sprites;
     private int i = 0;
@@ -14,8 +14,8 @@ public class Cursor : MonoBehaviour {
     private Rect indicatorRect;
 	// Use this for initialization
 	void Awake () {
-        sprites = sprites = Resources.LoadAll<Sprite>("SpriteSheets/GUI/Cursor");
-        style = new GUIStyle(Resources.Load<GUISkin>("GUI/Cursor/CursorIndicatorSkin").box);
+        sprites = sprites = Resources.LoadAll<Sprite>("SpriteSheets/GUI/StartAttackCursor");
+        style = new GUIStyle(Resources.Load<GUISkin>("GUI/StartAttackCursor/IndicatorSkin").box);
 
         
 	}

@@ -34,7 +34,7 @@ public static class Costants{
 
     //OBJECTS
     public static float OBJ_TIME_TO_START_ATTACK = 1f;
-    public static float OBJ_TIME_TO_ADD_ATTACKERS = 0.10f;
+    public static float OBJ_TIME_TO_ADD_500_ATTACKERS = 0.10f;
 
     public static float OBJ_TIME_INTERVAL_FLASHING = 0.6f;
 

@@ -6,9 +6,9 @@ using System.ComponentModel;
 public class GenericObject : MonoBehaviour {
 
     public enum Types {
-        [Description("Soft object: easily edible")]
+        [Description("Soft object: easily eatable")]
         Soft = 0,
-        [Description("Hard object: not edible without a special toothing")]
+        [Description("Hard object: not eatable without a special toothing")]
         Hard = 1,
         [Description("Live object: only fools would eat it")]
         Live = 2
@@ -36,7 +36,8 @@ public class GenericObject : MonoBehaviour {
 
     protected IEnumerator selectionCoroutine;
 
-    protected Colony attacker;
+    protected ColonyCursor attacker = null;
+
     protected Color color;
 
     protected virtual void Awake()
@@ -90,11 +91,20 @@ public class GenericObject : MonoBehaviour {
         StopCoroutine(selectionCoroutine);
         if (cursor)
         {
-            Debug.Log("Attacco con: " + cursor.GetComponent<Cursor>().attackers);
+            int at = cursor.GetComponent<StartAttackCursor>().attackers;
             Destroy(cursor);
-        }
-        else
-            select();
+
+            if (attacker == null)
+            {
+                GameObject colCursor = Instantiate(Resources.Load("Prefabs/ColonyCursor", typeof(GameObject))) as GameObject;
+                attacker = colCursor.GetComponent<ColonyCursor>();
+
+                colCursor.GetComponent<ColonyCursor>().setPosition(gameObject.transform.position, GetComponent<Renderer>().bounds.size);
+            }
+            attacker.attackers += at;
+            level.availableTermites -= at;
+            level.usedTermites += at;
+        }        
     }
 
     private void select()
@@ -109,18 +119,21 @@ public class GenericObject : MonoBehaviour {
         GetComponent<Renderer>().material.color = color;
     }
 
-
     IEnumerator StartPressing()
     {
+        select();
         yield return new WaitForSeconds(Costants.OBJ_TIME_TO_START_ATTACK);
-        cursor = Instantiate(Resources.Load("Prefabs/Cursor", typeof(GameObject))) as GameObject;
-        cursor.GetComponent<Cursor>().availableAttackers = level.availableTermites;
-        cursor.GetComponent<Cursor>().setPosition(gameObject.transform.position);
-        while (true)
+        if (level.availableTermites > 0)
         {
-            if (!cursor.GetComponent<Cursor>().updateCursor())
-                OnMouseUp();
-            yield return new WaitForSeconds(Costants.OBJ_TIME_TO_ADD_ATTACKERS);
+            cursor = Instantiate(Resources.Load("Prefabs/StartAttackCursor", typeof(GameObject))) as GameObject;
+            cursor.GetComponent<StartAttackCursor>().availableAttackers = level.availableTermites;
+            cursor.GetComponent<StartAttackCursor>().setPosition(gameObject.transform.position);
+            while (true)
+            {
+                if (!cursor.GetComponent<StartAttackCursor>().updateCursor())
+                    OnMouseUp();
+                yield return new WaitForSeconds(Costants.OBJ_TIME_TO_ADD_500_ATTACKERS * level.availableTermites / 500);
+            }
         }
     }
 

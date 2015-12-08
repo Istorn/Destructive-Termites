@@ -19,6 +19,7 @@ public class Level : MonoBehaviour {
     public Infobar infoBarScript = null;
 
     public int availableTermites = 0;
+    public int usedTermites = 0;
 
     public Graph graphLiveObjects = null;
     public Graph graphTermites = null;
@@ -84,7 +85,7 @@ public class Level : MonoBehaviour {
             script.setLevel(this);
             script.setPosition(objectPlaceholder.roomNumber, objectPlaceholder.coordinates, objectPlaceholder.z_index);
             script.setObjectName(objectPlaceholder.name);
-            obj.transform.parent = this.transform;
+            obj.transform.SetParent(this.transform);
         }
        /* GameObject chair = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
         SoftObject chairScript = chair.AddComponent<SoftObject>();
