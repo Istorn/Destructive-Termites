@@ -21,6 +21,12 @@ public class Infobar : MonoBehaviour {
     {
         return this.levelInPlay;
     }
+    public void setTermitesOnBar()
+    {
+
+        this.transform.Find("BackGround/AvailableText").GetComponent<Text>().text = "available: "+this.levelInPlay.availableTermites;
+        
+    }
     //load at the starting of play
 	void Awake()
     {
