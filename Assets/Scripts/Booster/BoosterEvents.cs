@@ -6,6 +6,11 @@ public class BoosterEvents : MonoBehaviour {
 		transform.parent.gameObject.GetComponent<Booster>().collectBooster();
 	}
 	
+	void FixedUpdate () 
+    {
+        transform.Rotate (new Vector3 (0, 70, 0) * Time.deltaTime);
+    }
+	
 	// Use this for initialization
 	void Start () {
 	}
