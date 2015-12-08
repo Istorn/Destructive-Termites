@@ -12,13 +12,14 @@ public class Booster : MonoBehaviour {
 		public float timeDuration;
 		public float timeLeft; //set to private when done with testing
 		public bool isHiddenInObject;
+		public bool isCollectedFromScene; //set to private when done with testing
 		public bool isActivated; //set to private when done with testing
 		
 		void Start(){
 			timeLeft = timeDuration;
 		}
 		
-		void FixedUpdate(){			
+		void FixedUpdate(){	
 			// monitors the remaining activation time of the booster
 			if (this.isActivated){
 				timeLeft -= Time.deltaTime;
@@ -26,6 +27,13 @@ public class Booster : MonoBehaviour {
 					Destroy(gameObject);
 				}
 			}
+		}
+		
+		public void collectBooster() { // collects the booster
+			foreach (Transform child in this.transform) {
+				GameObject.Destroy(child.gameObject);
+			}
+			// increment infobar counter			
 		}
 		
 		/*void activateBooster(Colony targetColony){
@@ -38,7 +46,7 @@ public class Booster : MonoBehaviour {
 		void OnDestroy() {
 			// remove booster from Colony's ones
 			// warns the user about destruction/end booster ?
-			Debug.Log("booster was removed");
+			Debug.Log("time out booster");
 		}
 		
 	// uncomment when you're sure.
