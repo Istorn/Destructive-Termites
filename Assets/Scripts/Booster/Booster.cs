@@ -9,6 +9,8 @@ public class Booster : MonoBehaviour {
 		// common attributes
 		public string Name;
 		public string Description;
+		public Sprite spriteNeutral;
+		public Sprite spriteHighlighted;
 		public float timeDuration;
 		public float timeLeft; //set to private when done with testing
 		public bool isHiddenInObject;
