@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
 	private RectTransform inventoryRect;
-	private float inventoryWidth, inventoryHight;
+	private float inventoryWidth, inventoryHeight;
 	public int slots; 		// number of slots
 	public int rows; 		// number of slot rows
 	public float slotPaddingLeft, slotPaddingTop; // Left-Top space between each slot
@@ -21,10 +21,10 @@ public class Inventory : MonoBehaviour {
 		
 		allSlots = new List<GameObject>();
 		inventoryWidth = columns * (slotSize + slotPaddingLeft) + slotPaddingLeft;
-		inventoryHight = rows * (slotSize + slotPaddingTop) + slotSize; // should be slotPaddingTop but too short and can't understand why. If too many rows, still bugs.
+		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotSize; // should be slotPaddingTop but too short and can't understand why. If too many rows, still bugs.
 		inventoryRect = GetComponent<RectTransform>();
 		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, inventoryWidth);
-		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inventoryHight);
+		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inventoryHeight);
 		
 		for (int y=0 ; y < rows ; y++){
 			for (int x=0 ; x < columns ; x++){
