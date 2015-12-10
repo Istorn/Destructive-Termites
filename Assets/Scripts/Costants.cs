@@ -39,9 +39,16 @@ public static class Costants{
 
     public static float OBJ_TIME_INTERVAL_FLASHING = 0.6f;
 
-    public static int OBJ_CURSOR_INDICATOR_OFFSET_V = -5;
-    public static int OBJ_CURSOR_INDICATOR_WIDTH = 70;
-    public static int OBJ_CURSOR_INDICATOR_HEIGHT = 25;
+    public static float INDICATOR_START_ATTACK_OFFSET_V = -5.0f;
+    public static float INDICATOR_START_ATTACK_WIDTH = 70.0f;
+    public static float INDICATOR_START_ATTACK_HEIGHT = 25.0f;
 
-    public static string TAG_USELESS_COLLIDER = "UselessCollider";
+    public static float INDICATOR_ATTACK_ATTACKERS_WIDTH = 45.0f;
+    public static float INDICATOR_ATTACK_ATTACKERS_HEIGHT = 20.0f;
+    public static float INDICATOR_ATTACK_ATTACKERS_OFFSET_V = 5.0f;
+
+
+    public static float INDICATOR_ATTACK_BOOSTER_OFFSET = 0.10f;
+    public static float INDICATOR_ATTACK_BOOSTER_RADIUS = 7.5f;
+    public static float INDICATOR_ATTACK_BOOSTER_ANGLE = 45.0f;
 }

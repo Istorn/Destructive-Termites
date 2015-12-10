@@ -18,7 +18,7 @@ public class GenericObject : MonoBehaviour {
 
     public int roomNumber;
 
-    protected float strenghtCoefficient = 0.2f;
+    protected float strenghtCoefficient = 0.05f;
 
     public float integrity = 100.0f;
     protected float oldIntegrity = 100.0f;
@@ -31,12 +31,13 @@ public class GenericObject : MonoBehaviour {
 
     protected int avail = 500;
     public int counter = 0;
+    private int currentSprite = -1;
 
     protected GameObject infoBar;
 
     protected IEnumerator selectionCoroutine;
 
-    protected ColonyCursor attacker = null;
+    protected Colony attacker = null;
 
     protected Color color;
 
@@ -71,18 +72,22 @@ public class GenericObject : MonoBehaviour {
     private void updateObject()
     {
         int i = (int)((100 - integrity) * (sprites.Length - 1) / 100);
-        GetComponent<SpriteRenderer>().sprite = sprites[i];
-
-        PolygonCollider2D tempCollider = gameObject.AddComponent<PolygonCollider2D>();
-        primaryCollider.pathCount = tempCollider.pathCount;
-        for (int p = 0; p < tempCollider.pathCount; p++ )
+        if (i >= 0 && i < sprites.Length && i != currentSprite)
         {
-            primaryCollider.SetPath(p, tempCollider.GetPath(p));
+            currentSprite = i;
+            GetComponent<SpriteRenderer>().sprite = sprites[currentSprite];
+
+            PolygonCollider2D tempCollider = gameObject.AddComponent<PolygonCollider2D>();
+            primaryCollider.pathCount = tempCollider.pathCount;
+            for (int p = 0; p < tempCollider.pathCount; p++ )
+            {
+                primaryCollider.SetPath(p, tempCollider.GetPath(p));
+            }
+            //primaryCollider.points = tempCollider.points;
+            Destroy(tempCollider);
         }
-        //primaryCollider.points = tempCollider.points;
-        Destroy(tempCollider);
     }
-    void attack(int numberOfAttackers)
+    public void attack(int numberOfAttackers)
     {
         
         if (integrity > 0)
@@ -105,8 +110,6 @@ public class GenericObject : MonoBehaviour {
         StopCoroutine(selectionCoroutine);
         selectionCoroutine = StartPressing();
         StartCoroutine(selectionCoroutine);
-
-        attack(100);
     }
 
     void OnMouseUp()
@@ -119,12 +122,12 @@ public class GenericObject : MonoBehaviour {
 
             if (attacker == null)
             {
-                GameObject colCursor = Instantiate(Resources.Load("Prefabs/ColonyCursor", typeof(GameObject))) as GameObject;
-                attacker = colCursor.GetComponent<ColonyCursor>();
+                GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
+                attacker = colCursor.GetComponent<Colony>();
 
-                colCursor.GetComponent<ColonyCursor>().setPosition(gameObject.transform.position, GetComponent<Renderer>().bounds.size);
+                colCursor.GetComponent<Colony>().setTarget(this);
             }
-            attacker.attackers += at;
+            attacker.addTermites(at);
             level.availableTermites -= at;
             level.usedTermites += at;
         }        
@@ -165,7 +168,7 @@ public class GenericObject : MonoBehaviour {
         return Utils.GetEnumDescription(type);
     }
 
-
+/*
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("ENTER: " + name);
@@ -175,11 +178,11 @@ public class GenericObject : MonoBehaviour {
     {
     }
 
-
+    */
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("LEAVE: " + name);
+       // Debug.Log("LEAVE: " + name);
         float distance = GetComponent<SpriteRenderer>().sortingOrder - other.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         if (distance > 0 & distance <= 1.5)
         {

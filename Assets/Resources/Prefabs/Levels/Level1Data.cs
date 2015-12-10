@@ -139,7 +139,7 @@ public class Level1Data: LevelData {
 
         _humans = new HumanPlaceholder[0];
 
-        _availableTermites = 500;
+        _availableTermites = 5000;
 
         _floorColliders = new Vector2[3][];
 

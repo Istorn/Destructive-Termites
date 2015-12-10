@@ -12,7 +12,6 @@ public class Level : MonoBehaviour {
     private SpriteRenderer backgroundSpriteRenderer = null;
 
     private GameObject foreground = null;
-    private SpriteRenderer foregroundSpriteRenderer = null;
 
     private MainCamera mainCamera = null;
 
