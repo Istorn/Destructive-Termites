@@ -4,6 +4,7 @@ using UnityEngine;
 public class Booster : MonoBehaviour {
     public enum Types { IronDenture = 1, Mushroom = 2, GasEquipment = 3, QueenTermite = 4, MagicShield = 5, GiantTermite = 6 };
 
+    public Types type;
 		// set 1 if the prefab is this kind of booster
 		public bool ironDenture; 
 		public bool mushroom;
