@@ -24,8 +24,13 @@ public class Level : MonoBehaviour {
     public Graph graphTermites = null;
 
     public Room[] rooms = null;
+
+    public List<Booster> collectedBoosters = null;
+
     void Awake()
     {
+        collectedBoosters = new List<Booster>();
+
         graphLiveObjects = new Graph();
         graphTermites = new Graph();
 
@@ -156,5 +161,10 @@ public class Level : MonoBehaviour {
         BoxCollider2D collider = (BoxCollider2D)gameObject.AddComponent<BoxCollider2D>();
         collider.offset = new Vector2(1, 2);
         collider.size = new Vector3(21, 1.6f);
+    }
+
+    public void collectBooster(Booster booster)
+    {
+
     }
 }

@@ -93,7 +93,6 @@ public class Infobar : MonoBehaviour {
         {
             boosterColony.Add(0);
         }
-        this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
