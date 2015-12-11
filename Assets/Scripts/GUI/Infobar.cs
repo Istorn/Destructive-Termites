@@ -13,9 +13,12 @@ public class Infobar : MonoBehaviour {
     public void setlevelPlay(Level levelToSet)
     {
         this.levelInPlay = levelToSet;
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.levelInPlay.availableTermites;
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/CombatText").GetComponent<Text>().text = levelToSet.usedTermites+"in combat";
+        this.transform.Find("Background/AvailableText").GetComponent<Text>().text = levelToSet.availableTermites+" available";
+
     }
     public Level getlevelPlay()
     {
@@ -24,16 +27,17 @@ public class Infobar : MonoBehaviour {
     public void setTermitesOnBar()
     {
 
-        this.transform.Find("BackGround/AvailableText").GetComponent<Text>().text = "available: "+this.levelInPlay.availableTermites;
-        this.transform.Find("BackGround/CombatText").GetComponent<Text>().text = "in combat: " + this.levelInPlay.usedTermites;
+        this.transform.Find("BackGround/AvailableText").GetComponent<Text>().text =this.levelInPlay.availableTermites + "available: " ;
+        this.transform.Find("BackGround/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat: ";
     }
     //load at the starting of play
 	void Awake()
     {
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: ";
-        this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: ";
-
+        this.transform.Find("Background/TermitesText").GetComponent<Text>().text = " ";
+        this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/CombatText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/AvailableText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IronImg/IronText").GetComponent<Text>().text = "0";
         this.transform.Find("Background/GiantImg/GiantText").GetComponent<Text>().text = "0";
         this.transform.Find("Background/MushImg/MushText").GetComponent<Text>().text = "0";
@@ -65,7 +69,7 @@ public class Infobar : MonoBehaviour {
     public void deselectedObj()
     {
         this.selectedObject = null;
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.levelInPlay.availableTermites;
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
     }
@@ -78,7 +82,7 @@ public class Infobar : MonoBehaviour {
         {
             boosterColony.Add(0);
         }
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES: "+colonyselected.getTermites();
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: "+colonyselected.getTermites();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
         //splitter is  visible
@@ -142,7 +146,7 @@ public class Infobar : MonoBehaviour {
     public void delesectColony()
     {
         this.selectedObject = null;
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.levelInPlay.availableTermites;
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
         //splitter is not visible
