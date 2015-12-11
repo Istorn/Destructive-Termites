@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine.UI;
+using System.Collections.Specialized;
+using UnityEngine;
 public class Infobar : MonoBehaviour {
     public Level levelInPlay = null;
     private GenericObject selectedObject = null;
@@ -45,7 +47,7 @@ public class Infobar : MonoBehaviour {
         this.transform.Find("Background/ShieldImg/ShieldText").GetComponent<Text>().text = "0";
         this.transform.Find("Background/QueenImg/QueenText").GetComponent<Text>().text = "0";
         //splitter is not visible
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = false;
+        this.transform.Find("Background/SliderColony").GetComponent<Slider>().GetComponent<Renderer>().GetComponent<Material>().color = new Color(50,50,0);
         this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = false;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = false;
 
@@ -145,7 +147,7 @@ public class Infobar : MonoBehaviour {
     }
     public void delesectColony()
     {
-        this.selectedObject = null;
+       
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
