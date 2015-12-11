@@ -19,8 +19,6 @@ public class LevelData : MonoBehaviour, LevelDataInterface
 
     protected int _availableTermites;
 
-    protected Room[] _rooms;
-
     protected Vector2[][] _floorColliders;
 
     public virtual void initialize()
@@ -66,11 +64,6 @@ public class LevelData : MonoBehaviour, LevelDataInterface
     public int availableTermites
     {
         get { return _availableTermites; }
-    }
-
-    public Room[] rooms
-    {
-        get { return _rooms; }
     }
 
     public Vector2[][] floorColliders

@@ -19,9 +19,11 @@ public class GenericObject : MonoBehaviour {
         Live = 2
     }
 
+    public int id = 0;
+
     protected Types type;
 
-    public int roomNumber;
+    public Room room = null;
 
     protected float strenghtCoefficient = 0.05f;
 
@@ -58,11 +60,21 @@ public class GenericObject : MonoBehaviour {
         this.level = level;
     }
 
-    public void setPosition(int roomNumber, Vector3 coordinates, int z_index)
+    public void setId(int id)
     {
-        this.roomNumber = roomNumber;
+        this.id = id;
+    }
+
+    public void setPosition(Vector3 coordinates, int z_index)
+    {
+       
         gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index/10);
         GetComponent<SpriteRenderer>().sortingOrder = z_index;
+    }
+
+    public void setRoom(Room room)
+    {
+        this.room = room;
     }
 
     public virtual void setObjectName(string objectName)
@@ -90,22 +102,22 @@ public class GenericObject : MonoBehaviour {
             Destroy(tempCollider);
         }
     }
-    public void attack(int numberOfAttackers)
+    public bool attack(int numberOfAttackers)
     {
-        
         if (integrity > 0)
         {
             integrity -= numberOfAttackers * strenghtCoefficient;
 
             updateObject();
 
-            transform.position = new Vector3 (transform.position.x, transform.position.y + 0.001f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.001f, transform.position.z);
             oldIntegrity = integrity;
             //Debug.Log(integrity);
-           // Debug.Log(sprites.Length);
+            // Debug.Log(sprites.Length);
+            return true;
         }
         else
-            Destroy(gameObject);
+            return false;         
     }
 
     void OnMouseDown()
@@ -127,18 +139,31 @@ public class GenericObject : MonoBehaviour {
             {
                 GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
                 colCursor.transform.parent = colCursor.transform;
-                attacker = colCursor.GetComponent<Colony>();
+                Colony colony = colCursor.GetComponent<Colony>();
                 Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
-                im.onClick.AddListener(() => attacker.select());
-                
-                attacker.setTarget(this);
-                attacker.setLevel(level);
+                im.onClick.AddListener(() => colony.select());
+
+                colony.setTarget(this);
+                colony.setLevel(level);
 
             }
             attacker.addTermites(at);
             level.availableTermites -= at;
             level.usedTermites += at;
         }        
+    }
+
+    public void setAttacker(Colony attacker)
+    {
+        if (this.attacker)
+        {
+            this.attacker.addTermites(attacker.getTermites());
+            foreach(Booster b in attacker.boosters)
+                this.attacker.applyBooster(b);
+            Destroy(attacker.gameObject);
+        }
+        else
+            this.attacker = attacker;
     }
 
     private void select()
@@ -175,18 +200,6 @@ public class GenericObject : MonoBehaviour {
     {
         return Utils.GetEnumDescription(type);
     }
-
-/*
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("ENTER: " + name);
-    }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-    }
-
-    */
 
     void OnTriggerExit2D(Collider2D other)
     {

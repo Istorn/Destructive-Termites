@@ -60,6 +60,9 @@ public class Infobar : MonoBehaviour {
     //clicking on an object load its specs
     public void objectSelected(GenericObject selectedObject)
     {
+        if (this.selectedObject)
+            this.selectedObject.deselect();
+
         if (selectedColony)
             colonyDeselected();
 
@@ -82,10 +85,12 @@ public class Infobar : MonoBehaviour {
     //select and deselect colony
     public void colonySelected(Colony selectedColony)
     {
+        if (this.selectedColony)
+            this.selectedColony.deselect();
+
         if (selectedObject)
             objectDeselected();
 
-        Debug.Log("INFOBAR_SELECT");
         this.selectedColony = selectedColony;
         List<int> boosterColony= new List<int>();
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1.0F, 0);

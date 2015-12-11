@@ -24,8 +24,11 @@ public class Colony : MonoBehaviour {
 
     private GameObject infoBar;
 
+    private IEnumerator attackTargetCorountine = null;
+
 	void Awake () {
         boosters = new List<Booster>();
+        attackTargetCorountine = attackTarget();
 	}
 
     public void setLevel(Level level)
@@ -36,6 +39,7 @@ public class Colony : MonoBehaviour {
     public void setTarget(GenericObject target)
     {
         this.target = target;
+        target.setAttacker(this);
         cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
         StartCoroutine(animate());
         StartCoroutine(attackTarget());
@@ -107,11 +111,11 @@ public class Colony : MonoBehaviour {
 
     IEnumerator attackTarget()
     {
-        while (target)
+        while (target.attack(termites))
         {
-           // target.attack(termites);
             yield return new WaitForSeconds(1f);
         }
+        changeTarget(null);
     }
 
 
@@ -129,5 +133,25 @@ public class Colony : MonoBehaviour {
     public void deselect()
     {
         label.color = Color.white;
+    }
+
+    public void changeTarget(GenericObject target)
+    {
+       // Debug.Log("OLD: " + this.target.id);
+        StopCoroutine(attackTargetCorountine);
+
+        if (target)
+            setTarget(target); 
+        else
+        {
+            GenericObject newTarget = this.target.room.getOtherObject(this.target);
+            this.target.room.removeObject(this.target);
+            if (newTarget)
+                setTarget(newTarget);
+            //Debug.Log("NEW: " + newTarget.id);
+        }
+        
+        attackTargetCorountine = attackTarget();
+       /* StartCoroutine(attackTargetCorountine);*/
     }
 }

@@ -23,21 +23,27 @@ public class Level : MonoBehaviour {
     public Graph graphLiveObjects = null;
     public Graph graphTermites = null;
 
-    public Room[] rooms = null;
+    public List<Room> rooms = null;
 
     public List<Booster> collectedBoosters = null;
 
     void Awake()
     {
+        initVars();
+
+        initGUI();    
+    }
+
+    private void initVars()
+    {
+        rooms = new List<Room>();
         collectedBoosters = new List<Booster>();
 
         graphLiveObjects = new Graph();
         graphTermites = new Graph();
-
-        loadGUI();    
     }
 
-    private void loadGUI()
+    private void initGUI()
     {
         GameObject infoBar = Instantiate(Resources.Load("Prefabs/InfoBar", typeof(GameObject))) as GameObject;
         infoBar.name = "InfoBar";
@@ -59,7 +65,7 @@ public class Level : MonoBehaviour {
         //foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
         //foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
 
-        mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>(); //"); (Instantiate(Resources.Load("Prefabs/Camera", typeof(GameObject))) as GameObject).GetComponent<Camera>();
+        mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>();
         mainCamera.setInfoBar(infoBar);
     }
 
@@ -71,10 +77,13 @@ public class Level : MonoBehaviour {
             graphLiveObjects.addNode(node);
 
         foreach (Graph.Connection connection in levelData.liveObjectsLinks)
-            graphLiveObjects.addLink(connection);
+            graphLiveObjects.addLink(connection);        
+    }
 
-
-        foreach(ObjectPlaceholder objectPlaceholder in levelData.objects)
+    private void loadObjects()
+    {
+        int id = 0;
+        foreach (ObjectPlaceholder objectPlaceholder in levelData.objects)
         {
             GameObject obj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
             GenericObject script = null;
@@ -87,49 +96,32 @@ public class Level : MonoBehaviour {
                     script = obj.AddComponent<LiveObject>();
 
             script.setLevel(this);
-            script.setPosition(objectPlaceholder.roomNumber, objectPlaceholder.coordinates, objectPlaceholder.z_index);
+            script.setId(id);
+            script.setPosition(objectPlaceholder.coordinates, objectPlaceholder.z_index);
             script.setObjectName(objectPlaceholder.name);
             obj.transform.SetParent(this.transform);
+
+            addObjectToRoom(script, objectPlaceholder.roomNumber);
+            id++;
         }
+    }
 
-       /* GameObject chair = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        SoftObject chairScript = chair.AddComponent<SoftObject>();
-        chairScript.setLevel(this);
-        chairScript.setPosition(0, new Vector2(0, 2), Costants.Z_INDEX_HUMANS);
-        chairScript.setObjectName("Chair");
-
-        GameObject batDrawer = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        HardObject batDrawerScript = batDrawer.AddComponent<HardObject>();
-        batDrawerScript.setLevel(this);
-        batDrawerScript.setPosition(0, new Vector2(3, -3), Costants.Z_INDEX_HUMANS);
-        batDrawerScript.setObjectName("Bat drawer");
-
-        GameObject batSink = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        HardObject batSinkScript = batSink.AddComponent<HardObject>();
-        batSinkScript.setLevel(this);
-        batSinkScript.setPosition(0, new Vector2(-3, -4), Costants.Z_INDEX_HUMANS);
-        batSinkScript.setObjectName("Bat sink");
-
-        GameObject batTub = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        HardObject batTubScript = batTub.AddComponent<HardObject>();
-        batTubScript.setLevel(this);
-        batTubScript.setPosition(0, new Vector2(5, 2.5f), Costants.Z_INDEX_HUMANS);
-        batTubScript.setObjectName("Bat tub");
-
-        GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        Human humanScript = human.AddComponent<Human>();
-        humanScript.setLevel(this);
-        humanScript.setPosition(0, new Vector2(-4, 0), Costants.Z_INDEX_HUMANS);
-        humanScript.setObjectName("Chair");
-
-        Debug.Log("TYPE: " + humanScript.getType());
-
-        rooms[0].addObject(human);*/
-        foreach(Vector2[] points in levelData.floorColliders)
+    private void addObjectToRoom(GenericObject obj, int roomNumber)
+    {
+        Room room = null;
+        foreach(Room r in rooms)
+            if (r.number == roomNumber)
+            {
+                room = r;
+                break;
+            }
+        if (room == null)
         {
-            EdgeCollider2D collider = background.AddComponent<EdgeCollider2D>();
-            collider.points = points;
+            room = new Room(roomNumber);
+            rooms.Add(room);
         }
+        room.addObject(obj);
+        obj.setRoom(room);
     }
 
     public void setLevelManager(GameObject levelManager)
@@ -142,25 +134,27 @@ public class Level : MonoBehaviour {
         levelData = levelManager.GetComponent("Level" + level + "Data") as LevelDataInterface;
         levelData.initialize();
 
-        rooms = levelData.rooms;
-
         availableTermites = levelData.availableTermites;
 
         backgroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Background");
-        //foregroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Foreground");
 
         mainCamera.setCenter(levelData.cameraSettings[0]);
         mainCamera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);
 
         loadGraph();
 
+        loadObjects();
+
+        loadFloorColliders();
     }
 
-    public void addCollider(Vector2 offset, Vector2 size)
+    public void loadFloorColliders()
     {
-        BoxCollider2D collider = (BoxCollider2D)gameObject.AddComponent<BoxCollider2D>();
-        collider.offset = new Vector2(1, 2);
-        collider.size = new Vector3(21, 1.6f);
+        foreach (Vector2[] points in levelData.floorColliders)
+        {
+            EdgeCollider2D collider = background.AddComponent<EdgeCollider2D>();
+            collider.points = points;
+        }
     }
 
     public void collectBooster(Booster booster)

@@ -19,8 +19,6 @@ public interface LevelDataInterface
 
     int availableTermites { get; }
 
-    Room[] rooms { get; }
-
     Vector2[][] floorColliders { get; }
 
     void initialize();

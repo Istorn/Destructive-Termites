@@ -123,11 +123,6 @@ public class Level1Data: LevelData {
         _liveObjectsLinks[50] = new Graph.Connection(50, 51, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND);
         _liveObjectsLinks[51] = new Graph.Connection(51, 52, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND);
 
-        _rooms = new Room[3];
-        _rooms[0] = new Room(0);
-        _rooms[1] = new Room(1);
-        _rooms[2] = new Room(2);
-
         _termitesNodes = new Graph.Node[0];
 
         _termitesLinks = new Graph.Connection[0];
@@ -139,7 +134,7 @@ public class Level1Data: LevelData {
 
         _humans = new HumanPlaceholder[0];
 
-        _availableTermites = 5000;
+        _availableTermites = 500;
 
         _floorColliders = new Vector2[3][];
 

@@ -149,21 +149,20 @@ public class MainCamera : MonoBehaviour {
     {
         if (gamePaused)
         {
-            GetComponent<Blur>().enabled = true;
+            /*GetComponent<Blur>().enabled = true;
             GetComponent<Tonemapping>().enabled = true;
             messageBox.GetComponent<Canvas>().enabled = true;
             Color infoBarColor = infoBar.color;
-            infoBar.color = new Color(infoBarColor.r, infoBarColor.g, infoBarColor.b, 0.1f);
-            //infoB.a = 0;
+            infoBar.color = new Color(infoBarColor.r, infoBarColor.g, infoBarColor.b, 0.1f);*/
             Time.timeScale = 0f;
         }
         else
         {
-            Color infoBarColor = infoBar.color;
+           /* Color infoBarColor = infoBar.color;
             infoBar.color = new Color(infoBarColor.r, infoBarColor.g, infoBarColor.b,1);
             messageBox.GetComponent<Canvas>().enabled = false;
             GetComponent<Tonemapping>().enabled = false;
-            GetComponent<Blur>().enabled = false;
+            GetComponent<Blur>().enabled = false;*/
         }
         gamePaused = !gamePaused;
     }
