@@ -18,7 +18,7 @@ public class Colony : MonoBehaviour {
 
     private GenericObject target = null;
 
-    private List<Booster> boosters = null;
+    public List<Booster> boosters = null;
 
 	void Awake () {
         boosters = new List<Booster>();
