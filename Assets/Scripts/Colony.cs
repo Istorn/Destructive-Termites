@@ -104,4 +104,8 @@ public class Colony : MonoBehaviour {
             yield return new WaitForSeconds(1f);
         }
     }
+    public int getTermites()
+    {
+        return this.termites;
+    }
 }

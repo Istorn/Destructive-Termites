@@ -71,7 +71,7 @@ public class Infobar : MonoBehaviour {
     //select and deselect colony
     public void selectedColony(Colony colonyselected)
     {
-        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = colonyselected.
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = colonyselected.getTermites();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + selectedObj.counter;
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + selectedObj.integrity;
 
