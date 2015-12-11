@@ -16,13 +16,22 @@ public class Colony : MonoBehaviour {
     private int b = 0;
     private int spriteIndex = 0;
 
+    private Level level = null;
+
     private GenericObject target = null;
 
     public List<Booster> boosters = null;
 
+    private GameObject infoBar;
+
 	void Awake () {
         boosters = new List<Booster>();
 	}
+
+    public void setLevel(Level level)
+    {
+        this.level = level;
+    }
 
     public void setTarget(GenericObject target)
     {
@@ -100,12 +109,25 @@ public class Colony : MonoBehaviour {
     {
         while (target)
         {
-            target.attack(termites);
+           // target.attack(termites);
             yield return new WaitForSeconds(1f);
         }
     }
+
+
     public int getTermites()
     {
         return this.termites;
+    }
+
+    public void select()
+    {
+        label.color = Color.red;
+        level.infoBarScript.colonySelected(this);
+    }
+
+    public void deselect()
+    {
+        label.color = Color.white;
     }
 }

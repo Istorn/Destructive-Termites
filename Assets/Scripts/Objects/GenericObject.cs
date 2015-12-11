@@ -2,15 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GenericObject : MonoBehaviour {
 
     public enum Types {
-        [Description("Soft object: easily eatable")]
+        
+        [Description("Soft object")]
         Soft = 0,
-        [Description("Hard object: not eatable without a special toothing")]
+        //[Description("Hard object: not eatable without a special toothing")]
+        [Description("Hard object")]
         Hard = 1,
-        [Description("Live object: only fools would eat it")]
+        //[Description("Live object: only fools would eat it")]
+        [Description("Live object")]
         Live = 2
     }
 
@@ -32,8 +37,6 @@ public class GenericObject : MonoBehaviour {
     protected int avail = 500;
     public int counter = 0;
     private int currentSprite = -1;
-
-    protected GameObject infoBar;
 
     protected IEnumerator selectionCoroutine;
 
@@ -123,9 +126,14 @@ public class GenericObject : MonoBehaviour {
             if (attacker == null)
             {
                 GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
+                colCursor.transform.parent = colCursor.transform;
                 attacker = colCursor.GetComponent<Colony>();
+                Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
+                im.onClick.AddListener(() => attacker.select());
+                
+                attacker.setTarget(this);
+                attacker.setLevel(level);
 
-                colCursor.GetComponent<Colony>().setTarget(this);
             }
             attacker.addTermites(at);
             level.availableTermites -= at;
@@ -135,7 +143,7 @@ public class GenericObject : MonoBehaviour {
 
     private void select()
     {
-        level.infoBarScript.selectedObj(this);
+        level.infoBarScript.objectSelected(this);
         Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
         GetComponent<Renderer>().material.color = transparentColor;
     }
