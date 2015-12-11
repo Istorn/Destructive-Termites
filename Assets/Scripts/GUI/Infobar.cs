@@ -8,6 +8,7 @@ using UnityEngine;
 public class Infobar : MonoBehaviour {
     public Level levelInPlay = null;
     private GenericObject selectedObject = null;
+    private Colony selectedColony = null;
 	// Use this for initialization
 	void Start () {
 	
@@ -79,8 +80,13 @@ public class Infobar : MonoBehaviour {
     //select and deselect colony
     public void selectedColony(Colony colonyselected)
     {
+        if (selectedColony)
+        {
+            this.delesectColony();
+        }
+        this.selectedColony = colonyselected;
         List<int> boosterColony= new List<int>();
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1F, 0);
+        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1.0F, 0);
         for (int i = 0; i < 6; i++)
         {
             boosterColony.Add(0);
