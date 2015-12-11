@@ -165,6 +165,12 @@ public class Level : MonoBehaviour {
 
     public void collectBooster(Booster booster)
     {
-
+        foreach (Booster b in collectedBoosters)
+            if (b.type.Equals(booster.type))
+            {
+                b.collectOne();
+                return;
+            }
+        collectedBoosters.Add(booster);
     }
 }
