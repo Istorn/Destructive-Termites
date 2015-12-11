@@ -135,7 +135,7 @@ public class GenericObject : MonoBehaviour {
 
     private void select()
     {
-        level.infoBarScript.selected(this);
+        level.infoBarScript.selectedObj(this);
         Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
         GetComponent<Renderer>().material.color = transparentColor;
     }
