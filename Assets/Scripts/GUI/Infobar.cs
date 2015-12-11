@@ -93,7 +93,7 @@ public class Infobar : MonoBehaviour {
         this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().text = "" + colonyselected.getTermites();
-        this.transform.Find("Background/SliderColony/MinSlideTextsx").GetComponent<Text>().text = "0";
+        this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().text = "0";
         //scan booster of colony and divide by type: in the end, refresh indicators on the bar
         List<Booster> colonyBoosters = colonyselected.boosters;
         foreach (Booster booster in colonyBoosters)
