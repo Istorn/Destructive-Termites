@@ -36,6 +36,7 @@ public class Infobar : MonoBehaviour {
 	void Awake()
     {
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = " ";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
         this.transform.Find("Background/CombatText").GetComponent<Text>().text = "";
@@ -138,6 +139,7 @@ public class Infobar : MonoBehaviour {
             }
         }
         //showing num of booster available in colony
+        this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "BOOSTERS OF COLONY";
         this.transform.Find("Background/IronImg/IronText").GetComponent<Text>().text = ""+boosterColony[0];
         this.transform.Find("Background/GiantImg/GiantText").GetComponent<Text>().text = "" + boosterColony[1];
         this.transform.Find("Background/MushImg/MushText").GetComponent<Text>().text = "" + boosterColony[2];
@@ -147,7 +149,7 @@ public class Infobar : MonoBehaviour {
     }
     public void delesectColony()
     {
-       
+        this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
