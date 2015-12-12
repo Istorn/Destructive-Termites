@@ -104,7 +104,7 @@ public class Infobar : MonoBehaviour
                 this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "OBJECT INFO";
                 this.transform.Find("Background/MaterialText").GetComponent<Text>().text = this.selectedObject.getType();
                 this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + this.selectedObject.counter;
-                this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + this.selectedObject.integrity;
+                this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + (int)this.selectedObject.integrity+"%";
             }
             yield return new WaitForSeconds(1F);
         }
@@ -223,7 +223,7 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "OBJECT INFO";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = this.selectedObject.getType();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + this.selectedObject.counter;
-        this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + this.selectedObject.integrity;
+        this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + (int)this.selectedObject.integrity+"%";
 
     }
     //deselecting an object reload main infos
