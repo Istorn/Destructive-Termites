@@ -41,7 +41,7 @@ public class Infobar : MonoBehaviour
             if (this.selectedColony)
             {
                 List<int> boosterColony = new List<int>();
-                this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1.0F, 0);
+               
                 for (int i = 0; i < 6; i++)
                 {
                     boosterColony.Add(0);
@@ -50,6 +50,7 @@ public class Infobar : MonoBehaviour
                 this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
                 this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "SPLIT COLONY";
                 //splitter is  visible
+                this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1000.0F, 0);
                 this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
                 this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
                 this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
@@ -193,6 +194,7 @@ public class Infobar : MonoBehaviour
     //load at the starting of play
     void Awake()
     {
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
         this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
         this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -233,12 +235,21 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = this.selectedObject.getType();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + this.selectedObject.counter;
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + (int)this.selectedObject.integrity+"%";
+        //button visible
+        //move the button
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-115, 35, 0);
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1000.0F, 0);
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().GetComponent<GUIText>().text = "ATTACKER";
 
     }
     //deselecting an object reload main infos
     public void objectDeselected()
     {
         selectedObject.deselect();
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = false;
         this.selectedObject = null;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -256,7 +267,7 @@ public class Infobar : MonoBehaviour
         this.selectedColony = selectedColony;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "COLONY INFO";
         List<int> boosterColony = new List<int>();
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1.0F, 0);
+     
         for (int i = 0; i < 6; i++)
         {
             boosterColony.Add(0);
@@ -264,7 +275,14 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "SPLIT COLONY";
+        //button visible
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1000.0F, 0);
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().GetComponent<GUIText>().text = "TARGET";
+        //move the button
+        this.transform.Find("background/BtnChoose").GetComponent<Button>().transform.position.Set(-275, 35, 0);
         //splitter is  visible
+        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1000.0F, 0);
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
         this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
@@ -333,6 +351,9 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
+        //button not visible
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = false;
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
         //splitter is not visible
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(0.0001F, 0);
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = false;
