@@ -46,12 +46,10 @@ public class Room{
 
     public void removeObject(GenericObject obj)
     {
-        Debug.Log("PRIMA: " + objects.Count);
         int i = 0;
         for (i = 0; i < objects.Count; i++)
             if (objects[i].id == obj.id)
                 break;
         objects.RemoveAt(i);
-        Debug.Log("DOPO:" + objects.Count);
     }
 }
