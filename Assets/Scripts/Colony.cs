@@ -53,7 +53,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             this.target.setAttacker(null);
         this.target = target;
 
-        gameObject.transform.parent = this.target.gameObject.transform;
+        //gameObject.transform.parent = this.target.gameObject.transform;
         oldPosition = target.gameObject.transform.position;
         oldRoom = target.room;
 
@@ -67,7 +67,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             Destroy(gameObject);
         }
         
-        target.setAttacker(this);
+        this.target.setAttacker(this);
         
         StartCoroutine(animate());
         StartCoroutine(attackTarget());

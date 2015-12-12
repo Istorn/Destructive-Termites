@@ -435,10 +435,14 @@ public class Infobar : MonoBehaviour
 
     public void changeTargetAttacker()
     {
-        Debug.Log("CLIC");
         if (selectedObject)
-            colonySelected(selectedObject.getAttacker());
-        if (selectedColony)
-            objectSelected(selectedColony.getTarget());
+        {
+            if (selectedObject.getAttacker())
+                colonySelected(selectedObject.getAttacker());
+        }
+        else     
+            if (selectedColony)
+                if (selectedColony.getTarget())
+                    objectSelected(selectedColony.getTarget());
     }
 }

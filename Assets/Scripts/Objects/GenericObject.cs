@@ -123,7 +123,7 @@ public class GenericObject : MonoBehaviour {
             if (isHanging)
                 enablePhysics();
 
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.001f, transform.position.z);
+            //transform.position = new Vector3(transform.position.x, transform.position.y + 0.001f, transform.position.z);
             oldIntegrity = integrity;
             //Debug.Log(integrity);
             // Debug.Log(sprites.Length);
