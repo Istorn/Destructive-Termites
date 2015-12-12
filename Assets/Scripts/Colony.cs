@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Colony : MonoBehaviour {
+public class Colony : MonoBehaviour, IDragHandler, IEndDragHandler {
 
     public Text label;
     public GameObject cursor; 
@@ -24,6 +25,9 @@ public class Colony : MonoBehaviour {
 
     private GameObject infoBar;
 
+    private Vector2 oldPosition;
+    private Room oldRoom; 
+
     private IEnumerator attackTargetCorountine = null;
 
 	void Awake () {
@@ -38,7 +42,23 @@ public class Colony : MonoBehaviour {
 
     public void setTarget(GenericObject target)
     {
+        if (this.target)
+            this.target.setAttacker(null);
         this.target = target;
+
+        oldPosition = target.gameObject.transform.position;
+        oldRoom = target.room;
+
+        Colony col = this.target.getAttacker();
+        
+        if (col)
+        {
+            col.addTermites(termites);
+            foreach (Booster b in boosters)
+                col.applyBooster(b);
+            Destroy(gameObject);
+        }
+        
         target.setAttacker(this);
         cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
         StartCoroutine(animate());
@@ -111,7 +131,7 @@ public class Colony : MonoBehaviour {
 
     IEnumerator attackTarget()
     {
-        while (target.attack(termites))
+        while (target && (target.attack(termites)))
         {
             yield return new WaitForSeconds(1f);
         }
@@ -137,21 +157,62 @@ public class Colony : MonoBehaviour {
 
     public void changeTarget(GenericObject target)
     {
-       // Debug.Log("OLD: " + this.target.id);
         StopCoroutine(attackTargetCorountine);
 
         if (target)
             setTarget(target); 
         else
         {
-            GenericObject newTarget = this.target.room.getOtherObject(this.target);
-            this.target.room.removeObject(this.target);
+            GenericObject newTarget = null;
+            if (this.target)
+            {
+                newTarget = this.target.room.getOtherObject(this.target);
+                this.target.room.removeObject(this.target);
+                Destroy(this.target.gameObject);
+                this.target = null;
+                
+            }
+            else
+            {
+                oldRoom.getObject(oldPosition);
+            }
+                
             if (newTarget)
                 setTarget(newTarget);
-            //Debug.Log("NEW: " + newTarget.id);
+            else
+            {//DA AGGIORNARE->ELIMINA COLONIA SE NON TROVA OGETTI NELLA STANZA
+                Destroy(gameObject);
+            }
+            
         }
-        
         attackTargetCorountine = attackTarget();
        /* StartCoroutine(attackTargetCorountine);*/
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        cursor.transform.position = Input.mousePosition;
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            hit.collider.gameObject.GetComponent<GenericObject>().select();
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            setTarget(hit.collider.gameObject.GetComponent<GenericObject>());
+            
+        }
+        else
+        {
+            cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
+        }
+            
     }
 }

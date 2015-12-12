@@ -122,9 +122,13 @@ public class GenericObject : MonoBehaviour {
 
     void OnMouseDown()
     {
-        StopCoroutine(selectionCoroutine);
-        selectionCoroutine = StartPressing();
-        StartCoroutine(selectionCoroutine);
+        Debug.Log("CLIC");
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            StopCoroutine(selectionCoroutine);
+            selectionCoroutine = StartPressing();
+            StartCoroutine(selectionCoroutine);
+        }
     }
 
     void OnMouseUp()
@@ -155,18 +159,15 @@ public class GenericObject : MonoBehaviour {
 
     public void setAttacker(Colony attacker)
     {
-        if (this.attacker)
-        {
-            this.attacker.addTermites(attacker.getTermites());
-            foreach(Booster b in attacker.boosters)
-                this.attacker.applyBooster(b);
-            Destroy(attacker.gameObject);
-        }
-        else
-            this.attacker = attacker;
+        this.attacker = attacker;
     }
 
-    private void select()
+    public Colony getAttacker()
+    {
+        return attacker;
+    }
+
+    public void select()
     {
         level.infoBarScript.objectSelected(this);
         Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
@@ -218,4 +219,5 @@ public class GenericObject : MonoBehaviour {
         if ((collision.gameObject.tag == "Object"))
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), GetComponent<PolygonCollider2D>());
     }
+
 }
