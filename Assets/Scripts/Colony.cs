@@ -42,12 +42,18 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         this.level = level;
     }
 
+    public GenericObject getTarget()
+    {
+        return target;
+    }
+
     public void setTarget(GenericObject target)
     {
         if (this.target)
             this.target.setAttacker(null);
         this.target = target;
 
+        gameObject.transform.parent = this.target.gameObject.transform;
         oldPosition = target.gameObject.transform.position;
         oldRoom = target.room;
 
@@ -121,7 +127,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             }
             cursor.GetComponent<Image>().sprite = sprites[spriteIndex];
             spriteIndex++; 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -198,6 +204,23 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
        /* StartCoroutine(attackTargetCorountine);*/
     }
 
+    void split(int newNumber)
+    {
+        GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
+        Colony colony = colCursor.GetComponent<Colony>();
+        colony.setLevel(level);
+        Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
+        im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
+
+        GenericObject newTarget = this.target.room.getOtherObject(this.target);
+        if (newTarget)
+            //DA CERCARE IN OGNI STANZA
+            colony.setTarget(newTarget);
+        colony.addTermites(termites - newNumber);
+        termites = newNumber;
+        label.text = termites + "";
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         cursor.transform.position = Input.mousePosition;
@@ -205,7 +228,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         if (hit.collider != null)
         {
-            hit.collider.gameObject.GetComponent<GenericObject>().select();
+            level.infoBarScript.objectSelected(hit.collider.gameObject.GetComponent<GenericObject>());
         }
     }
 
@@ -222,7 +245,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         {
             cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
         }
-        startDrag = false;    
+        startDrag = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

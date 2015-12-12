@@ -28,7 +28,7 @@ public class Graph {
     //Aggiunge un collegamento pesato tra due nodi nel grafo
     private void addLink(int nodeNumber1, int nodeNumber2, int distance, int z_index)
     {
-        Node node1 = null;
+      /*  Node node1 = null;
         Node node2 = null;
         for (int i = 0; i < nodes.Count; i++)
         {
@@ -40,7 +40,7 @@ public class Graph {
                     node2 = node;
         }
         node1.addNeighbor(new Neighbor(node2, distance, z_index));
-        node2.addNeighbor(new Neighbor(node1, distance, z_index));
+        node2.addNeighbor(new Neighbor(node1, distance, z_index));*/
     }
 
     //Dato un identificativo per il nodo, lo cerca nel grafo e restituisce il nodo stesso

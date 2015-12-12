@@ -10,6 +10,7 @@ public class Level : MonoBehaviour {
 
     private GameObject background = null;
     private SpriteRenderer backgroundSpriteRenderer = null;
+    private SpriteRenderer foregroundSpriteRenderer = null;
 
     private GameObject foreground = null;
 
@@ -62,8 +63,8 @@ public class Level : MonoBehaviour {
         foreground.layer = LayerMask.NameToLayer(Costants.LAYER_FOREGROUND);
         foreground.transform.parent = gameObject.transform;
 
-        //foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
-        //foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
+        foregroundSpriteRenderer = foreground.AddComponent<SpriteRenderer>();
+        foregroundSpriteRenderer.sortingOrder = Costants.Z_INDEX_FOREGROUND;
 
         mainCamera = GameObject.Find("Main Camera").GetComponent<MainCamera>();
         mainCamera.setInfoBar(infoBar);
@@ -96,6 +97,7 @@ public class Level : MonoBehaviour {
                     script = obj.AddComponent<LiveObject>();
 
             script.setLevel(this);
+            script.isHanging = objectPlaceholder.isHanging;
             script.setId(id);
             script.setPosition(objectPlaceholder.coordinates, objectPlaceholder.z_index);
             script.setObjectName(objectPlaceholder.name);
@@ -104,6 +106,13 @@ public class Level : MonoBehaviour {
             addObjectToRoom(script, objectPlaceholder.roomNumber);
             id++;
         }
+
+        GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        Human humanScript = human.AddComponent<Human>();
+        humanScript.setLevel(this);
+        humanScript.setId(-1);
+        humanScript.setPosition(new Vector2(-4, 0), Costants.Z_INDEX_HUMANS);
+        humanScript.setObjectName("Chair");
     }
 
     private void addObjectToRoom(GenericObject obj, int roomNumber)
@@ -137,6 +146,7 @@ public class Level : MonoBehaviour {
         availableTermites = levelData.availableTermites;
 
         backgroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Background");
+        foregroundSpriteRenderer.sprite = Resources.Load<Sprite>("Levels/" + level + "/Foreground");
 
         mainCamera.setCenter(levelData.cameraSettings[0]);
         mainCamera.setBouds(levelData.cameraSettings[1], levelData.cameraSettings[2]);

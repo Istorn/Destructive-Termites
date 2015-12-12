@@ -1,25 +1,21 @@
 fileFormatVersion: 2
-guid: b29a3def348e9e24aa40c1923d55525a
-timeCreated: 1449936534
+guid: 8478d835b3a267f4ead73a73f9177dcc
+timeCreated: 1449928339
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Booster_1_0
-    21300002: Booster_1_1
-    21300004: Booster_1_2
-    21300006: Booster_1_3
-    21300008: Booster_1_4
-    21300010: Booster_1_5
-    21300012: Booster_1_6
-    21300014: Booster_1_7
-    21300016: Booster_1_8
-    21300018: Booster_1_9
-    21300020: Booster_1_10
-    21300022: Booster_1_11
-    21300024: Booster_1_12
-    21300026: Booster_1_13
-    21300028: Booster_1_14
-    21300030: Booster_1_15
+    21300000: L1_F3_BATHROOM_SHOWER_0
+    21300002: L1_F3_BATHROOM_SHOWER_1
+    21300004: L1_F3_BATHROOM_SHOWER_2
+    21300006: L1_F3_BATHROOM_SHOWER_3
+    21300008: L1_F3_BATHROOM_SHOWER_4
+    21300010: L1_F3_BATHROOM_SHOWER_5
+    21300012: L1_F3_BATHROOM_SHOWER_6
+    21300014: L1_F3_BATHROOM_SHOWER_7
+    21300016: L1_F3_BATHROOM_SHOWER_8
+    21300018: L1_F3_BATHROOM_SHOWER_9
+    21300020: L1_F3_BATHROOM_SHOWER_10
+    21300022: L1_F3_BATHROOM_SHOWER_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,163 +62,123 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Booster_1_0
+    - name: L1_F3_BATHROOM_SHOWER_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 56
-        height: 56
+        y: 355
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_1
+    - name: L1_F3_BATHROOM_SHOWER_1
       rect:
         serializedVersion: 2
-        x: 56
-        y: 112
-        width: 56
-        height: 56
+        x: 211
+        y: 355
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_2
+    - name: L1_F3_BATHROOM_SHOWER_2
       rect:
         serializedVersion: 2
-        x: 112
-        y: 112
-        width: 56
-        height: 56
+        x: 422
+        y: 355
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_3
+    - name: L1_F3_BATHROOM_SHOWER_3
       rect:
         serializedVersion: 2
-        x: 168
-        y: 112
-        width: 56
-        height: 56
+        x: 633
+        y: 355
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_4
+    - name: L1_F3_BATHROOM_SHOWER_4
       rect:
         serializedVersion: 2
-        x: 224
-        y: 112
-        width: 56
-        height: 56
+        x: 844
+        y: 355
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_5
+    - name: L1_F3_BATHROOM_SHOWER_5
       rect:
         serializedVersion: 2
-        x: 280
-        y: 112
-        width: 56
-        height: 56
+        x: 1055
+        y: 355
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_7
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_8
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_9
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_10
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_11
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_12
+    - name: L1_F3_BATHROOM_SHOWER_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 56
-        height: 56
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_13
+    - name: L1_F3_BATHROOM_SHOWER_7
       rect:
         serializedVersion: 2
-        x: 56
+        x: 211
         y: 0
-        width: 56
-        height: 56
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_14
+    - name: L1_F3_BATHROOM_SHOWER_8
       rect:
         serializedVersion: 2
-        x: 112
+        x: 422
         y: 0
-        width: 56
-        height: 56
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_15
+    - name: L1_F3_BATHROOM_SHOWER_9
       rect:
         serializedVersion: 2
-        x: 168
+        x: 633
         y: 0
-        width: 56
-        height: 56
+        width: 211
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_BATHROOM_SHOWER_10
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 211
+        height: 355
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_BATHROOM_SHOWER_11
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 0
+        width: 211
+        height: 355
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

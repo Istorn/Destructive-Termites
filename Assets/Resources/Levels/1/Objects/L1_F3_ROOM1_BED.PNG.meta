@@ -1,25 +1,20 @@
 fileFormatVersion: 2
-guid: b29a3def348e9e24aa40c1923d55525a
-timeCreated: 1449936534
+guid: 2584643f94321c14b94217e7a57f2a07
+timeCreated: 1449928932
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Booster_1_0
-    21300002: Booster_1_1
-    21300004: Booster_1_2
-    21300006: Booster_1_3
-    21300008: Booster_1_4
-    21300010: Booster_1_5
-    21300012: Booster_1_6
-    21300014: Booster_1_7
-    21300016: Booster_1_8
-    21300018: Booster_1_9
-    21300020: Booster_1_10
-    21300022: Booster_1_11
-    21300024: Booster_1_12
-    21300026: Booster_1_13
-    21300028: Booster_1_14
-    21300030: Booster_1_15
+    21300000: L1_F3_ROOM1_BED_0
+    21300002: L1_F3_ROOM1_BED_1
+    21300004: L1_F3_ROOM1_BED_2
+    21300006: L1_F3_ROOM1_BED_3
+    21300008: L1_F3_ROOM1_BED_4
+    21300010: L1_F3_ROOM1_BED_5
+    21300012: L1_F3_ROOM1_BED_6
+    21300014: L1_F3_ROOM1_BED_7
+    21300016: L1_F3_ROOM1_BED_8
+    21300018: L1_F3_ROOM1_BED_9
+    21300020: L1_F3_ROOM1_BED_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,163 +61,113 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Booster_1_0
+    - name: L1_F3_ROOM1_BED_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 56
-        height: 56
+        y: 175
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_1
+    - name: L1_F3_ROOM1_BED_1
       rect:
         serializedVersion: 2
-        x: 56
-        y: 112
-        width: 56
-        height: 56
+        x: 262
+        y: 175
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_2
+    - name: L1_F3_ROOM1_BED_2
       rect:
         serializedVersion: 2
-        x: 112
-        y: 112
-        width: 56
-        height: 56
+        x: 524
+        y: 175
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_3
+    - name: L1_F3_ROOM1_BED_3
       rect:
         serializedVersion: 2
-        x: 168
-        y: 112
-        width: 56
-        height: 56
+        x: 786
+        y: 175
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_4
+    - name: L1_F3_ROOM1_BED_4
       rect:
         serializedVersion: 2
-        x: 224
-        y: 112
-        width: 56
-        height: 56
+        x: 1048
+        y: 175
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_5
+    - name: L1_F3_ROOM1_BED_5
       rect:
         serializedVersion: 2
-        x: 280
-        y: 112
-        width: 56
-        height: 56
+        x: 1310
+        y: 175
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_7
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_8
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_9
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_10
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_11
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_12
+    - name: L1_F3_ROOM1_BED_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 56
-        height: 56
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_13
+    - name: L1_F3_ROOM1_BED_7
       rect:
         serializedVersion: 2
-        x: 56
+        x: 262
         y: 0
-        width: 56
-        height: 56
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_14
+    - name: L1_F3_ROOM1_BED_8
       rect:
         serializedVersion: 2
-        x: 112
+        x: 524
         y: 0
-        width: 56
-        height: 56
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_15
+    - name: L1_F3_ROOM1_BED_9
       rect:
         serializedVersion: 2
-        x: 168
+        x: 786
         y: 0
-        width: 56
-        height: 56
+        width: 262
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_ROOM1_BED_10
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 0
+        width: 262
+        height: 175
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

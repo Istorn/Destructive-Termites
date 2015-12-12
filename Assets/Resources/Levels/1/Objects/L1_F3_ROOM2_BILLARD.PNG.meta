@@ -1,25 +1,24 @@
 fileFormatVersion: 2
-guid: b29a3def348e9e24aa40c1923d55525a
-timeCreated: 1449936534
+guid: 0f0d095b79ba8e2409abff67bc60818d
+timeCreated: 1449929116
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Booster_1_0
-    21300002: Booster_1_1
-    21300004: Booster_1_2
-    21300006: Booster_1_3
-    21300008: Booster_1_4
-    21300010: Booster_1_5
-    21300012: Booster_1_6
-    21300014: Booster_1_7
-    21300016: Booster_1_8
-    21300018: Booster_1_9
-    21300020: Booster_1_10
-    21300022: Booster_1_11
-    21300024: Booster_1_12
-    21300026: Booster_1_13
-    21300028: Booster_1_14
-    21300030: Booster_1_15
+    21300000: L1_F3_ROOM2_BILLARD_0
+    21300002: L1_F3_ROOM2_BILLARD_1
+    21300004: L1_F3_ROOM2_BILLARD_2
+    21300006: L1_F3_ROOM2_BILLARD_3
+    21300008: L1_F3_ROOM2_BILLARD_4
+    21300010: L1_F3_ROOM2_BILLARD_5
+    21300012: L1_F3_ROOM2_BILLARD_6
+    21300014: L1_F3_ROOM2_BILLARD_7
+    21300016: L1_F3_ROOM2_BILLARD_8
+    21300018: L1_F3_ROOM2_BILLARD_9
+    21300020: L1_F3_ROOM2_BILLARD_10
+    21300022: L1_F3_ROOM2_BILLARD_11
+    21300024: L1_F3_ROOM2_BILLARD_12
+    21300026: L1_F3_ROOM2_BILLARD_13
+    21300028: L1_F3_ROOM2_BILLARD_14
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -66,163 +65,153 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Booster_1_0
+    - name: L1_F3_ROOM2_BILLARD_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 112
-        width: 56
-        height: 56
+        y: 294
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_1
+    - name: L1_F3_ROOM2_BILLARD_1
       rect:
         serializedVersion: 2
-        x: 56
-        y: 112
-        width: 56
-        height: 56
+        x: 494
+        y: 294
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_2
+    - name: L1_F3_ROOM2_BILLARD_2
       rect:
         serializedVersion: 2
-        x: 112
-        y: 112
-        width: 56
-        height: 56
+        x: 988
+        y: 294
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_3
+    - name: L1_F3_ROOM2_BILLARD_3
       rect:
         serializedVersion: 2
-        x: 168
-        y: 112
-        width: 56
-        height: 56
+        x: 1482
+        y: 294
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_4
+    - name: L1_F3_ROOM2_BILLARD_4
       rect:
         serializedVersion: 2
-        x: 224
-        y: 112
-        width: 56
-        height: 56
+        x: 1976
+        y: 294
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_5
+    - name: L1_F3_ROOM2_BILLARD_5
       rect:
         serializedVersion: 2
-        x: 280
-        y: 112
-        width: 56
-        height: 56
+        x: 2470
+        y: 294
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_7
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_8
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_9
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_10
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_11
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_12
+    - name: L1_F3_ROOM2_BILLARD_6
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 56
-        height: 56
+        y: 147
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_13
+    - name: L1_F3_ROOM2_BILLARD_7
       rect:
         serializedVersion: 2
-        x: 56
-        y: 0
-        width: 56
-        height: 56
+        x: 494
+        y: 147
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_14
+    - name: L1_F3_ROOM2_BILLARD_8
       rect:
         serializedVersion: 2
-        x: 112
-        y: 0
-        width: 56
-        height: 56
+        x: 988
+        y: 147
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Booster_1_15
+    - name: L1_F3_ROOM2_BILLARD_9
       rect:
         serializedVersion: 2
-        x: 168
+        x: 1482
+        y: 147
+        width: 494
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_ROOM2_BILLARD_10
+      rect:
+        serializedVersion: 2
+        x: 1976
+        y: 147
+        width: 494
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_ROOM2_BILLARD_11
+      rect:
+        serializedVersion: 2
+        x: 2470
+        y: 147
+        width: 494
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_ROOM2_BILLARD_12
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 56
-        height: 56
+        width: 494
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_ROOM2_BILLARD_13
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 0
+        width: 494
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F3_ROOM2_BILLARD_14
+      rect:
+        serializedVersion: 2
+        x: 988
+        y: 0
+        width: 494
+        height: 147
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

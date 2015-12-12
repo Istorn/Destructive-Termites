@@ -9,17 +9,19 @@ public class GenericObject : MonoBehaviour {
 
     public enum Types {
         
-        [Description("Soft object")]
+        [Description("SOFT OBJECT")]
         Soft = 0,
         //[Description("Hard object: not eatable without a special toothing")]
-        [Description("Hard object")]
+        [Description("HARD OBJECT")]
         Hard = 1,
         //[Description("Live object: only fools would eat it")]
-        [Description("Live object")]
+        [Description("LIVE OBJECT")]
         Live = 2
     }
 
     public int id = 0;
+
+    public bool isHanging = true;
 
     protected Types type;
 
@@ -102,6 +104,14 @@ public class GenericObject : MonoBehaviour {
             Destroy(tempCollider);
         }
     }
+
+    void enablePhysics()
+    {
+        //transform.Rotate(Vector3.forward * Random.Range(-25, 25));
+        GetComponent<PolygonCollider2D>().isTrigger = false;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+
     public bool attack(int numberOfAttackers)
     {
         if (integrity > 0)
@@ -110,6 +120,8 @@ public class GenericObject : MonoBehaviour {
             if (integrity < 0)
                 integrity = 0;
             updateObject();
+            if (isHanging)
+                enablePhysics();
 
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.001f, transform.position.z);
             oldIntegrity = integrity;
@@ -142,7 +154,6 @@ public class GenericObject : MonoBehaviour {
             if (attacker == null)
             {
                 GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
-                colCursor.transform.parent = colCursor.transform;
                 Colony colony = colCursor.GetComponent<Colony>();
                 Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
                 im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
@@ -207,9 +218,7 @@ public class GenericObject : MonoBehaviour {
         float distance = GetComponent<SpriteRenderer>().sortingOrder - other.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         if (distance > 0 & distance <= 1.5)
         {
-            transform.Rotate(Vector3.forward * Random.Range(-15, 15));
-            GetComponent<PolygonCollider2D>().isTrigger = false;
-            GetComponent<Rigidbody2D>().isKinematic = false;
+            enablePhysics();
         }
     }
 
