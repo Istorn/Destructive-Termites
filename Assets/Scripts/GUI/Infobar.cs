@@ -219,7 +219,7 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(0.0001F, 0);
         this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = false;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = false;
-
+        
     }
     // Update is called once per frame
     void Update()
@@ -291,8 +291,11 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
         this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
-        this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().text = "" + this.selectedColony.getTermites();
-        this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().text = "0";
+        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "" + (this.selectedColony.getTermites()-1);
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "1";
+        this.transform.Find("background/SliderColony").GetComponent<Slider>().minValue = 1;
+        this.transform.Find("background/SliderColony").GetComponent<Slider>().maxValue = (this.selectedColony.getTermites() - 1);
+
         //scan booster of colony and divide by type: in the end, refresh indicators on the bar
         List<Booster> colonyBoosters = this.selectedColony.boosters;
         foreach (Booster booster in colonyBoosters)
@@ -362,8 +365,11 @@ public class Infobar : MonoBehaviour
         //splitter is not visible
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(0.0001F, 0);
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = false;
-        this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = false;
-        this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = false;
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = false;
+        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = false;
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "";
+
         //set booster on screen by type of the level
         if (this.levelInPlay)
         {
@@ -440,5 +446,23 @@ public class Infobar : MonoBehaviour
             colonySelected(selectedObject.getAttacker());
         if (selectedColony)
             objectSelected(selectedColony.getTarget());
+    }
+    //method to handle the sliding and next splitting of the colony selected
+    public void onSplitting()
+    {
+        //when you slide, the value on the left will be refreshed
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = ""+this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
+            //if user raise up the button, i handle the splitting
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            //refresh num of termite in new colony and old one
+            int numOfSplitted = (int)this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
+            this.selectedColony.addTermites(-numOfSplitted);
+            this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
+
+
+
+        }
     }
 }
