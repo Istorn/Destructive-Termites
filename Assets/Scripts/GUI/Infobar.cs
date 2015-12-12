@@ -22,6 +22,12 @@ public class Infobar : MonoBehaviour
     {
         while (true)
         {
+            if (this.levelInPlay)
+            {
+                this.transform.Find("Background/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat";
+                this.transform.Find("Background/AvailableText").GetComponent<Text>().text = this.levelInPlay.availableTermites + " available";
+
+            }
             if (this.selectedColony)
             {
                 List<int> boosterColony = new List<int>();
@@ -177,6 +183,8 @@ public class Infobar : MonoBehaviour
     //load at the starting of play
     void Awake()
     {
+        this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
+        this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = " ";
