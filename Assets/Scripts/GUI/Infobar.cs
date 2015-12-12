@@ -466,7 +466,7 @@ public class Infobar : MonoBehaviour
             int numOfSplitted = (int)this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
             this.selectedColony.addTermites(-numOfSplitted);
             this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
-
+            //i need a list of colonies active on the level, without it from the class 'level' i can't do the split complete (over the effect)
 
 
         }
