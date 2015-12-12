@@ -107,7 +107,8 @@ public class GenericObject : MonoBehaviour {
         if (integrity > 0)
         {
             integrity -= numberOfAttackers * strenghtCoefficient;
-
+            if (integrity < 0)
+                integrity = 0;
             updateObject();
 
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.001f, transform.position.z);
@@ -122,7 +123,6 @@ public class GenericObject : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("CLIC");
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             StopCoroutine(selectionCoroutine);
@@ -145,7 +145,7 @@ public class GenericObject : MonoBehaviour {
                 colCursor.transform.parent = colCursor.transform;
                 Colony colony = colCursor.GetComponent<Colony>();
                 Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
-                im.onClick.AddListener(() => colony.select());
+                im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
 
                 colony.setTarget(this);
                 colony.setLevel(level);
@@ -169,7 +169,6 @@ public class GenericObject : MonoBehaviour {
 
     public void select()
     {
-        level.infoBarScript.objectSelected(this);
         Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
         GetComponent<Renderer>().material.color = transparentColor;
     }
@@ -181,7 +180,7 @@ public class GenericObject : MonoBehaviour {
 
     IEnumerator StartPressing()
     {
-        select();
+        level.infoBarScript.objectSelected(this);
         yield return new WaitForSeconds(Costants.OBJ_TIME_TO_START_ATTACK);
         if (level.availableTermites > 0)
         {

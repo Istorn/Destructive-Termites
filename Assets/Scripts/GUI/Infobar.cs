@@ -17,6 +17,16 @@ public class Infobar : MonoBehaviour
 
     }
 
+    public Colony getSelectedColony()
+    {
+        return selectedColony;
+    }
+
+    public GenericObject getSelectedObject()
+    {
+        return selectedObject;
+    }
+
     //refresh infos
     IEnumerator refreshInfo()
     {
@@ -212,11 +222,10 @@ public class Infobar : MonoBehaviour
     //clicking on an object load its specs
     public void objectSelected(GenericObject selectedObject)
     {
-        if (this.selectedObject)
-            this.selectedObject.deselect();
+        deselect();
 
-        if (selectedColony)
-            colonyDeselected();
+        selectedObject.select();
+
         this.refreshCoroutine = refreshInfo();
         StartCoroutine(refreshCoroutine);
         this.selectedObject = selectedObject;
@@ -230,7 +239,6 @@ public class Infobar : MonoBehaviour
     public void objectDeselected()
     {
         selectedObject.deselect();
-        StopCoroutine(refreshCoroutine);
         this.selectedObject = null;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -240,11 +248,9 @@ public class Infobar : MonoBehaviour
     //select and deselect colony
     public void colonySelected(Colony selectedColony)
     {
-        if (this.selectedColony)
-            this.selectedColony.deselect();
+        deselect();
 
-        if (selectedObject)
-            objectDeselected();
+        selectedColony.select();
         this.refreshCoroutine = refreshInfo();
         StartCoroutine(refreshCoroutine);
         this.selectedColony = selectedColony;
@@ -320,8 +326,8 @@ public class Infobar : MonoBehaviour
 
     public void colonyDeselected()
     {
-        StopCoroutine(refreshCoroutine);
         selectedColony.deselect();
+        this.selectedColony = null;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "";
         this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -385,8 +391,19 @@ public class Infobar : MonoBehaviour
 
                 }
             }
+        } 
+    }
+    void deselect()
+    {
+        if (refreshCoroutine != null)
+        {
+            StopCoroutine(refreshCoroutine);
+            refreshCoroutine = null;
         }
-
-
+        
+        if (selectedColony)
+            colonyDeselected();
+        if (selectedObject)
+            objectDeselected();
     }
 }

@@ -155,7 +155,6 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void select()
     {
         label.color = Color.red;
-        level.infoBarScript.colonySelected(this);
     }
 
     public void deselect()
@@ -176,9 +175,11 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             {
                 newTarget = this.target.room.getOtherObject(this.target);
                 this.target.room.removeObject(this.target);
+                GenericObject selected = level.infoBarScript.getSelectedObject();
+                if (selected && selected.id == this.target.id)
+                    level.infoBarScript.colonySelected(this);
                 Destroy(this.target.gameObject);
-                this.target = null;
-                
+                this.target = null; 
             }
             else
             {
