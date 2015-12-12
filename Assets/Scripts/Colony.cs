@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Colony : MonoBehaviour, IDragHandler, IEndDragHandler {
+public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
 
     public Text label;
     public GameObject cursor; 
@@ -26,7 +26,9 @@ public class Colony : MonoBehaviour, IDragHandler, IEndDragHandler {
     private GameObject infoBar;
 
     private Vector2 oldPosition;
-    private Room oldRoom; 
+    private Room oldRoom;
+
+    private bool startDrag = false;
 
     private IEnumerator attackTargetCorountine = null;
 
@@ -60,7 +62,7 @@ public class Colony : MonoBehaviour, IDragHandler, IEndDragHandler {
         }
         
         target.setAttacker(this);
-        cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+        
         StartCoroutine(animate());
         StartCoroutine(attackTarget());
     }
@@ -144,6 +146,12 @@ public class Colony : MonoBehaviour, IDragHandler, IEndDragHandler {
         return this.termites;
     }
 
+    void Update()
+    {
+        if (target && !startDrag)
+            cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+    }
+
     public void select()
     {
         label.color = Color.red;
@@ -213,6 +221,11 @@ public class Colony : MonoBehaviour, IDragHandler, IEndDragHandler {
         {
             cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
         }
-            
+        startDrag = false;    
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        startDrag = true;
     }
 }
