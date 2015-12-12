@@ -11,6 +11,7 @@ public class Inventory : MonoBehaviour {
 	public float slotSize;	// size of each slot
 	public GameObject slotPrefab;
 	private List<GameObject> allSlots; //containing all slots of the inventory
+	private int emptySlot; // how many empty slots we have in the inventory
 	
 	void Start(){
 		CreateLayOut();
@@ -18,6 +19,7 @@ public class Inventory : MonoBehaviour {
 	
 	private void CreateLayOut(){
 		int columns = slots/rows;
+		emptySlot = slots;
 		
 		allSlots = new List<GameObject>();
 		inventoryWidth = columns * (slotSize + slotPaddingLeft) + slotPaddingLeft;
@@ -39,9 +41,37 @@ public class Inventory : MonoBehaviour {
 			}
 		}
 	}
-	
-	
-	
-	public void addBooster(Booster bToAdd){
+		
+	public bool AddBooster(Booster bToAdd){
+		foreach(GameObject slot in allSlots){
+			Slot tmp = slot.GetComponent<Slot>();
+			if (!tmp.IsEmpty){
+				if (tmp.CurrentBooster.type == bToAdd.type){
+					tmp.AddBooster(bToAdd);
+					return true;
+				}
+			}
+			else{
+				PlaceEmpty(bToAdd);
+				return true;
+			}
+		}
+		return false;
 	}
+	
+	private bool PlaceEmpty(Booster booster){
+		if (emptySlot > 0){
+			foreach(GameObject slot in allSlots){
+				Slot tmp = slot.GetComponent<Slot>();
+				if (tmp.IsEmpty){
+					tmp.AddBooster(booster);
+					emptySlot--;
+					return true;
+				}
+			}
+		}
+		return false; //couldnt find any place to place the booster
+	}
+	
+	
 }

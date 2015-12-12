@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour {
 	private Stack<Booster> boosters;
 	public Text stackTxt;
-	public Sprite slotEmpty;
-	
+	public Sprite emptySlot;
+	public Sprite highlightedEmptySlot;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour {
 	void Update () {
 	}
 	
-	private void AddBooster(Booster booster){
+	public void AddBooster(Booster booster){
 		boosters.Push(booster);
 		if(boosters.Count > 1){
 			stackTxt.text = boosters.Count.ToString();
@@ -47,6 +47,9 @@ public class Slot : MonoBehaviour {
 		get{return boosters.Count == 0;}
 	}
 	
+	public Booster CurrentBooster{
+		get {return boosters.Peek();}
+	}
 	
 	
 	

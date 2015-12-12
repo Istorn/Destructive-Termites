@@ -2,13 +2,10 @@
 using UnityEngine;
 
 public class Booster : MonoBehaviour {
-    public enum Types { IronDenture = 1, Mushroom = 2, GasEquipment = 3, QueenTermite = 4, MagicShield = 5, GiantTermite = 6 };
-
-    public Types type;
-    public int count = 0;
-		// set 1 if the prefab is this kind of booster
-		public bool ironDenture; 
-		public bool mushroom;
+		public enum Types { IronDenture = 1, Mushroom = 2, GasEquipment = 3, QueenTermite = 4, MagicShield = 5, GiantTermite = 6 };
+		public Types type;
+		public int count = 1;
+		
 		
 		// common attributes
 		public string Name;
@@ -35,15 +32,16 @@ public class Booster : MonoBehaviour {
 			}
 		}
 		
-    public void collectOne()
-    {
-        count++;
-    }
-		public void collectBooster() { // collects the booster
+		public void collectOne(){
+			count++;
+		}
+		
+		public void collectBooster() { // collects the booster from the scene
+			Inventory inventory = GameObject.Find("Canvas").GetComponentInChildren<Inventory>();
+			inventory.AddBooster(this);
 			foreach (Transform child in this.transform) {
 				GameObject.Destroy(child.gameObject);
 			}
-			// increment infobar counter			
 		}
 		
 		/*void activateBooster(Colony targetColony){
