@@ -194,7 +194,12 @@ public class Infobar : MonoBehaviour
     //load at the starting of play
     void Awake()
     {
+        
         this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+
+        Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
+        but.onClick.AddListener(() => this.changeTargetAttacker());
+
         this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
         this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -239,8 +244,8 @@ public class Infobar : MonoBehaviour
         //move the button
         this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
         this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-115, 35, 0);
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1000.0F, 0);
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().GetComponent<GUIText>().text = "ATTACKER";
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1, 1);
+        this.transform.Find("Background/BtnChoose").transform.Find("Text").GetComponent<Text>().text = "ATTACKER";
 
     }
     //deselecting an object reload main infos
@@ -277,12 +282,12 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "SPLIT COLONY";
         //button visible
         this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1000.0F, 0);
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().GetComponent<GUIText>().text = "TARGET";
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1, 1);
+        this.transform.Find("Background/BtnChoose").transform.Find("Text").GetComponent<Text>().text = "TARGET";
         //move the button
-        this.transform.Find("background/BtnChoose").GetComponent<Button>().transform.position.Set(-275, 35, 0);
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-275, 35, 0);
         //splitter is  visible
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1000.0F, 0);
+        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1, 1);
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
         this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
         this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
@@ -426,5 +431,14 @@ public class Infobar : MonoBehaviour
             colonyDeselected();
         if (selectedObject)
             objectDeselected();
+    }
+
+    public void changeTargetAttacker()
+    {
+        Debug.Log("CLIC");
+        if (selectedObject)
+            colonySelected(selectedObject.getAttacker());
+        if (selectedColony)
+            objectSelected(selectedColony.getTarget());
     }
 }
