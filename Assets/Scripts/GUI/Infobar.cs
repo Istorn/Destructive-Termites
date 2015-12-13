@@ -52,10 +52,10 @@ public class Infobar : MonoBehaviour
                 //splitter is  visible
                 this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1000.0F, 0);
                 this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
-                this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
-                this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
-                this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().text = "" + this.selectedColony.getTermites();
-                this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().text = "0";
+                this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = true;
+                this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = true;
+                this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "" + this.selectedColony.getTermites();
+                this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "0";
                 //scan booster of colony and divide by type: in the end, refresh indicators on the bar
                 List<Booster> colonyBoosters = this.selectedColony.boosters;
                 foreach (Booster booster in colonyBoosters)
@@ -291,12 +291,12 @@ public class Infobar : MonoBehaviour
         //splitter is  visible
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1, 1);
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
-        this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = true;
-        this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = true;
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = true;
+        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = true;
         this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "" + (this.selectedColony.getTermites()-1);
         this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "1";
-        this.transform.Find("background/SliderColony").GetComponent<Slider>().minValue = 1;
-        this.transform.Find("background/SliderColony").GetComponent<Slider>().maxValue = (this.selectedColony.getTermites() - 1);
+        this.transform.Find("Background/SliderColony").GetComponent<Slider>().minValue = 1;
+        this.transform.Find("Background/SliderColony").GetComponent<Slider>().maxValue = (this.selectedColony.getTermites() - 1);
 
         //scan booster of colony and divide by type: in the end, refresh indicators on the bar
         List<Booster> colonyBoosters = this.selectedColony.boosters;

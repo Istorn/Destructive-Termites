@@ -58,7 +58,7 @@ public class Human : LiveObject {
             
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = start.getZIndex(end);
 
-            Debug.Log(start.number + "(" + start.coordinates + ")->" + end.number + "(" + end.coordinates + ")");
+            //Debug.Log(start.number + "(" + start.coordinates + ")->" + end.number + "(" + end.coordinates + ")");
             int sign = System.Math.Sign(end.coordinates.x - start.coordinates.x);
             transform.localScale = new Vector3(System.Math.Abs(transform.localScale.x) * sign, transform.localScale.y, transform.localScale.z);
             path.RemoveAt(0);
