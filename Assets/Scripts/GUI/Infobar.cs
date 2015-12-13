@@ -9,7 +9,7 @@ public class Infobar : MonoBehaviour
 {
     public Level levelInPlay = null;
     private GenericObject selectedObject = null;
-    private Colony selectedColony = null;
+    public Colony selectedColony = null;
     private IEnumerator refreshCoroutine = null;
     // Use this for initialization
     void Start()
@@ -466,6 +466,7 @@ public class Infobar : MonoBehaviour
             int numOfSplitted = (int)this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
             this.selectedColony.addTermites(-numOfSplitted);
             this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
+            this.selectedColony.split(numOfSplitted);
             //i need a list of colonies active on the level, without it from the class 'level' i can't do the split complete (over the effect)
 
 

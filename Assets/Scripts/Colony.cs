@@ -204,7 +204,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
        /* StartCoroutine(attackTargetCorountine);*/
     }
 
-    void split(int newNumber)
+    public void split(int newNumber)
     {
         GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
         Colony colony = colCursor.GetComponent<Colony>();
