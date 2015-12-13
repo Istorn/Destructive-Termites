@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -13,17 +14,17 @@ public class Inventory : MonoBehaviour {
 	private List<GameObject> allSlots; //containing all slots of the inventory
 	private int emptySlot; // how many empty slots we have in the inventory
 	
-	void Start(){
+	void Start(){ 
 		CreateLayOut();
 	}
 	
-	private void CreateLayOut(){
+	private void CreateLayOut(){ // creates the inventory with the given number of slots, with their size
 		int columns = slots/rows;
 		emptySlot = slots;
 		
 		allSlots = new List<GameObject>();
-		inventoryWidth = columns * (slotSize + slotPaddingLeft) + slotPaddingLeft;
-		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotSize; // should be slotPaddingTop but too short and can't understand why. If too many rows, still bugs.
+		inventoryWidth = columns * (slotSize + slotPaddingLeft) + slotPaddingLeft*0;
+		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop*8; // should be slotPaddingTop but too short and can't understand why. If too many rows, still bugs.
 		inventoryRect = GetComponent<RectTransform>();
 		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, inventoryWidth);
 		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inventoryHeight);
@@ -42,7 +43,7 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 		
-	public bool AddBooster(Booster bToAdd){
+	public bool AddBooster(Booster bToAdd){ // for each created slot, check if it contains the same booster type or add it in an empty slot
 		foreach(GameObject slot in allSlots){
 			Slot tmp = slot.GetComponent<Slot>();
 			if (!tmp.IsEmpty){
@@ -59,7 +60,7 @@ public class Inventory : MonoBehaviour {
 		return false;
 	}
 	
-	private bool PlaceEmpty(Booster booster){
+	private bool PlaceEmpty(Booster booster){ // place a booster in an empty slot
 		if (emptySlot > 0){
 			foreach(GameObject slot in allSlots){
 				Slot tmp = slot.GetComponent<Slot>();
