@@ -75,8 +75,8 @@ public class Slot : MonoBehaviour {
 			RaycastHit hit;
 			// Casts the ray and get the first game object hit
 			Physics.Raycast(ray, out hit);
-			Vector3 hitpoint = hit.point;
-			Debug.Log("hey");
+            Transform hitTransf = hit.transform;
+            Debug.Log(hitTransf);
 
 		}
 		
