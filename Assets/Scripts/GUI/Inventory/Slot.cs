@@ -10,7 +10,7 @@ public class Slot : MonoBehaviour {
 	public Sprite emptySlot;
 	public Sprite highlightedEmptySlot;
 	public Sprite boosterIcon;
-	private bool isDragging; 
+	private bool isDragging;
  
    
 	// Use this for initialization
@@ -59,20 +59,20 @@ public class Slot : MonoBehaviour {
 		get {return boosters.Peek();}
 	}
 	
-	// void OnMouseDrag() {
-		// // le logo suit la souris
-		// Debug.Log("mouseDrag");
-	// }
-	// void OnMouseDown() {
-		// Debug.Log("MouseDown");
-	// }
-	
-	public void OnDrag(PointerEventData eventData){
-        // cursor.transform.position = Input.mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        Debug.Log("jesuislà");
-    }
-	
+	public Booster GetBoosterFromSlot{
+		get {
+			if (boosters.Count>0){
+				if (boosters.Count ==1){
+					ChangeSprite(emptySlot, highlightedEmptySlot);
+				}
+				return boosters.Pop();
+			}else{
+				return null;
+			}
+		}
+		
+	}
+		
 	void OnGUI(){ // TO DO : DEBUG CHECKING IF THE POINTER IS ON THE CURRENT SLOT AND NOT IN A RANDOM PLACE
 		if (EventSystem.current.IsPointerOverGameObject() && Event.current.type == EventType.MouseDown) {
 			isDragging = true;
@@ -84,10 +84,7 @@ public class Slot : MonoBehaviour {
 			// // Casts the ray and get the first game object hit
 			// Physics.Raycast(ray, out hit);
 			// Transform hitT = hit.transform;
-			// // if ( hitT.parent is Booster){
-				// // Debug.Log("booster hitted");
-			// // }
-			// Debug.Log(hitT);			
+			// Debug.Log(hitT);		
 // // on recup le truc en dessous, si c'est un obj c'est cool appel de truc, sinon rien (msg pr lui dire que trompé ?)
 // // if released on a colony/object : 
 // // Colony targettedCol = targettedObj.getAttacker();
