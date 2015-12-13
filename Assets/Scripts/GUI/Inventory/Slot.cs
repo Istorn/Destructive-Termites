@@ -11,6 +11,7 @@ public class Slot : MonoBehaviour {
 	public Sprite highlightedEmptySlot;
 	public Sprite boosterIcon;
 	private bool isDragging;
+	private Draggable draggableComponent;
  
    
 	// Use this for initialization
@@ -27,20 +28,23 @@ public class Slot : MonoBehaviour {
 		txtRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, slotRect.sizeDelta.y);
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		if (IsEmpty && draggableComponent != null){
+			Destroy(draggableComponent); // the slot is no more draggable
+		}
 	}
 	
 	public void AddBooster(Booster booster){
+		if(boosters.Count == 0){
+		ChangeSprite(booster.spriteNeutral, booster.spriteHighlighted);
+		// stores the icon for a future "clean" dragging
+		boosterIcon = booster.spriteNeutral;
+		}
 		boosters.Push(booster);
 		if(boosters.Count > 0){
 			stackTxt.text = boosters.Count.ToString();
 		}
-		ChangeSprite(booster.spriteNeutral, booster.spriteHighlighted);
-		// stores the icon for a future dragging
-		boosterIcon = booster.spriteNeutral;
-		// boosterIcon.GetComponent<SpriteRenderer>().enabled = false;
-
+		draggableComponent = gameObject.AddComponent<Draggable>();; // now the slot can be dragged
 	}
 	
 	private void ChangeSprite(Sprite neutral, Sprite highlight){
@@ -62,10 +66,14 @@ public class Slot : MonoBehaviour {
 	public Booster GetBoosterFromSlot{
 		get {
 			if (boosters.Count>0){
-				if (boosters.Count ==1){
-					ChangeSprite(emptySlot, highlightedEmptySlot);
+				if (boosters.Count ==1){ // if the stack will be empty
+					ChangeSprite(emptySlot, highlightedEmptySlot); // change the sprite to an empty one
+					stackTxt.text = null;
+					// dont destroy Draggable here, or the slot won't come home (in the inventory)
+				}else{ // if there will still be a booster in the stack
+					stackTxt.text = (boosters.Count-1).ToString();
 				}
-				return boosters.Pop();
+				return boosters.Pop(); // return a booster from the stack
 			}else{
 				return null;
 			}
