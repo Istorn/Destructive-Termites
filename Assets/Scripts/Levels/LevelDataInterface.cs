@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public interface LevelDataInterface
 {
-    Graph.Node[] liveObjectsNodes { get; }
+    List<Graph.Node> liveObjectsNodes { get; }
 
-    Graph.Connection[] liveObjectsLinks { get; }
+    List<Graph.Connection> liveObjectsLinks { get; }
 
     Graph.Node[] termitesNodes { get; }
 

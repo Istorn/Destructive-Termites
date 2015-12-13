@@ -12,17 +12,15 @@ public static class Costants{
 
     public static int Z_INDEX_HUMANS = 50;
 
-    public static int Z_INDEX_OBJ_4 = 60;
-    public static int Z_INDEX_OBJ_5 = 61;
-    public static int Z_INDEX_OBJ_6 = 62;
-
     public static int Z_INDEX_LIVE_BEHIND_FOREGROUND = 98;
 
     public static int Z_INDEX_FOREGROUND = 99;
 
     public static int Z_INDEX_LIVE_OVER_FOREGROUND = 100;
 
-    
+    public static int Z_INDEX_OBJ_4 = 110;
+    public static int Z_INDEX_OBJ_5 = 111;
+    public static int Z_INDEX_OBJ_6 = 112;
 
     
 

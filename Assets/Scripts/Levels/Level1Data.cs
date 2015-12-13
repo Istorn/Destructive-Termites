@@ -1,121 +1,357 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 public class Level1Data: LevelData {
 
     public override void initialize()
     {
-        _liveObjectsNodes = new Graph.Node[51];
+        _liveObjectsNodes = new List<Graph.Node>();
         //PIANO 0 - STANZA 0
-        _liveObjectsNodes[00] = new Graph.Node( 0, 0, new Vector2(-12.50f, -4.20f), Graph.Node.Type.Main);
-        _liveObjectsNodes[01] = new Graph.Node( 1, 0, new Vector2(-12.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[02] = new Graph.Node( 2, 0, new Vector2(-11.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[03] = new Graph.Node( 3, 0, new Vector2(-11.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[04] = new Graph.Node( 4, 0, new Vector2(-10.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[05] = new Graph.Node( 5, 0, new Vector2(-10.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[06] = new Graph.Node( 6, 0, new Vector2(-09.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[07] = new Graph.Node( 7, 0, new Vector2(-09.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[08] = new Graph.Node( 8, 0, new Vector2(-08.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[09] = new Graph.Node( 9, 0, new Vector2(-08.00f, -4.20f), Graph.Node.Type.Main);
+        _liveObjectsNodes.Add(new Graph.Node(  0,  0, new Vector2(-12.50f, -4.20f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node(  1,  0, new Vector2(-12.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  2,  0, new Vector2(-11.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  3,  0, new Vector2(-11.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  4,  0, new Vector2(-10.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  5,  0, new Vector2(-10.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  6,  0, new Vector2(-09.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  7,  0, new Vector2(-09.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  8,  0, new Vector2(-08.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(  9,  0, new Vector2(-08.00f, -4.20f), Graph.Node.Type.Main));
 
         //PIANO 0 - STANZA 1
-        _liveObjectsNodes[10] = new Graph.Node(10, 1, new Vector2(-07.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[11] = new Graph.Node(11, 1, new Vector2(-07.00f, -4.20f), Graph.Node.Type.Main);
-
-        _liveObjectsNodes[12] = new Graph.Node(12, 1, new Vector2(-06.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[13] = new Graph.Node(13, 1, new Vector2(-06.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[14] = new Graph.Node(14, 1, new Vector2(-05.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[15] = new Graph.Node(15, 1, new Vector2(-05.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[16] = new Graph.Node(16, 1, new Vector2(-04.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[17] = new Graph.Node(17, 1, new Vector2(-04.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[18] = new Graph.Node(18, 1, new Vector2(-03.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[19] = new Graph.Node(19, 1, new Vector2(-03.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[20] = new Graph.Node(20, 1, new Vector2(-02.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[21] = new Graph.Node(21, 1, new Vector2(-02.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[22] = new Graph.Node(22, 1, new Vector2(-01.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[23] = new Graph.Node(23, 1, new Vector2(-01.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[24] = new Graph.Node(24, 1, new Vector2(-00.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[25] = new Graph.Node(25, 1, new Vector2( 00.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[26] = new Graph.Node(26, 1, new Vector2( 00.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[27] = new Graph.Node(27, 1, new Vector2( 01.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[28] = new Graph.Node(28, 1, new Vector2( 01.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[29] = new Graph.Node(29, 1, new Vector2( 02.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[30] = new Graph.Node(30, 1, new Vector2( 02.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[31] = new Graph.Node(31, 1, new Vector2( 03.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[32] = new Graph.Node(32, 1, new Vector2( 03.50f, -4.20f), Graph.Node.Type.Main);
-
+        _liveObjectsNodes.Add(new Graph.Node( 10,  1, new Vector2(-07.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 11,  1, new Vector2(-07.00f, -4.20f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node( 12,  1, new Vector2(-06.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 13,  1, new Vector2(-06.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 14,  1, new Vector2(-05.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 15,  1, new Vector2(-05.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 16,  1, new Vector2(-04.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 17,  1, new Vector2(-04.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 18,  1, new Vector2(-03.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 19,  1, new Vector2(-03.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 20,  1, new Vector2(-02.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 21,  1, new Vector2(-02.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 22,  1, new Vector2(-01.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 23,  1, new Vector2(-01.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 24,  1, new Vector2(-00.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 25,  1, new Vector2( 00.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 26,  1, new Vector2( 00.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 27,  1, new Vector2( 01.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 28,  1, new Vector2( 01.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 29,  1, new Vector2( 02.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 30,  1, new Vector2( 02.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 31,  1, new Vector2( 03.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 32,  1, new Vector2( 03.50f, -4.20f), Graph.Node.Type.Main));
+         
         //PIANO 0 - STANZA 2
-        _liveObjectsNodes[33] = new Graph.Node(33, 2, new Vector2( 04.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[34] = new Graph.Node(34, 2, new Vector2( 04.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[35] = new Graph.Node(35, 2, new Vector2( 05.00f, -4.20f), Graph.Node.Type.Main);
-        _liveObjectsNodes[36] = new Graph.Node(36, 2, new Vector2(05.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[37] = new Graph.Node(37, 2, new Vector2(06.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[38] = new Graph.Node(38, 2, new Vector2(06.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[39] = new Graph.Node(39, 2, new Vector2(07.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[40] = new Graph.Node(40, 2, new Vector2(07.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[41] = new Graph.Node(41, 2, new Vector2(08.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[42] = new Graph.Node(42, 2, new Vector2(08.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[43] = new Graph.Node(43, 2, new Vector2(09.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[44] = new Graph.Node(44, 2, new Vector2(09.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[45] = new Graph.Node(45, 2, new Vector2(10.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[46] = new Graph.Node(46, 2, new Vector2(10.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[47] = new Graph.Node(47, 2, new Vector2(11.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[48] = new Graph.Node(48, 2, new Vector2(11.50f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[49] = new Graph.Node(49, 2, new Vector2(12.00f, -4.20f), Graph.Node.Type.Generic);
-        _liveObjectsNodes[50] = new Graph.Node(50, 2, new Vector2(12.50f, -4.20f), Graph.Node.Type.Main);
+        _liveObjectsNodes.Add(new Graph.Node( 33,  2, new Vector2( 04.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 34,  2, new Vector2( 04.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 35,  2, new Vector2( 05.00f, -4.20f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node( 36,  2, new Vector2( 05.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 37,  2, new Vector2( 06.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 38,  2, new Vector2( 06.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 39,  2, new Vector2( 07.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 40,  2, new Vector2( 07.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 41,  2, new Vector2( 08.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 42,  2, new Vector2( 08.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 43,  2, new Vector2( 09.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 44,  2, new Vector2( 09.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 45,  2, new Vector2( 10.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 46,  2, new Vector2( 10.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 47,  2, new Vector2( 11.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 48,  2, new Vector2( 11.50f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 49,  2, new Vector2( 12.00f, -4.20f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 50,  2, new Vector2( 12.50f, -4.20f), Graph.Node.Type.Main));
+ 
+        //PIANO 1 - STANZA 3
+        _liveObjectsNodes.Add(new Graph.Node( 51,  3, new Vector2(-12.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 52,  3, new Vector2(-12.00f, -0.05f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node( 53,  3, new Vector2(-11.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 54,  3, new Vector2(-11.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 55,  3, new Vector2(-10.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 56,  3, new Vector2(-10.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 57,  3, new Vector2(-09.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 58,  3, new Vector2(-09.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 59,  3, new Vector2(-08.50f, -0.05f), Graph.Node.Type.Main));
+        
+        //PIANO 1 - STANZA 4
+        _liveObjectsNodes.Add(new Graph.Node( 60,  4, new Vector2(-08.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 61,  4, new Vector2(-07.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 62,  4, new Vector2(-07.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 63,  4, new Vector2(-06.50f, -0.05f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node( 64,  4, new Vector2(-06.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 65,  4, new Vector2(-05.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 66,  4, new Vector2(-05.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 67,  4, new Vector2(-04.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 68,  4, new Vector2(-04.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 69,  4, new Vector2(-03.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 70,  4, new Vector2(-03.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 71,  4, new Vector2(-02.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 72,  4, new Vector2(-02.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 73,  4, new Vector2(-01.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 74,  4, new Vector2(-01.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 75,  4, new Vector2(-00.50f, -0.05f), Graph.Node.Type.Main));
+ 
+        //PIANO 1 - STANZA 5
+        _liveObjectsNodes.Add(new Graph.Node( 76,  5, new Vector2( 00.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 77,  5, new Vector2( 00.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 78,  5, new Vector2( 01.00f, -0.05f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node( 79,  5, new Vector2( 01.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 80,  5, new Vector2( 02.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 81,  5, new Vector2( 02.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 82,  5, new Vector2( 03.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 83,  5, new Vector2( 03.50f, -0.05f), Graph.Node.Type.Main));
 
-        _liveObjectsLinks = new Graph.Connection[50];
-        _liveObjectsLinks[0] = new Graph.Connection(0, 1, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[1] = new Graph.Connection(1, 2, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[2] = new Graph.Connection(2, 3, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[3] = new Graph.Connection(3, 4, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[4] = new Graph.Connection(4, 5, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[5] = new Graph.Connection(5, 6, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[6] = new Graph.Connection(6, 7, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[7] = new Graph.Connection(7, 8, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[8] = new Graph.Connection(8, 9, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[9] = new Graph.Connection(9, 10, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[10] = new Graph.Connection(10, 11, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[11] = new Graph.Connection(11, 12, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[12] = new Graph.Connection(12, 13, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[13] = new Graph.Connection(13, 14, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[14] = new Graph.Connection(14, 15, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[15] = new Graph.Connection(15, 16, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[16] = new Graph.Connection(16, 17, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[17] = new Graph.Connection(17, 18, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[18] = new Graph.Connection(18, 19, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[19] = new Graph.Connection(19, 20, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[20] = new Graph.Connection(20, 21, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[21] = new Graph.Connection(21, 22, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[22] = new Graph.Connection(11, 23, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[23] = new Graph.Connection(23, 24, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[24] = new Graph.Connection(24, 25, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[25] = new Graph.Connection(25, 26, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[26] = new Graph.Connection(26, 27, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[27] = new Graph.Connection(27, 28, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[28] = new Graph.Connection(28, 29, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[29] = new Graph.Connection(29, 30, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[30] = new Graph.Connection(30, 31, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[31] = new Graph.Connection(31, 32, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[32] = new Graph.Connection(32, 33, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[33] = new Graph.Connection(33, 34, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[34] = new Graph.Connection(34, 35, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[35] = new Graph.Connection(35, 36, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[36] = new Graph.Connection(36, 37, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[37] = new Graph.Connection(37, 38, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[38] = new Graph.Connection(38, 39, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[39] = new Graph.Connection(39, 40, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[40] = new Graph.Connection(40, 41, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[41] = new Graph.Connection(41, 42, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[42] = new Graph.Connection(42, 43, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[43] = new Graph.Connection(43, 44, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[44] = new Graph.Connection(44, 45, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[45] = new Graph.Connection(45, 46, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[46] = new Graph.Connection(46, 47, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[47] = new Graph.Connection(47, 48, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[48] = new Graph.Connection(48, 49, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
-        _liveObjectsLinks[49] = new Graph.Connection(49, 50, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND);
+        //PIANO 1 - STANZA  6
+        _liveObjectsNodes.Add(new Graph.Node( 84,  6, new Vector2( 04.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 85,  6, new Vector2( 04.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 86,  6, new Vector2( 05.00f, -0.05f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node( 87,  6, new Vector2( 05.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 88,  6, new Vector2( 06.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 89,  6, new Vector2( 06.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 90,  6, new Vector2( 07.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 91,  6, new Vector2( 07.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 92,  6, new Vector2( 08.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 93,  6, new Vector2( 08.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 94,  6, new Vector2( 09.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 95,  6, new Vector2( 09.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 96,  6, new Vector2( 10.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 97,  6, new Vector2( 10.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 98,  6, new Vector2( 11.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node( 99,  6, new Vector2( 11.50f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(100,  6, new Vector2( 12.00f, -0.05f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(101,  6, new Vector2( 12.50f, -0.05f), Graph.Node.Type.Main));
+
+        //PIANO 2 - STANZA 7
+        _liveObjectsNodes.Add(new Graph.Node(102,  7, new Vector2(-12.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(103,  7, new Vector2(-12.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(104,  7, new Vector2(-11.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(105,  7, new Vector2(-11.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(106,  7, new Vector2(-10.50f,  4.11f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node(107,  7, new Vector2(-10.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(108,  7, new Vector2(-09.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(109,  7, new Vector2(-09.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(110,  7, new Vector2(-08.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(111,  7, new Vector2(-08.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(112,  7, new Vector2(-07.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(113,  7, new Vector2(-07.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(114,  7, new Vector2(-06.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(115,  7, new Vector2(-06.00f,  4.11f), Graph.Node.Type.Main));
+
+        //PIANO 2 - STANZA 8
+        _liveObjectsNodes.Add(new Graph.Node(116,  8, new Vector2(-05.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(117,  8, new Vector2(-05.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(118,  8, new Vector2(-04.50f,  4.11f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node(119,  8, new Vector2(-04.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(120,  8, new Vector2(-03.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(121,  8, new Vector2(-03.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(122,  8, new Vector2(-02.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(123,  8, new Vector2(-02.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(124,  8, new Vector2(-01.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(125,  8, new Vector2(-01.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(126,  8, new Vector2(-00.50f,  4.11f), Graph.Node.Type.Main));
+
+        //PIANO 2 - STANZA 9
+        _liveObjectsNodes.Add(new Graph.Node(127,  9, new Vector2(00.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(128,  9, new Vector2(00.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(129,  9, new Vector2(01.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(130,  9, new Vector2(01.50f,  4.11f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node(131,  9, new Vector2(02.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(132,  9, new Vector2(02.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(133,  9, new Vector2(03.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(134,  9, new Vector2(03.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(135,  9, new Vector2(04.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(136,  9, new Vector2(04.50f,  4.11f), Graph.Node.Type.Main));
+
+        //PIANO 2 - STANZA  10
+        _liveObjectsNodes.Add(new Graph.Node(137, 10, new Vector2(05.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(138, 10, new Vector2(05.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(139, 10, new Vector2(06.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(140, 10, new Vector2(06.50f,  4.11f), Graph.Node.Type.Main));
+        _liveObjectsNodes.Add(new Graph.Node(141, 10, new Vector2(07.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(142, 10, new Vector2(07.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(143, 10, new Vector2(08.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(144, 10, new Vector2(08.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(145, 10, new Vector2(09.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(146, 10, new Vector2(09.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(147, 10, new Vector2(10.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(148, 10, new Vector2(10.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(149, 10, new Vector2(11.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(150, 10, new Vector2(11.50f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(151, 10, new Vector2(12.00f,  4.11f), Graph.Node.Type.Generic));
+        _liveObjectsNodes.Add(new Graph.Node(152, 10, new Vector2(12.50f,  4.11f), Graph.Node.Type.Main));
+
+        _liveObjectsLinks = new List<Graph.Connection>();
+        //PIANO 0
+        _liveObjectsLinks.Add(new Graph.Connection(  0,   1, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  1,   2, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  2,   3, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  3,   4, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  4,   5, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  5,   6, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  6,   7, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  7,   8, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  8,   9, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(  9,  10, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 10,  11, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 11,  12, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 12,  13, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 13,  14, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 14,  15, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 15,  16, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 16,  17, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 17,  18, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 18,  19, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 19,  20, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 20,  21, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 21,  22, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 22,  23, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 23,  24, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 24,  25, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 25,  26, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 26,  27, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 27,  28, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 28,  29, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 29,  30, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 30,  31, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 31,  32, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 32,  33, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 33,  34, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 34,  35, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 35,  36, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 36,  37, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 37,  38, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 38,  39, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 39,  40, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 40,  41, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 41,  42, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 42,  43, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 43,  44, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 44,  45, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 45,  46, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 46,  47, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 47,  48, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 48,  49, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 49,  50, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+ 
+        //PIANO 1
+        _liveObjectsLinks.Add(new Graph.Connection( 51,  52, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 52,  53, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 53,  54, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 54,  55, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 55,  56, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 56,  57, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 57,  58, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 58,  59, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 59,  60, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 60,  61, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 61,  62, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 62,  63, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 63,  64, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 64,  65, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 65,  66, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 66,  67, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 67,  68, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 68,  69, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 69,  70, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 70,  71, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 71,  72, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 72,  73, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 73,  74, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 74,  75, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 75,  76, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 76,  77, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 77,  78, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 78,  79, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 79,  80, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 80,  81, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 81,  82, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 82,  83, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 83,  84, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 84,  85, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 85,  86, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 86,  87, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 87,  88, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 88,  89, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 89,  90, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 90,  91, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 91,  92, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 92,  93, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 93,  94, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 94,  95, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 95,  96, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 96,  97, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 97,  98, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 98,  99, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection( 99, 100, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(100, 101, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+
+        //PIANO 2
+        _liveObjectsLinks.Add(new Graph.Connection(102, 103, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(103, 104, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(104, 105, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(105, 106, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(106, 107, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(107, 108, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(108, 109, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(109, 110, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(110, 111, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(111, 112, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(112, 113, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(113, 114, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(114, 115, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(115, 116, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(116, 117, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(117, 118, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(118, 119, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(119, 120, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(120, 121, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(121, 122, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(122, 123, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(123, 124, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(124, 125, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(125, 126, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(126, 127, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(127, 128, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(128, 129, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(129, 130, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(130, 131, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(131, 132, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(132, 133, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(133, 134, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(134, 135, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(135, 136, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(136, 137, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(137, 138, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(138, 139, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(139, 140, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(140, 141, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(141, 142, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(142, 143, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(143, 144, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(144, 145, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(145, 146, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(146, 147, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(147, 148, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(148, 149, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(149, 150, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(150, 151, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(151, 152, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+
+        _liveObjectsLinks.Add(new Graph.Connection(50, 51, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        _liveObjectsLinks.Add(new Graph.Connection(101, 102, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+
+
+
+
+
+
+
+
+
+
 
         _termitesNodes = new Graph.Node[0];
 

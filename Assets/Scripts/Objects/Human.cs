@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class Human : LiveObject {
 
     private float alertPercentage = 0f;
-    private float WAIT_TIME = 0.1f;
-    private int actualNodeNumber = 11;
+    private float WAIT_TIME = 2f;
+    private int actualNodeNumber = 0;
 
     public override void setObjectName(string objectName)
     {
@@ -23,6 +23,7 @@ public class Human : LiveObject {
     void Start()
     {
         StartCoroutine(YourFunctionName());
+        
     }
 
     IEnumerator YourFunctionName()
@@ -39,23 +40,25 @@ public class Human : LiveObject {
     {
         isMoving = true;
         animator.SetBool("isWalking", true);
+        
         int endNode = 0;
         do
         {
             endNode = Random.Range(0, level.graphLiveObjects.nodes.Count);
         }
         while ((endNode == actualNodeNumber) || (level.graphLiveObjects.findNode(endNode).type.Equals(Graph.Node.Type.Generic)));
-
+        
         List<Graph.Node> path = level.graphLiveObjects.getPath(actualNodeNumber, endNode);
+        //Debug.Log(actualNodeNumber + " -> " + endNode + " = " +  path.Count);
 
         while (path.Count > 1)
         {
             Graph.Node start = path[0];
             Graph.Node end = path[1];
-
+            
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = start.getZIndex(end);
 
-            //Debug.Log(start.number + "(" + start.coordinates + ")->" + end.number + "(" + end.coordinates + ")");
+            Debug.Log(start.number + "(" + start.coordinates + ")->" + end.number + "(" + end.coordinates + ")");
             int sign = System.Math.Sign(end.coordinates.x - start.coordinates.x);
             transform.localScale = new Vector3(System.Math.Abs(transform.localScale.x) * sign, transform.localScale.y, transform.localScale.z);
             path.RemoveAt(0);
@@ -73,7 +76,7 @@ public class Human : LiveObject {
         while (i < 1.0f)
         {
             i += Time.deltaTime * rate;
-            thisTransform.position = Vector3.Lerp(start.coordinates, end.coordinates, i);
+            transform.position = Vector3.Lerp(start.coordinates, end.coordinates, i);
             yield return null;
         }
     }

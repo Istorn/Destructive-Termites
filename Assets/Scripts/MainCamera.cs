@@ -103,7 +103,7 @@ public class MainCamera : MonoBehaviour {
        transform.position = new Vector3(
           Mathf.Clamp(transform.position.x, point1.x, point2.x),
           Mathf.Clamp(transform.position.y, point1.y, point2.y),
-          Mathf.Clamp(transform.position.z, -10.0f, 10.0f));
+          transform.position.z);
     }
 
     public void setBouds(Vector2 point1, Vector2 point2)

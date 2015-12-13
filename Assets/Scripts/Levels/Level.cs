@@ -78,7 +78,7 @@ public class Level : MonoBehaviour {
             graphLiveObjects.addNode(node);
 
         foreach (Graph.Connection connection in levelData.liveObjectsLinks)
-            graphLiveObjects.addLink(connection);        
+            graphLiveObjects.addLink(connection);
     }
 
     private void loadObjects()

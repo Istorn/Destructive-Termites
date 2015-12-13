@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class LevelData : MonoBehaviour, LevelDataInterface
 {
-    protected Graph.Node[] _liveObjectsNodes;
+    protected List<Graph.Node> _liveObjectsNodes;
 
-    protected Graph.Connection[] _liveObjectsLinks;
+    protected List<Graph.Connection> _liveObjectsLinks;
 
     protected Graph.Node[] _termitesNodes;
 
@@ -26,12 +27,12 @@ public class LevelData : MonoBehaviour, LevelDataInterface
     }
 
     // Property implementation:
-    public Graph.Node[] liveObjectsNodes
+    public List<Graph.Node> liveObjectsNodes
     {
         get { return _liveObjectsNodes; }
     }
 
-    public Graph.Connection[] liveObjectsLinks
+    public List<Graph.Connection> liveObjectsLinks
     {
         get { return _liveObjectsLinks; }
     }

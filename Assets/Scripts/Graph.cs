@@ -28,7 +28,7 @@ public class Graph {
     //Aggiunge un collegamento pesato tra due nodi nel grafo
     private void addLink(int nodeNumber1, int nodeNumber2, int distance, int z_index)
     {
-      /*  Node node1 = null;
+        Node node1 = null;
         Node node2 = null;
         for (int i = 0; i < nodes.Count; i++)
         {
@@ -40,7 +40,7 @@ public class Graph {
                     node2 = node;
         }
         node1.addNeighbor(new Neighbor(node2, distance, z_index));
-        node2.addNeighbor(new Neighbor(node1, distance, z_index));*/
+        node2.addNeighbor(new Neighbor(node1, distance, z_index));
     }
 
     //Dato un identificativo per il nodo, lo cerca nel grafo e restituisce il nodo stesso
@@ -151,15 +151,15 @@ public class Graph {
         public int number;
         public int roomNumber;
         public Type type;
-        public Vector2 coordinates;
+        public Vector3 coordinates;
         public List<Neighbor> neighbors;
 
         //Costruttore
-        public Node(int number, int roomNumber, Vector2 coordinates, Type type)
+        public Node(int number, int roomNumber, Vector3 coordinates, Type type)
         {
             this.number = number;
             this.roomNumber = roomNumber;
-            this.coordinates = coordinates;
+            this.coordinates = new Vector3(coordinates.x, coordinates.y, -((float)Costants.Z_INDEX_HUMANS) / 10);
             this.type = type;
             neighbors = new List<Neighbor>();
         }
