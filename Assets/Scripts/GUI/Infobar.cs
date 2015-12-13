@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using UnityEngine;
 public class Infobar : MonoBehaviour
 {
+    public AudioManager audiobar = new AudioManager();
     public int splitting = 1;
     public Level levelInPlay = null;
     private GenericObject selectedObject = null;
@@ -193,7 +194,8 @@ public class Infobar : MonoBehaviour
     //load at the starting of play
     void Awake()
     {
-        
+
+       
        // this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
 
         //Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
@@ -469,6 +471,7 @@ public class Infobar : MonoBehaviour
     //excute the split
     public void Split()
     {
+        
         //refresh the old colony
         this.selectedColony.setTermites(this.selectedColony.getTermites() - this.splitting);
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
