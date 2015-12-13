@@ -7,6 +7,7 @@ using System.Collections.Specialized;
 using UnityEngine;
 public class Infobar : MonoBehaviour
 {
+    public int splitting = 1;
     public Level levelInPlay = null;
     private GenericObject selectedObject = null;
     public Colony selectedColony = null;
@@ -50,12 +51,10 @@ public class Infobar : MonoBehaviour
                 this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
                 this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "SPLIT COLONY";
                 //splitter is  visible
-                this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1000.0F, 0);
-                this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
-                this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = true;
-                this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = true;
-                this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "" + this.selectedColony.getTermites();
-                this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "0";
+                this.transform.Find("Background/SplitText").GetComponent<Text>().text = ""+this.splitting;
+                this.transform.Find("Background/LessSplit").GetComponent<Button>().transform.localScale = new Vector3(1F,1);
+                this.transform.Find("Background/MoreSplit").GetComponent<Button>().transform.localScale = new Vector3(1F,1);
+                this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(1F,1);
                 //scan booster of colony and divide by type: in the end, refresh indicators on the bar
                 List<Booster> colonyBoosters = this.selectedColony.boosters;
                 foreach (Booster booster in colonyBoosters)
@@ -195,10 +194,10 @@ public class Infobar : MonoBehaviour
     void Awake()
     {
         
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+       // this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
 
-        Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
-        but.onClick.AddListener(() => this.changeTargetAttacker());
+        //Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
+        //but.onClick.AddListener(() => this.changeTargetAttacker());
 
         this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
         this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
@@ -216,11 +215,10 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/ShieldImg/ShieldText").GetComponent<Text>().text = "0";
         this.transform.Find("Background/QueenImg/QueenText").GetComponent<Text>().text = "0";
         //splitter is not visible
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(0.0001F, 0);
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = false;
-        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = false;
-        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/SplitText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/LessSplit").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+        this.transform.Find("Background/MoreSplit").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+        this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
 
     }
     // Update is called once per frame
@@ -244,19 +242,19 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + (int)this.selectedObject.integrity+"%";
         //button visible
         //move the button
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-115, 35, 0);
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1, 1);
-        this.transform.Find("Background/BtnChoose").transform.Find("Text").GetComponent<Text>().text = "ATTACKER";
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-115, 35, 0);
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1, 1);
+       // this.transform.Find("Background/BtnChoose").transform.Find("Text").GetComponent<Text>().text = "ATTACKER";
 
     }
     //deselecting an object reload main infos
     public void objectDeselected()
     {
         selectedObject.deselect();
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
 
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = false;
+       // this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = false;
         this.selectedObject = null;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -283,21 +281,20 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "SPLIT COLONY";
         //button visible
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1, 1);
-        this.transform.Find("Background/BtnChoose").transform.Find("Text").GetComponent<Text>().text = "TARGET";
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = true;
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(1, 1);
+        //this.transform.Find("Background/BtnChoose").transform.Find("Text").GetComponent<Text>().text = "TARGET";
         //move the button
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-275, 35, 0);
-        //splitter is  visible
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(1, 1);
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = true;
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = true;
-        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = true;
-        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "" + (this.selectedColony.getTermites()-1);
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "1";
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().minValue = 1;
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().maxValue = (this.selectedColony.getTermites() - 1);
-
+        //this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.position.Set(-275, 35, 0);
+        //splitter is  visible only if colony has more than 1 termite!
+        if (this.selectedColony.getTermites() > 1)
+        {
+            this.transform.Find("Background/SplitText").GetComponent<Text>().text = "1";
+            this.transform.Find("Background/LessSplit").GetComponent<Button>().transform.localScale = new Vector3(1F, 1);
+            this.transform.Find("Background/MoreSplit").GetComponent<Button>().transform.localScale = new Vector3(1F, 1);
+            this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(1F, 1);
+        }
+       
         //scan booster of colony and divide by type: in the end, refresh indicators on the bar
         List<Booster> colonyBoosters = this.selectedColony.boosters;
         foreach (Booster booster in colonyBoosters)
@@ -362,16 +359,13 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
         //button not visible
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = false;
-        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+        /*this.transform.Find("Background/BtnChoose").GetComponent<Button>().enabled = false;
+        this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);*/
         //splitter is not visible
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(0.0001F, 0);
-        this.transform.Find("Background/SliderColony").GetComponent<Slider>().enabled = false;
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = false;
-        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = false;
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "";
-
+        this.transform.Find("Background/SplitText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/LessSplit").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+        this.transform.Find("Background/MoreSplit").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
+        this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
         //set booster on screen by type of the level
         if (this.levelInPlay)
         {
@@ -454,22 +448,39 @@ public class Infobar : MonoBehaviour
                     objectSelected(selectedColony.getTarget());
     }
     //method to handle the sliding and next splitting of the colony selected
-    public void onSplitting()
+    //incresease num of termite to split
+    public void MoreSplitClick()
     {
-        //when you slide, the value on the left will be refreshed
-        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = ""+this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
-            //if user raise up the button, i handle the splitting
-
-        if (Input.GetMouseButtonUp(0))
+        if (!(this.splitting == (this.selectedColony.getTermites() - 1)))
         {
-            //refresh num of termite in new colony and old one
-            int numOfSplitted = (int)this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
-            this.selectedColony.addTermites(-numOfSplitted);
-            this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
-            this.selectedColony.split(numOfSplitted);
-            //i need a list of colonies active on the level, without it from the class 'level' i can't do the split complete (over the effect)
-
-
+            this.splitting++;
+            this.transform.Find("Background/SplitText").GetComponent<Text>().text = "" + this.splitting;
         }
+    }   
+    //decresease the num of termites to split
+    public void LessSplitClick()
+    {
+        if ((this.splitting>1 ))
+        {
+            this.splitting--;
+            this.transform.Find("Background/SplitText").GetComponent<Text>().text = "" + this.splitting;
+        }
+    } 
+    //excute the split
+    public void Split()
+    {
+        //refresh the old colony
+        this.selectedColony.setTermites(this.selectedColony.getTermites() - this.splitting);
+        this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
+        //create the new colony
+        this.selectedColony.split(this.splitting);
+        //reset the bar
+        this.splitting = 1;
+        this.transform.Find("Background/SplitText").GetComponent<Text>().text = "" + this.splitting;
+        
+
     }
+        
+        
+    
 }

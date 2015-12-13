@@ -231,7 +231,10 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             level.infoBarScript.objectSelected(hit.collider.gameObject.GetComponent<GenericObject>());
         }
     }
-
+    public void setTermites(int numOftermites)
+    {
+        this.termites = numOftermites;
+    }
     public void OnEndDrag(PointerEventData eventData)
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
