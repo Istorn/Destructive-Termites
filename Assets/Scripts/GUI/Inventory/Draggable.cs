@@ -20,7 +20,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 	//IEndDragHandler implementation
 	public void OnEndDrag(PointerEventData eventData){
 		transform.position = startPosition;
-		Debug.Log("were here");
 	}
 }
 
