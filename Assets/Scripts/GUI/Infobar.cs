@@ -217,9 +217,11 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/QueenImg/QueenText").GetComponent<Text>().text = "0";
         //splitter is not visible
         this.transform.Find("Background/SliderColony").GetComponent<Slider>().transform.localScale = new Vector3(0.0001F, 0);
-        /*this.transform.Find("Background/SliderColony/MinSlideText").GetComponent<Text>().enabled = false;
-        this.transform.Find("Background/SliderColony/MaxSlideText").GetComponent<Text>().enabled = false;*/
-        
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().enabled = false;
+        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().enabled = false;
+        this.transform.Find("Background/MaxSlideText").GetComponent<Text>().text = "";
+        this.transform.Find("Background/MinSlideText").GetComponent<Text>().text = "";
+
     }
     // Update is called once per frame
     void Update()
@@ -464,7 +466,7 @@ public class Infobar : MonoBehaviour
             int numOfSplitted = (int)this.transform.Find("Background/SliderColony").GetComponent<Slider>().value;
             this.selectedColony.addTermites(-numOfSplitted);
             this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "TERMITES AVAILABLE: " + this.selectedColony.getTermites();
-
+            //i need a list of colonies active on the level, without it from the class 'level' i can't do the split complete (over the effect)
 
 
         }
