@@ -292,7 +292,6 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (draggedSlot != null)
         { // check if the item being dragged is an inventory Slot
             Booster droppedBooster = draggedSlot.GetBoosterFromSlot;
-            Debug.Log(droppedBooster);
             applyBooster(droppedBooster);
         }
     }
