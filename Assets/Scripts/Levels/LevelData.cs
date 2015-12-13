@@ -16,7 +16,7 @@ public class LevelData : MonoBehaviour, LevelDataInterface
 
     protected HumanPlaceholder[] _humans;
 
-    protected ObjectPlaceholder[] _objects;
+    protected List<ObjectPlaceholder> _objects;
 
     protected int _availableTermites;
 
@@ -57,7 +57,7 @@ public class LevelData : MonoBehaviour, LevelDataInterface
         get { return _humans; }
     }
 
-    public ObjectPlaceholder[] objects
+    public List<ObjectPlaceholder> objects
     {
         get { return _objects; }
     }

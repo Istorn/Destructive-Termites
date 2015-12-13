@@ -16,7 +16,7 @@ public interface LevelDataInterface
 
     HumanPlaceholder[] humans { get; }
 
-    ObjectPlaceholder[] objects { get; }
+    List<ObjectPlaceholder> objects { get; }
 
     int availableTermites { get; }
 

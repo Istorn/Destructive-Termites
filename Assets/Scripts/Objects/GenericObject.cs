@@ -16,14 +16,16 @@ public class GenericObject : MonoBehaviour {
         Hard = 1,
         //[Description("Live object: only fools would eat it")]
         [Description("LIVE OBJECT")]
-        Live = 2
+        Live = 2,
+        [Description("NOT EATABLE")]
+        NotEatable = 3
     }
 
     public int id = 0;
 
     public bool isHanging = true;
 
-    protected Types type;
+    public Types type = Types.NotEatable;
 
     public Room room = null;
 
@@ -55,6 +57,7 @@ public class GenericObject : MonoBehaviour {
         attacker = null;
         primaryCollider = gameObject.GetComponent<PolygonCollider2D>();
         selectionCoroutine = StartPressing();
+        gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_NOT_EATABLE_OBJECTS);
     }
 
     public void setLevel(Level level)
@@ -130,11 +133,16 @@ public class GenericObject : MonoBehaviour {
             return true;
         }
         else
-            return false;         
+        {
+            integrity = 100;
+            return true;
+        }
+           // return false;         
     }
 
     void OnMouseDown()
     {
+        Debug.Log("DOWN: " + gameObject.name);
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             StopCoroutine(selectionCoroutine);
@@ -159,7 +167,7 @@ public class GenericObject : MonoBehaviour {
                 im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
 
                 colony.setTarget(this);
-                colony.setLevel(level);
+                colony.setLevel(level); 
 
             }
             attacker.addTermites(at);
@@ -191,9 +199,11 @@ public class GenericObject : MonoBehaviour {
 
     IEnumerator StartPressing()
     {
+        Debug.Log("CLIC: " + gameObject.name);
         level.infoBarScript.objectSelected(this);
         yield return new WaitForSeconds(Costants.OBJ_TIME_TO_START_ATTACK);
-        if (level.availableTermites > 0)
+        Debug.Log(level.availableTermites + " --- " + type);
+        if ((level.availableTermites > 0) && (type != Types.NotEatable))
         {
             cursor = Instantiate(Resources.Load("Prefabs/StartAttackCursor", typeof(GameObject))) as GameObject;
             cursor.GetComponent<StartAttackCursor>().availableAttackers = level.availableTermites;

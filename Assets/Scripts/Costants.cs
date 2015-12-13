@@ -28,8 +28,9 @@ public static class Costants{
     public static string LAYER_LIVE_OBJECTS = "LiveObjects";
     public static string LAYER_BACKGROUND = "Background";
     public static string LAYER_FOREGROUND = "Foreground";
+    public static string LAYER_NOT_EATABLE_OBJECTS = "NotEatableObjects";
 
-    public static float HUMAN_SPEED = 0.3f;
+    public static float HUMAN_SPEED = 0.1f;
 
     //OBJECTS
     public static float OBJ_TIME_TO_START_ATTACK = 1f;

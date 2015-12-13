@@ -30,10 +30,13 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private bool startDrag = false;
 
+    private Image attackPossibilityImage = null;
+
     private IEnumerator attackTargetCorountine = null;
 
 	void Awake () {
         boosters = new List<Booster>();
+        attackPossibilityImage = cursor.transform.Find("NotAttackImage").GetComponent<Image>();
         attackTargetCorountine = attackTarget();
 	}
 
@@ -45,6 +48,15 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public GenericObject getTarget()
     {
         return target;
+    }
+
+    void setAttackPossibility(bool possibility)
+    {
+        Color col = attackPossibilityImage.color;
+        if (possibility)
+            attackPossibilityImage.color = new Color(col.r, col.g, col.b, 0f);
+        else
+            attackPossibilityImage.color = new Color(col.r, col.g, col.b, 1f);
     }
 
     public void setTarget(GenericObject target)
@@ -114,7 +126,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         {
             if ((sprites == null) || (spriteIndex == sprites.Length))
             {
-                spriteIndex = 0;
+                 spriteIndex = 0;
                  if (boosters.Count == 0)
                      sprites = Resources.LoadAll<Sprite>("GUI/AttackCursor/Booster_0");
                  else
@@ -139,8 +151,23 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     IEnumerator attackTarget()
     {
-        while (target && (target.attack(termites)))
+        bool continueAttack = true;
+        while (target && continueAttack)
         {
+            List<GenericObject.Types> eatableTypes = new List<GenericObject.Types>();
+            eatableTypes.Add(GenericObject.Types.Soft);
+            foreach (Booster b in boosters)
+                eatableTypes.Add(b.extraEatableMaterial);
+            if (eatableTypes.Contains(target.type))
+            {
+                continueAttack = target.attack(termites);
+                setAttackPossibility(true);
+            }
+            else
+            {
+                continueAttack = true;
+                setAttackPossibility(false);
+            }
             yield return new WaitForSeconds(1f);
         }
         changeTarget(null);
@@ -228,7 +255,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         if (hit.collider != null)
         {
-            level.infoBarScript.objectSelected(hit.collider.gameObject.GetComponent<GenericObject>());
+            GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
+            if (!obj.getType().Equals(GenericObject.Types.NotEatable))
+                level.infoBarScript.objectSelected(obj);
         }
     }
     public void setTermites(int numOftermites)
@@ -241,8 +270,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         if (hit.collider != null)
         {
-            setTarget(hit.collider.gameObject.GetComponent<GenericObject>());
-            
+            GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
+            if (!obj.getType().Equals(GenericObject.Types.NotEatable))
+                setTarget(obj);
         }
         else
         {

@@ -87,6 +87,7 @@ public class Level : MonoBehaviour {
         foreach (ObjectPlaceholder objectPlaceholder in levelData.objects)
         {
             GameObject obj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+            obj.name = objectPlaceholder.name;
             GenericObject script = null;
             if (objectPlaceholder.type == GenericObject.Types.Soft)
                 script = obj.AddComponent<SoftObject>();
@@ -94,7 +95,10 @@ public class Level : MonoBehaviour {
                 if (objectPlaceholder.type == GenericObject.Types.Hard)
                     script = obj.AddComponent<HardObject>();
                 else
-                    script = obj.AddComponent<LiveObject>();
+                    if (objectPlaceholder.type == GenericObject.Types.Hard)
+                        script = obj.AddComponent<HardObject>();
+                    else
+                        script = obj.AddComponent<GenericObject>();
 
             script.setLevel(this);
             script.isHanging = objectPlaceholder.isHanging;
