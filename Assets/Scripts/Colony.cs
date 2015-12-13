@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler {
+public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler{
 
     public Text label;
     public GameObject cursor; 
@@ -256,7 +256,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (hit.collider != null)
         {
             GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
-            if (!obj.getType().Equals(GenericObject.Types.NotEatable))
+            if (!obj.type.Equals(GenericObject.Types.NotEatable))
                 level.infoBarScript.objectSelected(obj);
         }
     }
@@ -271,7 +271,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (hit.collider != null)
         {
             GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
-            if (!obj.getType().Equals(GenericObject.Types.NotEatable))
+            if (!obj.type.Equals(GenericObject.Types.NotEatable))
                 setTarget(obj);
         }
         else
@@ -288,11 +288,15 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnDrop(PointerEventData eventData)
     {
-        Slot draggedSlot = Draggable.itemBeingDragged.GetComponentInChildren<Slot>();
-        if (draggedSlot != null)
-        { // check if the item being dragged is an inventory Slot
-            Booster droppedBooster = draggedSlot.GetBoosterFromSlot;
-            applyBooster(droppedBooster);
+        GameObject draggedItem = Draggable.itemBeingDragged;
+        if(draggedItem)
+        { 
+            Slot draggedSlot = draggedItem.GetComponentInChildren<Slot>();
+            if (draggedSlot != null)
+            { // check if the item being dragged is an inventory Slot
+                Booster droppedBooster = draggedSlot.GetBoosterFromSlot;
+                applyBooster(droppedBooster);
+            }
         }
     }
 }

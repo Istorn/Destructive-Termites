@@ -199,10 +199,8 @@ public class GenericObject : MonoBehaviour {
 
     IEnumerator StartPressing()
     {
-        Debug.Log("CLIC: " + gameObject.name);
         level.infoBarScript.objectSelected(this);
         yield return new WaitForSeconds(Costants.OBJ_TIME_TO_START_ATTACK);
-        Debug.Log(level.availableTermites + " --- " + type);
         if ((level.availableTermites > 0) && (type != Types.NotEatable))
         {
             cursor = Instantiate(Resources.Load("Prefabs/StartAttackCursor", typeof(GameObject))) as GameObject;
@@ -226,7 +224,7 @@ public class GenericObject : MonoBehaviour {
     {
        // Debug.Log("LEAVE: " + name);
         float distance = GetComponent<SpriteRenderer>().sortingOrder - other.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
-        if (distance > 0 & distance <= 1.5)
+        if (distance > 0 && distance <= 5)
         {
             enablePhysics();
         }
