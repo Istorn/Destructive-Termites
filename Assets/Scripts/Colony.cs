@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler {
 
     public Text label;
     public GameObject cursor; 
@@ -284,5 +284,16 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void OnBeginDrag(PointerEventData eventData)
     {
         startDrag = true;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        Slot draggedSlot = Draggable.itemBeingDragged.GetComponentInChildren<Slot>();
+        if (draggedSlot != null)
+        { // check if the item being dragged is an inventory Slot
+            Booster droppedBooster = draggedSlot.GetBoosterFromSlot;
+            Debug.Log(droppedBooster);
+            applyBooster(droppedBooster);
+        }
     }
 }
