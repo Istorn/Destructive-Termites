@@ -428,8 +428,8 @@ public class Level1Data: LevelData {
         _floorColliders[0] = points;
 
         points = new Vector2[2];
-        points[0] = new Vector2(-14.03f, -6.75f);
-        points[1] = new Vector2(14.1f, -6.83f);
+        points[0] = new Vector2(-14.3f, -6.50f);
+        points[1] = new Vector2( 14.1f, -6.50f);
         _floorColliders[1] = points;
 
         points = new Vector2[2];
@@ -450,7 +450,7 @@ public class Level1Data: LevelData {
         _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_2, new Vector3(-11.28f, -4.43f, 0), "L1_F1_KITCHEN_LAMPx3", GenericObject.Types.Hard));
         _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_4, new Vector3(-12.00f, -5.19f, 0), "L1_F1_KITCHEN_CHAIR2", GenericObject.Types.Hard));
         _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_4, new Vector3(-11.24f, -5.19f, 0), "L1_F1_KITCHEN_CHAIR2", GenericObject.Types.Hard));
-        _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_5, new Vector3(-11.94f, -5.71f, 0), "L1_F1_KITCHEN_TABLE", GenericObject.Types.Soft));
+        _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_5, new Vector3(-11.94f, -5.71f, 0), "L1_F1_KITCHEN_TABLE", GenericObject.Types.Hard));
         _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_6, new Vector3(-11.96f, -5.17f, 0), "L1_F1_KITCHEN_VASE", GenericObject.Types.NotEatable));
         _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_7, new Vector3(-12.78f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1", GenericObject.Types.Hard));
         _objects.Add(new ObjectPlaceholder(00, Costants.Z_INDEX_OBJ_7, new Vector3(-11.74f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1", GenericObject.Types.Hard));
@@ -470,7 +470,7 @@ public class Level1Data: LevelData {
         _objects.Add(new ObjectPlaceholder(02, Costants.Z_INDEX_OBJ_3, new Vector3( 05.20f, -3.72f, 0), "L1_F1_GARAGE_BOX3", GenericObject.Types.NotEatable));
         _objects.Add(new ObjectPlaceholder(02, Costants.Z_INDEX_OBJ_2, new Vector3( 05.68f, -3.72f, 0), "L1_F1_GARAGE_BOX3", GenericObject.Types.NotEatable));
         _objects.Add(new ObjectPlaceholder(02, Costants.Z_INDEX_OBJ_2, new Vector3( 07.28f, -3.72f, 0), "L1_F1_GARAGE_BOX3", GenericObject.Types.NotEatable));
-        _objects.Add(new ObjectPlaceholder(02, Costants.Z_INDEX_OBJ_4, new Vector3( 08.58f, -5.50f, 0), "L1_F1_GARAGE_CAR_00", GenericObject.Types.Hard));
+        _objects.Add(new ObjectPlaceholder(02, Costants.Z_INDEX_OBJ_4, new Vector3( 08.58f, -5.50f, 0), "L1_F1_GARAGE_CAR", GenericObject.Types.Hard));
 
         _objects.Add(new ObjectPlaceholder(03, Costants.Z_INDEX_OBJ_1, new Vector3(-12.49f, -0.10f, 0), "L1_F2_ROOM3_CLOSET-B", GenericObject.Types.Soft));
         _objects.Add(new ObjectPlaceholder(03, Costants.Z_INDEX_OBJ_2, new Vector3(-09.05f, -0.60f, 0), "L1_F2_ROOM3_BEED2", GenericObject.Types.Soft));
