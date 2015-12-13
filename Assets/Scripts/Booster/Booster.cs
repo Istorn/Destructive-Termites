@@ -18,8 +18,23 @@ public class Booster : MonoBehaviour {
 		public bool isCollectedFromScene; //set to private when done with testing
 		public bool isActivated; //set to private when done with testing
 		
+		public GenericObject.Types extraEatableMaterial; 
+		
 		void Start(){
 			timeLeft = timeDuration;
+			
+			switch (this.type)
+			{
+				case Booster.Types.IronDenture :
+					this.extraEatableMaterial = GenericObject.Types.Hard;
+					break;
+				case Booster.Types.Mushroom :
+					this.extraEatableMaterial = GenericObject.Types.Live;
+					break;
+				default:
+					break;
+			}
+			
 		}
 		
 		void FixedUpdate(){	
@@ -56,6 +71,7 @@ public class Booster : MonoBehaviour {
 			// warns the user about destruction/end booster ?
 			Debug.Log("time out booster");
 		}
+		
 		
 	// uncomment when you're sure.
 	/*	public Booster (GenericObject attachedObj){
