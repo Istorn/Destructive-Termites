@@ -11,12 +11,8 @@ public class Slot : MonoBehaviour {
 	public Sprite highlightedEmptySlot;
 	public Sprite boosterIcon;
 	private bool isDragging; 
-	public float iconWidth = 1;
-	public float iconHeight = 1;
-	public Vector3 iconPosition = new Vector3( 10, 5, 0 );
  
    
-	
 	// Use this for initialization
 	void Start () {
 		boosters = new Stack<Booster>();
@@ -33,12 +29,6 @@ public class Slot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (isDragging){
-			// boosterIcon.GetComponent<SpriteRenderer>().enabled = true; 
-			// set the position
-//boosterIcon = Input.mousePosition;
-			//suivre le curseur
-		}
 	}
 	
 	public void AddBooster(Booster booster){
