@@ -13,6 +13,7 @@ public class Infobar : MonoBehaviour
     private GenericObject selectedObject = null;
     public Colony selectedColony = null;
     private IEnumerator refreshCoroutine = null;
+	public int time=0;
     // Use this for initialization
     void Start()
     {
@@ -34,6 +35,20 @@ public class Infobar : MonoBehaviour
     {
         while (true)
         {
+			this.time++;
+			if (this.time>60){
+				if ((this.time%60)==0){
+					this.transform.Find("Background/TimeText").GetComponent<Text>().text="TIME: "+this.time+":00";
+				}
+				else{
+					int residualseconds=(this.time%60);
+					this.transform.Find("Background/TimeText").GetComponent<Text>().text="TIME: "+(this.time/60)+":"+residualseconds;
+
+				}
+			}else{
+				this.transform.Find("Background/TimeText").GetComponent<Text>().text="TIME: 00:"+this.time;
+			}
+
             if (this.levelInPlay)
             {
                 this.transform.Find("Background/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat";
@@ -200,7 +215,7 @@ public class Infobar : MonoBehaviour
 
         //Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
         //but.onClick.AddListener(() => this.changeTargetAttacker());
-
+		this.transform.Find ("Background/TimeText").GetComponent<Text> ().text = "TIME: 0s";
         this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
         this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
