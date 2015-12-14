@@ -85,7 +85,6 @@ public class BoosterDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         foreach (Booster b in level.collectedBoosters)
             if (b.type.Equals(type))
             {
-                Debug.Log("CONTIENE");
                 contains = true;
                 break;
             }
