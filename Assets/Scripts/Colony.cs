@@ -40,6 +40,25 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         attackTargetCorountine = attackTarget();
 	}
 
+    public void attack()
+    {
+        level.usedTermites -= termites;
+        if ((int)(termites * 0.1) < 10)
+            termites = (int)(termites * 0.9);
+        else
+            termites -= 10;
+        if (termites < 0)
+            termites = 0;
+        level.usedTermites += termites;
+        label.text = termites + "";
+        if (termites == 0)
+        {
+            target.setAttacker(null);
+            Destroy(gameObject);
+        }
+
+            
+    }
     public void setLevel(Level level)
     {
         this.level = level;
@@ -64,7 +83,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (this.target)
             this.target.setAttacker(null);
         this.target = target;
-
+        level.alertObjectsQueue.Enqueue(this.target);
         //gameObject.transform.parent = this.target.gameObject.transform;
         oldPosition = target.gameObject.transform.position;
         oldRoom = target.room;
@@ -158,6 +177,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             eatableTypes.Add(GenericObject.Types.Soft);
             foreach (Booster b in boosters)
                 eatableTypes.Add(b.extraEatableMaterial);
+            
             if (eatableTypes.Contains(target.type))
             {
                 continueAttack = target.attack(termites);
@@ -168,7 +188,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 continueAttack = true;
                 setAttackPossibility(false);
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(Costants.COLONY_ATTACK_FREQUENCY);
         }
         changeTarget(null);
     }

@@ -8,8 +8,9 @@ public class ObjectPlaceholder{
     public string name;
     public GenericObject.Types type;
     public bool isHanging;
+    public float strengthCoefficient;
 
-    public ObjectPlaceholder(int roomNumber, int z_index, Vector3 coordinates, string name, GenericObject.Types type, bool isHanging = false)
+    public ObjectPlaceholder(int roomNumber, int z_index, Vector3 coordinates, string name, GenericObject.Types type, float strengthCoefficient = 0.05f, bool isHanging = false)
     {
         this.roomNumber = roomNumber;
         this.z_index = z_index;
@@ -17,5 +18,6 @@ public class ObjectPlaceholder{
         this.name = name;
         this.type = type;
         this.isHanging = isHanging;
+        this.strengthCoefficient = strengthCoefficient;
     }
 }

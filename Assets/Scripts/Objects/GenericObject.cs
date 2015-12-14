@@ -29,7 +29,7 @@ public class GenericObject : MonoBehaviour {
 
     public Room room = null;
 
-    protected float strenghtCoefficient = 0.05f;
+    public float strenghtCoefficient = 0.05f;
 
     public float integrity = 100.0f;
     protected float oldIntegrity = 100.0f;
@@ -142,7 +142,6 @@ public class GenericObject : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("DOWN: " + gameObject.name);
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             StopCoroutine(selectionCoroutine);
@@ -165,9 +164,9 @@ public class GenericObject : MonoBehaviour {
                 Colony colony = colCursor.GetComponent<Colony>();
                 Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
                 im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
-
-                colony.setTarget(this);
                 colony.setLevel(level); 
+                colony.setTarget(this);
+                
 
             }
             attacker.addTermites(at);

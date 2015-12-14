@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 //Classe Singleton condivisa da tutti gli oggetti per in movimento per gestire gli spostamenti autonomi
 public class Graph {
@@ -23,6 +24,25 @@ public class Graph {
     public void addLink(Connection connection)
     {
         addLink(connection.nodeNumber1, connection.nodeNumber2, connection.distance, connection.z_index);
+    }
+
+    public int findNearestNode(int roomNumber, Vector2 coordinates)
+    {
+        double distance = double.PositiveInfinity;
+        Node node = null;
+        foreach(Node n in nodes)
+        {
+            if (n.roomNumber == roomNumber)
+            {
+                float dist = Math.Abs(coordinates.x - n.coordinates.x);
+                if (dist < distance)
+                {
+                    distance = dist;
+                    node = n;
+                }
+            }
+        }
+        return node.number;
     }
 
     //Aggiunge un collegamento pesato tra due nodi nel grafo

@@ -32,6 +32,12 @@ public static class Costants{
 
     public static float HUMAN_SPEED = 0.1f;
 
+    //COLONY
+    public static float COLONY_ATTACK_FREQUENCY = 1f;
+
+    //HUMAN
+    public static float HUMAN_WAIT_TIME = 0.7f;
+
     //OBJECTS
     public static float OBJ_TIME_TO_START_ATTACK = 1f;
     public static float OBJ_TIME_TO_ADD_500_ATTACKERS = 0.10f;

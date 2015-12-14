@@ -27,9 +27,13 @@ public class Level : MonoBehaviour {
     public List<Room> rooms = null;
 
     public List<Booster> collectedBoosters = null;
+    
+    public ConcurrentQueue<GenericObject> alertObjectsQueue= null;
 
     void Awake()
     {
+        alertObjectsQueue = new ConcurrentQueue<GenericObject>();
+
         initVars();
 
         initGUI();    
@@ -101,6 +105,7 @@ public class Level : MonoBehaviour {
                         script = obj.AddComponent<GenericObject>();
 
             script.setLevel(this);
+            script.strenghtCoefficient = objectPlaceholder.strengthCoefficient;
             script.isHanging = objectPlaceholder.isHanging;
             script.setId(id);
             script.setPosition(objectPlaceholder.coordinates, objectPlaceholder.z_index);
@@ -112,11 +117,22 @@ public class Level : MonoBehaviour {
         }
 
         GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        human.name = "Human0";
         Human humanScript = human.AddComponent<Human>();
         humanScript.setLevel(this);
         humanScript.setId(-1);
-        humanScript.setPosition(new Vector2(-4, 0), Costants.Z_INDEX_HUMANS);
+        humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
+        humanScript.actualNodeNumber = 2;
         humanScript.setObjectName("Chair");
+
+        GameObject human1 = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        human1.name = "Human1";
+        Human humanScript1 = human1.AddComponent<Human>();
+        humanScript1.setLevel(this);
+        humanScript1.setId(-2);
+        humanScript1.setPosition(new Vector2(-04.50f, 4.11f), Costants.Z_INDEX_HUMANS);
+        humanScript1.actualNodeNumber = 118;
+        humanScript1.setObjectName("Chair");
     }
 
     private void addObjectToRoom(GenericObject obj, int roomNumber)
