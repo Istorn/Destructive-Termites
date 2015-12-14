@@ -29,14 +29,54 @@ public class Infobar : MonoBehaviour
     {
         return selectedObject;
     }
+    //refresh counter
+    public void timer()
+    {
+        this.time++;
+        Debug.Log(this.time);
+        if (this.time > 60)
+        {
+            if ((this.time % 60) == 0)
+            {
+                if (this.time < 10)
+                {
+                    this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: 0" + this.time + ":00";
+                }
+                else
+                {
+                    this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: " + this.time + ":00";
+                }
+                
+            }
+            else
+            {
+                int residualseconds = (this.time % 60);
+                if (residualseconds > 10)
+                {
+                    this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: " + (this.time / 60) + ":" + residualseconds;
+                }
+                else
+                {
+                    this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: " + (this.time / 60) + ":0" + residualseconds;
+                }
+                
 
+            }
+        }
+        else
+        {
+            this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: 00:" + this.time;
+        }
+        new WaitForSeconds(1F);
+    }
     //refresh infos
     IEnumerator refreshInfo()
     {
+
         while (true)
         {
-			
 
+            this.timer();
             if (this.levelInPlay)
             {
                 this.transform.Find("Background/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat";
@@ -132,8 +172,8 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/CombatText").GetComponent<Text>().text = levelToSet.usedTermites + "in combat";
-        this.transform.Find("Background/AvailableText").GetComponent<Text>().text = levelToSet.availableTermites + " available";
+        this.transform.Find("Background/CombatText").GetComponent<Text>().text =""+ levelToSet.usedTermites + "in combat";
+        this.transform.Find("Background/AvailableText").GetComponent<Text>().text =""+ levelToSet.availableTermites + "available";
         //scan booster of level and divide by type: in the end, refresh indicators on the bar
         List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
         foreach (Booster booster in levelBoosters)
@@ -193,8 +233,8 @@ public class Infobar : MonoBehaviour
     }
     public void setTermitesOnBar()
     {
-        this.transform.Find("BackGround/AvailableText").GetComponent<Text>().text = this.levelInPlay.availableTermites + "available: ";
-        this.transform.Find("BackGround/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat: ";
+        this.transform.Find("BackGround/AvailableText").GetComponent<Text>().text =""+ this.levelInPlay.availableTermites + "available: ";
+        this.transform.Find("BackGround/CombatText").GetComponent<Text>().text = ""+this.levelInPlay.usedTermites + "in combat: ";
     }
     //load at the starting of play
     void Awake()
@@ -212,8 +252,7 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = " ";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/CombatText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/AvailableText").GetComponent<Text>().text = "";
+
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IronImg/IronText").GetComponent<Text>().text = "0";
         this.transform.Find("Background/GiantImg/GiantText").GetComponent<Text>().text = "0";
