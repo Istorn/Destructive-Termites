@@ -83,7 +83,8 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (this.target)
             this.target.setAttacker(null);
         this.target = target;
-        level.alertObjectsQueue.Enqueue(this.target);
+        if (!this.target.type.Equals(GenericObject.Types.Live))
+            level.alertObjectsQueue.Enqueue(this.target);
         //gameObject.transform.parent = this.target.gameObject.transform;
         oldPosition = target.gameObject.transform.position;
         oldRoom = target.room;

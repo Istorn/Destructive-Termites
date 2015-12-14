@@ -134,7 +134,8 @@ public class GenericObject : MonoBehaviour {
         }
         else
         {
-			dropABooster();
+            if (Random.Range(0, 11) < 4)
+			    dropABooster();
             integrity = 100;
             return true;
         }
@@ -165,10 +166,8 @@ public class GenericObject : MonoBehaviour {
                 Colony colony = colCursor.GetComponent<Colony>();
                 Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
                 im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
-                colony.setLevel(level); 
+                colony.setLevel(level);
                 colony.setTarget(this);
-                
-
             }
             attacker.addTermites(at);
             level.availableTermites -= at;

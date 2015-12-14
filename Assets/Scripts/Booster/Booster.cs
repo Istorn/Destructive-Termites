@@ -4,7 +4,6 @@ using UnityEngine;
 public class Booster : MonoBehaviour {
 		public enum Types { IronDenture = 1, Mushroom = 2, GasEquipment = 3, QueenTermite = 4, MagicShield = 5, GiantTermite = 6 };
 		public Types type;
-		public int count = 1;
 		
 		
 		// common attributes
@@ -47,16 +46,18 @@ public class Booster : MonoBehaviour {
 			}
 		}
 		
-		public void collectOne(){
-			count++;
-		}
-		
 		public void collectBooster() { // collects the booster from the scene
-			Inventory inventory = GameObject.Find("Canvas").GetComponentInChildren<Inventory>();
+			/*Inventory inventory = GameObject.Find("Canvas").GetComponentInChildren<Inventory>();
 			inventory.AddBooster(this);
 			foreach (Transform child in this.transform) {
 				GameObject.Destroy(child.gameObject);
-			}
+			}*/
+            Level level = GameObject.Find("Level").GetComponent<Level>();
+            level.collectBooster(this);
+            foreach (Transform child in this.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
 		}
 		
 		/*void activateBooster(Colony targetColony){

@@ -10,6 +10,7 @@ public class LevelsManager : MonoBehaviour {
     {
         //Application.LoadLevel("Level" + level);
         GameObject levelGameObject = Instantiate(Resources.Load("Prefabs/Level", typeof(GameObject))) as GameObject;
+        levelGameObject.name = "Level";
         Level level = levelGameObject.GetComponent<Level>();
         level.setLevelManager(gameObject);
         level.setLevel(levelNumber);

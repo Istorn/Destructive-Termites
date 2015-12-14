@@ -4,6 +4,7 @@ using System.Collections;
 public class BoosterEvents : MonoBehaviour {
 	void OnMouseDown(){
 		transform.parent.gameObject.GetComponent<Booster>().collectBooster();
+        Debug.Log("CLIC");
 	}
 	
 	void FixedUpdate () 

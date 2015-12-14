@@ -64,7 +64,7 @@ public class Infobar : MonoBehaviour
         }
         else
         {
-            this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: 00:" + this.time;
+            this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: 00:0" + this.time;
         }
     }
     //refresh infos
@@ -102,44 +102,42 @@ public class Infobar : MonoBehaviour
                 List<Booster> colonyBoosters = this.selectedColony.boosters;
                 foreach (Booster booster in colonyBoosters)
                 {
-                    switch ((int)booster.type)
+                    switch (booster.type)
                     {
-                        case 1:
+                        case Booster.Types.IronDenture:
                             {
                                 boosterColony[0]++;
                             };
                             break;
-                        case 2:
+                        case Booster.Types.GiantTermite:
                             {
 
                                 boosterColony[1]++;
                             };
                             break;
-                        case 3:
+                        case Booster.Types.Mushroom:
                             {
 
                                 boosterColony[2]++;
                             };
                             break;
-                        case 4:
+                        case Booster.Types.GasEquipment:
                             {
 
                                 boosterColony[3]++;
                             };
                             break;
-                        case 5:
+                        case Booster.Types.MagicShield:
                             {
 
                                 boosterColony[4]++;
                             };
                             break;
-                        case 6:
+                        case Booster.Types.QueenTermite:
                             {
 
                                 boosterColony[5]++;
                             }; break;
-
-
                     }
                 }
                 //showing num of booster available in colony
@@ -153,79 +151,79 @@ public class Infobar : MonoBehaviour
             }
             else if (this.selectedObject)
             {
-                
-                
                 this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "OBJECT INFO";
                 this.transform.Find("Background/MaterialText").GetComponent<Text>().text = this.selectedObject.getType();
                 this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "TERMITES: " + this.selectedObject.counter;
                 this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "INTEGRITY: " + (int)this.selectedObject.integrity+"%";
             }
+            else
+                if (levelInPlay)
+                {
+                    List<int> boosterColony = new List<int>();
+                    for (int i = 0; i < 6; i++)
+                    {
+                        boosterColony.Add(0);
+                    }
+                    List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
+                    foreach (Booster booster in levelBoosters)
+                    {
+                        switch (booster.type)
+                        {
+                            case Booster.Types.IronDenture:
+                                {
+                                    boosterColony[0]++;
+                                };
+                                break;
+                            case Booster.Types.GiantTermite:
+                                {
+
+                                    boosterColony[1]++;
+                                };
+                                break;
+                            case Booster.Types.Mushroom:
+                                {
+
+                                    boosterColony[2]++;
+                                };
+                                break;
+                            case Booster.Types.GasEquipment:
+                                {
+
+                                    boosterColony[3]++;
+                                };
+                                break;
+                            case Booster.Types.MagicShield:
+                                {
+
+                                    boosterColony[4]++;
+                                };
+                                break;
+                            case Booster.Types.QueenTermite:
+                                {
+
+                                    boosterColony[5]++;
+                                }; break;
+                        }
+                    }
+                    this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
+                    this.transform.Find("Background/IronImg/IronText").GetComponent<Text>().text = "" + boosterColony[0];
+                    this.transform.Find("Background/GiantImg/GiantText").GetComponent<Text>().text = "" + boosterColony[1];
+                    this.transform.Find("Background/MushImg/MushText").GetComponent<Text>().text = "" + boosterColony[2];
+                    this.transform.Find("Background/MaskImg/MaskText").GetComponent<Text>().text = "" + boosterColony[3];
+                    this.transform.Find("Background/ShieldImg/ShieldText").GetComponent<Text>().text = "" + boosterColony[4];
+                    this.transform.Find("Background/QueenImg/QueenText").GetComponent<Text>().text = "" + boosterColony[5];
+                }
             yield return new WaitForSeconds(1F);
         }
     }
     public void setlevelPlay(Level levelToSet)
     {
-        List<int> boosterColony = new List<int>();
-        for (int i = 0; i < 6; i++)
-        {
-            boosterColony.Add(0);
-        }
+        
         this.levelInPlay = levelToSet;
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
         //scan booster of level and divide by type: in the end, refresh indicators on the bar
-        List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
-        foreach (Booster booster in levelBoosters)
-        {
-            switch ((int)booster.type)
-            {
-                case 1:
-                    {
-                        boosterColony[0]++;
-                    };
-                    break;
-                case 2:
-                    {
-
-                        boosterColony[1]++;
-                    };
-                    break;
-                case 3:
-                    {
-
-                        boosterColony[2]++;
-                    };
-                    break;
-                case 4:
-                    {
-
-                        boosterColony[3]++;
-                    };
-                    break;
-                case 5:
-                    {
-
-                        boosterColony[4]++;
-                    };
-                    break;
-                case 6:
-                    {
-
-                        boosterColony[5]++;
-                    }; break;
-
-
-            }
-        }
-        //showing num of booster available in level
-        this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
-        this.transform.Find("Background/IronImg/IronText").GetComponent<Text>().text = "" + boosterColony[0];
-        this.transform.Find("Background/GiantImg/GiantText").GetComponent<Text>().text = "" + boosterColony[1];
-        this.transform.Find("Background/MushImg/MushText").GetComponent<Text>().text = "" + boosterColony[2];
-        this.transform.Find("Background/MaskImg/MaskText").GetComponent<Text>().text = "" + boosterColony[3];
-        this.transform.Find("Background/ShieldImg/ShieldText").GetComponent<Text>().text = "" + boosterColony[4];
-        this.transform.Find("Background/QueenImg/QueenText").GetComponent<Text>().text = "" + boosterColony[5];
     }
     public Level getlevelPlay()
     {
@@ -411,58 +409,12 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
         //set booster on screen by type of the level
         if (this.levelInPlay)
-        {
-            List<int> boosterColony = new List<int>();
             this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
             this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
             this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
             //scan booster of level and divide by type: in the end, refresh indicators on the bar
-            List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
-            foreach (Booster booster in levelBoosters)
-            {
-                switch ((int)booster.type)
-                {
-                    case 1:
-                        {
-                            boosterColony[0]++;
-                        };
-                        break;
-                    case 2:
-                        {
-
-                            boosterColony[1]++;
-                        };
-                        break;
-                    case 3:
-                        {
-
-                            boosterColony[2]++;
-                        };
-                        break;
-                    case 4:
-                        {
-
-                            boosterColony[3]++;
-                        };
-                        break;
-                    case 5:
-                        {
-
-                            boosterColony[4]++;
-                        };
-                        break;
-                    case 6:
-                        {
-
-                            boosterColony[5]++;
-                        }; break;
-
-
-                }
-            }
-        } 
     }
-    void deselect()
+    public void deselect()
     {
         /*if (refreshCoroutine != null)
         {
