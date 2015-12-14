@@ -176,6 +176,7 @@ public class Level : MonoBehaviour {
         loadObjects();
 
         loadFloorColliders();
+        infoBarScript.setlevelPlay(this);
     }
 
     public void loadFloorColliders()

@@ -33,7 +33,6 @@ public class Infobar : MonoBehaviour
     public void timer()
     {
         this.time++;
-        Debug.Log(this.time);
         if (this.time > 60)
         {
             if ((this.time % 60) == 0)
@@ -67,7 +66,6 @@ public class Infobar : MonoBehaviour
         {
             this.transform.Find("Background/TimeText").GetComponent<Text>().text = "TIME: 00:" + this.time;
         }
-        new WaitForSeconds(1F);
     }
     //refresh infos
     IEnumerator refreshInfo()
@@ -79,8 +77,8 @@ public class Infobar : MonoBehaviour
             this.timer();
             if (this.levelInPlay)
             {
-                this.transform.Find("Background/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat";
-                this.transform.Find("Background/AvailableText").GetComponent<Text>().text = this.levelInPlay.availableTermites + " available";
+                this.transform.Find("Background/CombatText").GetComponent<Text>().text = "In combat: " + this.levelInPlay.usedTermites;
+                this.transform.Find("Background/AvailableText").GetComponent<Text>().text = "Available: " + this.levelInPlay.availableTermites;
 
             }
             if (this.selectedColony)
@@ -168,12 +166,14 @@ public class Infobar : MonoBehaviour
     public void setlevelPlay(Level levelToSet)
     {
         List<int> boosterColony = new List<int>();
+        for (int i = 0; i < 6; i++)
+        {
+            boosterColony.Add(0);
+        }
         this.levelInPlay = levelToSet;
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
         this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
-        this.transform.Find("Background/CombatText").GetComponent<Text>().text =""+ levelToSet.usedTermites + "in combat";
-        this.transform.Find("Background/AvailableText").GetComponent<Text>().text =""+ levelToSet.availableTermites + "available";
         //scan booster of level and divide by type: in the end, refresh indicators on the bar
         List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
         foreach (Booster booster in levelBoosters)
@@ -240,14 +240,14 @@ public class Infobar : MonoBehaviour
     void Awake()
     {
 
-       
+        this.refreshCoroutine = refreshInfo();
        // this.transform.Find("Background/BtnChoose").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
 
         //Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
         //but.onClick.AddListener(() => this.changeTargetAttacker());
 		this.transform.Find ("Background/TimeText").GetComponent<Text> ().text = "TIME: 00:00";
-        this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
-        this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
+        this.transform.Find("Background/CombatText").GetComponent<Text>().text ="In combat: 0";
+        this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="Available: 0";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
         this.transform.Find("Background/BoosterSpecText").GetComponent<Text>().text = "COLLECTED BOOSTERS";
         this.transform.Find("Background/TermitesText").GetComponent<Text>().text = " ";
@@ -265,7 +265,7 @@ public class Infobar : MonoBehaviour
         this.transform.Find("Background/LessSplit").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
         this.transform.Find("Background/MoreSplit").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
         this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(0.0001F, 0);
-
+        StartCoroutine(refreshCoroutine);
     }
     // Update is called once per frame
     void Update()
@@ -279,8 +279,7 @@ public class Infobar : MonoBehaviour
 
         selectedObject.select();
 
-        this.refreshCoroutine = refreshInfo();
-        StartCoroutine(refreshCoroutine);
+        
         this.selectedObject = selectedObject;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "OBJECT INFO";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = this.selectedObject.getType();
@@ -313,8 +312,6 @@ public class Infobar : MonoBehaviour
         deselect();
 
         selectedColony.select();
-        this.refreshCoroutine = refreshInfo();
-        StartCoroutine(refreshCoroutine);
         this.selectedColony = selectedColony;
         this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "COLONY INFO";
         List<int> boosterColony = new List<int>();
@@ -419,8 +416,6 @@ public class Infobar : MonoBehaviour
             this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
             this.transform.Find("Background/TermitesText").GetComponent<Text>().text = "";
             this.transform.Find("Background/IntegrityText").GetComponent<Text>().text = "";
-            this.transform.Find("Background/CombatText").GetComponent<Text>().text = this.levelInPlay.usedTermites + "in combat";
-            this.transform.Find("Background/AvailableText").GetComponent<Text>().text = this.levelInPlay.availableTermites + " available";
             //scan booster of level and divide by type: in the end, refresh indicators on the bar
             List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
             foreach (Booster booster in levelBoosters)
@@ -469,11 +464,11 @@ public class Infobar : MonoBehaviour
     }
     void deselect()
     {
-        if (refreshCoroutine != null)
+        /*if (refreshCoroutine != null)
         {
             StopCoroutine(refreshCoroutine);
             refreshCoroutine = null;
-        }
+        }*/
         
         if (selectedColony)
             colonyDeselected();
