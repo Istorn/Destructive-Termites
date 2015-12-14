@@ -134,6 +134,7 @@ public class GenericObject : MonoBehaviour {
         }
         else
         {
+			dropABooster();
             integrity = 100;
             return true;
         }
@@ -235,4 +236,42 @@ public class GenericObject : MonoBehaviour {
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), GetComponent<PolygonCollider2D>());
     }
 
+	void dropABooster(){
+		int maxDroppableTypes = 2;
+		int boosterIdToDrop = Random.Range(1, maxDroppableTypes+1);   // creates a number between 1 and maxDroppableTypes
+		switch (boosterIdToDrop)
+            {
+                case 1:
+                    {
+						GameObject droppedBooster = Instantiate(Resources.Load("Prefabs/Boosters/ironDentureBehaviour", typeof(GameObject))) as GameObject;
+						droppedBooster.GetComponent<Transform>().position = this.transform.position;
+                    };
+                    break;
+                case 2:
+                    {
+						GameObject droppedBooster = Instantiate(Resources.Load("Prefabs/Boosters/mushroomBehaviour", typeof(GameObject))) as GameObject;
+						droppedBooster.GetComponent<Transform>().position = this.transform.position;
+                    };
+                    break;
+                // case 3:
+                    // {
+						
+                    // };
+                    // break;
+                // case 4:
+                    // {
+						
+                    // };
+                    // break;
+                // case 5:
+                    // {
+						
+                    // };
+                    // break;
+                // case 6:
+                    // {
+						
+                    // }; break;
+            }
+	}
 }
