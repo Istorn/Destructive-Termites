@@ -35,19 +35,7 @@ public class Infobar : MonoBehaviour
     {
         while (true)
         {
-			this.time++;
-			if (this.time>60){
-				if ((this.time%60)==0){
-					this.transform.Find("Background/TimeText").GetComponent<Text>().text="TIME: "+this.time+":00";
-				}
-				else{
-					int residualseconds=(this.time%60);
-					this.transform.Find("Background/TimeText").GetComponent<Text>().text="TIME: "+(this.time/60)+":"+residualseconds;
-
-				}
-			}else{
-				this.transform.Find("Background/TimeText").GetComponent<Text>().text="TIME: 00:"+this.time;
-			}
+			
 
             if (this.levelInPlay)
             {
@@ -57,6 +45,7 @@ public class Infobar : MonoBehaviour
             }
             if (this.selectedColony)
             {
+               
                 List<int> boosterColony = new List<int>();
                
                 for (int i = 0; i < 6; i++)
@@ -126,6 +115,7 @@ public class Infobar : MonoBehaviour
             }
             else if (this.selectedObject)
             {
+                
                 
                 this.transform.Find("Background/ColObjText").GetComponent<Text>().text = "OBJECT INFO";
                 this.transform.Find("Background/MaterialText").GetComponent<Text>().text = this.selectedObject.getType();
@@ -215,7 +205,7 @@ public class Infobar : MonoBehaviour
 
         //Button but = this.transform.Find("Background/BtnChoose").GetComponent<Button>();
         //but.onClick.AddListener(() => this.changeTargetAttacker());
-		this.transform.Find ("Background/TimeText").GetComponent<Text> ().text = "TIME: 0s";
+		this.transform.Find ("Background/TimeText").GetComponent<Text> ().text = "TIME: 00:00";
         this.transform.Find("Background/CombatText").GetComponent<Text>().text ="0 in combat";
         this.transform.Find("Background/AvailableText").GetComponent<Text>().text ="0 available";
         this.transform.Find("Background/MaterialText").GetComponent<Text>().text = "";
@@ -241,7 +231,7 @@ public class Infobar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     //clicking on an object load its specs
     public void objectSelected(GenericObject selectedObject)
@@ -498,7 +488,6 @@ public class Infobar : MonoBehaviour
         
 
     }
-        
-        
+      
     
 }
