@@ -23,8 +23,18 @@ public class Inventory : MonoBehaviour {
 		emptySlot = slots;
 		
 		allSlots = new List<GameObject>();
-		inventoryWidth = columns * (slotSize + slotPaddingLeft) + slotPaddingLeft*0;
-		inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop*8; // should be slotPaddingTop but too short and can't understand why. If too many rows, still bugs.
+		// -> adjust the size to the slots
+		// inventoryWidth = columns * (slotSize + slotPaddingLeft) + slotPaddingLeft*0;
+		// inventoryHeight = rows * (slotSize + slotPaddingTop) + slotPaddingTop*8; // should be slotPaddingTop but too short and can't understand why. If too many rows, still bugs.
+		// inventoryRect = GetComponent<RectTransform>();
+		// inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, inventoryWidth);
+		// inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inventoryHeight);
+		
+		// OR 
+		inventoryWidth = 100;
+		inventoryHeight = 30;
+		slotPaddingTop = (inventoryHeight-slotSize)/2; 				// given by the user but bypass it
+		slotPaddingLeft = (inventoryWidth-(slotSize*slots))/slots;	// given by the user but bypass it
 		inventoryRect = GetComponent<RectTransform>();
 		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, inventoryWidth);
 		inventoryRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, inventoryHeight);
