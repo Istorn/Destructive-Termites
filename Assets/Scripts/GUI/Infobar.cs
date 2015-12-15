@@ -99,8 +99,8 @@ public class Infobar : MonoBehaviour
                 this.transform.Find("Background/MoreSplit").GetComponent<Button>().transform.localScale = new Vector3(1F,1);
                 this.transform.Find("Background/SplitBtn").GetComponent<Button>().transform.localScale = new Vector3(1F,1);
                 //scan booster of colony and divide by type: in the end, refresh indicators on the bar
-                List<Booster> colonyBoosters = this.selectedColony.boosters;
-                foreach (Booster booster in colonyBoosters)
+                List<Boost> colonyBoosters = this.selectedColony.boosters;
+                foreach (Boost booster in colonyBoosters)
                 {
                     switch (booster.type)
                     {
@@ -164,8 +164,8 @@ public class Infobar : MonoBehaviour
                     {
                         boosterColony.Add(0);
                     }
-                    List<Booster> levelBoosters = this.levelInPlay.collectedBoosters;
-                    foreach (Booster booster in levelBoosters)
+                    List<Boost> levelBoosters = this.levelInPlay.collectedBoosters;
+                    foreach (Boost booster in levelBoosters)
                     {
                         switch (booster.type)
                         {
@@ -337,8 +337,8 @@ public class Infobar : MonoBehaviour
         }
        
         //scan booster of colony and divide by type: in the end, refresh indicators on the bar
-        List<Booster> colonyBoosters = this.selectedColony.boosters;
-        foreach (Booster booster in colonyBoosters)
+        List<Boost> colonyBoosters = this.selectedColony.boosters;
+        foreach (Boost booster in colonyBoosters)
         {
             switch ((int)booster.type)
             {

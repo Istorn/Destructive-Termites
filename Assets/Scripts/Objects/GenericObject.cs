@@ -134,7 +134,7 @@ public class GenericObject : MonoBehaviour {
         }
         else
         {
-            if (Random.Range(0, 11) < 4)
+            if (Random.Range(0, 11) < 6)
 			    dropABooster();
             integrity = 100;
             return true;

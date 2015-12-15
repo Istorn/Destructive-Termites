@@ -13,7 +13,7 @@ public class BoosterDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     private Level level = null;
 
-    private Booster booster = null;
+    private Boost booster = null;
 
     public Booster.Types type;
 
@@ -22,9 +22,8 @@ public class BoosterDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     void Awake()
     {
-        booster = new Booster();
+        booster = new Boost();
         booster.type = type;
-
     }
 
     void Start()
@@ -57,11 +56,12 @@ public class BoosterDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
             if (obj.getAttacker())
             {
+                Debug.Log("APPLYBO: " + booster.type);
                 if (obj.getAttacker().applyBooster(booster))
                 {
                     for (int i = 0; i < level.collectedBoosters.Count; i++)
                     {
-                        Booster b = level.collectedBoosters[i];
+                        Boost b = level.collectedBoosters[i];
                         if (b.type.Equals(booster.type))
                         {
                             level.collectedBoosters.RemoveAt(i);
@@ -82,7 +82,7 @@ public class BoosterDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         startPosition = cursor.transform.position;
         contains = false;
-        foreach (Booster b in level.collectedBoosters)
+        foreach (Boost b in level.collectedBoosters)
             if (b.type.Equals(type))
             {
                 contains = true;

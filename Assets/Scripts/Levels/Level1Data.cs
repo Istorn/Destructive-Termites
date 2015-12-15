@@ -418,7 +418,7 @@ public class Level1Data: LevelData {
 
         _humans = new HumanPlaceholder[0];
 
-        _availableTermites = 500;
+        _availableTermites = 1000;
 
         _floorColliders = new Vector2[4][];
 

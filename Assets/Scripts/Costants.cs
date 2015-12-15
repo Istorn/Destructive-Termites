@@ -30,7 +30,7 @@ public static class Costants{
     public static string LAYER_FOREGROUND = "Foreground";
     public static string LAYER_NOT_EATABLE_OBJECTS = "NotEatableObjects";
 
-    public static float HUMAN_SPEED = 0.1f;
+    public static float HUMAN_SPEED = 0.5f;
 
     //COLONY
     public static float COLONY_ATTACK_FREQUENCY = 1f;

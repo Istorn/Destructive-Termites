@@ -26,7 +26,7 @@ public class Level : MonoBehaviour {
 
     public List<Room> rooms = null;
 
-    public List<Booster> collectedBoosters = null;
+    public List<Boost> collectedBoosters = null;
     
     public ConcurrentQueue<GenericObject> alertObjectsQueue= null;
 
@@ -42,7 +42,7 @@ public class Level : MonoBehaviour {
     private void initVars()
     {
         rooms = new List<Room>();
-        collectedBoosters = new List<Booster>();
+        collectedBoosters = new List<Boost>();
 
         graphLiveObjects = new Graph();
         graphTermites = new Graph();
@@ -188,9 +188,11 @@ public class Level : MonoBehaviour {
         }
     }
 
-    public void collectBooster(Booster booster)
+    public void collectBooster(Booster.Types booster)
     {
-        collectedBoosters.Add(booster);
+        Boost b = new Boost();
+        b.setType(booster);
+        collectedBoosters.Add(b);
         Debug.Log("COLLECT");
     }
 }

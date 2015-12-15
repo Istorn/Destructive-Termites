@@ -5,7 +5,7 @@ using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler{
+public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
     public Text label;
     public GameObject cursor; 
@@ -21,7 +21,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private GenericObject target = null;
 
-    public List<Booster> boosters = null;
+    public List<Boost> boosters = null;
 
     private GameObject infoBar;
 
@@ -33,11 +33,13 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     private Image attackPossibilityImage = null;
 
     private IEnumerator attackTargetCorountine = null;
+    private IEnumerator animateCoroutine = null;
 
 	void Awake () {
-        boosters = new List<Booster>();
+        boosters = new List<Boost>();
         attackPossibilityImage = cursor.transform.Find("NotAttackImage").GetComponent<Image>();
         attackTargetCorountine = attackTarget();
+
 	}
 
     public void attack()
@@ -58,6 +60,27 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
 
             
+    }
+
+    void Update()
+    {
+        if (target && !startDrag)
+            cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+    }
+
+    void FixedUpdate()
+    {
+        for (int i = boosters.Count - 1; i >= 0; i--)
+        {
+            Boost b = boosters[i];
+            b.activationTime -= Time.deltaTime;
+            if (b.activationTime <= 0)
+            {
+                boosters.RemoveAt(i);
+                applyBooster(null);
+                Debug.Log("STOP");
+            }
+        }
     }
     public void setLevel(Level level)
     {
@@ -94,24 +117,36 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (col)
         {
             col.addTermites(termites);
-            foreach (Booster b in boosters)
+            foreach (Boost b in boosters)
                 col.applyBooster(b);
             Destroy(gameObject);
         }
         
         this.target.setAttacker(this);
         
-        StartCoroutine(animate());
-        StartCoroutine(attackTarget());
+        if (animateCoroutine == null)
+        {
+            animateCoroutine = animate();
+            StartCoroutine(animateCoroutine);
+        }
+            
+        StartCoroutine(attackTargetCorountine);
     }
 
-    public bool applyBooster(Booster booster)
+    public bool applyBooster(Boost booster)
     {
-        foreach (Booster b in boosters)
-            if (b.type.Equals(booster.type))
-                return false;
-        boosters.Add(booster);
-
+        if (booster != null)
+        {
+            Debug.Log("Apply");
+            foreach (Boost b in boosters)
+                if (b.type.Equals(booster.type))
+                    return false;
+            Boost newBooster = new Boost();
+            newBooster.setType(booster.type);
+            newBooster.activationTime = Time.time;
+            newBooster.owner = this;
+            boosters.Add(newBooster);
+        }
         GameObject indicatorsBackground = cursor.transform.Find("IndicatorsBackground").gameObject;
         float xWidth = indicatorsBackground.GetComponent<RectTransform>().rect.width;
         float xInc = xWidth / boosters.Count;
@@ -124,11 +159,11 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             image.color = new Color(color.r, color.g, color.b, 0);
         }
 
-        for(int b = 0; b < boosters.Count; b++)
+        for (int b = 0; b < boosters.Count; b++)
         {
             float xPos = xInc * b + xInc / 2;
             float yPos = 0;
-            
+
             GameObject indicator = indicatorsBackground.transform.Find("Indicator" + b).gameObject;
             Image image = indicator.GetComponent<Image>();
             Color color = image.color;
@@ -137,6 +172,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             image.enabled = true;
             indicator.transform.localPosition = new Vector3(xPos, yPos, 0);
         }
+
         return true;
     }
 
@@ -159,10 +195,21 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             }
             cursor.GetComponent<Image>().sprite = sprites[spriteIndex];
             spriteIndex++; 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
+    public void removeBooster(Booster.Types type)
+    {
+        for (int i = 0; i< boosters.Count; i++)
+        {
+            Boost b = boosters[i];
+            if (b.type.Equals(type))
+            {
+                boosters.RemoveAt(i);
+            }
+        }
+    }
     public void addTermites(int termites)
     {
         this.termites += termites;
@@ -176,7 +223,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         {
             List<GenericObject.Types> eatableTypes = new List<GenericObject.Types>();
             eatableTypes.Add(GenericObject.Types.Soft);
-            foreach (Booster b in boosters)
+            foreach (Boost b in boosters)
                 eatableTypes.Add(b.extraEatableMaterial);
             
             if (eatableTypes.Contains(target.type))
@@ -200,11 +247,6 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         return this.termites;
     }
 
-    void Update()
-    {
-        if (target && !startDrag)
-            cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
-    }
 
     public void select()
     {
@@ -305,19 +347,5 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     public void OnBeginDrag(PointerEventData eventData)
     {
         startDrag = true;
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        GameObject draggedItem = Draggable.itemBeingDragged;
-        if(draggedItem)
-        { 
-            Slot draggedSlot = draggedItem.GetComponentInChildren<Slot>();
-            if (draggedSlot != null)
-            { // check if the item being dragged is an inventory Slot
-                Booster droppedBooster = draggedSlot.GetBoosterFromSlot;
-                applyBooster(droppedBooster);
-            }
-        }
     }
 }

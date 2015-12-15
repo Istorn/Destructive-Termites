@@ -1,25 +1,37 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections;
 
 public class Booster : MonoBehaviour {
 		public enum Types { IronDenture = 1, Mushroom = 2, GasEquipment = 3, QueenTermite = 4, MagicShield = 5, GiantTermite = 6 };
 		public Types type;
-		
-		
+
+        public Colony owner = null;
+        public double activationTime = 0;
+        private int time = 0;
 		// common attributes
 		public string Name;
 		public string Description;
 		public Sprite spriteNeutral;
 		public Sprite spriteHighlighted;
-		public float timeDuration;
+		public float timeDuration = 5;
 		public float timeLeft; //set to private when done with testing
 		public bool isHiddenInObject;
 		public bool isCollectedFromScene; //set to private when done with testing
 		public bool isActivated; //set to private when done with testing
+
+        public IEnumerator activationCoroutine;
 		
 		public GenericObject.Types extraEatableMaterial; 
+
+        void Awake()
+        {
+            
+        }
 		
-		void Start(){
+		public void setType(Types type){
+            
+            this.type = type;
 			timeLeft = timeDuration;
 			
 			switch (this.type)
@@ -53,7 +65,7 @@ public class Booster : MonoBehaviour {
 				GameObject.Destroy(child.gameObject);
 			}*/
             Level level = GameObject.Find("Level").GetComponent<Level>();
-            level.collectBooster(this);
+            level.collectBooster(type);
             foreach (Transform child in this.transform)
             {
                 GameObject.Destroy(child.gameObject);
@@ -70,9 +82,10 @@ public class Booster : MonoBehaviour {
 		void OnDestroy() {
 			// remove booster from Colony's ones
 			// warns the user about destruction/end booster ?
-			Debug.Log("time out booster");
+			//Debug.Log("time out booster");
 		}
 		
+        
 		
 	// uncomment when you're sure.
 	/*	public Booster (GenericObject attachedObj){
