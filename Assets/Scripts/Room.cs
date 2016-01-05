@@ -23,7 +23,7 @@ public class Room{
     {
         IEnumerable<GenericObject> others = from o in objects
                                             let distance = Vector2.Distance(obj.gameObject.transform.position, o.gameObject.transform.position)
-                                            where o.id != obj.id
+                                            where o.getId() != obj.getId()
                                             orderby distance
                                             select (GenericObject)o;
         if (others.Count() == 0)
@@ -48,7 +48,7 @@ public class Room{
     {
         int i = 0;
         for (i = 0; i < objects.Count; i++)
-            if (objects[i].id == obj.id)
+            if (objects[i].getId() == obj.getId())
                 break;
         objects.RemoveAt(i);
     }

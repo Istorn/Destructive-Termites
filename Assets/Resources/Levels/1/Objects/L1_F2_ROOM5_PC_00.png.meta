@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: b074a8ffbd0623446a918d5685254a1e
-timeCreated: 1449493504
+guid: db0ba9fb0007ea64da5b946dc59ab37b
+timeCreated: 1450483818
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: L1_F2_ROOM5_PC_00_0
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -31,7 +30,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -50,17 +49,7 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: L1_F2_ROOM5_PC_00_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 84
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

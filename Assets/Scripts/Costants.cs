@@ -30,7 +30,12 @@ public static class Costants{
     public static string LAYER_FOREGROUND = "Foreground";
     public static string LAYER_NOT_EATABLE_OBJECTS = "NotEatableObjects";
 
-    public static float HUMAN_SPEED = 0.5f;
+    public static float HUMAN_SPEED = 0.3f;
+
+    //TAGS
+    public static string TAG_BACKGROUND = "Background";
+    public static string TAG_OBJ_COLLIDER_PHYSICS = "ObjectPhysicsCollider";
+    public static string TAG_OBJ_COLLIDER_SELECTION = "ObjectPhysicsCollider";
 
     //COLONY
     public static float COLONY_ATTACK_FREQUENCY = 1f;
@@ -39,7 +44,10 @@ public static class Costants{
     public static float HUMAN_WAIT_TIME = 0.7f;
 
     //OBJECTS
-    public static float OBJ_TIME_TO_START_ATTACK = 1f;
+    public static float OBJ_PHYSICS_ROTATION_BOUND_LEFT = -25;
+    public static float OBJ_PHYSICS_ROTATION_BOUND_RIGHT = 25;
+
+    public static float OBJ_TIME_TO_START_ATTACK = 0.5f;
     public static float OBJ_TIME_TO_ADD_500_ATTACKERS = 0.10f;
 
     public static float OBJ_TIME_INTERVAL_FLASHING = 0.6f;
@@ -56,4 +64,8 @@ public static class Costants{
     public static float INDICATOR_ATTACK_BOOSTER_OFFSET = 0.10f;
     public static float INDICATOR_ATTACK_BOOSTER_RADIUS = 7.5f;
     public static float INDICATOR_ATTACK_BOOSTER_ANGLE = 45.0f;
+
+    //CAMERA
+    public static int CAMERA_MOVEMENT = 10;
+
 }

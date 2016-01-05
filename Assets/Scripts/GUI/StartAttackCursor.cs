@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class StartAttackCursor : MonoBehaviour {
 
     public Text label;
-    public GameObject cursor;
-
     private Sprite[] sprites;
 
     private int spriteIndex = 0;
@@ -20,7 +18,7 @@ public class StartAttackCursor : MonoBehaviour {
 
     public void setPosition(Vector2 position)
     {
-        cursor.transform.position = Camera.main.WorldToScreenPoint(position);
+        gameObject.transform.position = Camera.main.WorldToScreenPoint(position);
     }
 
     public bool updateCursor()
@@ -28,7 +26,7 @@ public class StartAttackCursor : MonoBehaviour {
         if (spriteIndex + 1 < sprites.Length)
         {
             spriteIndex++;
-            cursor.GetComponent<Image>().sprite = sprites[spriteIndex];
+            gameObject.GetComponent<Image>().sprite = sprites[spriteIndex];
             attackers = (spriteIndex + 1) * availableAttackers / sprites.Length;
             label.text = (int)attackers + "";
             return true;

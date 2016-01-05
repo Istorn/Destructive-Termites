@@ -10,7 +10,7 @@ public class LiveObject : GenericObject {
     protected override void Awake()
     {
         base.Awake();
-        this.type = Types.Live;
+        this.model = Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
         animator = gameObject.AddComponent<Animator>();
     }

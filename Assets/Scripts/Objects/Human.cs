@@ -14,9 +14,9 @@ public class Human : LiveObject {
     private GenericObject targetObject = null;
 
     private ConcurrentQueue<Graph.Node> movementPath;
-    public override void setObjectName(string objectName)
+    protected override void Awake()
     {
-        base.setObjectName(objectName);
+        base.Awake();
         movementPath = new ConcurrentQueue<Graph.Node>();
         movementCoroutine = movement();
         attackCoroutine = attackColony();
@@ -64,7 +64,7 @@ public class Human : LiveObject {
                     movementPath.Clear();
                     animator.SetBool("isWalking", false);
                     int endNode = findDestination();
-                    List<Graph.Node> path = level.graphLiveObjects.getPath(actualNodeNumber, endNode);
+                    List<Graph.Node> path = GameManager.getCurrentLevel().getGraphLiveObjects().getPath(actualNodeNumber, endNode);
                     foreach (Graph.Node n in path)
                         movementPath.Enqueue(n);
                     yield return new WaitForSeconds(Costants.HUMAN_WAIT_TIME);
@@ -108,9 +108,9 @@ public class Human : LiveObject {
         int endNode = 0;
         do
         {
-            endNode = Random.Range(0, level.graphLiveObjects.nodes.Count);
+            endNode = Random.Range(0, GameManager.getCurrentLevel().getGraphLiveObjects().nodes.Count);
         }
-        while ((endNode == actualNodeNumber) || (level.graphLiveObjects.findNode(endNode).type.Equals(Graph.Node.Type.Generic)));
+        while ((endNode == actualNodeNumber) || (GameManager.getCurrentLevel().getGraphLiveObjects().findNode(endNode).type.Equals(Graph.Node.Type.Generic)));
         return endNode;
     }
 
@@ -118,14 +118,14 @@ public class Human : LiveObject {
     {
         while (true)
         { 
-            if (level.alertObjectsQueue.Count > 0 && !isAttacking)
+            if (GameManager.getCurrentLevel().alertObjectsQueue.Count > 0 && !isAttacking)
             {
                 isAttacking = true;
                 StopCoroutine(movementCoroutine);
                 movementCoroutine = movement();
-                targetObject = (GenericObject)level.alertObjectsQueue.Dequeue();
-                int target = level.graphLiveObjects.findNearestNode(targetObject.room.number, targetObject.gameObject.transform.position);
-                List<Graph.Node> path = level.graphLiveObjects.getPath(actualNodeNumber, target);
+                targetObject = (GenericObject)GameManager.getCurrentLevel().alertObjectsQueue.Dequeue();
+                int target = GameManager.getCurrentLevel().getGraphLiveObjects().findNearestNode(targetObject.getRoom().number, targetObject.gameObject.transform.position);
+                List<Graph.Node> path = GameManager.getCurrentLevel().getGraphLiveObjects().getPath(actualNodeNumber, target);
                 path.RemoveAt(path.Count - 1);
                 movementPath.Clear();
                 foreach (Graph.Node n in path)

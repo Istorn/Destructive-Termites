@@ -8,12 +8,20 @@ public class LevelsManager : MonoBehaviour {
 	// Use this for initialization
     void Awake()
     {
-        //Application.LoadLevel("Level" + level);
         GameObject levelGameObject = Instantiate(Resources.Load("Prefabs/Level", typeof(GameObject))) as GameObject;
         levelGameObject.name = "Level";
+
+        
+
+        LevelData levelData = GetComponent("LevelData" + levelNumber) as LevelData;
+        levelData.initialize();
+
+
         Level level = levelGameObject.GetComponent<Level>();
-        level.setLevelManager(gameObject);
-        level.setLevel(levelNumber);
+        level.setLevelData(levelData, levelNumber);
+
+        
+        
     }
 
 	// Update is called once per frame

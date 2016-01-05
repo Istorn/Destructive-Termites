@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class LevelData : MonoBehaviour, LevelDataInterface
+public class LevelData : MonoBehaviour
 {
     protected List<Graph.Node> _liveObjectsNodes;
 
@@ -12,7 +12,7 @@ public class LevelData : MonoBehaviour, LevelDataInterface
 
     protected Graph.Connection[] _termitesLinks;
 
-    protected Vector3[] _cameraSettings;
+    protected Vector3 _cameraCenter;
 
     protected HumanPlaceholder[] _humans;
 
@@ -47,9 +47,9 @@ public class LevelData : MonoBehaviour, LevelDataInterface
         get { return _termitesLinks; }
     }
 
-    public Vector3[] cameraSettings
+    public Vector3 cameraCenter
     {
-        get { return _cameraSettings; }
+        get { return _cameraCenter; }
     }
 
     public HumanPlaceholder[] humans

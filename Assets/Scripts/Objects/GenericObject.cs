@@ -4,65 +4,72 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class GenericObject : MonoBehaviour {
 
-    public enum Types {
+    public enum Model {
         
-        [Description("SOFT OBJECT")]
+        [Category("SOFT OBJECT"), Description("THIS OBJECT IS ALWAYS EATABLE")]
         Soft = 0,
-        //[Description("Hard object: not eatable without a special toothing")]
-        [Description("HARD OBJECT")]
+        [Category("HARD OBJECT"), Description("USE 'IRON DENTURE' TO EAT IT")]
         Hard = 1,
-        //[Description("Live object: only fools would eat it")]
-        [Description("LIVE OBJECT")]
-        Live = 2,
-        [Description("NOT EATABLE")]
-        NotEatable = 3
+        [Category("LIVE OBJECT"), Description("USE 'MUSHROOM' TO ATTACK IT")]
+        Live = 2/*,
+        [Category("NOT EATABLE"), Description("THIS OBJECT IS NOT EATABLE")]
+        NotEatable = 3*/
     }
 
-    public int id = 0;
+    private int id = 0;
 
-    public bool isHanging = true;
+    private bool isHanging = false;
 
-    public Types type = Types.NotEatable;
+    private bool isOnSomething = false;
 
-    public Room room = null;
+    protected Model model = Model.Soft;
 
-    public float strenghtCoefficient = 0.05f;
+    private Room room = null;
 
-    public float integrity = 100.0f;
-    protected float oldIntegrity = 100.0f;
+    private float strengthCoefficient = 0.01f;
 
-    protected Sprite[] sprites;
+    private float integrity = 100.0f;
 
-    protected Level level = null;
+    private Sprite[] sprites;
 
-    protected GameObject cursor = null;
+    private StartAttackCursor cursor = null;
 
-    protected int avail = 500;
-    public int counter = 0;
     private int currentSprite = -1;
 
-    protected IEnumerator selectionCoroutine;
+    private IEnumerator selectionCoroutine;
 
-    protected Colony attacker = null;
+    private Colony attacker = null;
 
-    protected Color color;
+    private string name = "";
 
-    protected PolygonCollider2D primaryCollider = null;
+    private PolygonCollider2D physicsCollider = null;
+
+    private Color color;
 
     protected virtual void Awake()
     {
         attacker = null;
-        primaryCollider = gameObject.GetComponent<PolygonCollider2D>();
+        physicsCollider = gameObject.GetComponent<PolygonCollider2D>();
+        physicsCollider.tag = Costants.TAG_OBJ_COLLIDER_PHYSICS;
         selectionCoroutine = StartPressing();
-        gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_NOT_EATABLE_OBJECTS);
     }
 
-    public void setLevel(Level level)
+    public int getIntegrity()
     {
-        this.level = level;
+        return Convert.ToInt32(integrity);
+    }
+
+    public int getId()
+    {
+        return id;
+    }
+    public string getName()
+    {
+        return name;
     }
 
     public void setId(int id)
@@ -72,7 +79,6 @@ public class GenericObject : MonoBehaviour {
 
     public void setPosition(Vector3 coordinates, int z_index)
     {
-       
         gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index/10);
         GetComponent<SpriteRenderer>().sortingOrder = z_index;
     }
@@ -82,35 +88,62 @@ public class GenericObject : MonoBehaviour {
         this.room = room;
     }
 
-    public virtual void setObjectName(string objectName)
+    public Room getRoom()
     {
-        sprites = Resources.LoadAll<Sprite>("Levels/1/Objects/" + objectName); //SpriteSheets/Objects/" + objectName);
-        color = GetComponent<Renderer>().material.color;
-        updateObject();
+        return room;
     }
 
-    private void updateObject()
+    public void setProperties(bool isOnSomething, bool isHanging, bool isHorizantallyFlipped, float strengthCoefficient)
+    {
+        this.strengthCoefficient = strengthCoefficient;
+        this.isHanging = isHanging;
+        this.isOnSomething = isOnSomething;
+
+        if (!isHanging && !isOnSomething)
+            Destroy(gameObject.GetComponent<Rigidbody2D>());
+
+        int flip = isHorizantallyFlipped?-1:1;
+        transform.localScale = new Vector3(transform.localScale.x * flip, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void setObjectName(string objectName, string spriteName)
+    {
+        name = objectName;
+        sprites = Resources.LoadAll<Sprite>("Levels/" + GameManager.getCurrentLevel().getLevelNumber() + "/Objects/" + spriteName);
+        updateObjectSprite();
+
+        BoxCollider2D selectionCollider = gameObject.AddComponent<BoxCollider2D>();
+        selectionCollider.tag = Costants.TAG_OBJ_COLLIDER_SELECTION;
+
+        float min = +100000;
+        foreach (Vector2 point in physicsCollider.GetPath(0))
+            if (point.y < min)
+                min = point.y;
+
+        selectionCollider.offset = new Vector2(0, (selectionCollider.size.y/2 - Math.Abs(min)) / 2);
+        selectionCollider.size = new Vector2(selectionCollider.size.x, selectionCollider.size.y - (selectionCollider.size.y / 2 - Math.Abs(min)));
+    }
+
+    private void updateObjectSprite()
     {
         int i = (int)((100 - integrity) * (sprites.Length - 1) / 100);
         if (i >= 0 && i < sprites.Length && i != currentSprite)
         {
             currentSprite = i;
             GetComponent<SpriteRenderer>().sprite = sprites[currentSprite];
-
+            color = GetComponent<SpriteRenderer>().color;
             PolygonCollider2D tempCollider = gameObject.AddComponent<PolygonCollider2D>();
-            primaryCollider.pathCount = tempCollider.pathCount;
+            physicsCollider.pathCount = tempCollider.pathCount;
             for (int p = 0; p < tempCollider.pathCount; p++ )
-            {
-                primaryCollider.SetPath(p, tempCollider.GetPath(p));
-            }
-            //primaryCollider.points = tempCollider.points;
+                physicsCollider.SetPath(p, tempCollider.GetPath(p));
             Destroy(tempCollider);
         }
     }
 
     void enablePhysics()
     {
-        //transform.Rotate(Vector3.forward * Random.Range(-25, 25));
+        isHanging = false;
+        transform.Rotate(Vector3.forward * UnityEngine.Random.Range(Costants.OBJ_PHYSICS_ROTATION_BOUND_LEFT, Costants.OBJ_PHYSICS_ROTATION_BOUND_RIGHT));
         GetComponent<PolygonCollider2D>().isTrigger = false;
         GetComponent<Rigidbody2D>().isKinematic = false;
     }
@@ -119,27 +152,20 @@ public class GenericObject : MonoBehaviour {
     {
         if (integrity > 0)
         {
-            integrity -= numberOfAttackers * strenghtCoefficient;
+            integrity -= numberOfAttackers * strengthCoefficient;
             if (integrity < 0)
                 integrity = 0;
-            updateObject();
+            updateObjectSprite();
             if (isHanging)
                 enablePhysics();
-
-            //transform.position = new Vector3(transform.position.x, transform.position.y + 0.001f, transform.position.z);
-            oldIntegrity = integrity;
-            //Debug.Log(integrity);
-            // Debug.Log(sprites.Length);
             return true;
         }
         else
         {
-            if (Random.Range(0, 11) < 6)
+            if (UnityEngine.Random.Range(0, 11) < 3)
 			    dropABooster();
-            integrity = 100;
-            return true;
+            return false;
         }
-           // return false;         
     }
 
     void OnMouseDown()
@@ -157,22 +183,17 @@ public class GenericObject : MonoBehaviour {
         StopCoroutine(selectionCoroutine);
         if (cursor)
         {
-            int at = cursor.GetComponent<StartAttackCursor>().attackers;
-            Destroy(cursor);
+            int attackers = cursor.GetComponent<StartAttackCursor>().attackers;
+            Destroy(cursor.gameObject);
 
             if (attacker == null)
             {
-                GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
-                Colony colony = colCursor.GetComponent<Colony>();
-                Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
-                im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
-                colony.setLevel(level);
+                Colony colony = GameManager.getLevelGUI().instantiateColony();
                 colony.setTarget(this);
             }
-            attacker.addTermites(at);
-            level.availableTermites -= at;
-            level.usedTermites += at;
-        }        
+            attacker.addTermites(attackers);
+            GameManager.getCurrentLevel().decreaseAvailableTermites(attackers);
+        }
     }
 
     public void setAttacker(Colony attacker)
@@ -187,57 +208,65 @@ public class GenericObject : MonoBehaviour {
 
     public void select()
     {
-        Color transparentColor = new Color(color.r, color.g, color.b, 0.5f);
+        Color transparentColor = new Color(1, 0, 0, 1);//new Color(color.r, color.g, color.b, 0.5f);
         GetComponent<Renderer>().material.color = transparentColor;
     }
 
     public void deselect()
     {
+        //Color transparentColor = new Color(color.r, color.g, color.b, 1f);
         GetComponent<Renderer>().material.color = color;
     }
 
     IEnumerator StartPressing()
     {
-        level.infoBarScript.objectSelected(this);
+        GameManager.getLevelGUI().objectSelected(this);
         yield return new WaitForSeconds(Costants.OBJ_TIME_TO_START_ATTACK);
-        if ((level.availableTermites > 0) && (type != Types.NotEatable))
+        if ((GameManager.getCurrentLevel().getAvailableTermites() > 0))
         {
-            cursor = Instantiate(Resources.Load("Prefabs/StartAttackCursor", typeof(GameObject))) as GameObject;
-            cursor.GetComponent<StartAttackCursor>().availableAttackers = level.availableTermites;
-            cursor.GetComponent<StartAttackCursor>().setPosition(gameObject.transform.position);
+            cursor = GameManager.getLevelGUI().instantiateStartAttackCursor();
+            cursor.availableAttackers = GameManager.getCurrentLevel().getAvailableTermites();
+            cursor.setPosition(gameObject.transform.position);
             while (true)
             {
                 if (!cursor.GetComponent<StartAttackCursor>().updateCursor())
                     OnMouseUp();
-                yield return new WaitForSeconds(Costants.OBJ_TIME_TO_ADD_500_ATTACKERS * level.availableTermites / 500);
+                yield return new WaitForSeconds(Costants.OBJ_TIME_TO_ADD_500_ATTACKERS * GameManager.getCurrentLevel().getAvailableTermites() / 500);
             }
         }
     }
 
-    public string getType()
+    public string getCategory()
     {
-        return Utils.GetEnumDescription(type);
+        return Utils.GetEnumCategory(model);
+    }
+
+    public string getDescription()
+    {
+        return Utils.GetEnumDescription(model);
+    }
+
+    public Model getModel()
+    {
+        return model;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-       // Debug.Log("LEAVE: " + name);
         float distance = GetComponent<SpriteRenderer>().sortingOrder - other.gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         if (distance > 0 && distance <= 5)
-        {
             enablePhysics();
-        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Object"))
+        if ((!collision.gameObject.tag.Equals(Costants.TAG_BACKGROUND)))
             Physics2D.IgnoreCollision(collision.gameObject.GetComponent<PolygonCollider2D>(), GetComponent<PolygonCollider2D>());
     }
 
 	void dropABooster(){
 		int maxDroppableTypes = 2;
-		int boosterIdToDrop = Random.Range(1, maxDroppableTypes+1);   // creates a number between 1 and maxDroppableTypes
+        int boosterIdToDrop = UnityEngine.Random.Range(1, maxDroppableTypes + 1);   // creates a number between 1 and maxDroppableTypes
 		switch (boosterIdToDrop)
             {
                 case 1:

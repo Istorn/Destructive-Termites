@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
     public Text label;
-    public GameObject cursor; 
 
     private int termites = 0;
 
@@ -17,62 +17,52 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     private int b = 0;
     private int spriteIndex = 0;
 
-    private Level level = null;
-
     private GenericObject target = null;
 
-    public List<Boost> boosters = null;
-
-    private GameObject infoBar;
+    public List<Booster> boosters = null;
 
     private Vector2 oldPosition;
     private Room oldRoom;
 
     private bool startDrag = false;
 
-    private Image attackPossibilityImage = null;
-
     private IEnumerator attackTargetCorountine = null;
     private IEnumerator animateCoroutine = null;
 
 	void Awake () {
-        boosters = new List<Boost>();
-        attackPossibilityImage = cursor.transform.Find("NotAttackImage").GetComponent<Image>();
-        attackTargetCorountine = attackTarget();
-
+        boosters = new List<Booster>();
+        attackTargetCorountine = null;
 	}
 
     public void attack()
     {
-        level.usedTermites -= termites;
+        //level.usedTermites -= termites;
         if ((int)(termites * 0.1) < 10)
             termites = (int)(termites * 0.9);
         else
             termites -= 10;
         if (termites < 0)
             termites = 0;
-        level.usedTermites += termites;
+       // level.usedTermites += termites;
         label.text = termites + "";
         if (termites == 0)
         {
             target.setAttacker(null);
             Destroy(gameObject);
-        }
-
-            
+        }  
     }
 
     void Update()
     {
         if (target && !startDrag)
-            cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+            gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
     }
 
     void FixedUpdate()
     {
-        for (int i = boosters.Count - 1; i >= 0; i--)
+       /* for (int i = boosters.Count - 1; i >= 0; i--)
         {
-            Boost b = boosters[i];
+            Booster b = boosters[i];
             b.activationTime -= Time.deltaTime;
             if (b.activationTime <= 0)
             {
@@ -80,11 +70,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 applyBooster(null);
                 Debug.Log("STOP");
             }
-        }
-    }
-    public void setLevel(Level level)
-    {
-        this.level = level;
+        }*/
     }
 
     public GenericObject getTarget()
@@ -94,11 +80,11 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     void setAttackPossibility(bool possibility)
     {
-        Color col = attackPossibilityImage.color;
+        Color col = gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color;
         if (possibility)
-            attackPossibilityImage.color = new Color(col.r, col.g, col.b, 0f);
+            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(col.r, col.g, col.b, 0f);
         else
-            attackPossibilityImage.color = new Color(col.r, col.g, col.b, 1f);
+            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(col.r, col.g, col.b, 1f);
     }
 
     public void setTarget(GenericObject target)
@@ -106,18 +92,18 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (this.target)
             this.target.setAttacker(null);
         this.target = target;
-        if (!this.target.type.Equals(GenericObject.Types.Live))
-            level.alertObjectsQueue.Enqueue(this.target);
+        if (!this.target.getModel().Equals(GenericObject.Model.Live))
+            GameManager.getCurrentLevel().alertObjectsQueue.Enqueue(this.target);
         //gameObject.transform.parent = this.target.gameObject.transform;
         oldPosition = target.gameObject.transform.position;
-        oldRoom = target.room;
+        oldRoom = target.getRoom();
 
         Colony col = this.target.getAttacker();
         
         if (col)
         {
             col.addTermites(termites);
-            foreach (Boost b in boosters)
+            foreach (Booster b in boosters)
                 col.applyBooster(b);
             Destroy(gameObject);
         }
@@ -129,25 +115,27 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             animateCoroutine = animate();
             StartCoroutine(animateCoroutine);
         }
-            
+        if (attackTargetCorountine != null)
+            StopCoroutine(attackTargetCorountine);
+        attackTargetCorountine = attackTarget();
         StartCoroutine(attackTargetCorountine);
     }
 
-    public bool applyBooster(Boost booster)
+    public bool applyBooster(Booster booster)
     {
         if (booster != null)
         {
             Debug.Log("Apply");
-            foreach (Boost b in boosters)
-                if (b.type.Equals(booster.type))
+            foreach (Booster b in boosters)
+                if (b.getModel().Equals(booster.getModel()))
                     return false;
-            Boost newBooster = new Boost();
-            newBooster.setType(booster.type);
+            Booster newBooster = new Booster();
+           /* newBooster.setType(booster.type);
             newBooster.activationTime = Time.time;
-            newBooster.owner = this;
+            newBooster.owner = this;*/
             boosters.Add(newBooster);
         }
-        GameObject indicatorsBackground = cursor.transform.Find("IndicatorsBackground").gameObject;
+        GameObject indicatorsBackground = gameObject.transform.Find("IndicatorsBackground").gameObject;
         float xWidth = indicatorsBackground.GetComponent<RectTransform>().rect.width;
         float xInc = xWidth / boosters.Count;
 
@@ -168,7 +156,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             Image image = indicator.GetComponent<Image>();
             Color color = image.color;
             image.color = new Color(color.r, color.g, color.b, 1);
-            image.sprite = Resources.Load<Sprite>("GUI/AttackCursor/Booster_" + (int)boosters[b].type + "_background");
+            image.sprite = Resources.Load<Sprite>("GUI/AttackgameObject/Booster_" + (int)boosters[b].getModel() + "_background");
             image.enabled = true;
             indicator.transform.localPosition = new Vector3(xPos, yPos, 0);
         }
@@ -190,21 +178,21 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                      b++;
                      if (b == boosters.Count)
                          b = 0;
-                     sprites = Resources.LoadAll<Sprite>("GUI/AttackCursor/Booster_" + (int)boosters[b].type);
+                     sprites = Resources.LoadAll<Sprite>("GUI/AttackCursor/Booster_" + (int)boosters[b].getModel());
                  }
             }
-            cursor.GetComponent<Image>().sprite = sprites[spriteIndex];
+            gameObject.GetComponent<Image>().sprite = sprites[spriteIndex];
             spriteIndex++; 
             yield return new WaitForSeconds(0.1f);
         }
     }
 
-    public void removeBooster(Booster.Types type)
+    public void removeBooster(Booster.Model type)
     {
         for (int i = 0; i< boosters.Count; i++)
         {
-            Boost b = boosters[i];
-            if (b.type.Equals(type))
+            Booster b = boosters[i];
+            if (b.getModel().Equals(type))
             {
                 boosters.RemoveAt(i);
             }
@@ -221,12 +209,12 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         bool continueAttack = true;
         while (target && continueAttack)
         {
-            List<GenericObject.Types> eatableTypes = new List<GenericObject.Types>();
-            eatableTypes.Add(GenericObject.Types.Soft);
-            foreach (Boost b in boosters)
-                eatableTypes.Add(b.extraEatableMaterial);
+            List<GenericObject.Model> eatableTypes = new List<GenericObject.Model>();
+            eatableTypes.Add(GenericObject.Model.Soft);
+            foreach (Booster b in boosters)
+                eatableTypes = eatableTypes.Concat(b.getExtraEatableMaterials()).ToList();
             
-            if (eatableTypes.Contains(target.type))
+            if (eatableTypes.Contains(target.getModel()))
             {
                 continueAttack = target.attack(termites);
                 setAttackPossibility(true);
@@ -269,11 +257,11 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             GenericObject newTarget = null;
             if (this.target)
             {
-                newTarget = this.target.room.getOtherObject(this.target);
-                this.target.room.removeObject(this.target);
-                GenericObject selected = level.infoBarScript.getSelectedObject();
-                if (selected && selected.id == this.target.id)
-                    level.infoBarScript.colonySelected(this);
+                newTarget = this.target.getRoom().getOtherObject(this.target);
+                this.target.getRoom().removeObject(this.target);
+                GenericObject selected = GameManager.getLevelGUI().getSelectedObject();
+                if (selected && selected.getId() == this.target.getId())
+                    GameManager.getLevelGUI().colonySelected(this);
                 Destroy(this.target.gameObject);
                 this.target = null; 
             }
@@ -296,13 +284,12 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void split(int newNumber)
     {
-        GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
-        Colony colony = colCursor.GetComponent<Colony>();
-        colony.setLevel(level);
-        Button im = colCursor.transform.Find("Cursor").gameObject.GetComponent<Button>();
-        im.onClick.AddListener(() => level.infoBarScript.colonySelected(colony));
+        GameObject colgameObject = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
+        Colony colony = colgameObject.GetComponent<Colony>();
+        Button im = colgameObject.transform.Find("gameObject").gameObject.GetComponent<Button>();
+        im.onClick.AddListener(() => GameManager.getLevelGUI().colonySelected(colony));
 
-        GenericObject newTarget = this.target.room.getOtherObject(this.target);
+        GenericObject newTarget = this.target.getRoom().getOtherObject(this.target);
         if (newTarget)
             //DA CERCARE IN OGNI STANZA
             colony.setTarget(newTarget);
@@ -313,14 +300,14 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        cursor.transform.position = Input.mousePosition;
+        gameObject.transform.position = Input.mousePosition;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
         {
             GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
-            if (!obj.type.Equals(GenericObject.Types.NotEatable))
-                level.infoBarScript.objectSelected(obj);
+            //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
+                GameManager.getLevelGUI().objectSelected(obj);
         }
     }
     public void setTermites(int numOftermites)
@@ -334,12 +321,12 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (hit.collider != null)
         {
             GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
-            if (!obj.type.Equals(GenericObject.Types.NotEatable))
+           //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
                 setTarget(obj);
         }
         else
         {
-            cursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
+            gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
         }
         startDrag = false;
     }

@@ -15,12 +15,21 @@ public class Utils{
                 typeof(DescriptionAttribute), false);
 
         if (attributes.Length > 0)
-        {
             return attributes[0].Description;
-        }
         else
-        {
             return value.ToString();
-        }
+    }
+
+    public static string GetEnumCategory(Enum value)
+    {
+        // Get the Category attribute value for the enum value
+        CategoryAttribute[] attributes =
+            (CategoryAttribute[])value.GetType().GetField(value.ToString()).GetCustomAttributes(
+                typeof(CategoryAttribute), false);
+
+        if (attributes.Length > 0)
+            return attributes[0].Category;
+        else
+            return value.ToString();
     }
 }

@@ -6,7 +6,7 @@ public class SoftObject: GenericObject {
     protected override void Awake()
     {
         base.Awake();
-        this.type = Types.Soft;
+        this.model = Model.Soft;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_SOFT_HARD_OBJECTS);
     }
 }
