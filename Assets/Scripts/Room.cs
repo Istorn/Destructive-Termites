@@ -6,6 +6,7 @@ using System.Linq;
 public class Room{
 
     public int number = 0;
+    public int integrity = 100;
     public List<GenericObject> objects;
 
     public Room(int number)

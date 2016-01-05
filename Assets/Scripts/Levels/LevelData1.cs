@@ -358,7 +358,7 @@ public class LevelData1: LevelData {
         _liveObjectsLinks.Add(new Graph.Connection(113, 114, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
         _liveObjectsLinks.Add(new Graph.Connection(114, 115, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
         _liveObjectsLinks.Add(new Graph.Connection(115, 116, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
-        _liveObjectsLinks.Add(new Graph.Connection(116, 117, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
+        liveObjectsLinks.Add(new Graph.Connection(116, 117, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
         _liveObjectsLinks.Add(new Graph.Connection(117, 118, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
         _liveObjectsLinks.Add(new Graph.Connection(118, 119, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND));
         _liveObjectsLinks.Add(new Graph.Connection(119, 120, 1, Costants.Z_INDEX_LIVE_OVER_FOREGROUND));
@@ -395,18 +395,45 @@ public class LevelData1: LevelData {
         _liveObjectsLinks.Add(new Graph.Connection(150, 151, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
         _liveObjectsLinks.Add(new Graph.Connection(151, 152, 1, Costants.Z_INDEX_LIVE_BEHIND_FOREGROUND));
 
+
+        _rooms = new List<Rect>();
+        //MiniMap
+        _rooms.Add(new Rect(-118.80f,  -32.10f,  53.70f, 27.80f));
+        //Map
+        _rooms.Add(new Rect(-318.40f, -142.70f, 170.90f, 12.00f));
+
+        _rooms.Add(new Rect( -33.68f, -32.10f, 109.25f, 27.80f));
+        _rooms.Add(new Rect( -44.8f,  -142.7f, 351.60f, 12f));
+
+        _rooms.Add(new Rect(65.20f, -32.10f, 81.70f, 27.80f));
+        _rooms.Add(new Rect( 274.8f, -142.7f, 260.60f, 12f));
+
+        _rooms.Add(new Rect(-118.80f, 0.05f, 53.70f, 27.80f));
+        _rooms.Add(new Rect(-319.4f,  -39.7f, 172.30f, 12f));
+
+        _rooms.Add(new Rect( -56.80f, 0.05f, 63.00f, 27.80f));
+        _rooms.Add(new Rect(-118.7f,  -39.7f, 201.70f, 12f));
+
+        _rooms.Add(new Rect(10.75f, 0.05f, 63.80f, 27.80f));
+        _rooms.Add(new Rect(  99.7f,  -39.7f, 206.50f, 12f));
+
+        _rooms.Add(new Rect(76.20f, 0.05f, 59.70f, 27.80f));
+        _rooms.Add(new Rect( 310.7f,  -39.7f, 188.85f, 12f));
+
+        _rooms.Add(new Rect(-110.60f, 31.95f, 70.10f, 27.80f));
+        _rooms.Add(new Rect(-292.9f,   63.8f, 224.20f, 12f));
+
+        _rooms.Add(new Rect(-46.70f, 31.95f, 51.10f, 27.80f));
+        _rooms.Add(new Rect( -84.5f,   63.8f, 160.50f, 12f));
+
+        _rooms.Add(new Rect(7.60f, 31.95f, 50.70f, 27.80f));
+        _rooms.Add(new Rect(  90.6f,   63.8f, 162.10f, 12f));
+
+        _rooms.Add(new Rect(71.30f, 31.95f, 69.40f, 27.80f));
+        _rooms.Add(new Rect(   295f,   63.8f, 220.20f, 12f));
+
         
-
-
-
-
-
-
-
-
-
-
-
+        
         _termitesNodes = new Graph.Node[0];
 
         _termitesLinks = new Graph.Connection[0];

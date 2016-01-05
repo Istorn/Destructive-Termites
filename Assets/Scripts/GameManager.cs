@@ -10,6 +10,8 @@ public class GameManager {
 
     private static Level currentLevel = null;
 
+    private static bool gamePaused = false;
+
     public static void setMainCamer(MainCamera mainCamera)
     {
         GameManager.mainCamera = mainCamera;
@@ -51,4 +53,19 @@ public class GameManager {
         return currentLevel;
     }
 
+    public static void changeGameState()
+    {
+        gamePaused = !gamePaused;
+        changeGameState(gamePaused);
+    }
+
+    public static void changeGameState(bool gamePaused)
+    {
+        GameManager.gamePaused = gamePaused;
+        if (gamePaused)
+            Time.timeScale = 0f;
+        else
+            Time.timeScale = 1f;
+        getLevelGUI().changeGameState(gamePaused);
+    }
 }

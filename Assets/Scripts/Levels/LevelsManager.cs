@@ -19,13 +19,10 @@ public class LevelsManager : MonoBehaviour {
 
         Level level = levelGameObject.GetComponent<Level>();
         level.setLevelData(levelData, levelNumber);
-
-        
-        
     }
-
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    
+    public void changeGameState(bool gamePaused)
+    {
+        GameManager.changeGameState(gamePaused);
+    }
 }

@@ -12,6 +12,8 @@ public class LevelData : MonoBehaviour
 
     protected Graph.Connection[] _termitesLinks;
 
+    protected List<Rect> _rooms;
+
     protected Vector3 _cameraCenter;
 
     protected HumanPlaceholder[] _humans;
@@ -45,6 +47,11 @@ public class LevelData : MonoBehaviour
     public Graph.Connection[] termitesLinks
     {
         get { return _termitesLinks; }
+    }
+
+    public List<Rect> rooms
+    {
+        get { return _rooms; }
     }
 
     public Vector3 cameraCenter

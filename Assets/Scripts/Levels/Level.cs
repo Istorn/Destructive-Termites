@@ -57,8 +57,10 @@ public class Level : MonoBehaviour {
 
         initForeground();
 
-        initLiveObjectsGraph();
+        initRooms();
 
+        initLiveObjectsGraph();
+        
         initObjects();
 
         initHumans();
@@ -118,7 +120,6 @@ public class Level : MonoBehaviour {
         Vector2 topLeft = new Vector2(-box.size.x / 2, box.size.y / 2);
         Vector2 topRight = new Vector2(box.size.x / 2, box.size.y / 2);
 
-        Debug.Log(bottomLeft + "   " + bottomRight  +  "   " + topLeft   + "    " + topRight);
         EdgeCollider2D collider = foreground.AddComponent<EdgeCollider2D>();
         Vector2[] points = new Vector2[2];
         points[0] = topRight;
@@ -203,22 +204,21 @@ public class Level : MonoBehaviour {
         }
     }
 
+    private void initRooms()
+    {
+        int r = 0;
+        for (int room = 0; room < levelData.rooms.Count; room = room + 2)
+        {
+            rooms.Add(new Room(r));
+            GameManager.getLevelGUI().initRoomIndicator(levelData.rooms[room], levelData.rooms[room + 1], r);
+            r++;
+        }
+    }
+
     private void addObjectToRoom(GenericObject obj, int roomNumber)
     {
-        Room room = null;
-        foreach(Room r in rooms)
-            if (r.number == roomNumber)
-            {
-                room = r;
-                break;
-            }
-        if (room == null)
-        {
-            room = new Room(roomNumber);
-            rooms.Add(room);
-        }
-        room.addObject(obj);
-        obj.setRoom(room);
+        rooms[roomNumber].addObject(obj);
+        obj.setRoom(rooms[roomNumber]);
     }    
 
     public void dropBooster(Booster booster)

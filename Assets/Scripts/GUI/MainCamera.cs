@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using UnityStandardAssets.ImageEffects;
 using System.Threading;
 using UnityEngine.UI;
 
@@ -20,7 +19,6 @@ public class MainCamera : MonoBehaviour {
     private Vector3 mousePos;
     public Texture2D cursorTexture;
 
-    private bool gamePaused = false;
     private bool escPressed = false;
 
 	// Use this for initialization
@@ -71,28 +69,11 @@ public class MainCamera : MonoBehaviour {
         transform.position = center;
     }
 
-    private void changeGameState()
-    {
-        if (gamePaused)
-        {
-            GetComponent<Blur>().enabled = true;
-            GetComponent<Tonemapping>().enabled = true;
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            GetComponent<Tonemapping>().enabled = false;
-            GetComponent<Blur>().enabled = false;
-        }
-        GameManager.getLevelGUI().changeGameState(gamePaused);
-        gamePaused = !gamePaused;
-    }
-
     void FixedUpdate()
     {
         if (escPressed)
         {
-            changeGameState();
+            GameManager.changeGameState();
             escPressed = false;
         }
     }

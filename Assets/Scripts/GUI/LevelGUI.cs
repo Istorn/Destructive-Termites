@@ -55,14 +55,10 @@ public class LevelGUI : MonoBehaviour
 
     public float getBottomBarBottomCoord()
     {
-        RectTransform tr1 = bottomBarPanel.transform.Find("Panel1").GetComponent<RectTransform>();
-
-        RectTransform tr = bottomBarPanel.transform.Find("Panel2").GetComponent<RectTransform>();
-
+        RectTransform tr1 = bottomBarPanel.transform.Find("Anchor1").GetComponent<RectTransform>();
+        RectTransform tr2 = bottomBarPanel.transform.Find("Anchor2").GetComponent<RectTransform>();
         Camera c = GameManager.getMainGamera().GetComponent<Camera>();
-        Debug.Log(c.ScreenToWorldPoint(tr1.transform.position));
-        Debug.Log(c.ScreenToWorldPoint(bottomBarPanel.transform.position));
-        return Math.Abs(c.ScreenToWorldPoint(tr1.transform.position).y - c.ScreenToWorldPoint(bottomBarPanel.transform.position).y);
+        return Math.Abs(c.ScreenToWorldPoint(tr1.transform.position).y - c.ScreenToWorldPoint(tr2.transform.position).y);
     }
 
     public Colony getSelectedColony()
@@ -232,11 +228,45 @@ public class LevelGUI : MonoBehaviour
         return startAttackCursor.GetComponent<StartAttackCursor>();
     }
 
-    public void changeGameState(bool paused)
+    public void initRoomIndicator(Rect miniMapRoomIndicatorRect, Rect mapRoomIndicatorRect, int roomNumber)
     {
-        gameAreaPanel.SetActive(!paused);
-        bottomBarPanel.SetActive(!paused);
-        gamePausedPanel.SetActive(paused);
+        GameObject miniMapRoomIndicator = Instantiate(Resources.Load("Prefabs/GUI/RoomIndicator", typeof(GameObject))) as GameObject;
+        miniMapRoomIndicator.name = "RoomIndicator" + roomNumber;
+        miniMapRoomIndicator.transform.SetParent(transform.Find("MiniMapPanel/MiniMap").transform);
+        miniMapRoomIndicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        miniMapRoomIndicator.GetComponent<RectTransform>().sizeDelta = miniMapRoomIndicatorRect.size;
+        miniMapRoomIndicator.GetComponent<RectTransform>().localPosition = miniMapRoomIndicatorRect.position;
+        Color c = miniMapRoomIndicator.GetComponent<Image>().color;
+        miniMapRoomIndicator.GetComponent<Image>().color = new Color(c.r, c.g, c.b, 0.8f); 
+        miniMapRoomIndicator.GetComponent<Image>().fillAmount = (float)UnityEngine.Random.Range(2, 8) / 10;
+
+        GameObject mapRoomIndicator = Instantiate(Resources.Load("Prefabs/GUI/RoomIndicator", typeof(GameObject))) as GameObject;
+        mapRoomIndicator.name = "RoomIndicator" + roomNumber;
+        mapRoomIndicator.transform.SetParent(gamePausedPanel.transform.Find("MapPanel/Map").transform);
+        mapRoomIndicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+        mapRoomIndicator.GetComponent<RectTransform>().sizeDelta = mapRoomIndicatorRect.size;
+        mapRoomIndicator.GetComponent<RectTransform>().localPosition = mapRoomIndicatorRect.position;
+        mapRoomIndicator.GetComponent<Image>().fillAmount = (float)UnityEngine.Random.Range(2, 8) / 10;
+
+        //CREZIONE COORDINATE
+       /* Vector2 pos = transform.Find("MiniMapPanel/MiniMap/RoomIndicator (" + roomNumber + ")").GetComponent<RectTransform>().localPosition;
+        Vector2 dim = transform.Find("MiniMapPanel/MiniMap/RoomIndicator (" + roomNumber + ")").GetComponent<RectTransform>().rect.size;
+        Debug.Log("_rooms.Add(new Rect(" + pos.x.ToString("####0.00") + "f, " + pos.y.ToString("####0.00") + "f, " + dim.x.ToString("####0.00") + "f, " + dim.y.ToString("####0.00") + "f));");*/
+;
+    }
+
+    public void changeGameState(bool gamePaused)
+    {
+        gameAreaPanel.SetActive(!gamePaused);
+        bottomBarPanel.SetActive(!gamePaused);
+        gamePausedPanel.SetActive(gamePaused);
+        if (gamePaused)
+        {
+            foreach(Room r in GameManager.getCurrentLevel().rooms)
+            {
+                //GameObject o = gamePausedPanel.transform.Find("MiniMapPanel")
+            }
+        }
     }
     
 }
