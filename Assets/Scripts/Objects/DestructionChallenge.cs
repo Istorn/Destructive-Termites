@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using System;
 
 public class DestructionChallenge : GenericChallenge {
-
+    //TO SET THE KIND OF DESTRUCTION CHALLENGE
     public enum TypeDestr
     {
         [Category("DESTROY A OBJECT")]
@@ -19,6 +19,7 @@ public class DestructionChallenge : GenericChallenge {
         [Category("DESTROY OBJECTS IN A ROOM")]
         RoomDestr = 3
     }
+    //TO SET THE KIND OF OBJECT TO DESTROY, WHERE THERE'S
     public enum Model
     {
 
@@ -39,6 +40,7 @@ public class DestructionChallenge : GenericChallenge {
         this.ChallengeType = 0;
         
     }
+    //GENERIC SETTERS AND GETTERS
     public void setDestruction(TypeDestr destructionType)
     {
         this.typeDestruction = destructionType;

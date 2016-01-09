@@ -9,14 +9,15 @@ using System;
 public class DefenseChallenge : GenericChallenge {
     private int menaceId = 0;
     private String menaceText = "";
+    private LiveObject menace = null;
     protected override void Awake()
     {
         this.ChallengeType = (TypeChallenge) 1;
 
     }
-    public void setMenace(int menaceID, String menaceText)
+    public void setMenace(LiveObject menaceToSet)
     {
-        this.menaceId = menaceID;
-        this.menaceText = menaceText;
+        this.menace = menaceToSet;
+        
     }
 }
