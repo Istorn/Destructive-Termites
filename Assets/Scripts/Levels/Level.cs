@@ -64,6 +64,7 @@ public class Level : MonoBehaviour {
         initObjects();
 
         initHumans();
+		initFrogs();
     }
 
     public int getAvailableTermites()
@@ -172,6 +173,17 @@ public class Level : MonoBehaviour {
         humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
         humanScript.actualNodeNumber = 2;
         humanScript.setObjectName("Chair", "");
+    }
+	
+    private void initFrogs()
+    {
+        GameObject frog = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        frog.name = "Frog0";
+        Frog frogScript = frog.AddComponent<Frog>();
+        frogScript.setId(-1);
+        frogScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_FROGS);
+        frogScript.actualNodeNumber = 2;
+        frogScript.setObjectName("Chair", "");
     }
 
     private void initObjects()

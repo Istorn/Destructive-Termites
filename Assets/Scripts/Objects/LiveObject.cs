@@ -7,6 +7,9 @@ public class LiveObject : GenericObject {
     protected Animator animator;
     protected bool isMoving = false;
     protected bool isAttacking = false;
+    protected IEnumerator movementCoroutine = null;
+    protected IEnumerator attackCoroutine = null;
+	protected string threatType = null;
 	protected Colony target;
     protected GenericObject targetObject = null;	
     protected const float alertLevelThreshold = 0.1F; // IS IN RANGE 0-1.	
@@ -22,8 +25,9 @@ public class LiveObject : GenericObject {
         animator = gameObject.AddComponent<Animator>();
     }
 
-    protected virtual void move(){
-    }
+    protected virtual void move(){}
+    protected virtual void setMovementCoroutine(){}
+    protected virtual void setAttackCoroutine(){}
 	
 	protected IEnumerator movement(string AtkAnimStr, string walkAnimStr, float objectWaitingTime, float objectSpeed){
         while (true)
@@ -61,7 +65,7 @@ public class LiveObject : GenericObject {
             }
             if (move)
             {
-                StartCoroutine(stepMovement());
+                StartCoroutine(stepMovement(objectSpeed));
                 yield return new WaitForSeconds(objectSpeed);
             }
         }
@@ -77,14 +81,14 @@ public class LiveObject : GenericObject {
         return endNode;
     }
 	
-	IEnumerator stepMovement(){
+	IEnumerator stepMovement(float objectSpeed){
         Graph.Node start = movementPath.Dequeue();
         Graph.Node end = movementPath.Peek();
         actualNodeNumber = end.number;
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = start.getZIndex(end);
         int sign = System.Math.Sign(end.coordinates.x - start.coordinates.x) >= 0? 1: -1;
         transform.localScale = new Vector3(System.Math.Abs(transform.localScale.x) * sign, transform.localScale.y, transform.localScale.z);
-        yield return StartCoroutine(MoveObject(transform, start, end, Costants.HUMAN_SPEED));
+        yield return StartCoroutine(MoveObject(transform, start, end, objectSpeed));
     }
 	
 	IEnumerator MoveObject(Transform thisTransform, Graph.Node start, Graph.Node end, float time){
@@ -98,10 +102,28 @@ public class LiveObject : GenericObject {
         }
     }
 	
-	public Colony getTarget(){
-		return target;
-	}
-	
+    protected IEnumerator attackColony()
+    {
+        while (true)
+        { 
+            if (GameManager.getCurrentLevel().alertObjectsQueue.Count > 0 && !isAttacking)
+            {
+                isAttacking = true;
+                StopCoroutine(movementCoroutine);//pointer to movementCoroutine goes null
+				setMovementCoroutine();
+                targetObject = (GenericObject)GameManager.getCurrentLevel().alertObjectsQueue.Dequeue();
+                int target = GameManager.getCurrentLevel().getGraphLiveObjects().findNearestNode(targetObject.getRoom().number, targetObject.gameObject.transform.position);
+                List<Graph.Node> path = GameManager.getCurrentLevel().getGraphLiveObjects().getPath(actualNodeNumber, target);
+                path.RemoveAt(path.Count - 1);
+                movementPath.Clear();
+                foreach (Graph.Node n in path)
+                    movementPath.Enqueue(n);
+                StartCoroutine(movementCoroutine);
+            }
+            yield return new WaitForSeconds(Costants.COLONY_ATTACK_FREQUENCY);
+        }
+    }
+		
 	private void setTarget(Colony col){
 		this.target = col;
 	}
@@ -112,5 +134,13 @@ public class LiveObject : GenericObject {
 		
 		int destroyable = 5;
 		return (destroyable /(destroyable+1) ); // 0 if house destroyed, 1 if house new
+	}
+		
+	public Colony getTarget(){
+		return target;
+	}
+	
+	public string getThreatType(){
+		return this.threatType;
 	}
 }

@@ -11,6 +11,7 @@ public static class Costants{
     public static int Z_INDEX_OBJ_3 = 42;
 
     public static int Z_INDEX_HUMANS = 50;
+    public static int Z_INDEX_FROGS = -150;
 
     public static int Z_INDEX_LIVE_BEHIND_FOREGROUND = 98;
 
