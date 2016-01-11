@@ -18,6 +18,8 @@ public class DefenseChallenge : GenericChallenge {
     public void setMenace(LiveObject menaceToSet)
     {
         this.menace = menaceToSet;
+        this.menaceId = menaceToSet.getId();
+        this.menaceText = menaceToSet.getName();
         
     }
 }
