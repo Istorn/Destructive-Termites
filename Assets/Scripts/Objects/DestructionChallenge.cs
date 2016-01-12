@@ -32,9 +32,11 @@ public class DestructionChallenge : GenericChallenge {
         [Category("NOT EATABLE"), Description("THIS OBJECT IS NOT EATABLE")]
         NotEatable = 3*/
     }
-    public TypeDestr typeDestruction = 0;
-    public Model modelObj = 0;
-    public int numOfobject=0;
+    private TypeDestr typeDestruction = 0;
+    private Model modelObj = 0;
+    private int numOfobject=0;
+    private int remainedObj = 0;
+    
 	protected override void Awake()
     {
         this.ChallengeType = 0;
@@ -65,4 +67,13 @@ public class DestructionChallenge : GenericChallenge {
     {
         return this.modelObj;
     }
+    public int getRemainedObj()
+    {
+        return this.remainedObj;
+    }
+    public void increasesRemainedObj()
+    {
+        this.remainedObj++;
+    }
+
 }

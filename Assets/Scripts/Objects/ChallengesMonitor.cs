@@ -56,34 +56,68 @@ public class ChallengesMonitor : MonoBehaviour {
     }
     //TO GET BOOSTERS AND SCORE OF THE CHALLENGE COMPLETED, YOU HAVE TO CALL THIS METHOD!!!!!
     public void finishedChallenge(GenericChallenge ChallengeCompleted, List<Booster> boostersWon, int scoreWon)
-    {
-        boostersWon = this.boostersWon(ChallengeCompleted);
-        scoreWon = this.scoreWon(ChallengeCompleted);
-        this.challengesInGame[this.challengesInGame.IndexOf(ChallengeCompleted)].setCompleted();
-    }
-    //METHODS TO CHECK IF DEFENSE/DESTRUCTION CHALLENGES ARE COMPLETED OR EITHER NOT
-    public void checkDefenseChallenges()
-    {
-        for (int i = 0; i < this.challengesInGame.Count; i++)
+    {   
+        if (this.challengesInGame.IndexOf(ChallengeCompleted) == -1)
         {
-            if (((int)this.challengesInGame[i].getTypeChallenge()) == 1)
+            if (this.challengesInGame[this.challengesInGame.IndexOf(ChallengeCompleted)].getCompleted())
             {
-
+                boostersWon = this.boostersWon(ChallengeCompleted);
+                scoreWon = this.scoreWon(ChallengeCompleted);
+                this.challengesInGame[this.challengesInGame.IndexOf(ChallengeCompleted)].setCompleted();
+            }
+        }
+       
+       
+    }
+    //METHODS TO REFRESH DESTRUCTION CHALLENGE
+    public void refreshDestruction(GenericObject ObjectDestroyed)
+    {
+        for (int i=0; i < this.challengesInGame.Count; i++)
+        {
+            if (((int)this.challengesInGame[i].getTypeChallenge()==0) || ((int)this.challengesInGame[i].getTypeChallenge() == 2))
+            {
+                DestructionChallenge Chlg = (DestructionChallenge)this.challengesInGame[i];
+                if ((int)Chlg.getTypeOfObject() == (int)ObjectDestroyed.getModel())
+                {
+                    Chlg.increasesRemainedObj();
+                    //IF ALL THAT KIND OF OBJ ARE DESTROYED, OF COURSE THE CHALLENGE BECOMES COMPLETED!
+                    if (Chlg.getRemainedObj() == Chlg.getNumOfObj())
+                    {
+                        Chlg.setCompleted();
+                    }
+                    //IF THE CHALLENGE WAS A TIME DESTRUCTION, THEN THE TIME WILL BE GROUNDED TO ZERO
+                    if ((int)Chlg.getTypeChallenge() == 2)
+                    {
+                        Chlg.setTime(0);
+                    }
+                    //refresh the challenges' list
+                    this.challengesInGame[i] = Chlg;
+                }
             }
         }
     }
 
-    public void checkDestructionChallenges()
+    //METHOD TO REFRESH DEFENSE CHALLENGE
+    public void refreshDefense(LiveObject menaceToCheck)
     {
+        for (int i=0;i<this.challengesInGame.Count;i++)
+        {
+            if (((int)this.challengesInGame[i].getTypeChallenge() == 1) || ((int)this.challengesInGame[i].getTypeChallenge() == 3)) {
+                DefenseChallenge Chlg = (DefenseChallenge)this.challengesInGame[i];
+                //IF THE MENACE CHECKED IS EQUAL TO THESE CHALLENGES, THEN THEY BECOME COMPLETED
+                if ( (Chlg.getTypeOfMenace().Equals(menaceToCheck.GetType().Equals(typeof(Human)))) || (Chlg.getTypeOfMenace().Equals(menaceToCheck.GetType().Equals(typeof(Frog)))) || (Chlg.getTypeOfMenace().Equals(menaceToCheck.GetType().Equals(typeof(Wizard)))) )
+                {
+                    Chlg.setCompleted();
+                }
+                //SAME WAY AS DESTRUCTION IF TIMED
+                if ((int)Chlg.getTypeChallenge() == 3)
+                {
+                    Chlg.setTime(0);
+                }
+                //refresh the challenges' list
+                this.challengesInGame[i] = Chlg;
+            }
 
-    }
-
-    private void checksingledef()
-    {
-
-    }
-    private void checksingleatk()
-    {
-
+        }
     }
 }

@@ -19,7 +19,22 @@ public class DefenseChallenge : GenericChallenge {
     {
         this.menace = menaceToSet;
         this.menaceId = menaceToSet.getId();
-        this.menaceText = menaceToSet.getName();
+        if (menaceToSet.GetType().Equals(typeof(Human)))
+        {
+            this.menaceText = "HUMAN";
+        }
+        else if (menaceToSet.GetType().Equals(typeof(Wizard)))
+        {
+            this.menaceText = "WIZARD";
+        }
+        else if (menaceToSet.GetType().Equals(typeof(Frog)))
+        {
+            this.menaceText = "FROG";
+        }
         
+    }
+    public Type getTypeOfMenace()
+    {
+        return this.menace.GetType();
     }
 }
