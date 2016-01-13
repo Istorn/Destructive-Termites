@@ -4,8 +4,6 @@ using System.Collections;
 
 public class GameManager {
 
-    private static bool isSelectingObject = false;
-
     private static MainCamera mainCamera = null;
 
     private static LevelGUI levelGUI = null;
@@ -96,15 +94,5 @@ public class GameManager {
     public static void gameWon()
     {
 
-    }
-
-    public static void setIsSelectingObject(bool isSelectingObject)
-    {
-        GameManager.isSelectingObject = isSelectingObject;
-    }
-
-    public static bool getIsSelectinObject()
-    {
-        return isSelectingObject;
     }
 }

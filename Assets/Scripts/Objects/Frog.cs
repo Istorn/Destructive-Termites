@@ -1,24 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class Human : LiveObject {
+public class Frog : LiveObject {
 
-	private string sprayAtkAnimStr = "isSprayAttacking";
-	// private string gasAtkAnimStr = "isGasAttacking";
-	// private string bombAtkAnimStr = "isBombAttacking";
-	// private string gunAtkAnimStr = "isGunAttacking";
-	private string walkAnimStr = "isWalking";
-	private string atkAnimStr;
+	private string atkAnimStr = "isEating";
+	private string walkAnimStr = "isJumping";
 
     protected override void Awake()
     {
         base.Awake();
         movementPath = new ConcurrentQueue<Graph.Node>();
-		this.atkAnimStr = sprayAtkAnimStr; // defaut attack is spray
 		setMovementCoroutine();
 		setAttackCoroutine();
-        animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/OliAnimatorController"));
+        animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/Frog/FrogAnimController"));
     }
 
 	protected override void setMovementCoroutine(){
@@ -38,6 +32,7 @@ public class Human : LiveObject {
     {
         StartCoroutine(movementCoroutine);
         StartCoroutine(attackCoroutine);
-		this.threatType = "Human";
+		this.threatType = "Frog";
     }
+
 }

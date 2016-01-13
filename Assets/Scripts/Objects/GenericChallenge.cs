@@ -18,14 +18,17 @@ public class GenericChallenge : MonoBehaviour
         [Category("TIME DEFENSE CHALLENGE")]
         TimeDefense = 3
     }
-    public void setChallenge(int id, int time, String Description, List<Booster> rewards, int score)
+    //SET VALUES FOR THE CHALLENGE
+    public void setChallenge(int id, int time, String Description, List<Booster> rewards, int score, TypeChallenge typeChl)
     {
         this.id = id;
         this.time = time;
         this.Description = Description;
         this.rewards = rewards;
         this.score = score;
+        this.ChallengeType = typeChl;
     }
+    //ATTRIBUTES
     public TypeChallenge ChallengeType = 0;
     private int id = 0;
     private int time = 0;
@@ -34,6 +37,9 @@ public class GenericChallenge : MonoBehaviour
     private Boolean active = false;
     private List<Booster> rewards = null;
     private int score = 0;
+    private bool failed = false;
+
+    //GENERAL GETTERS
     public int getId()
     {
         return this.id;
@@ -66,6 +72,8 @@ public class GenericChallenge : MonoBehaviour
     {
         return this.ChallengeType;
     }
+
+    //SETTERS
     public void setCompleted()
     {
         this.completed = true;
@@ -79,5 +87,12 @@ public class GenericChallenge : MonoBehaviour
         active = false;
 
     }
-    
+    public void setTime(int timeToset)
+    {
+        this.time = timeToset;
+    }
+    public void setFailed()
+    {
+        this.failed = true;
+    }
 }

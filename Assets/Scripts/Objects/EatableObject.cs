@@ -27,14 +27,14 @@ public class EatableObject : GenericObject {
         base.Awake();
 
         obj = transform.Find("Object").gameObject;
-        obj.GetComponent<ObjectSelector>().setObj(this);
+        obj.GetComponent<EatableObjectSelector>().setObj(this);
 
         obj.GetComponent<PolygonCollider2D>().tag = Costants.TAG_OBJ_COLLIDER_PHYSICS;
 
         dust = transform.Find("Dust").gameObject;
     }
 
-    public void setPosition(Vector3 coordinates, int z_index)
+    public override void setPosition(Vector3 coordinates, int z_index)
     {
         gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index/10);
         selector.GetComponent<SpriteRenderer>().sortingOrder = z_index;
@@ -56,7 +56,7 @@ public class EatableObject : GenericObject {
         transform.localScale = new Vector3(transform.localScale.x * flip, transform.localScale.y, transform.localScale.z);
     }
 
-    public void setName(string objectName, string spriteName)
+    public override void setName(string objectName, string spriteName)
     {
         _name = objectName;
         objSprites = Resources.LoadAll<Sprite>("Levels/" + GameManager.getCurrentLevel().getLevelNumber() + "/Objects/" + spriteName);

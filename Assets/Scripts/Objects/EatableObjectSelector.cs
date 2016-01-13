@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class ObjectSelector : MonoBehaviour {
+public class EatableObjectSelector : MonoBehaviour {
 
     private StartAttackCursor cursor = null;
     private IEnumerator selectionCoroutine;
@@ -24,7 +24,6 @@ public class ObjectSelector : MonoBehaviour {
             if (GameManager.getLevelGUI().isGameAreaClicked(Input.mousePosition))
             {
                 GameManager.getMainGamera().stopMoving();
-                GameManager.setIsSelectingObject(true);
                 StopCoroutine(selectionCoroutine);
                 selectionCoroutine = StartPressing();
                 StartCoroutine(selectionCoroutine);
@@ -68,7 +67,6 @@ public class ObjectSelector : MonoBehaviour {
             obj.getAttacker().addTermites(attackers);
             GameManager.getCurrentLevel().decreaseAvailableTermites(attackers);
         }
-        GameManager.setIsSelectingObject(false);
     }
 
     void OnTriggerExit2D(Collider2D other)

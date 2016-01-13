@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using System;
 
 public class DestructionChallenge : GenericChallenge {
-
+    //TO SET THE KIND OF DESTRUCTION CHALLENGE
     public enum TypeDestr
     {
         [Category("DESTROY A OBJECT")]
@@ -19,6 +19,7 @@ public class DestructionChallenge : GenericChallenge {
         [Category("DESTROY OBJECTS IN A ROOM")]
         RoomDestr = 3
     }
+    //TO SET THE KIND OF OBJECT TO DESTROY, WHERE THERE'S
     public enum Model
     {
 
@@ -31,14 +32,17 @@ public class DestructionChallenge : GenericChallenge {
         [Category("NOT EATABLE"), Description("THIS OBJECT IS NOT EATABLE")]
         NotEatable = 3*/
     }
-    public TypeDestr typeDestruction = 0;
-    public Model modelObj = 0;
-    public int numOfobject=0;
+    private TypeDestr typeDestruction = 0;
+    private Model modelObj = 0;
+    private int numOfobject=0;
+    private int remainedObj = 0;
+    
 	protected override void Awake()
     {
         this.ChallengeType = 0;
         
     }
+    //GENERIC SETTERS AND GETTERS
     public void setDestruction(TypeDestr destructionType)
     {
         this.typeDestruction = destructionType;
@@ -63,4 +67,13 @@ public class DestructionChallenge : GenericChallenge {
     {
         return this.modelObj;
     }
+    public int getRemainedObj()
+    {
+        return this.remainedObj;
+    }
+    public void increasesRemainedObj()
+    {
+        this.remainedObj++;
+    }
+
 }

@@ -1,21 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class Human : LiveObject {
+public class Wizard :LiveObject {
 
-	private string sprayAtkAnimStr = "isSprayAttacking";
-	// private string gasAtkAnimStr = "isGasAttacking";
-	// private string bombAtkAnimStr = "isBombAttacking";
-	// private string gunAtkAnimStr = "isGunAttacking";
+	private string atkAnimStr = "isCastingASpell";
 	private string walkAnimStr = "isWalking";
-	private string atkAnimStr;
 
     protected override void Awake()
     {
         base.Awake();
         movementPath = new ConcurrentQueue<Graph.Node>();
-		this.atkAnimStr = sprayAtkAnimStr; // defaut attack is spray
 		setMovementCoroutine();
 		setAttackCoroutine();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/OliAnimatorController"));
@@ -38,6 +32,7 @@ public class Human : LiveObject {
     {
         StartCoroutine(movementCoroutine);
         StartCoroutine(attackCoroutine);
-		this.threatType = "Human";
+		this.threatType = "Wizard";
     }
+
 }

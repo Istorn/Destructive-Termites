@@ -39,8 +39,7 @@ public class GenericObject : MonoBehaviour {
     {
         attacker = null;
         selector = transform.Find("Selector").gameObject;
-        selector.GetComponent<ObjectSelector>().setObj(this);
-        
+        selector.GetComponent<EatableObjectSelector>().setObj(this);
     }
 
     public void setRoom(Room room)
@@ -71,6 +70,15 @@ public class GenericObject : MonoBehaviour {
     public string getName()
     {
         return _name;
+    }
+
+    public virtual void setPosition(Vector3 coordinates, int z_index)
+    {
+    }
+
+    public virtual void setName(string objectName, string spriteName)
+    {
+
     }
 
     public virtual bool attack(int numberOfAttackers)

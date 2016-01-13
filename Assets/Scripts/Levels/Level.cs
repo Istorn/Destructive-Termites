@@ -86,13 +86,13 @@ public class Level : MonoBehaviour {
 
     private void initFrogs()
     {
-        GameObject frog = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        GameObject frog = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
         frog.name = "Frog0";
         Frog frogScript = frog.AddComponent<Frog>();
         frogScript.setId(-1);
         frogScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_FROGS);
         frogScript.actualNodeNumber = 2;
-        frogScript.setObjectName("Chair", "");
+        frogScript.setName("Chair", "");
 
     }
 
@@ -187,15 +187,15 @@ public class Level : MonoBehaviour {
 
     private void initHumans()
     {
-       /* GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
-        human.name = "Human0";
-        Human humanScript = human.AddComponent<Human>();
-        humanScript.setId(-1);
-        humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
-        humanScript.actualNodeNumber = 2;
-        humanScript.setObjectName("Chair", "");*/
+        /* GameObject human = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
+         human.name = "Human0";
+         Human humanScript = human.AddComponent<Human>();
+         humanScript.setId(-1);
+         humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
+         humanScript.actualNodeNumber = 2;
+         humanScript.setObjectName("Chair", "");*/
     }
-
+	
     private void initObjects()
     {
         int id = 0;
@@ -215,8 +215,8 @@ public class Level : MonoBehaviour {
 
             ((EatableObject)script).setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
             script.setId(id);
-            ((EatableObject)script).setPosition(objectPlaceholder.getCoordinates(), objectPlaceholder.getZIndex());
-            ((EatableObject)script).setName(objectPlaceholder.getName(), objectPlaceholder.getPathName());
+            script.setPosition(objectPlaceholder.getCoordinates(), objectPlaceholder.getZIndex());
+            script.setName(objectPlaceholder.getName(), objectPlaceholder.getPathName());
             obj.transform.SetParent(this.transform);
 
             addObjectToRoom(script, objectPlaceholder.getRoomNumber());
