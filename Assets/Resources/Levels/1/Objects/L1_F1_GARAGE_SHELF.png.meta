@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ad97c7aa079fa0e4ab8896f829fd52a2
-timeCreated: 1450047320
+timeCreated: 1452509875
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,7 +31,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -58,7 +58,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -66,9 +66,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 272
+        y: 228
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -76,9 +76,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 537
-        y: 272
+        y: 228
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -86,9 +86,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1074
-        y: 272
+        y: 228
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -96,9 +96,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1611
-        y: 272
+        y: 228
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,9 +106,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2148
-        y: 272
+        y: 228
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -116,9 +116,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2685
-        y: 272
+        y: 228
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,7 +128,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,7 +138,7 @@ TextureImporter:
         x: 537
         y: 0
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,7 +148,7 @@ TextureImporter:
         x: 1074
         y: 0
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,7 +158,7 @@ TextureImporter:
         x: 1611
         y: 0
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,7 +168,7 @@ TextureImporter:
         x: 2148
         y: 0
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,7 +178,7 @@ TextureImporter:
         x: 2685
         y: 0
         width: 537
-        height: 272
+        height: 228
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

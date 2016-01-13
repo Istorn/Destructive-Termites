@@ -444,32 +444,42 @@ public class LevelData1: LevelData {
 
         _availableTermites = 1000;
 
-        _floorColliders = new Vector2[4][];
+        _floorColliders = new Vector2[6][];
 
         Vector2[] points = new Vector2[2];
-        points[0] = new Vector2(-10.3f,  2.90f);
-        points[1] = new Vector2( 14.1f,  2.90f);
+        points[0] = new Vector2(-10.3f,  3.02f);
+        points[1] = new Vector2( 14.1f,  3.02f);
         _floorColliders[0] = points;
 
         points = new Vector2[2];
-        points[0] = new Vector2(-14.3f, -6.50f);
-        points[1] = new Vector2( 14.1f, -6.50f);
+        points[0] = new Vector2(-13.54f, 2.57f);
+        points[1] = new Vector2(14.1f, 2.57f);
         _floorColliders[1] = points;
 
         points = new Vector2[2];
-        points[0] = new Vector2(-10.3f, -1.20f);
-        points[1] = new Vector2(14.1f, -1.20f);
+        points[0] = new Vector2(-14.3f, -6.73f);
+        points[1] = new Vector2( 14.1f, -6.73f);
         _floorColliders[2] = points;
 
         points = new Vector2[2];
-        points[0] = new Vector2(-10.3f, -5.30f);
-        points[1] = new Vector2(14.1f, -5.30f);
+        points[0] = new Vector2(-10.3f, -1.06f);
+        points[1] = new Vector2(14.1f, -1.06f);
         _floorColliders[3] = points;
 
+        points = new Vector2[2];
+        points[0] = new Vector2(-13.54f, -2.09f);
+        points[1] = new Vector2(14.1f, -2.09f);
+        _floorColliders[4] = points;
+
+        points = new Vector2[2];
+        points[0] = new Vector2(-10.3f, -5.01f);
+        points[1] = new Vector2(14.1f, -5.01f);
+        _floorColliders[5] = points;
+
         _objects = new List<ObjectPlaceholder>();
-        _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_1, new Vector3(-10.12f, -3.73f, 0), "L1_F1_KITCHEN_RACK2",     "RACK",     GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_1, new Vector3(-10.12f, -4.44f, 0), "L1_F1_KITCHEN_RACK1",     "RACK",     GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_2, new Vector3(-07.98f, -3.85f, 0), "L1_F1_KITCHEN_FRIDGE",    "FRIDGE",   GenericObject.Model.Hard));
+        _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_1, new Vector3(-10.44f, -2.98f, 0), "L1_F1_KITCHEN_RACK2",     "RACK",     GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_1, new Vector3(-10.49f, -4.44f, 0), "L1_F1_KITCHEN_RACK1",     "RACK",     GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_2, new Vector3(-08.27f, -3.85f, 0), "L1_F1_KITCHEN_FRIDGE",    "FRIDGE",   GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_2, new Vector3(-12.08f, -4.43f, 0), "L1_F1_KITCHEN_LAMPx3",    "LAMP",     GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_2, new Vector3(-11.28f, -4.43f, 0), "L1_F1_KITCHEN_LAMPx3",    "LAMP",     GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_4, new Vector3(-12.00f, -5.19f, 0), "L1_F1_KITCHEN_CHAIR2",    "CHAIR",    GenericObject.Model.Hard));
@@ -479,21 +489,21 @@ public class LevelData1: LevelData {
         _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_7, new Vector3(-12.78f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1",    "CHAIR",    GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 00, Costants.Z_INDEX_OBJ_7, new Vector3(-11.74f, -6.16f, 0), "L1_F1_KITCHEN_CHAIR1",    "CHAIR",    GenericObject.Model.Hard));
 
-        _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_1, new Vector3(-00.21f, -3.61f, 0), "L1_F1_LIVING_POSTER5",    "POSTER",   GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_1, new Vector3(-00.21f, -2.92f, 0), "L1_F1_LIVING_POSTER5",    "POSTER",   GenericObject.Model.Soft,       isHanging: true));
         _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_2, new Vector3(-00.25f, -4.32f, 0), "L1_F1_LIVING_COACH1",     "COACH",    GenericObject.Model.Soft));
         _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_1, new Vector3( 02.68f, -4.42f, 0), "L1_F1_LIVING_SHELF",      "SHELF",    GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_2, new Vector3( 03.10f, -4.10f, 0), "L1_F1_LIVING_TV_00",      "TV",       GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_2, new Vector3( 03.01f, -3.73f, 0), "L1_F1_LIVING_TV",         "TV",       GenericObject.Model.Hard,       isOnSomething: true));
         _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_4, new Vector3(-03.39f, -5.83f, 0), "L1_F1_LIVING_COACH2",     "COACH",    GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_4, new Vector3( 02.00f, -6.13f, 0), "L1_F1_LIVING_COACH3",     "COACH",    GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_4, new Vector3( 02.00f, -6.09f, 0), "L1_F1_LIVING_COACH3",     "COACH",    GenericObject.Model.Soft));
         _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_4, new Vector3(-02.00f, -5.60f, 0), "L1_F1_LIVING_LAMP",       "LAMP",     GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 01, Costants.Z_INDEX_OBJ_4, new Vector3(-00.38f, -5.80f, 0), "L1_F1_LIVING_TABLE2",     "TABLE",    GenericObject.Model.Hard));
 
         _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_1, new Vector3( 06.81f, -3.65f, 0), "L1_F1_GARAGE_SHELF",      "SHELF",    GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 05.84f, -2.90f, 0), "L1_F1_GARAGE_BOX1",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 08.64f, -2.90f, 1), "L1_F1_GARAGE_BOX2",       "BOX",      GenericObject.Model.Hard,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_3, new Vector3( 05.20f, -3.72f, 0), "L1_F1_GARAGE_BOX3",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 05.68f, -3.72f, 0), "L1_F1_GARAGE_BOX3",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 07.28f, -3.72f, 0), "L1_F1_GARAGE_BOX3",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 05.84f, -3.12f, 0), "L1_F1_GARAGE_BOX1",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 08.64f, -3.12f, 1), "L1_F1_GARAGE_BOX2",       "BOX",      GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_3, new Vector3( 05.20f, -3.94f, 0), "L1_F1_GARAGE_BOX3",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 05.68f, -3.94f, 0), "L1_F1_GARAGE_BOX3",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_2, new Vector3( 07.28f, -3.94f, 0), "L1_F1_GARAGE_BOX3",       "BOX",      GenericObject.Model.Soft,       isOnSomething: true));
         _objects.Add(new ObjectPlaceholder( 02, Costants.Z_INDEX_OBJ_4, new Vector3( 08.58f, -5.50f, 0), "L1_F1_GARAGE_CAR",        "CAR",      GenericObject.Model.Hard));
 
         _objects.Add(new ObjectPlaceholder( 03, Costants.Z_INDEX_OBJ_1, new Vector3(-12.49f, -0.10f, 0), "L1_F2_ROOM3_CLOSET-B",    "CLOSET",   GenericObject.Model.Soft));
@@ -501,42 +511,42 @@ public class LevelData1: LevelData {
         _objects.Add(new ObjectPlaceholder( 03, Costants.Z_INDEX_OBJ_1, new Vector3(-09.20f, -0.27f, 0), "L1_F2_ROOM3_POSTER3",     "POSTER",   GenericObject.Model.Soft));
 
         _objects.Add(new ObjectPlaceholder( 04, Costants.Z_INDEX_OBJ_1, new Vector3(-01.68f, -0.57f, 0), "L1_F2_HALL2_RACK",        "RACK",     GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 04, Costants.Z_INDEX_OBJ_2, new Vector3(-00.95f,  0.45f, 0), "L1_F2_HALL2_PLANT_",      "PLANT",    GenericObject.Model.Soft,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 04, Costants.Z_INDEX_OBJ_2, new Vector3(-00.95f,  0.32f, 0), "L1_F2_HALL2_PLANT_",      "PLANT",    GenericObject.Model.Soft,       isOnSomething: true));
 
         _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_1, new Vector3( 01.30f,  0.26f, 0), "L1_F2_ROOM4_BOOKSHELF",   "BOOKSHELF",GenericObject.Model.Soft));
         _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_1, new Vector3( 03.54f, -0.40f, 0), "L1_F2_ROOM4_BED",         "BED",      GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 00.95f,  1.02f, 0), "L1_F2_ROOM4_TOY1_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 01.30f,  1.02f, 0), "L1_F2_ROOM4_TOY2_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 01.62f,  1.02f, 0), "L1_F2_ROOM4_TOY3_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 01.26f,  0.15f, 0), "L1_F2_ROOM4_TOY4_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 00.95f,  0.88f, 0), "L1_F2_ROOM4_TOY1_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 01.30f,  0.88f, 0), "L1_F2_ROOM4_TOY2_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 01.62f,  0.88f, 0), "L1_F2_ROOM4_TOY3_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_2, new Vector3( 01.26f,  0.00f, 0), "L1_F2_ROOM4_TOY4_",       "TOY",      GenericObject.Model.Hard,       isOnSomething: true));
         _objects.Add(new ObjectPlaceholder( 05, Costants.Z_INDEX_OBJ_4, new Vector3( 00.94f, -1.19f, 0), "L1_F2_ROOM4_ARMCHAIR",    "ARMCHAIR", GenericObject.Model.Soft));
 
         _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_1, new Vector3( 06.89f, -0.47f, 0), "L1_F2_ROOM5_DESK2",       "DESK",     GenericObject.Model.Soft));
         _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_1, new Vector3( 07.01f,  0.28f, 0), "L1_F2_ROOM5_POSTER4",     "POSTER",   GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_1, new Vector3( 08.78f,  0.28f, 0), "L1_F2_ROOM5_POSTER5",     "POSTER",   GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_2, new Vector3( 06.63f,  0.55f, 0), "L1_F2_ROOM5_PC_00",       "MAC",      GenericObject.Model.Hard,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_2, new Vector3( 07.76f,  0.31f, 1), "L1_F2_ROOM5_PRINTER_00",  "PRINTER",  GenericObject.Model.Hard,       isOnSomething: true));
-        _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_3, new Vector3( 06.87f, -0.53f, 0), "L1_F2_ROOM5_CHAIR-BLACK", "CHAIR",    GenericObject.Model.Hard));
+        _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_2, new Vector3( 06.63f,  0.42f, 0), "L1_F2_ROOM5_PC",          "MAC",      GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_2, new Vector3( 07.76f,  0.19f, 1), "L1_F2_ROOM5_PRINTER",     "PRINTER",  GenericObject.Model.Hard,       isOnSomething: true));
+        _objects.Add(new ObjectPlaceholder( 06, Costants.Z_INDEX_OBJ_3, new Vector3( 06.87f, -0.53f, 0), "L1_F2_ROOM5_CHAIR-BLACK", "CHAIR",    GenericObject.Model.Hard,       isHFlipped:true));
 
-        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-11.39f,  3.38f, 0), "L1_F3_ROOM1_BED",         "BED",      GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-09.07f,  3.38f, 0), "L1_F3_ROOM1_DESK",        "DESK",     GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-06.50f,  4.17f, 0), "L1_F3_ROOM1_CLOSET-S",    "CLOSET",   GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-11.36f,  3.47f, 0), "L1_F3_ROOM1_BED",         "BED",      GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-08.89f,  3.47f, 0), "L1_F3_ROOM1_DESK",        "DESK",     GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-06.50f,  4.42f, 0), "L1_F3_ROOM1_CLOSET-S",    "CLOSET",   GenericObject.Model.Soft));
         _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_1, new Vector3(-08.76f,  5.16f, 0), "L1_F3_ROOM1_POSTER1",     "POSTER",   GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_2, new Vector3(-09.24f,  3.34f, 0), "L1_F2_ROOM5_CHAIR-BLACK", "CHAIR",    GenericObject.Model.Hard,       isHFlipped: true));
-        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_2, new Vector3(-08.92f,  4.25f, 0), "L1_F2_ROOM5_PC_00",       "MAC",      GenericObject.Model.Hard,       isOnSomething: true, isHFlipped: true));
+        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_2, new Vector3(-08.99f,  3.52f, 0), "L1_F2_ROOM5_CHAIR-BLACK", "CHAIR",    GenericObject.Model.Hard));
+        _objects.Add(new ObjectPlaceholder( 07, Costants.Z_INDEX_OBJ_2, new Vector3(-08.77f,  4.23f, 0), "L1_F2_ROOM5_PC",          "MAC",      GenericObject.Model.Hard,       isOnSomething: true, isHFlipped: true));
 
         _objects.Add(new ObjectPlaceholder( 08, Costants.Z_INDEX_OBJ_1, new Vector3(-02.58f,  4.24f, 0), "L1_F3_HALL1_POSTER2",     "POSTER",   GenericObject.Model.Soft));
 
-        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 01.46f,  4.47f, 0), "L1_F3_BATHROOM_SHOWER",   "SHOWER",   GenericObject.Model.Hard));
-        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 03.11f,  3.46f, 0), "L1_F3_BATHROOM_SINK",     "SINK",     GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 01.46f,  4.65f, 0), "L1_F3_BATHROOM_SHOWER",   "SHOWER",   GenericObject.Model.Hard));
+        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 03.08f,  3.62f, 0), "L1_F3_BATHROOM_SINK",     "SINK",     GenericObject.Model.Soft));
     //    _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 03.10f,  3.97f, 0), "L1_F3_BATHROOM_MIRROR_B", "MIRROR",   GenericObject.Model.Soft));
     //    _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_2, new Vector3( 03.10f,  4.75f, 0), "L1_F3_BATHROOM_MIRROR",   "MIRROR",   GenericObject.Model.Hard));
-        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 04.12f,  4.13f, 0), "L1_F3_BATHROOM_CLOSET-S", "CLOSET",   GenericObject.Model.Soft));
-        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_4, new Vector3( 01.02f,  3.06f, 0), "L1_F3_BATHROOM_TOILET",   "TOILET",   GenericObject.Model.Hard));
+        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_1, new Vector3( 04.00f,  4.20f, 0), "L1_F3_BATHROOM_CLOSET-S", "CLOSET",   GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 09, Costants.Z_INDEX_OBJ_4, new Vector3( 01.02f,  3.16f, 0), "L1_F3_BATHROOM_TOILET",   "TOILET",   GenericObject.Model.Hard));
 
         _objects.Add(new ObjectPlaceholder( 10, Costants.Z_INDEX_OBJ_1, new Vector3( 06.90f,  4.62f, 0), "L1_F3_ROOM2_LAMPx3",      "LAMP",     GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 10, Costants.Z_INDEX_OBJ_1, new Vector3( 08.15f,  4.62f, 0), "L1_F3_ROOM2_LAMPx3",      "LAMP",     GenericObject.Model.Hard));
         _objects.Add(new ObjectPlaceholder( 10, Costants.Z_INDEX_OBJ_1, new Vector3( 09.40f,  4.62f, 0), "L1_F3_ROOM2_LAMPx3",      "LAMP",     GenericObject.Model.Hard));
-        _objects.Add(new ObjectPlaceholder( 10, Costants.Z_INDEX_OBJ_4, new Vector3( 08.28f,  3.16f, 0), "L1_F3_ROOM2_BILLARD",     "BILLARD",  GenericObject.Model.Soft));
+        _objects.Add(new ObjectPlaceholder( 10, Costants.Z_INDEX_OBJ_4, new Vector3( 08.28f,  3.27f, 0), "L1_F3_ROOM2_BILLARD",     "BILLARD",  GenericObject.Model.Soft));
     }
 }

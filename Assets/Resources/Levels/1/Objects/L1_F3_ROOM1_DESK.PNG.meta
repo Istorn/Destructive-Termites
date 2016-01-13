@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b9b504be1be7227429fd2e77a7339a77
-timeCreated: 1449593593
+timeCreated: 1452510184
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -29,7 +29,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -56,7 +56,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -64,59 +64,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 117
-        width: 209
-        height: 117
+        y: 93
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 117
-        width: 209
-        height: 117
+        x: 206
+        y: 93
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_2
       rect:
         serializedVersion: 2
-        x: 418
-        y: 117
-        width: 209
-        height: 117
+        x: 412
+        y: 93
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_3
       rect:
         serializedVersion: 2
-        x: 627
-        y: 117
-        width: 209
-        height: 117
+        x: 618
+        y: 93
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_4
       rect:
         serializedVersion: 2
-        x: 836
-        y: 117
-        width: 209
-        height: 117
+        x: 824
+        y: 93
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_5
       rect:
         serializedVersion: 2
-        x: 1045
-        y: 117
-        width: 209
-        height: 117
+        x: 1030
+        y: 93
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,38 +125,28 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 209
-        height: 117
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_7
       rect:
         serializedVersion: 2
-        x: 209
+        x: 206
         y: 0
-        width: 209
-        height: 117
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_DESK_8
       rect:
         serializedVersion: 2
-        x: 418
+        x: 412
         y: 0
-        width: 209
-        height: 117
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F3_ROOM1_DESK_9
-      rect:
-        serializedVersion: 2
-        x: 627
-        y: 0
-        width: 209
-        height: 117
+        width: 206
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

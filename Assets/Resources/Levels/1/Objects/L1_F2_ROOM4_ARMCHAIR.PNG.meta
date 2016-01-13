@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8791ae6ba2b3b03408b33a4269e02288
-timeCreated: 1449927715
+timeCreated: 1452510095
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,7 +27,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -54,7 +54,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -62,59 +62,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 220
-        width: 130
-        height: 220
+        y: 201
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_ARMCHAIR_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 220
-        width: 130
-        height: 220
+        x: 127
+        y: 201
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_ARMCHAIR_2
       rect:
         serializedVersion: 2
-        x: 260
-        y: 220
-        width: 130
-        height: 220
+        x: 254
+        y: 201
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_ARMCHAIR_3
       rect:
         serializedVersion: 2
-        x: 390
-        y: 220
-        width: 130
-        height: 220
+        x: 381
+        y: 201
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_ARMCHAIR_4
       rect:
         serializedVersion: 2
-        x: 520
-        y: 220
-        width: 130
-        height: 220
+        x: 508
+        y: 201
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_ARMCHAIR_5
       rect:
         serializedVersion: 2
-        x: 650
-        y: 220
-        width: 130
-        height: 220
+        x: 635
+        y: 201
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,18 +123,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 130
-        height: 220
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM4_ARMCHAIR_7
-      rect:
-        serializedVersion: 2
-        x: 130
-        y: 0
-        width: 130
-        height: 220
+        width: 127
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

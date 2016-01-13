@@ -22,6 +22,7 @@ public class ObjectPlaceholder{
         this.pathName = pathName;
         this.name = name;
         this.model = model;
+        this.isHanging = isHanging;
         this.isOnSomething = isOnSomething;
         this.strengthCoefficient = sCoeff;
         this.isHorizontallyFlipped = isHFlipped;

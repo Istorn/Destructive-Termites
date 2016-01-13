@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8478d835b3a267f4ead73a73f9177dcc
-timeCreated: 1449928339
+timeCreated: 1452510158
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -31,7 +31,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -58,7 +58,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -66,59 +66,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 355
-        width: 211
-        height: 355
+        y: 332
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_1
       rect:
         serializedVersion: 2
-        x: 211
-        y: 355
-        width: 211
-        height: 355
+        x: 207
+        y: 332
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_2
       rect:
         serializedVersion: 2
-        x: 422
-        y: 355
-        width: 211
-        height: 355
+        x: 414
+        y: 332
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_3
       rect:
         serializedVersion: 2
-        x: 633
-        y: 355
-        width: 211
-        height: 355
+        x: 621
+        y: 332
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_4
       rect:
         serializedVersion: 2
-        x: 844
-        y: 355
-        width: 211
-        height: 355
+        x: 828
+        y: 332
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_5
       rect:
         serializedVersion: 2
-        x: 1055
-        y: 355
-        width: 211
-        height: 355
+        x: 1035
+        y: 332
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,58 +127,58 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 211
-        height: 355
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_7
       rect:
         serializedVersion: 2
-        x: 211
+        x: 207
         y: 0
-        width: 211
-        height: 355
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_8
       rect:
         serializedVersion: 2
-        x: 422
+        x: 414
         y: 0
-        width: 211
-        height: 355
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_9
       rect:
         serializedVersion: 2
-        x: 633
+        x: 621
         y: 0
-        width: 211
-        height: 355
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_10
       rect:
         serializedVersion: 2
-        x: 844
+        x: 828
         y: 0
-        width: 211
-        height: 355
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_SHOWER_11
       rect:
         serializedVersion: 2
-        x: 1055
+        x: 1035
         y: 0
-        width: 211
-        height: 355
+        width: 207
+        height: 332
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

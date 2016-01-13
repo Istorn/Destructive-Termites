@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7366d6a7b7365144cba6f122eab3967b
-timeCreated: 1450041300
+timeCreated: 1452510006
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -36,7 +36,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -63,7 +63,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -71,59 +71,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 408
-        width: 354
-        height: 204
+        y: 181
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_1
       rect:
         serializedVersion: 2
-        x: 354
-        y: 408
-        width: 354
-        height: 204
+        x: 350
+        y: 181
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_2
       rect:
         serializedVersion: 2
-        x: 708
-        y: 408
-        width: 354
-        height: 204
+        x: 700
+        y: 181
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_3
       rect:
         serializedVersion: 2
-        x: 1062
-        y: 408
-        width: 354
-        height: 204
+        x: 1050
+        y: 181
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_4
       rect:
         serializedVersion: 2
-        x: 1416
-        y: 408
-        width: 354
-        height: 204
+        x: 1400
+        y: 181
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_5
       rect:
         serializedVersion: 2
-        x: 1770
-        y: 408
-        width: 354
-        height: 204
+        x: 1750
+        y: 181
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,109 +131,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 204
-        width: 354
-        height: 204
+        y: 0
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_7
       rect:
         serializedVersion: 2
-        x: 354
-        y: 204
-        width: 354
-        height: 204
+        x: 350
+        y: 0
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_8
       rect:
         serializedVersion: 2
-        x: 708
-        y: 204
-        width: 354
-        height: 204
+        x: 700
+        y: 0
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_9
       rect:
         serializedVersion: 2
-        x: 1062
-        y: 204
-        width: 354
-        height: 204
+        x: 1050
+        y: 0
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_10
       rect:
         serializedVersion: 2
-        x: 1416
-        y: 204
-        width: 354
-        height: 204
+        x: 1400
+        y: 0
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_BEED2_11
       rect:
         serializedVersion: 2
-        x: 1770
-        y: 204
-        width: 354
-        height: 204
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_BEED2_12
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 1750
         y: 0
-        width: 354
-        height: 204
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_BEED2_13
-      rect:
-        serializedVersion: 2
-        x: 354
-        y: 0
-        width: 354
-        height: 204
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_BEED2_14
-      rect:
-        serializedVersion: 2
-        x: 1062
-        y: 0
-        width: 354
-        height: 204
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_BEED2_15
-      rect:
-        serializedVersion: 2
-        x: 1416
-        y: 0
-        width: 354
-        height: 204
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_BEED2_16
-      rect:
-        serializedVersion: 2
-        x: 1770
-        y: 0
-        width: 354
-        height: 204
+        width: 350
+        height: 181
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

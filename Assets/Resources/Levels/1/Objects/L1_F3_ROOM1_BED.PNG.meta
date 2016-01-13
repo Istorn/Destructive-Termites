@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2584643f94321c14b94217e7a57f2a07
-timeCreated: 1449928932
+timeCreated: 1452511143
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,7 +30,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -57,7 +57,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -65,59 +65,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 175
-        width: 262
-        height: 175
+        y: 148
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_1
       rect:
         serializedVersion: 2
-        x: 262
-        y: 175
-        width: 262
-        height: 175
+        x: 258
+        y: 148
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_2
       rect:
         serializedVersion: 2
-        x: 524
-        y: 175
-        width: 262
-        height: 175
+        x: 516
+        y: 148
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_3
       rect:
         serializedVersion: 2
-        x: 786
-        y: 175
-        width: 262
-        height: 175
+        x: 774
+        y: 148
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_4
       rect:
         serializedVersion: 2
-        x: 1048
-        y: 175
-        width: 262
-        height: 175
+        x: 1032
+        y: 148
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_5
       rect:
         serializedVersion: 2
-        x: 1310
-        y: 175
-        width: 262
-        height: 175
+        x: 1290
+        y: 148
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,48 +126,48 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 262
-        height: 175
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_7
       rect:
         serializedVersion: 2
-        x: 262
+        x: 258
         y: 0
-        width: 262
-        height: 175
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_8
       rect:
         serializedVersion: 2
-        x: 524
+        x: 516
         y: 0
-        width: 262
-        height: 175
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_9
       rect:
         serializedVersion: 2
-        x: 786
+        x: 774
         y: 0
-        width: 262
-        height: 175
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_ROOM1_BED_10
       rect:
         serializedVersion: 2
-        x: 1048
+        x: 1032
         y: 0
-        width: 262
-        height: 175
+        width: 258
+        height: 148
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

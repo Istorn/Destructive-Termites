@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
-    public Text label;
+    private Text label;
 
     private int termites = 0;
 
@@ -29,20 +29,28 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     private IEnumerator attackTargetCorountine = null;
     private IEnumerator animateCoroutine = null;
 
+    private GameObject miniMapCursor = null;
+
 	void Awake () {
         boosters = new List<Booster>();
         attackTargetCorountine = null;
 	}
 
+    public void setMiniMapCursor(GameObject miniMapCursor)
+    {
+        this.miniMapCursor = miniMapCursor;
+    }
+
     public void attack()
     {
         //level.usedTermites -= termites;
-        if ((int)(termites * 0.1) < 10)
+      /*  if ((int)(termites * 0.1) < 10)
             termites = (int)(termites * 0.9);
         else
-            termites -= 10;
-        if (termites < 0)
-            termites = 0;
+            termites -= 10;*/
+        termites = Convert.ToInt32(termites * UnityEngine.Random.Range(0.85f, 0.99f));
+        /*if (termites < 0)
+            termites = 0;*/
        // level.usedTermites += termites;
         label.text = termites + "";
         if (termites == 0)
@@ -55,7 +63,10 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     void Update()
     {
         if (target && !startDrag)
+        {
             gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+            miniMapCursor.transform.position = target.gameObject.transform.position;
+        }
     }
 
     void FixedUpdate()
@@ -300,7 +311,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        gameObject.transform.position = Input.mousePosition;
+      /*  gameObject.transform.position = Input.mousePosition;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
@@ -308,7 +319,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
             //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
                 GameManager.getLevelGUI().objectSelected(obj);
-        }
+        }*/
     }
     public void setTermites(int numOftermites)
     {
@@ -316,7 +327,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+       /* RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
         {
@@ -328,11 +339,11 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         {
             gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
         }
-        startDrag = false;
+        startDrag = false;*/
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        startDrag = true;
+       /* startDrag = true;*/
     }
 }

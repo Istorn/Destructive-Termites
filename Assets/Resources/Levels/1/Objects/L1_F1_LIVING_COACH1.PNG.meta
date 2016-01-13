@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c952127e5a093c34cb8493b414144ed4
-timeCreated: 1450040786
+timeCreated: 1452509924
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,7 @@ TextureImporter:
     21300016: L1_F1_LIVING_COACH1_8
     21300018: L1_F1_LIVING_COACH1_9
     21300020: L1_F1_LIVING_COACH1_10
+    21300022: L1_F1_LIVING_COACH1_11
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +31,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -57,7 +58,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -65,59 +66,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 170
-        width: 352
-        height: 170
+        y: 144
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_1
       rect:
         serializedVersion: 2
-        x: 352
-        y: 170
-        width: 352
-        height: 170
+        x: 348
+        y: 144
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_2
       rect:
         serializedVersion: 2
-        x: 704
-        y: 170
-        width: 352
-        height: 170
+        x: 696
+        y: 144
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_3
       rect:
         serializedVersion: 2
-        x: 1056
-        y: 170
-        width: 352
-        height: 170
+        x: 1044
+        y: 144
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_4
       rect:
         serializedVersion: 2
-        x: 1408
-        y: 170
-        width: 352
-        height: 170
+        x: 1392
+        y: 144
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_5
       rect:
         serializedVersion: 2
-        x: 1760
-        y: 170
-        width: 352
-        height: 170
+        x: 1740
+        y: 144
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,48 +127,58 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 352
-        height: 170
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_7
       rect:
         serializedVersion: 2
-        x: 352
+        x: 348
         y: 0
-        width: 352
-        height: 170
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_8
       rect:
         serializedVersion: 2
-        x: 704
+        x: 696
         y: 0
-        width: 352
-        height: 170
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_9
       rect:
         serializedVersion: 2
-        x: 1056
+        x: 1044
         y: 0
-        width: 352
-        height: 170
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_LIVING_COACH1_10
       rect:
         serializedVersion: 2
-        x: 1408
+        x: 1392
         y: 0
-        width: 352
-        height: 170
+        width: 348
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: L1_F1_LIVING_COACH1_11
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 0
+        width: 348
+        height: 144
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

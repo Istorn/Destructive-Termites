@@ -65,12 +65,12 @@ public class BoosterIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
                 {
                     if (obj.getAttacker().applyBooster(booster))
                     {
-                        for (int i = 0; i < level.collectedBoosters.Count; i++)
+                        for (int i = 0; i < level.getCollectedBoosters().Count; i++)
                         {
-                            Booster b = level.collectedBoosters[i];
+                            Booster b = level.getCollectedBoosters()[i];
                             if (b.getModel().Equals(booster.getModel()))
                             {
-                                level.collectedBoosters.RemoveAt(i);
+                                level.getCollectedBoosters().RemoveAt(i);
                                 break;
                             }
                         }
@@ -87,7 +87,7 @@ public class BoosterIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnBeginDrag(PointerEventData eventData)
     {
         contains = false;
-        foreach (Booster b in level.collectedBoosters)
+        foreach (Booster b in level.getCollectedBoosters())
             if (b.getModel().Equals(booster.getModel()))
             {
                 contains = true;

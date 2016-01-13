@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6329dc4070767264a817b9b07b4289af
-timeCreated: 1449929621
+timeCreated: 1452510114
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -29,7 +29,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -56,7 +56,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -64,59 +64,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 136
-        width: 117
-        height: 136
+        y: 115
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM5_CHAIR-BLACK_1
       rect:
         serializedVersion: 2
-        x: 117
-        y: 136
-        width: 117
-        height: 136
+        x: 104
+        y: 115
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM5_CHAIR-BLACK_2
       rect:
         serializedVersion: 2
-        x: 234
-        y: 136
-        width: 117
-        height: 136
+        x: 208
+        y: 115
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM5_CHAIR-BLACK_3
       rect:
         serializedVersion: 2
-        x: 351
-        y: 136
-        width: 117
-        height: 136
+        x: 312
+        y: 115
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM5_CHAIR-BLACK_4
       rect:
         serializedVersion: 2
-        x: 468
-        y: 136
-        width: 117
-        height: 136
+        x: 416
+        y: 115
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM5_CHAIR-BLACK_5
       rect:
         serializedVersion: 2
-        x: 585
-        y: 136
-        width: 117
-        height: 136
+        x: 520
+        y: 115
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,38 +125,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 117
-        height: 136
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM5_CHAIR-BLACK_7
       rect:
         serializedVersion: 2
-        x: 117
+        x: 104
         y: 0
-        width: 117
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM5_CHAIR-BLACK_8
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 0
-        width: 117
-        height: 136
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM5_CHAIR-BLACK_9
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 0
-        width: 117
-        height: 136
+        width: 104
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

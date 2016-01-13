@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 97d78733e8f16f24fa684b177ee31dc2
-timeCreated: 1450050731
+timeCreated: 1452509915
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,7 +30,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -57,7 +57,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -65,59 +65,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 162
-        width: 249
-        height: 162
+        y: 158
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_1
       rect:
         serializedVersion: 2
-        x: 249
-        y: 162
-        width: 249
-        height: 162
+        x: 247
+        y: 158
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_2
       rect:
         serializedVersion: 2
-        x: 498
-        y: 162
-        width: 249
-        height: 162
+        x: 494
+        y: 158
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_3
       rect:
         serializedVersion: 2
-        x: 747
-        y: 162
-        width: 249
-        height: 162
+        x: 741
+        y: 158
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_4
       rect:
         serializedVersion: 2
-        x: 996
-        y: 162
-        width: 249
-        height: 162
+        x: 988
+        y: 158
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_5
       rect:
         serializedVersion: 2
-        x: 1245
-        y: 162
-        width: 249
-        height: 162
+        x: 1235
+        y: 158
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,48 +126,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 249
-        height: 162
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_7
       rect:
         serializedVersion: 2
-        x: 249
+        x: 247
         y: 0
-        width: 249
-        height: 162
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_8
       rect:
         serializedVersion: 2
-        x: 498
+        x: 494
         y: 0
-        width: 249
-        height: 162
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_TABLE_9
       rect:
         serializedVersion: 2
-        x: 747
+        x: 741
         y: 0
-        width: 249
-        height: 162
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_TABLE_10
-      rect:
-        serializedVersion: 2
-        x: 996
-        y: 0
-        width: 249
-        height: 162
+        width: 247
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

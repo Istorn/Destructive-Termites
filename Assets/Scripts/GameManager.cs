@@ -4,13 +4,17 @@ using System.Collections;
 
 public class GameManager {
 
+    private static bool isSelectingObject = false;
+
     private static MainCamera mainCamera = null;
 
     private static LevelGUI levelGUI = null;
 
     private static Level currentLevel = null;
 
-    private static bool gamePaused = false;
+    private static bool isGamePaused = false;
+
+    private static bool isInitialPhase = true;
 
     public static void setMainCamer(MainCamera mainCamera)
     {
@@ -55,17 +59,52 @@ public class GameManager {
 
     public static void changeGameState()
     {
-        gamePaused = !gamePaused;
-        changeGameState(gamePaused);
+        isGamePaused = !isGamePaused;
+        changeGameState(isGamePaused);
     }
 
     public static void changeGameState(bool gamePaused)
     {
-        GameManager.gamePaused = gamePaused;
+        GameManager.isGamePaused = gamePaused;
         if (gamePaused)
             Time.timeScale = 0f;
         else
             Time.timeScale = 1f;
         getLevelGUI().changeGameState(gamePaused);
+    }
+
+    public static bool getIsGamePaused()
+    {
+        return isGamePaused;
+    }
+
+    public static bool getIsInitialPhase()
+    {
+        return isInitialPhase;
+    }
+
+    public static void setIsInitialPhase(bool isInitialPhase)
+    {
+        GameManager.isInitialPhase = isInitialPhase;
+    }
+
+    public static void gameOver()
+    {
+
+    }
+
+    public static void gameWon()
+    {
+
+    }
+
+    public static void setIsSelectingObject(bool isSelectingObject)
+    {
+        GameManager.isSelectingObject = isSelectingObject;
+    }
+
+    public static bool getIsSelectinObject()
+    {
+        return isSelectingObject;
     }
 }

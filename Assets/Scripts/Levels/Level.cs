@@ -6,17 +6,15 @@ public class Level : MonoBehaviour {
 
     private int levelNumber = 0;
 
-    public int usedTermites = 0;
-
     private LevelData levelData = null;
 
     private Graph graphLiveObjects = null;
 
     private Graph graphTermites = null;
 
-    public List<Room> rooms = null;
+    private List<Room> rooms = null;
 
-    public List<Booster> collectedBoosters = null;
+    private List<Booster> collectedBoosters = null;
 
     public ConcurrentQueue<GenericObject> alertObjectsQueue = null;
 
@@ -38,9 +36,18 @@ public class Level : MonoBehaviour {
         return levelNumber;
     }
 
-    public void decreaseAvailableTermites(int usedTermites)
+    public void decreaseAvailableTermites(int termites)
     {
-        availableTermites -= usedTermites;
+        availableTermites -= termites;
+        if (availableTermites == 0)
+            if (GameManager.getIsInitialPhase())
+            {
+                availableTermites = levelData.availableTermites;
+                GameManager.setIsInitialPhase(false);
+                GameManager.getLevelGUI().changedGamePhase();
+            }
+            else
+                GameManager.gameOver();
     }
 
     public void setLevelData(LevelData levelData, int number)
@@ -64,14 +71,29 @@ public class Level : MonoBehaviour {
         initObjects();
 
         initHumans();
+
+        initFrogs();
+
+        availableTermites = levelData.availableTermites;
+
+        GameManager.getLevelGUI().enableRefreshTimer();
     }
 
     public int getAvailableTermites()
     {
-        int avail = 0;
-        if (levelData)
-            avail = levelData.availableTermites;
-        return avail;
+        return availableTermites;
+    }
+
+    private void initFrogs()
+    {
+        GameObject frog = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+        frog.name = "Frog0";
+        Frog frogScript = frog.AddComponent<Frog>();
+        frogScript.setId(-1);
+        frogScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_FROGS);
+        frogScript.actualNodeNumber = 2;
+        frogScript.setObjectName("Chair", "");
+
     }
 
     private void initBackground()
@@ -165,13 +187,13 @@ public class Level : MonoBehaviour {
 
     private void initHumans()
     {
-        GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+       /* GameObject human = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
         human.name = "Human0";
         Human humanScript = human.AddComponent<Human>();
         humanScript.setId(-1);
         humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
         humanScript.actualNodeNumber = 2;
-        humanScript.setObjectName("Chair", "");
+        humanScript.setObjectName("Chair", "");*/
     }
 
     private void initObjects()
@@ -179,7 +201,7 @@ public class Level : MonoBehaviour {
         int id = 0;
         foreach (ObjectPlaceholder objectPlaceholder in levelData.objects)
         {
-            GameObject obj = Instantiate(Resources.Load("Prefabs/Object", typeof(GameObject))) as GameObject;
+            GameObject obj = Instantiate(Resources.Load("Prefabs/Objects/EatableObject", typeof(GameObject))) as GameObject;
             obj.name = objectPlaceholder.getPathName();
             GenericObject script = null;
             if (objectPlaceholder.getModel().Equals(GenericObject.Model.Soft))
@@ -188,15 +210,13 @@ public class Level : MonoBehaviour {
                 if (objectPlaceholder.getModel().Equals(GenericObject.Model.Hard))
                     script = obj.AddComponent<HardObject>();
                 else
-                    if (objectPlaceholder.getModel().Equals(GenericObject.Model.Hard))
-                        script = obj.AddComponent<HardObject>();
-                    else
-                        script = obj.AddComponent<GenericObject>();
+                    script = obj.AddComponent<GenericObject>();
+                    
 
-            script.setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
+            ((EatableObject)script).setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
             script.setId(id);
-            script.setPosition(objectPlaceholder.getCoordinates(), objectPlaceholder.getZIndex());
-            script.setObjectName(objectPlaceholder.getName(), objectPlaceholder.getPathName());
+            ((EatableObject)script).setPosition(objectPlaceholder.getCoordinates(), objectPlaceholder.getZIndex());
+            ((EatableObject)script).setName(objectPlaceholder.getName(), objectPlaceholder.getPathName());
             obj.transform.SetParent(this.transform);
 
             addObjectToRoom(script, objectPlaceholder.getRoomNumber());
@@ -224,5 +244,15 @@ public class Level : MonoBehaviour {
     public void dropBooster(Booster booster)
     {
         collectedBoosters.Add(booster);
+    }
+
+    public List<Room> getRooms()
+    {
+        return rooms;
+    }
+
+    public List<Booster> getCollectedBoosters()
+    {
+        return collectedBoosters;
     }
 }

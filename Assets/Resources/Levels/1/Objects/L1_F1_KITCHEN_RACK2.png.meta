@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 336e65a37d3ac254f89103ff615ceed5
-timeCreated: 1450044423
+timeCreated: 1452509907
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -35,7 +35,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -62,7 +62,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -70,59 +70,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 361.333313
-        width: 283
-        height: 180.666672
+        y: 70
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_1
       rect:
         serializedVersion: 2
-        x: 283
-        y: 361.333313
-        width: 283
-        height: 180.666672
+        x: 281
+        y: 70
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_2
       rect:
         serializedVersion: 2
-        x: 566
-        y: 361.333313
-        width: 283
-        height: 180.666672
+        x: 562
+        y: 70
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_3
       rect:
         serializedVersion: 2
-        x: 849
-        y: 361.333313
-        width: 283
-        height: 180.666672
+        x: 843
+        y: 70
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_4
       rect:
         serializedVersion: 2
-        x: 1132
-        y: 361.333313
-        width: 283
-        height: 180.666672
+        x: 1124
+        y: 70
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_5
       rect:
         serializedVersion: 2
-        x: 1415
-        y: 361.333313
-        width: 283
-        height: 180.666672
+        x: 1405
+        y: 70
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,99 +130,29 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 181.333328
-        width: 283
-        height: 180.666672
+        y: 0
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_7
       rect:
         serializedVersion: 2
-        x: 283
-        y: 181.333328
-        width: 283
-        height: 180.666672
+        x: 281
+        y: 0
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F1_KITCHEN_RACK2_8
       rect:
         serializedVersion: 2
-        x: 566
-        y: 181.333328
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_9
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 181.333328
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_10
-      rect:
-        serializedVersion: 2
-        x: 1132
-        y: 181.333328
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_11
-      rect:
-        serializedVersion: 2
-        x: 1415
-        y: 181.333328
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1.33332825
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_13
-      rect:
-        serializedVersion: 2
-        x: 283
-        y: 1.33332825
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_14
-      rect:
-        serializedVersion: 2
-        x: 566
-        y: 1.33332825
-        width: 283
-        height: 180.666672
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F1_KITCHEN_RACK2_15
-      rect:
-        serializedVersion: 2
-        x: 849
-        y: 1.33332825
-        width: 283
-        height: 180.666672
+        x: 562
+        y: 0
+        width: 281
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

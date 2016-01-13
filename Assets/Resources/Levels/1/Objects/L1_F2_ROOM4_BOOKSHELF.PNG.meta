@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6ee2e6423b349584a88998e237601daf
-timeCreated: 1449928254
+timeCreated: 1452510107
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,7 +30,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -57,7 +57,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -65,59 +65,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 295
-        width: 125
-        height: 295
+        y: 262
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_1
       rect:
         serializedVersion: 2
-        x: 125
-        y: 295
-        width: 125
-        height: 295
+        x: 121
+        y: 262
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_2
       rect:
         serializedVersion: 2
-        x: 250
-        y: 295
-        width: 125
-        height: 295
+        x: 242
+        y: 262
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_3
       rect:
         serializedVersion: 2
-        x: 375
-        y: 295
-        width: 125
-        height: 295
+        x: 363
+        y: 262
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_4
       rect:
         serializedVersion: 2
-        x: 500
-        y: 295
-        width: 125
-        height: 295
+        x: 484
+        y: 262
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_5
       rect:
         serializedVersion: 2
-        x: 625
-        y: 295
-        width: 125
-        height: 295
+        x: 605
+        y: 262
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,48 +126,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 125
-        height: 295
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_7
       rect:
         serializedVersion: 2
-        x: 125
+        x: 121
         y: 0
-        width: 125
-        height: 295
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_8
       rect:
         serializedVersion: 2
-        x: 250
+        x: 242
         y: 0
-        width: 125
-        height: 295
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM4_BOOKSHELF_9
       rect:
         serializedVersion: 2
-        x: 375
+        x: 363
         y: 0
-        width: 125
-        height: 295
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM4_BOOKSHELF_10
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 125
-        height: 295
+        width: 121
+        height: 262
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

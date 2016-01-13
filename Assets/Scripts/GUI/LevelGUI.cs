@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using UnityEngine.UI;
 using System;
 using System.Collections.Specialized;
-using UnityEngine;
 public class LevelGUI : MonoBehaviour
 {
     private GenericObject selectedObject = null;
@@ -23,17 +22,24 @@ public class LevelGUI : MonoBehaviour
 
     private GameObject[] colonyActiveBoostersIcons = null;
 
+    private GameObject availableTermitesPanel = null;
+    private Text termitesCounter = null;
+
+    private GameObject mapDisplay = null;
+
 	private int gameplayTime = 0;
 
     void Awake()
     {
+        mapDisplay = GameObject.Find("MapDisplay").gameObject;
+
         gameAreaPanel = transform.Find("GameAreaPanel").gameObject;
         bottomBarPanel = transform.Find("BottomBarPanel").gameObject;
         gamePausedPanel = transform.Find("GamePausedPanel").gameObject;
 
-        noInformationPanel = bottomBarPanel.transform.Find("NoInformationPanel").gameObject;
-        colonyInformationPanel = bottomBarPanel.transform.Find("ColonyInformationPanel").gameObject;
-        objectInformationPanel = bottomBarPanel.transform.Find("ObjectInformationPanel").gameObject;
+        noInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/NoInformationPanel").gameObject;
+        colonyInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/ColonyInformationPanel").gameObject;
+        objectInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/ObjectInformationPanel").gameObject;
 
         colonyActiveBoostersIcons = new GameObject[6];
         colonyActiveBoostersIcons[0] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/IronImg").gameObject;
@@ -50,7 +56,17 @@ public class LevelGUI : MonoBehaviour
         gameAreaPanel.SetActive(true);
         bottomBarPanel.SetActive(true);
 
-        StartCoroutine(refreshInfo());
+        #if UNITY_IPHONE || UNITY_ANDROID
+            bottomBarPanel.transform.Find("AvailableTermitesPanelMobile").gameObject.SetActive(true);
+            bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop").gameObject.SetActive(false);
+            availableTermitesPanel = bottomBarPanel.transform.Find("AvailableTermitesPanelMobile").gameObject;
+            termitesCounter = bottomBarPanel.transform.Find("AvailableTermitesPanelMobile/Number").GetComponent<Text>();
+        #else
+            bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop").gameObject.SetActive(true);
+            bottomBarPanel.transform.Find("AvailableTermitesPanelMobile").gameObject.SetActive(false);
+            availableTermitesPanel = bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop").gameObject;
+            termitesCounter = bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop/Number").GetComponent<Text>();
+    #endif
     }
 
     public float getBottomBarBottomCoord()
@@ -99,9 +115,19 @@ public class LevelGUI : MonoBehaviour
     {
         while (true)
         {
-            this.timer();
-            yield return new WaitForSeconds(1F);
+            timerTick();
+            yield return new WaitForSeconds(0.5f);
         }
+    }
+    public void enableRefreshTimer()
+    {
+        StartCoroutine(refreshInfo());
+    }
+
+    private void timerTick()
+    {
+        this.timer();
+        updateTermitesCounter();
     }
 
     public void objectSelected(GenericObject selectedObject)
@@ -214,23 +240,32 @@ public class LevelGUI : MonoBehaviour
 
     public Colony instantiateColony()
     {
+        GameObject miniMapCursor = Instantiate(Resources.Load("Circle", typeof(GameObject))) as GameObject;
+        miniMapCursor.transform.SetParent(GameObject.Find("/MapsCanvas/Map").transform);
+        miniMapCursor.transform.localScale = new Vector3(1, 1, 1);
+        miniMapCursor.layer = LayerMask.NameToLayer("Map");
+
         GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
-        colCursor.transform.parent = gameAreaPanel.transform;
+        colCursor.transform.SetParent(gameAreaPanel.transform);
         Colony colony = colCursor.GetComponent<Colony>();
         colCursor.GetComponent<Button>().onClick.AddListener(() => colonySelected(colony));
+        colony.setMiniMapCursor(miniMapCursor);
+
         return colony;
+
+
     }
 
     public StartAttackCursor instantiateStartAttackCursor()
     {
         GameObject startAttackCursor = Instantiate(Resources.Load("Prefabs/GUI/StartAttackCursor", typeof(GameObject))) as GameObject;
-        startAttackCursor.transform.parent = gameAreaPanel.transform;
+        startAttackCursor.transform.SetParent(gameAreaPanel.transform);
         return startAttackCursor.GetComponent<StartAttackCursor>();
     }
 
     public void initRoomIndicator(Rect miniMapRoomIndicatorRect, Rect mapRoomIndicatorRect, int roomNumber)
     {
-        GameObject miniMapRoomIndicator = Instantiate(Resources.Load("Prefabs/GUI/RoomIndicator", typeof(GameObject))) as GameObject;
+        /*GameObject miniMapRoomIndicator = Instantiate(Resources.Load("Prefabs/GUI/RoomIndicator", typeof(GameObject))) as GameObject;
         miniMapRoomIndicator.name = "RoomIndicator" + roomNumber;
         miniMapRoomIndicator.transform.SetParent(transform.Find("MiniMapPanel/MiniMap").transform);
         miniMapRoomIndicator.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
@@ -247,7 +282,7 @@ public class LevelGUI : MonoBehaviour
         mapRoomIndicator.GetComponent<RectTransform>().sizeDelta = mapRoomIndicatorRect.size;
         mapRoomIndicator.GetComponent<RectTransform>().localPosition = mapRoomIndicatorRect.position;
         mapRoomIndicator.GetComponent<Image>().fillAmount = (float)UnityEngine.Random.Range(2, 8) / 10;
-
+        */
         //CREZIONE COORDINATE
        /* Vector2 pos = transform.Find("MiniMapPanel/MiniMap/RoomIndicator (" + roomNumber + ")").GetComponent<RectTransform>().localPosition;
         Vector2 dim = transform.Find("MiniMapPanel/MiniMap/RoomIndicator (" + roomNumber + ")").GetComponent<RectTransform>().rect.size;
@@ -260,13 +295,42 @@ public class LevelGUI : MonoBehaviour
         gameAreaPanel.SetActive(!gamePaused);
         bottomBarPanel.SetActive(!gamePaused);
         gamePausedPanel.SetActive(gamePaused);
+        mapDisplay.GetComponent<MeshRenderer>().materials[0].color = new Color(1, 1, 1, gamePaused?1:0);
         if (gamePaused)
         {
-            foreach(Room r in GameManager.getCurrentLevel().rooms)
+            foreach(Room r in GameManager.getCurrentLevel().getRooms())
             {
                 //GameObject o = gamePausedPanel.transform.Find("MiniMapPanel")
             }
         }
+    }
+
+    private void updateTermitesCounter()
+    {
+        termitesCounter.text = GameManager.getCurrentLevel().getAvailableTermites() + "";
+    }
+
+    public void changedGamePhase()
+    {
+        if (GameManager.getIsInitialPhase())
+        {
+            availableTermitesPanel.transform.Find("Title").GetComponent<Text>().text = "AVAILABLE";
+            bottomBarPanel.transform.Find("FirstPhasePanel").gameObject.SetActive(true);
+            bottomBarPanel.transform.Find("SecondPhasePanel").gameObject.SetActive(false);
+        }
+        else
+        {
+            availableTermitesPanel.transform.Find("Title").GetComponent<Text>().text = "IN COMBAT";
+            bottomBarPanel.transform.Find("FirstPhasePanel").gameObject.SetActive(false);
+            bottomBarPanel.transform.Find("SecondPhasePanel").gameObject.SetActive(true);
+        }
+            
+    }
+
+    public bool isGameAreaClicked(Vector3 mousePos)
+    {
+        RectTransform tr1 = bottomBarPanel.transform.Find("Anchor1").GetComponent<RectTransform>();
+        return tr1.transform.position.y - mousePos.y < 0;
     }
     
 }

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 888f8424d3ad2594da4eabf55ff67c3e
-timeCreated: 1450041732
+timeCreated: 1452510078
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -37,7 +37,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -64,7 +64,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -72,59 +72,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 850
-        width: 344
-        height: 425
+        y: 842
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_1
       rect:
         serializedVersion: 2
-        x: 344
-        y: 850
-        width: 344
-        height: 425
+        x: 340
+        y: 842
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_2
       rect:
         serializedVersion: 2
-        x: 688
-        y: 850
-        width: 344
-        height: 425
+        x: 680
+        y: 842
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_3
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 850
-        width: 344
-        height: 425
+        x: 1020
+        y: 842
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_4
       rect:
         serializedVersion: 2
-        x: 1376
-        y: 850
-        width: 344
-        height: 425
+        x: 1360
+        y: 842
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_5
       rect:
         serializedVersion: 2
-        x: 1720
-        y: 850
-        width: 344
-        height: 425
+        x: 1700
+        y: 842
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,59 +132,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 425
-        width: 344
-        height: 425
+        y: 421
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_7
       rect:
         serializedVersion: 2
-        x: 344
-        y: 425
-        width: 344
-        height: 425
+        x: 340
+        y: 421
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_8
       rect:
         serializedVersion: 2
-        x: 688
-        y: 425
-        width: 344
-        height: 425
+        x: 680
+        y: 421
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_9
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 425
-        width: 344
-        height: 425
+        x: 1020
+        y: 421
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_10
       rect:
         serializedVersion: 2
-        x: 1376
-        y: 425
-        width: 344
-        height: 425
+        x: 1360
+        y: 421
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_11
       rect:
         serializedVersion: 2
-        x: 1720
-        y: 425
-        width: 344
-        height: 425
+        x: 1700
+        y: 421
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,58 +193,38 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 344
-        height: 425
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_13
       rect:
         serializedVersion: 2
-        x: 344
+        x: 340
         y: 0
-        width: 344
-        height: 425
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_14
       rect:
         serializedVersion: 2
-        x: 688
+        x: 680
         y: 0
-        width: 344
-        height: 425
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_CLOSET-B_15
       rect:
         serializedVersion: 2
-        x: 1032
+        x: 1020
         y: 0
-        width: 344
-        height: 425
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_CLOSET-B_16
-      rect:
-        serializedVersion: 2
-        x: 1376
-        y: 0
-        width: 344
-        height: 425
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_CLOSET-B_17
-      rect:
-        serializedVersion: 2
-        x: 1720
-        y: 0
-        width: 344
-        height: 425
+        width: 340
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

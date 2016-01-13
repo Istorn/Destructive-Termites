@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d00df2cf1aca5f74097fbcbc89235073
-timeCreated: 1450048283
+timeCreated: 1452510088
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -26,7 +26,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -53,7 +53,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -61,69 +61,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 317
-        width: 194
-        height: 317
+        y: 0
+        width: 191
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_POSTER3_1
       rect:
         serializedVersion: 2
-        x: 194
-        y: 317
-        width: 194
-        height: 317
+        x: 191
+        y: 0
+        width: 191
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_POSTER3_2
       rect:
         serializedVersion: 2
-        x: 388
-        y: 317
-        width: 194
-        height: 317
+        x: 382
+        y: 0
+        width: 191
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_POSTER3_3
       rect:
         serializedVersion: 2
-        x: 582
-        y: 317
-        width: 194
-        height: 317
+        x: 573
+        y: 0
+        width: 191
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_POSTER3_4
       rect:
         serializedVersion: 2
-        x: 776
-        y: 317
-        width: 194
-        height: 317
+        x: 764
+        y: 0
+        width: 191
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F2_ROOM3_POSTER3_5
       rect:
         serializedVersion: 2
-        x: 970
-        y: 317
-        width: 194
-        height: 317
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: L1_F2_ROOM3_POSTER3_6
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 955
         y: 0
-        width: 194
-        height: 317
+        width: 191
+        height: 70
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

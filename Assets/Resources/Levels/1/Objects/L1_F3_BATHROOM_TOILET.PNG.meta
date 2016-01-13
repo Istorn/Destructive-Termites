@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6c6d98c70ec5e774786e76a6e254bdb4
-timeCreated: 1449928703
+timeCreated: 1452510171
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,7 +27,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: .25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
@@ -54,7 +54,7 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
-  textureType: 8
+  textureType: 5
   buildTargetSettings: []
   spriteSheet:
     sprites:
@@ -62,59 +62,59 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 129
-        width: 114
-        height: 129
+        y: 120
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_TOILET_1
       rect:
         serializedVersion: 2
-        x: 114
-        y: 129
-        width: 114
-        height: 129
+        x: 110
+        y: 120
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_TOILET_2
       rect:
         serializedVersion: 2
-        x: 228
-        y: 129
-        width: 114
-        height: 129
+        x: 220
+        y: 120
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_TOILET_3
       rect:
         serializedVersion: 2
-        x: 342
-        y: 129
-        width: 114
-        height: 129
+        x: 330
+        y: 120
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_TOILET_4
       rect:
         serializedVersion: 2
-        x: 456
-        y: 129
-        width: 114
-        height: 129
+        x: 440
+        y: 120
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_TOILET_5
       rect:
         serializedVersion: 2
-        x: 570
-        y: 129
-        width: 114
-        height: 129
+        x: 550
+        y: 120
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -123,18 +123,18 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 114
-        height: 129
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: L1_F3_BATHROOM_TOILET_7
       rect:
         serializedVersion: 2
-        x: 114
+        x: 110
         y: 0
-        width: 114
-        height: 129
+        width: 110
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
