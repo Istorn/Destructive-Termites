@@ -12,7 +12,7 @@ public class Frog : LiveObject {
         movementPath = new ConcurrentQueue<Graph.Node>();
 		setMovementCoroutine();
 		setAttackCoroutine();
-        animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/Frog/FrogAnimController"));
+        animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/FrogAnimController"));
     }
 
 	protected override void setMovementCoroutine(){

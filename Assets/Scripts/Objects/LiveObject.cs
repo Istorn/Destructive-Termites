@@ -7,7 +7,7 @@ public class LiveObject : GenericObject {
     protected Animator animator;
     protected bool isMoving = false;
     protected bool isAttacking = false;
-    public enum atkType {Spray = 1, Gas = 2, Bomb = 3, Gun = 4, Eat = 5, Spell = 6} ;
+    public enum atkType {Spray = 1, Gas = 2, Bomb = 3, Gun = 4, Eat = 5, Spell = 6};
     protected IEnumerator movementCoroutine = null;
     protected IEnumerator attackCoroutine = null;
 	protected string threatType = null;

@@ -195,19 +195,19 @@ public class Level : MonoBehaviour {
 	
     private void initWizards()
     {
-        /*GameObject wizard = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
+        GameObject wizard = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
         wizard.name = "Wizard0";
-        Wizard wizardScript = wizard.AddComponent<wizard>(); // "/Level.cs(200,51): error CS0246: The type or namespace name `wizard' could not be found. Are you missing a using directive or an assembly reference? "
+        Wizard wizardScript = wizard.AddComponent<Wizard>(); // "/Level.cs(200,51): error CS0246: The type or namespace name `wizard' could not be found. Are you missing a using directive or an assembly reference? "
         wizardScript.setId(-1);
         wizardScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
         wizardScript.actualNodeNumber = 42;
-        wizardScript.setName("Chair", "");*/
+        wizardScript.setName("Chair", "");
     }
 
 	private void initThreats(){
+		initWizards();
 		initHumans();
 		initFrogs();
-		// initWizards();
 	}
 	
     private void initObjects()
