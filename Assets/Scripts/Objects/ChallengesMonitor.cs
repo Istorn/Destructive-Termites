@@ -89,7 +89,7 @@ public class ChallengesMonitor : MonoBehaviour {
 
                 List<Booster> boost = null;
                 boost.Add(new IronDenture());
-
+                boost.Add(new Mushroom());
                 chl.setDescription();
                 chl.setChallenge(i + 12, 0, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
                 this.challengesInGame.Add(chl);
@@ -113,6 +113,7 @@ public class ChallengesMonitor : MonoBehaviour {
 
                 List<Booster> boost = null;
                 boost.Add(new Mushroom());
+                boost.Add(new IronDenture());
 
                 chl.setDescription();
                 chl.setChallenge(i + 15, 180, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
@@ -126,7 +127,7 @@ public class ChallengesMonitor : MonoBehaviour {
 
                 List<Booster> boost = null;
                 boost.Add(new IronDenture());
-
+                boost.Add(new Mushroom());
                 chl.setDescription();
                 chl.setChallenge(i + 12, 360, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
                 this.challengesInGame.Add(chl);
@@ -137,7 +138,7 @@ public class ChallengesMonitor : MonoBehaviour {
 
              boost2 = null;
             boost2.Add(new IronDenture());
-
+            boost.Add(new Mushroom());
             chl2.setDescription();
             chl2.setChallenge(14, 240, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
             this.challengesInGame.Add(chl2);
