@@ -19,15 +19,15 @@ public class EatableObject : GenericObject {
     protected Sprite[] dustSprites;
     private int currentDustSprite = -2;
 
-    protected GameObject obj = null;
+    protected GameObject selector = null;
     protected GameObject dust = null;
 
     protected override void Awake()
     {
         base.Awake();
 
-        obj = transform.Find("Object").gameObject;
-        obj.GetComponent<EatableObjectSelector>().setObj(this);
+        selector = transform.Find("Selector").gameObject;
+        selector.GetComponent<EatableObjectSelector>().setObj(this);
 
         obj.GetComponent<PolygonCollider2D>().tag = Costants.TAG_OBJ_COLLIDER_PHYSICS;
 
@@ -144,31 +144,6 @@ public class EatableObject : GenericObject {
            // if (UnityEngine.Random.Range(0, 11) < 3)
 			//    dropABooster();
             return false;
-        }
-    }
-
-    public override void select(bool isForAttack)
-    {
-        if (isForAttack)
-            obj.GetComponent<SpriteRenderer>().color = new Color(0.15f, 0.96f, 0.17f, 1);
-        else
-        {
-            actualColor = new Color(1, 0, 0, 1);
-            obj.GetComponent<SpriteRenderer>().color = actualColor;
-        }
-         
-    }
-
-    public override void deselect(bool isForAttack)
-    {
-        if (isForAttack)
-        {
-            obj.GetComponent<SpriteRenderer>().color = actualColor;
-        }
-        else
-        {
-            actualColor = defaultColor;
-            obj.GetComponent<SpriteRenderer>().color = actualColor;
         }
     }
 

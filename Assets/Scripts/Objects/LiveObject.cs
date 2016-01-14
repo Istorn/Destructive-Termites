@@ -23,7 +23,7 @@ public class LiveObject : GenericObject {
         base.Awake();
         this.model = Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
-		animator = selector.AddComponent<Animator>();
+		animator = obj.AddComponent<Animator>();
     }
 
     protected virtual void move(){}
@@ -86,7 +86,7 @@ public class LiveObject : GenericObject {
         Graph.Node start = movementPath.Dequeue();
         Graph.Node end = movementPath.Peek();
         actualNodeNumber = end.number;
-        selector.GetComponent<SpriteRenderer>().sortingOrder = start.getZIndex(end);
+        obj.GetComponent<SpriteRenderer>().sortingOrder = start.getZIndex(end);
         int sign = System.Math.Sign(end.coordinates.x - start.coordinates.x) >= 0? 1: -1;
         transform.localScale = new Vector3(System.Math.Abs(transform.localScale.x) * sign, transform.localScale.y, transform.localScale.z);
         yield return StartCoroutine(MoveObject(transform, start, end, objectSpeed));
@@ -172,7 +172,7 @@ public class LiveObject : GenericObject {
     public override void setPosition(Vector3 coordinates, int z_index)
     {
         gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index / 10);
-        selector.GetComponent<SpriteRenderer>().sortingOrder = z_index;
+        obj.GetComponent<SpriteRenderer>().sortingOrder = z_index;
 
     }
 

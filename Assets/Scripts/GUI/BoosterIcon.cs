@@ -60,7 +60,7 @@ public class BoosterIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
             if (hit.collider != null)
             {
-                GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
+                GenericObject obj = hit.collider.transform.parent.GetComponent<GenericObject>();
                 if (obj.getAttacker())
                 {
                     if (obj.getAttacker().applyBooster(booster))

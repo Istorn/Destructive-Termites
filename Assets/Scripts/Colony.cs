@@ -50,7 +50,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (lost < 5)
             lost = 5;
         termites -= lost;
-        if (termites == 0)
+        if (termites <= 0)
         {
             target.setAttacker(null);
             Destroy(gameObject);
@@ -103,8 +103,8 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             this.target.setAttacker(null);
         this.target = target;
 
-        if (!this.target.getModel().Equals(GenericObject.Model.Live))
-            GameManager.getCurrentLevel().alertObjectsQueue.Enqueue(this.target);
+        /*if (!this.target.getModel().Equals(GenericObject.Model.Live))
+            GameManager.getCurrentLevel().alertObjectsQueue.Enqueue(this.target);*/
 
         /*oldPosition = target.gameObject.transform.position;
         oldRoom = target.getRoom();*/
@@ -113,10 +113,10 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         
         if (col)
         {
-            col.addTermites(termites);
-            foreach (Booster b in boosters)
-                col.applyBooster(b);
-            Destroy(gameObject);
+            addTermites(col.getTermites());
+            foreach (Booster b in col.getBoosters())
+                applyBooster(b);
+            Destroy(col.gameObject);
         }
         
         this.target.setAttacker(this);
@@ -130,6 +130,11 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             StopCoroutine(attackTargetCorountine);
         attackTargetCorountine = attackTarget();
         StartCoroutine(attackTargetCorountine);*/
+    }
+
+    public List<Booster> getBoosters()
+    {
+        return boosters;
     }
 
     public bool applyBooster(Booster booster)
@@ -146,6 +151,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             newBooster.owner = this;*/
             boosters.Add(newBooster);
         }
+
         GameObject indicatorsBackground = gameObject.transform.Find("IndicatorsBackground").gameObject;
         float xWidth = indicatorsBackground.GetComponent<RectTransform>().rect.width;
         float xInc = xWidth / boosters.Count;
@@ -171,7 +177,6 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             image.enabled = true;
             indicator.transform.localPosition = new Vector3(xPos, yPos, 0);
         }
-
         return true;
     }
 
@@ -320,15 +325,15 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             if (obj)
             {
                 if (previousSelected)
-                    previousSelected.deselect(true);
+                    previousSelected.deselect(ObjectSelection.Model.ColonyTarget);
                 previousSelected = obj;
-                obj.select(true);
+                obj.select(ObjectSelection.Model.ColonyTarget);
             }
         }
         else
             if (previousSelected)
             {
-                previousSelected.deselect(true);
+                previousSelected.deselect(ObjectSelection.Model.ColonyTarget);
                 previousSelected = null;
             }
     }
@@ -363,4 +368,5 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         
         startDrag = true;
     }
+
 }

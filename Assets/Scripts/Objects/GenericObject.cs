@@ -31,7 +31,7 @@ public class GenericObject : MonoBehaviour {
 
     private Room room = null;
 
-    protected GameObject selector = null;
+    protected GameObject obj = null;
 
     protected Color actualColor;
     protected Color defaultColor;
@@ -39,8 +39,8 @@ public class GenericObject : MonoBehaviour {
     protected virtual void Awake()
     {
         attacker = null;
-        selector = transform.Find("Selector").gameObject;
-        selector.GetComponent<EatableObjectSelector>().setObj(this);
+        obj = transform.Find("Object").gameObject;
+        obj.GetComponent<EatableObjectSelector>().setObj(this);
     }
 
     public void setRoom(Room room)
@@ -97,19 +97,36 @@ public class GenericObject : MonoBehaviour {
         return attacker;
     }
 
-    public virtual void select(bool isForAttack)
+    public void select(ObjectSelection.Model objectSelectionModel)
     {
-       /* Color transparentColor = new Color(1, 0, 0, 1);//new Color(color.r, color.g, color.b, 0.5f);
-        GetComponent<Renderer>().material.color = transparentColor;*/
+        switch (objectSelectionModel)
+        {
+            case ObjectSelection.Model.ColonyTarget:
+                obj.GetComponent<SpriteRenderer>().color = new Color(0.15f, 0.96f, 0.17f, 1);
+                break;
+            case ObjectSelection.Model.BoosterApplication:
+                obj.GetComponent<SpriteRenderer>().color = new Color(0.79f, 0.24f, 1f, 1);
+                break;
+            case ObjectSelection.Model.InfoDisplay:
+                actualColor = new Color(1, 0, 0, 1);
+                obj.GetComponent<SpriteRenderer>().color = actualColor;
+                break;
+        }
     }
 
-    public virtual void deselect(bool isForAttack)
+    public void deselect(ObjectSelection.Model objectSelectionModel)
     {
-       /* //Color transparentColor = new Color(color.r, color.g, color.b, 1f);
-        GetComponent<Renderer>().material.color = color;*/
+        switch (objectSelectionModel)
+        {
+            case ObjectSelection.Model.InfoDisplay:
+                actualColor = defaultColor;
+                obj.GetComponent<SpriteRenderer>().color = actualColor;
+                break;
+            default:
+                obj.GetComponent<SpriteRenderer>().color = actualColor;
+                break;
+        }
     }
-
-    
 
     public string getCategory()
     {
