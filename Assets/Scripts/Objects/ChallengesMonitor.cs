@@ -138,7 +138,7 @@ public class ChallengesMonitor : MonoBehaviour {
 
              boost2 = null;
             boost2.Add(new IronDenture());
-            boost.Add(new Mushroom());
+            boost2.Add(new Mushroom());
             chl2.setDescription();
             chl2.setChallenge(14, 240, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
             this.challengesInGame.Add(chl2);
