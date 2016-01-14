@@ -1,0 +1,727 @@
+fileFormatVersion: 2
+guid: e72db931fb65df346a45c724ed715421
+timeCreated: 1452742168
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: 13_oli_bomb-prepare-attack_0
+    21300002: 13_oli_bomb-prepare-attack_1
+    21300004: 13_oli_bomb-prepare-attack_2
+    21300006: 13_oli_bomb-prepare-attack_3
+    21300008: 13_oli_bomb-prepare-attack_4
+    21300010: 13_oli_bomb-prepare-attack_5
+    21300012: 13_oli_bomb-prepare-attack_6
+    21300014: 13_oli_bomb-prepare-attack_7
+    21300016: 13_oli_bomb-prepare-attack_8
+    21300018: 13_oli_bomb-prepare-attack_9
+    21300020: 13_oli_bomb-prepare-attack_10
+    21300022: 13_oli_bomb-prepare-attack_11
+    21300024: 13_oli_bomb-prepare-attack_12
+    21300026: 13_oli_bomb-prepare-attack_13
+    21300028: 13_oli_bomb-prepare-attack_14
+    21300030: 13_oli_bomb-prepare-attack_15
+    21300032: 13_oli_bomb-prepare-attack_16
+    21300034: 13_oli_bomb-prepare-attack_17
+    21300036: 13_oli_bomb-prepare-attack_18
+    21300038: 13_oli_bomb-prepare-attack_19
+    21300040: 13_oli_bomb-prepare-attack_20
+    21300042: 13_oli_bomb-prepare-attack_21
+    21300044: 13_oli_bomb-prepare-attack_22
+    21300046: 13_oli_bomb-prepare-attack_23
+    21300048: 13_oli_bomb-prepare-attack_24
+    21300050: 13_oli_bomb-prepare-attack_25
+    21300052: 13_oli_bomb-prepare-attack_26
+    21300054: 13_oli_bomb-prepare-attack_27
+    21300056: 13_oli_bomb-prepare-attack_28
+    21300058: 13_oli_bomb-prepare-attack_29
+    21300060: 13_oli_bomb-prepare-attack_30
+    21300062: 13_oli_bomb-prepare-attack_31
+    21300064: 13_oli_bomb-prepare-attack_32
+    21300066: 13_oli_bomb-prepare-attack_33
+    21300068: 13_oli_bomb-prepare-attack_34
+    21300070: 13_oli_bomb-prepare-attack_35
+    21300072: 13_oli_bomb-prepare-attack_36
+    21300074: 13_oli_bomb-prepare-attack_37
+    21300076: 13_oli_bomb-prepare-attack_38
+    21300078: 13_oli_bomb-prepare-attack_39
+    21300080: 13_oli_bomb-prepare-attack_40
+    21300082: 13_oli_bomb-prepare-attack_41
+    21300084: 13_oli_bomb-prepare-attack_42
+    21300086: 13_oli_bomb-prepare-attack_43
+    21300088: 13_oli_bomb-prepare-attack_44
+    21300090: 13_oli_bomb-prepare-attack_45
+    21300092: 13_oli_bomb-prepare-attack_46
+    21300094: 13_oli_bomb-prepare-attack_47
+    21300096: 13_oli_bomb-prepare-attack_48
+    21300098: 13_oli_bomb-prepare-attack_49
+    21300100: 13_oli_bomb-prepare-attack_50
+    21300102: 13_oli_bomb-prepare-attack_51
+    21300104: 13_oli_bomb-prepare-attack_52
+    21300106: 13_oli_bomb-prepare-attack_53
+    21300108: 13_oli_bomb-prepare-attack_54
+    21300110: 13_oli_bomb-prepare-attack_55
+    21300112: 13_oli_bomb-prepare-attack_56
+    21300114: 13_oli_bomb-prepare-attack_57
+    21300116: 13_oli_bomb-prepare-attack_58
+    21300118: 13_oli_bomb-prepare-attack_59
+    21300120: 13_oli_bomb-prepare-attack_60
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: 13_oli_bomb-prepare-attack_0
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1607
+        width: 98
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_1
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1602
+        width: 96
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_2
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1605
+        width: 99
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_3
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 1605
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_4
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1605
+        width: 125
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_5
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1605
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_6
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 1605
+        width: 127
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_7
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 1600
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_8
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 1602
+        width: 126
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_9
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1281
+        width: 122
+        height: 262
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_10
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1285
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_11
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 1285
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_12
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1290
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_13
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1281
+        width: 121
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_14
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 1285
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_15
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 1285
+        width: 121
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_16
+      rect:
+        serializedVersion: 2
+        x: 670
+        y: 1285
+        width: 124
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_17
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 1285
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_18
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 1288
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_19
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1286
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_20
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 1285
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_21
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 1285
+        width: 127
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_22
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1285
+        width: 128
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_23
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 1287
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_24
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 965
+        width: 129
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_25
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 965
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_26
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 969
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_27
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 965
+        width: 129
+        height: 245
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_28
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 966
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_29
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 960
+        width: 123
+        height: 253
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_30
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 969
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_31
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 970
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_32
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 968
+        width: 10
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_33
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 965
+        width: 121
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_34
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 963
+        width: 120
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_35
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 969
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_36
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 965
+        width: 120
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_37
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 969
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_38
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 651
+        width: 120
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_39
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 645
+        width: 136
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_40
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 649
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_41
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 645
+        width: 120
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_42
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 645
+        width: 120
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_43
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 645
+        width: 133
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_44
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 645
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_45
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 645
+        width: 137
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_46
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 325
+        width: 140
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_47
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 326
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_48
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 323
+        width: 175
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_49
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 323
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_50
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 325
+        width: 182
+        height: 248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_51
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 325
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_52
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 323
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_53
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 324
+        width: 175
+        height: 247
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_54
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 320
+        width: 172
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_55
+      rect:
+        serializedVersion: 2
+        x: 1027
+        y: 320
+        width: 176
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_56
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 329
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_57
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 5
+        width: 177
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_58
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 9
+        width: 167
+        height: 279
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_59
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 5
+        width: 171
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: 13_oli_bomb-prepare-attack_60
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 5
+        width: 168
+        height: 283
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

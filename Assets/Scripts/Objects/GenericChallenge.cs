@@ -32,7 +32,7 @@ public class GenericChallenge : MonoBehaviour
     public TypeChallenge ChallengeType = 0;
     private int id = 0;
     private int time = 0;
-    private String Description = "";
+    public String Description = "";
     private Boolean completed = false;
     private Boolean active = false;
     private List<Booster> rewards = null;

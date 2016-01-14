@@ -1,0 +1,419 @@
+fileFormatVersion: 2
+guid: 765996613439ec049b20aad02849a21b
+timeCreated: 1452742715
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: gunAttack_0
+    21300002: gunAttack_1
+    21300004: gunAttack_2
+    21300006: gunAttack_3
+    21300008: gunAttack_4
+    21300010: gunAttack_5
+    21300012: gunAttack_6
+    21300014: gunAttack_7
+    21300016: gunAttack_8
+    21300018: gunAttack_9
+    21300020: gunAttack_10
+    21300022: gunAttack_11
+    21300024: gunAttack_12
+    21300026: gunAttack_13
+    21300028: gunAttack_14
+    21300030: gunAttack_15
+    21300032: gunAttack_16
+    21300034: gunAttack_17
+    21300036: gunAttack_18
+    21300038: gunAttack_19
+    21300040: gunAttack_20
+    21300042: gunAttack_21
+    21300044: gunAttack_22
+    21300046: gunAttack_23
+    21300048: gunAttack_24
+    21300050: gunAttack_25
+    21300052: gunAttack_26
+    21300054: gunAttack_27
+    21300056: gunAttack_28
+    21300058: gunAttack_29
+    21300060: gunAttack_30
+    21300062: gunAttack_31
+    21300064: gunAttack_32
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: gunAttack_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 965
+        width: 133
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_1
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 964
+        width: 133
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_2
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 964
+        width: 134
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_3
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 966
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_4
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 964
+        width: 132
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_5
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 966
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_6
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 966
+        width: 132
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_7
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 964
+        width: 128
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_8
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 966
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_9
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 640
+        width: 128
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_10
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 646
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_11
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 640
+        width: 132
+        height: 272
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_12
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 646
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_13
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 643
+        width: 132
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_14
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 648
+        width: 133
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_15
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 646
+        width: 135
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_16
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 640
+        width: 137
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_17
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 320
+        width: 135
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_18
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 324
+        width: 134
+        height: 263
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_19
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 324
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_20
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 327
+        width: 123
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_21
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 320
+        width: 133
+        height: 258
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_22
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 322
+        width: 132
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_23
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 326
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_24
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 320
+        width: 133
+        height: 251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_25
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 325
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_26
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 5
+        width: 148
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_27
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 6
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_28
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 0
+        width: 139
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_29
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 4
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_30
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 6
+        width: 143
+        height: 264
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_31
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 8
+        width: 143
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gunAttack_32
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 0
+        width: 143
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

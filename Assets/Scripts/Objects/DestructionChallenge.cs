@@ -43,13 +43,13 @@ public class DestructionChallenge : GenericChallenge {
         
     }
     //GENERIC SETTERS AND GETTERS
-    public void setDestruction(TypeDestr destructionType)
+    public void setDestruction(int destructionType)
     {
-        this.typeDestruction = destructionType;
+        this.typeDestruction = (TypeDestr)destructionType;
     }
-    public void setObjectType(Model objectType)
+    public void setObjectType(int objectType)
     {
-        this.modelObj = objectType;
+        this.modelObj =(Model) objectType;
     }
     public void setNumOfObj(int numOfObjectTodestroy)
     {
@@ -71,9 +71,31 @@ public class DestructionChallenge : GenericChallenge {
     {
         return this.remainedObj;
     }
+
     public void increasesRemainedObj()
     {
         this.remainedObj++;
+    }
+   public void setDescription()
+    {
+        String Desc = "";
+        //KIND OF DESTRUCTION
+        switch ((int)getTypeOfDestruction())
+        {
+            case 0:
+                {
+                    Desc += "DESTROY A "+((int)this.getTypeOfObject())+"OBJECT";
+                }; break;
+            case 1:
+                {
+                    Desc += "DESTROY "+this.getNumOfObj()+" OBJECTS";
+                }; break;
+            case 2:
+                {
+                    Desc += "DESTROY " + this.getNumOfObj()+" "+((int)this.getTypeOfObject()) + " OBJECTS";
+                }; break;
+        }
+        this.Description = Desc;
     }
 
 }
