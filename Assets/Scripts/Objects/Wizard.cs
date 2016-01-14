@@ -13,14 +13,19 @@ public class Wizard : LiveObject {
 		setMovementCoroutine();
 		setAttackCoroutine();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/WizardAnimController"));
-    }
+		BoxCollider2D b = GetComponent<BoxCollider2D>();
+		if(b != null){
+			b.size = new Vector2(0.35f, 1.5f);
+			b.offset = new Vector2(-0.1f, 0.2f);
+		}
+	}
 
 	protected override void setMovementCoroutine(){
         movementCoroutine = movement(atkAnimStr,walkAnimStr,Costants.HUMAN_WAIT_TIME,Costants.HUMAN_SPEED);
 	}
 	
 	protected override void setAttackCoroutine(){		
-        attackCoroutine = attackColony(6);
+        attackCoroutine = attackColony(6); // can only cast a spell (=6)
 	}
 	
     protected override void move()

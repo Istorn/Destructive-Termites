@@ -13,14 +13,19 @@ public class Frog : LiveObject {
 		setMovementCoroutine();
 		setAttackCoroutine();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/FrogAnimController"));
-    }
+		BoxCollider2D b = GetComponent<BoxCollider2D>();
+		if(b != null){
+			b.size = new Vector2(1f, 0.7f);
+			b.offset = new Vector2(0.18f, -0.86f);
+		}
+	}
 
 	protected override void setMovementCoroutine(){
         movementCoroutine = movement(atkAnimStr,walkAnimStr,Costants.HUMAN_WAIT_TIME,Costants.HUMAN_SPEED);
 	}
 	
 	protected override void setAttackCoroutine(){		
-        attackCoroutine = attackColony(5);
+        attackCoroutine = attackColony(5); // can only eat termites (=5)
 	}
 	
     protected override void move()
