@@ -20,7 +20,7 @@ public class Frog : LiveObject {
 	}
 	
 	protected override void setAttackCoroutine(){		
-        attackCoroutine = attackColony();
+        attackCoroutine = attackColony(5);
 	}
 	
     protected override void move()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Wizard :LiveObject {
+public class Wizard : LiveObject {
 
 	private string atkAnimStr = "isCastingASpell";
 	private string walkAnimStr = "isWalking";
@@ -12,7 +12,7 @@ public class Wizard :LiveObject {
         movementPath = new ConcurrentQueue<Graph.Node>();
 		setMovementCoroutine();
 		setAttackCoroutine();
-        animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/OliAnimatorController"));
+        animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/WizardAnimController"));
     }
 
 	protected override void setMovementCoroutine(){
@@ -20,7 +20,7 @@ public class Wizard :LiveObject {
 	}
 	
 	protected override void setAttackCoroutine(){		
-        attackCoroutine = attackColony();
+        attackCoroutine = attackColony(6);
 	}
 	
     protected override void move()
