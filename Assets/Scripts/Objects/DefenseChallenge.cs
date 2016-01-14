@@ -6,13 +6,14 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 
-public class DefenseChallenge : GenericChallenge {
+public class DefenseChallenge : GenericChallenge
+{
     private int menaceId = 0;
     private String menaceText = "";
     private LiveObject menace = null;
     protected override void Awake()
     {
-        this.ChallengeType = (TypeChallenge) 1;
+        this.ChallengeType = (TypeChallenge)1;
 
     }
     public void setMenace(LiveObject menaceToSet)
@@ -31,10 +32,18 @@ public class DefenseChallenge : GenericChallenge {
         {
             this.menaceText = "FROG";
         }
-        
+
+    }
+    public String getMenaceText()
+    {
+        return this.menaceText;
     }
     public Type getTypeOfMenace()
     {
         return this.menace.GetType();
+    }
+    public void setDescription()
+    {
+        this.Description = "DEFENSE A COLONY FROM A " + this.getMenaceText();
     }
 }

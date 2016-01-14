@@ -14,6 +14,135 @@ public class ChallengesMonitor : MonoBehaviour {
         this.challengesInGame.Add(challengeToAdd);
 
     }
+    //METHOD TO GET ALL THE CHALLENGES
+    public List<GenericChallenge> getChallenges()
+    {
+        return this.challengesInGame;
+    }
+    //METHOD TO GENERATE 20 CHALLENGES
+    public void generateChallenges()
+    {
+        if (challengesInGame != null)
+        {
+            challengesInGame = null;
+            //creation of destruction challenges
+            for (int i = 0; i < 5; i++)
+            {
+                DestructionChallenge chl = new DestructionChallenge();
+                int TypeDestr =(int) Mathf.Round(Random.Range(0.0F, 2.0F));
+                int TypeObj = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
+                chl.setDestruction(TypeDestr);
+                chl.setObjectType(TypeObj);
+                List<Booster> boost = null;
+                boost.Add(new IronDenture());
+                if ((int)chl.getTypeOfDestruction() > 0)
+                {
+                    chl.setNumOfObj((int)Mathf.Round(Random.Range(2.0F, 5.0F)));
+                }
+                else
+                {
+                    chl.setNumOfObj(1);
+                }
+                chl.setChallenge(i, 0, chl.getDescription(), boost , (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
+                this.challengesInGame.Add(chl);
+            }
+            //creation of time destruction
+            for (int i = 0; i < 5; i++)
+            {
+                DestructionChallenge chl = new DestructionChallenge();
+                int TypeDestr = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
+                int TypeObj = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
+                chl.setDestruction(TypeDestr);
+                chl.setObjectType(TypeObj);
+                List<Booster> boost = null;
+                boost.Add(new Mushroom());
+                if ((int)chl.getTypeOfDestruction() > 0)
+                {
+                    chl.setNumOfObj((int)Mathf.Round(Random.Range(2.0F, 5.0F)));
+                }
+                else
+                {
+                    chl.setNumOfObj(1);
+                }
+                chl.setChallenge(i+5, (((int)chl.getNumOfObj()*2)*40), chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
+                this.challengesInGame.Add(chl);
+            }
+            //creation of defense challenge
+           //humans
+            for (int i = 0; i < 1; i++)
+            {
+                DefenseChallenge chl = new DefenseChallenge();
+                chl.setMenace(new Human());
+
+                List<Booster> boost = null;
+                boost.Add(new Mushroom());
+
+                chl.setDescription();
+                chl.setChallenge(i+10, 0, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
+                this.challengesInGame.Add(chl);
+            }
+            //mage
+            for (int i = 0; i < 1; i++)
+            {
+                DefenseChallenge chl = new DefenseChallenge();
+                chl.setMenace(new Wizard());
+
+                List<Booster> boost = null;
+                boost.Add(new IronDenture());
+
+                chl.setDescription();
+                chl.setChallenge(i + 12, 0, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
+                this.challengesInGame.Add(chl);
+            }
+            //frog
+            DefenseChallenge chl2 = new DefenseChallenge();
+            chl2.setMenace(new Wizard());
+
+            List<Booster> boost2 = null;
+            boost2.Add(new IronDenture());
+
+            chl2.setDescription();
+            chl2.setChallenge(14, 0, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
+            this.challengesInGame.Add(chl2);
+            //TIMED CHALLENGE DEFENSE
+            //humans
+            for (int i = 0; i < 1; i++)
+            {
+                DefenseChallenge chl = new DefenseChallenge();
+                chl.setMenace(new Human());
+
+                List<Booster> boost = null;
+                boost.Add(new Mushroom());
+
+                chl.setDescription();
+                chl.setChallenge(i + 15, 180, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
+                this.challengesInGame.Add(chl);
+            }
+            //mage
+            for (int i = 0; i < 1; i++)
+            {
+                DefenseChallenge chl = new DefenseChallenge();
+                chl.setMenace(new Wizard());
+
+                List<Booster> boost = null;
+                boost.Add(new IronDenture());
+
+                chl.setDescription();
+                chl.setChallenge(i + 12, 360, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
+                this.challengesInGame.Add(chl);
+            }
+            //frog
+            chl2 = null;
+            chl2.setMenace(new Wizard());
+
+             boost2 = null;
+            boost2.Add(new IronDenture());
+
+            chl2.setDescription();
+            chl2.setChallenge(14, 240, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
+            this.challengesInGame.Add(chl2);
+        }
+    }
     public void removeChallenge(GenericChallenge challengeToRemove)
     {
         this.challengesInGame.Remove(challengeToRemove);
