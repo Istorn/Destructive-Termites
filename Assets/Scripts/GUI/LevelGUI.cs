@@ -135,9 +135,9 @@ public class LevelGUI : MonoBehaviour
         if (selectedColony)
             colonyDeselected();
         if (this.selectedObject)
-            this.selectedObject.deselect();
+            this.selectedObject.deselect(false);
         this.selectedObject = selectedObject;
-        selectedObject.select();
+        selectedObject.select(false);
 
         objectInformationPanel.transform.Find("Title").gameObject.GetComponent<Text>().text = selectedObject.getCategory() + ": " + selectedObject.getName();
         objectInformationPanel.transform.Find("Description").gameObject.GetComponent<Text>().text = selectedObject.getDescription();
@@ -163,7 +163,7 @@ public class LevelGUI : MonoBehaviour
 
     public void objectDeselected()
     {
-        selectedObject.deselect();
+        selectedObject.deselect(false);
         objectInformationPanel.SetActive(false);
         selectedObject = null;
     }

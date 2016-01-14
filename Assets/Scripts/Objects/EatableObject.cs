@@ -99,8 +99,12 @@ public class EatableObject : GenericObject {
             currentDustSprite++;
             if (currentDustSprite >= 0 && currentDustSprite < dustSprites.Length)
                 dust.GetComponent<SpriteRenderer>().sprite = dustSprites[currentDustSprite];
-            
-            color = obj.GetComponent<SpriteRenderer>().color;
+            if (currentObjSprite == 0)
+            {
+                defaultColor = obj.GetComponent<SpriteRenderer>().color;
+                actualColor = obj.GetComponent<SpriteRenderer>().color;
+            }
+                
             PolygonCollider2D tempCollider = obj.gameObject.AddComponent<PolygonCollider2D>();
             physicsCollider.pathCount = tempCollider.pathCount;
             for (int p = 0; p < tempCollider.pathCount; p++ )
@@ -143,18 +147,29 @@ public class EatableObject : GenericObject {
         }
     }
 
-    public override void select()
+    public override void select(bool isForAttack)
     {
-       /* Debug.Log(dust.GetComponent<RectTransform>().offsetMin);
-        Debug.Log(dust.GetComponent<RectTransform>().offsetMax);*/
-         Color transparentColor = new Color(1, 0, 0, 1); //new Color(color.r, color.g, color.b, 0.5f);
-         obj.GetComponent<SpriteRenderer>().color = transparentColor;
+        if (isForAttack)
+            obj.GetComponent<SpriteRenderer>().color = new Color(0.15f, 0.96f, 0.17f, 1);
+        else
+        {
+            actualColor = new Color(1, 0, 0, 1);
+            obj.GetComponent<SpriteRenderer>().color = actualColor;
+        }
+         
     }
 
-    public override void deselect()
+    public override void deselect(bool isForAttack)
     {
-         //Color transparentColor = new Color(color.r, color.g, color.b, 1f);
-        obj.GetComponent<SpriteRenderer>().color = color;
+        if (isForAttack)
+        {
+            obj.GetComponent<SpriteRenderer>().color = actualColor;
+        }
+        else
+        {
+            actualColor = defaultColor;
+            obj.GetComponent<SpriteRenderer>().color = actualColor;
+        }
     }
 
     public bool getIsOnSomething()

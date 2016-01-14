@@ -33,7 +33,8 @@ public class GenericObject : MonoBehaviour {
 
     protected GameObject selector = null;
 
-    protected Color color;
+    protected Color actualColor;
+    protected Color defaultColor;
 
     protected virtual void Awake()
     {
@@ -96,13 +97,13 @@ public class GenericObject : MonoBehaviour {
         return attacker;
     }
 
-    public virtual void select()
+    public virtual void select(bool isForAttack)
     {
        /* Color transparentColor = new Color(1, 0, 0, 1);//new Color(color.r, color.g, color.b, 0.5f);
         GetComponent<Renderer>().material.color = transparentColor;*/
     }
 
-    public virtual void deselect()
+    public virtual void deselect(bool isForAttack)
     {
        /* //Color transparentColor = new Color(color.r, color.g, color.b, 1f);
         GetComponent<Renderer>().material.color = color;*/

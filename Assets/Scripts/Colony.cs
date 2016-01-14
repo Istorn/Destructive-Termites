@@ -31,6 +31,8 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private GameObject miniMapCursor = null;
 
+    private GenericObject previousSelected = null;
+
 	void Awake () {
         boosters = new List<Booster>();
         attackTargetCorountine = null;
@@ -309,18 +311,26 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("DRAG");
         gameObject.transform.position = Input.mousePosition;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
         {
-
             GenericObject obj = hit.collider.gameObject.transform.parent.GetComponent<GenericObject>();
             if (obj)
-            //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
-                GameManager.getLevelGUI().objectSelected(obj);
+            {
+                if (previousSelected)
+                    previousSelected.deselect(true);
+                previousSelected = obj;
+                obj.select(true);
+            }
         }
+        else
+            if (previousSelected)
+            {
+                previousSelected.deselect(true);
+                previousSelected = null;
+            }
     }
     public void setTermites(int numOftermites)
     {
