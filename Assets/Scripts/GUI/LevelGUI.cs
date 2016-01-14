@@ -182,8 +182,8 @@ public class LevelGUI : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
             colonyActiveBoostersIcons[i].SetActive(false);
-        foreach (Booster booster in selectedColony.boosters)
-            colonyActiveBoostersIcons[(int)booster.getModel() - 1].SetActive(true);
+       /* foreach (Booster booster in selectedColony.boosters)
+            colonyActiveBoostersIcons[(int)booster.getModel() - 1].SetActive(true);*/
 
         colonyInformationPanel.SetActive(true);
         noInformationPanel.SetActive(false);

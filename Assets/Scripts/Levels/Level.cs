@@ -14,6 +14,8 @@ public class Level : MonoBehaviour {
 
     private List<Room> rooms = null;
 
+    private List<EatableObject> objects = null;
+
     private List<Booster> collectedBoosters = null;
 
     public ConcurrentQueue<GenericObject> alertObjectsQueue = null;
@@ -25,6 +27,7 @@ public class Level : MonoBehaviour {
         alertObjectsQueue = new ConcurrentQueue<GenericObject>();
 
         rooms = new List<Room>();
+        objects = new List<EatableObject>();
         collectedBoosters = new List<Booster>();
 
         graphLiveObjects = new Graph();
@@ -72,7 +75,7 @@ public class Level : MonoBehaviour {
 
         initHumans();
 
-        initFrogs();
+//        initFrogs();
 
         availableTermites = levelData.availableTermites;
 
@@ -203,23 +206,21 @@ public class Level : MonoBehaviour {
         {
             GameObject obj = Instantiate(Resources.Load("Prefabs/Objects/EatableObject", typeof(GameObject))) as GameObject;
             obj.name = objectPlaceholder.getPathName();
-            GenericObject script = null;
+            EatableObject script = null;
             if (objectPlaceholder.getModel().Equals(GenericObject.Model.Soft))
                 script = obj.AddComponent<SoftObject>();
             else
                 if (objectPlaceholder.getModel().Equals(GenericObject.Model.Hard))
                     script = obj.AddComponent<HardObject>();
-                else
-                    script = obj.AddComponent<GenericObject>();
-                    
 
-            ((EatableObject)script).setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
+            script.setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
             script.setId(id);
             script.setPosition(objectPlaceholder.getCoordinates(), objectPlaceholder.getZIndex());
             script.setName(objectPlaceholder.getName(), objectPlaceholder.getPathName());
             obj.transform.SetParent(this.transform);
 
             addObjectToRoom(script, objectPlaceholder.getRoomNumber());
+            objects.Add(script);
             id++;
         }
     }
@@ -254,5 +255,10 @@ public class Level : MonoBehaviour {
     public List<Booster> getCollectedBoosters()
     {
         return collectedBoosters;
+    }
+
+    public List<EatableObject> getObjects()
+    {
+        return objects;
     }
 }

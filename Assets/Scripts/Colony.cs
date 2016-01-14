@@ -19,7 +19,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private GenericObject target = null;
 
-    public List<Booster> boosters = null;
+    private List<Booster> boosters = null;
 
     private Vector2 oldPosition;
     private Room oldRoom;
@@ -34,6 +34,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 	void Awake () {
         boosters = new List<Booster>();
         attackTargetCorountine = null;
+        label = gameObject.transform.Find("LabelBackground/Label").GetComponent<Text>();
 	}
 
     public void setMiniMapCursor(GameObject miniMapCursor)
@@ -43,21 +44,17 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void attack()
     {
-        //level.usedTermites -= termites;
-      /*  if ((int)(termites * 0.1) < 10)
-            termites = (int)(termites * 0.9);
-        else
-            termites -= 10;*/
-        termites = Convert.ToInt32(termites * UnityEngine.Random.Range(0.85f, 0.99f));
-        /*if (termites < 0)
-            termites = 0;*/
-       // level.usedTermites += termites;
-        label.text = termites + "";
+        int lost = Convert.ToInt32(termites * UnityEngine.Random.Range(0.01f, 0.15f));
+        if (lost < 5)
+            lost = 5;
+        termites -= lost;
         if (termites == 0)
         {
             target.setAttacker(null);
             Destroy(gameObject);
-        }  
+        }
+        else
+            label.text = termites + "";
     }
 
     void Update()
@@ -103,11 +100,12 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (this.target)
             this.target.setAttacker(null);
         this.target = target;
+
         if (!this.target.getModel().Equals(GenericObject.Model.Live))
             GameManager.getCurrentLevel().alertObjectsQueue.Enqueue(this.target);
-        //gameObject.transform.parent = this.target.gameObject.transform;
-        oldPosition = target.gameObject.transform.position;
-        oldRoom = target.getRoom();
+
+        /*oldPosition = target.gameObject.transform.position;
+        oldRoom = target.getRoom();*/
 
         Colony col = this.target.getAttacker();
         
@@ -121,7 +119,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         
         this.target.setAttacker(this);
         
-        if (animateCoroutine == null)
+      /*  if (animateCoroutine == null)
         {
             animateCoroutine = animate();
             StartCoroutine(animateCoroutine);
@@ -129,7 +127,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (attackTargetCorountine != null)
             StopCoroutine(attackTargetCorountine);
         attackTargetCorountine = attackTarget();
-        StartCoroutine(attackTargetCorountine);
+        StartCoroutine(attackTargetCorountine);*/
     }
 
     public bool applyBooster(Booster booster)
@@ -311,15 +309,18 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-      /*  gameObject.transform.position = Input.mousePosition;
+        Debug.Log("DRAG");
+        gameObject.transform.position = Input.mousePosition;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
         if (hit.collider != null)
         {
-            GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
+
+            GenericObject obj = hit.collider.gameObject.transform.parent.GetComponent<GenericObject>();
+            if (obj)
             //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
                 GameManager.getLevelGUI().objectSelected(obj);
-        }*/
+        }
     }
     public void setTermites(int numOftermites)
     {
@@ -331,19 +332,25 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         if (hit.collider != null)
         {
-            GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
+          /*  Debug.Log("COLONY");
+            if (hit.collider.gameObject.tag.Equals("Colony"))
+                Debug.Log("COLONY");*
+           GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
            //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
                 setTarget(obj);
         }
         else
         {
             gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
-        }
-        startDrag = false;*/
+        }*/
+        gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+        startDrag = false;
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-       /* startDrag = true;*/
+        
+        startDrag = true;
     }
 }

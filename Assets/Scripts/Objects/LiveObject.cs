@@ -22,7 +22,7 @@ public class LiveObject : GenericObject {
         base.Awake();
         this.model = Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
-        animator = gameObject.AddComponent<Animator>();
+        animator = selector.AddComponent<Animator>();
     }
 
     protected virtual void move(){}
