@@ -14,8 +14,6 @@ public class Level : MonoBehaviour {
 
     private List<Room> rooms = null;
 
-    private List<EatableObject> objects = null;
-
     private List<Booster> collectedBoosters = null;
 
     public ConcurrentQueue<GenericObject> alertObjectsQueue = null;
@@ -27,7 +25,6 @@ public class Level : MonoBehaviour {
         alertObjectsQueue = new ConcurrentQueue<GenericObject>();
 
         rooms = new List<Room>();
-        objects = new List<EatableObject>();
         collectedBoosters = new List<Booster>();
 
         graphLiveObjects = new Graph();
@@ -73,9 +70,7 @@ public class Level : MonoBehaviour {
         
         initObjects();
 
-        initHumans();
-
-//        initFrogs();
+        initThreats();
 
         availableTermites = levelData.availableTermites;
 
@@ -85,18 +80,6 @@ public class Level : MonoBehaviour {
     public int getAvailableTermites()
     {
         return availableTermites;
-    }
-
-    private void initFrogs()
-    {
-        GameObject frog = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
-        frog.name = "Frog0";
-        Frog frogScript = frog.AddComponent<Frog>();
-        frogScript.setId(-1);
-        frogScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_FROGS);
-        frogScript.actualNodeNumber = 2;
-        frogScript.setName("Chair", "");
-
     }
 
     private void initBackground()
@@ -190,14 +173,42 @@ public class Level : MonoBehaviour {
 
     private void initHumans()
     {
-        /* GameObject human = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
-         human.name = "Human0";
-         Human humanScript = human.AddComponent<Human>();
-         humanScript.setId(-1);
-         humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
-         humanScript.actualNodeNumber = 2;
-         humanScript.setObjectName("Chair", "");*/
+		GameObject human = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
+		human.name = "Human0";
+		Human humanScript = human.AddComponent<Human>();
+		humanScript.setId(-1);
+		humanScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_THREATS);
+		humanScript.actualNodeNumber = 2;
+		humanScript.setName("Chair", "");
     }
+
+    private void initFrogs()
+    {
+        GameObject frog = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
+        frog.name = "Frog0";
+        Frog frogScript = frog.AddComponent<Frog>();
+        frogScript.setId(-1);
+        frogScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
+        frogScript.actualNodeNumber = 60;
+        frogScript.setName("Chair", "");
+    }
+	
+    private void initWizards()
+    {
+        /*GameObject wizard = Instantiate(Resources.Load("Prefabs/Objects/LiveObject", typeof(GameObject))) as GameObject;
+        wizard.name = "Wizard0";
+        Wizard wizardScript = wizard.AddComponent<wizard>(); // "/Level.cs(200,51): error CS0246: The type or namespace name `wizard' could not be found. Are you missing a using directive or an assembly reference? "
+        wizardScript.setId(-1);
+        wizardScript.setPosition(new Vector2(-11.50f, -4.10f), Costants.Z_INDEX_HUMANS);
+        wizardScript.actualNodeNumber = 42;
+        wizardScript.setName("Chair", "");*/
+    }
+
+	private void initThreats(){
+		initHumans();
+		initFrogs();
+		// initWizards();
+	}
 	
     private void initObjects()
     {
@@ -206,21 +217,23 @@ public class Level : MonoBehaviour {
         {
             GameObject obj = Instantiate(Resources.Load("Prefabs/Objects/EatableObject", typeof(GameObject))) as GameObject;
             obj.name = objectPlaceholder.getPathName();
-            EatableObject script = null;
+            GenericObject script = null;
             if (objectPlaceholder.getModel().Equals(GenericObject.Model.Soft))
                 script = obj.AddComponent<SoftObject>();
             else
                 if (objectPlaceholder.getModel().Equals(GenericObject.Model.Hard))
                     script = obj.AddComponent<HardObject>();
+                else
+                    script = obj.AddComponent<GenericObject>();
+                    
 
-            script.setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
+            ((EatableObject)script).setProperties(objectPlaceholder.getIsOnSomething(), objectPlaceholder.getIsHanging(), objectPlaceholder.getIsHorizontallyFlipped(), objectPlaceholder.getStrengthCoefficient());
             script.setId(id);
             script.setPosition(objectPlaceholder.getCoordinates(), objectPlaceholder.getZIndex());
             script.setName(objectPlaceholder.getName(), objectPlaceholder.getPathName());
             obj.transform.SetParent(this.transform);
 
             addObjectToRoom(script, objectPlaceholder.getRoomNumber());
-            objects.Add(script);
             id++;
         }
     }
@@ -255,10 +268,5 @@ public class Level : MonoBehaviour {
     public List<Booster> getCollectedBoosters()
     {
         return collectedBoosters;
-    }
-
-    public List<EatableObject> getObjects()
-    {
-        return objects;
     }
 }
