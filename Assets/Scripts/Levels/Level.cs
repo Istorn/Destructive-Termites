@@ -73,7 +73,7 @@ public class Level : MonoBehaviour {
         
         initObjects();
 
-       // initThreats();
+        initThreats();
 
         availableTermites = levelData.availableTermites;
 
