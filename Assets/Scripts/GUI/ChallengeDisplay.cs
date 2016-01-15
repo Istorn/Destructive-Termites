@@ -12,7 +12,7 @@ public class ChallengeDisplay : MonoBehaviour
     {
         this.challenge = challenge;
         setGoal(challenge.getDescription());
-        setReward(challenge.getRewards()[0].getModel());
+        setReward(challenge.getRewards());
     }
 
     private void setReward(Booster.Model booster)
@@ -23,5 +23,10 @@ public class ChallengeDisplay : MonoBehaviour
     private void setGoal(string goal)
     {
         transform.Find("Goal").GetComponent<Text>().text = goal;
+    }
+
+    void FixedUpdate()
+    {
+
     }
 }
