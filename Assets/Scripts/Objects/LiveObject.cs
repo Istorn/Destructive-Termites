@@ -24,7 +24,7 @@ public class LiveObject : GenericObject {
         this.model = Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
 		animator = obj.AddComponent<Animator>();
-		gameObject.AddComponent<BoxCollider2D>();
+		obj.AddComponent<BoxCollider2D>();
     }
 
     protected virtual void move(){}
@@ -173,10 +173,7 @@ public class LiveObject : GenericObject {
         gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index / 10);
         obj.GetComponent<SpriteRenderer>().sortingOrder = z_index;
     }
-	
-	public void OnMouseUp() {
-        Debug.Log("Drag ended!");
-    }
+
 	
     public override void setName(string objectName, string spriteName)
     {
