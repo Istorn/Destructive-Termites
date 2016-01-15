@@ -34,8 +34,6 @@ public class LiveObject : GenericObject {
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
 		animator = obj.AddComponent<Animator>();
 		obj.AddComponent<BoxCollider2D>();
-		defaultColor = obj.GetComponent<SpriteRenderer>().color;
-		actualColor = obj.GetComponent<SpriteRenderer>().color;
     }
 
     protected virtual void move(){}
