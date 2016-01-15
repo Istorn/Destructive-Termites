@@ -14,6 +14,12 @@ public class ChallengesMonitor {
         challengesInGame.Add(challengeToAdd);
 
     }
+    public static void activeDefenseChallenge(int id)
+    {
+        challengesInGame[id].setActive();
+        //QUI VA SETTATA LA MINACCIA IL METODO RELATIVO È: SETMENACE NELLA CLASSE DEFENSECHALLENGE
+
+    }
     //METHOD TO GET ALL THE CHALLENGES
     public static List<GenericChallenge> getChallenges()
     {
@@ -67,10 +73,10 @@ public class ChallengesMonitor {
         }
         //creation of defense challenge
         //humans
-   /*     for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            chl.setMenace(new Human());
+           
 
             List<Booster> boost = new List<Booster>();
             boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
@@ -83,7 +89,7 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            chl.setMenace(new Wizard());
+            
 
             List<Booster> boost = new List<Booster>();
             boost.Add(Booster.initFromModel(Booster.Model.IronDenture));
@@ -94,7 +100,7 @@ public class ChallengesMonitor {
         }
         //frog
         DefenseChallenge chl2 = new DefenseChallenge();
-        chl2.setMenace(new Wizard());
+        
 
         List<Booster> boost2 = new List<Booster>();
         boost2.Add(Booster.initFromModel(Booster.Model.IronDenture));
@@ -107,7 +113,7 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            chl.setMenace(new Human());
+            
 
             List<Booster> boost = new List<Booster>();
             boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
@@ -121,7 +127,7 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            chl.setMenace(new Wizard());
+            
 
             List<Booster> boost = new List<Booster>();
             boost.Add(Booster.initFromModel(Booster.Model.IronDenture));
@@ -132,14 +138,14 @@ public class ChallengesMonitor {
         }
         //frog
         chl2 = null;
-        chl2.setMenace(new Wizard());
+        
 
         boost2 = new List<Booster>();
         boost2.Add(Booster.initFromModel(Booster.Model.IronDenture));
         boost2.Add(Booster.initFromModel(Booster.Model.Mushroom));
         chl2.setDescription();
         chl2.setChallenge(14, 240, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
-        challengesInGame.Add(chl2);*/
+        challengesInGame.Add(chl2);
     }
     public static void removeChallenge(GenericChallenge challengeToRemove)
     {

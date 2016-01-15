@@ -17,7 +17,8 @@ public class DefenseChallenge : GenericChallenge
         this.ChallengeType = (TypeChallenge)1;
 
     }
-    public void setMenace(LiveObject menaceToSet)
+    //METODO PER ATTIVARE LE MINACCE
+   /* public void setMenace(LiveObject menaceToSet)
     {
         this.menace = menaceToSet;
         this.menaceId = menaceToSet.getId();
@@ -34,7 +35,7 @@ public class DefenseChallenge : GenericChallenge
             this.menaceText = "FROG";
         }
 
-    }
+    }*/
     public String getMenaceText()
     {
         return this.menaceText;
