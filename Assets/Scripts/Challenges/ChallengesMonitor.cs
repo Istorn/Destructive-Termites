@@ -147,7 +147,7 @@ public class ChallengesMonitor {
             challengesInGame.Add(chl);
         }
         //frog
-        chl2 = null;
+        chl2 = new DefenseChallenge();
         
 
         boost2 = new List<Booster>();
