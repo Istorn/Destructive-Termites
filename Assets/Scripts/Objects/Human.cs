@@ -19,15 +19,19 @@ public class Human : LiveObject {
 		setMovementCoroutine();
 		setAttackCoroutine();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/OliAnimatorController"));
-    }
+		BoxCollider2D b = GetComponent<BoxCollider2D>();
+		if(b != null){
+			b.size = new Vector2(0.35f, 1.5f);
+			b.offset = new Vector2(-0.1f, 0.2f);
+		}
+	}
 
 	protected override void setMovementCoroutine(){
         movementCoroutine = movement(atkAnimStr,walkAnimStr,Costants.HUMAN_WAIT_TIME,Costants.HUMAN_SPEED);
 	}
 	
 	protected override void setAttackCoroutine(){
-		int atk = Random.Range(2,5);
-		Debug.Log(atk);
+		int atk = Random.Range(2,5); // random integer number between min [inclusive] and max [exclusive] 
 		switch (atk)
 		{
 			case 1:
@@ -46,7 +50,7 @@ public class Human : LiveObject {
 				Debug.Log("Bug in Human, not a Human attack");
 				break;
 		}
-        attackCoroutine = attackColony(atk); // random integer number between min [inclusive] and max [exclusive] 
+        attackCoroutine = attackColony(atk);
 	}
 	
     protected override void move()

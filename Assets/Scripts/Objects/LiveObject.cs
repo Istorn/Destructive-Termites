@@ -7,7 +7,7 @@ public class LiveObject : GenericObject {
     protected Animator animator;
     protected bool isMoving = false;
     protected bool isAttacking = false;
-    public enum atkType {Spray = 1, Gas = 2, Bomb = 3, Gun = 4, Eat = 5, Spell = 6} ;
+    public enum atkType {Spray = 1, Gas = 2, Bomb = 3, Gun = 4, Eat = 5, Spell = 6};
     protected IEnumerator movementCoroutine = null;
     protected IEnumerator attackCoroutine = null;
 	protected string threatType = null;
@@ -24,6 +24,7 @@ public class LiveObject : GenericObject {
         this.model = Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
 		animator = obj.AddComponent<Animator>();
+		gameObject.AddComponent<BoxCollider2D>();
     }
 
     protected virtual void move(){}
@@ -103,8 +104,7 @@ public class LiveObject : GenericObject {
         }
     }
 	
-    protected IEnumerator attackColony(int atkType)
-    {
+    protected IEnumerator attackColony(int atkType){
         while (true)
         { 
             if (GameManager.getCurrentLevel().alertObjectsQueue.Count > 0 && !isAttacking)
@@ -169,13 +169,15 @@ public class LiveObject : GenericObject {
 		return this.threatType;
 	}
 
-    public override void setPosition(Vector3 coordinates, int z_index)
-    {
+    public override void setPosition(Vector3 coordinates, int z_index){
         gameObject.transform.position = new Vector3(coordinates.x, coordinates.y, -(float)z_index / 10);
         obj.GetComponent<SpriteRenderer>().sortingOrder = z_index;
-
     }
-
+	
+	public void OnMouseUp() {
+        Debug.Log("Drag ended!");
+    }
+	
     public override void setName(string objectName, string spriteName)
     {
        /* _name = objectName;
