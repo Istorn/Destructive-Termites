@@ -20,6 +20,16 @@ public class ChallengesMonitor {
         //QUI VA SETTATA LA MINACCIA IL METODO RELATIVO È: SETMENACE NELLA CLASSE DEFENSECHALLENGE
 
     }
+    public static void failDefenseChallenge(int id)
+    {
+        challengesInGame[id].setFailed();
+        //QUI VA DISATTIVATA LA MINACCIA MANUALMENTE
+    }
+    public static void activeDestructionChallenge(int id)
+    {
+        challengesInGame[id].setActive();
+    }
+  
     //METHOD TO GET ALL THE CHALLENGES
     public static List<GenericChallenge> getChallenges()
     {
