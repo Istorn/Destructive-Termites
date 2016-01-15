@@ -19,7 +19,7 @@ public class GenericChallenge
         TimeDefense = 3
     }
     //SET VALUES FOR THE CHALLENGE
-    public void setChallenge(int id, int time, String Description, List<Booster> rewards, int score, TypeChallenge typeChl)
+    public void setChallenge(int id, int time, String Description, Booster.Model rewards, int score, TypeChallenge typeChl)
     {
         this.id = id;
         this.time = time;
@@ -35,7 +35,7 @@ public class GenericChallenge
     public String Description = "";
     private Boolean completed = false;
     private Boolean active = false;
-    private List<Booster> rewards = null;
+    private Booster.Model rewards= 0;
     private int score = 0;
     private bool failed = false;
 
@@ -48,7 +48,8 @@ public class GenericChallenge
     {
         return this.time;
     }
-    public String getDescription()
+    
+    public virtual String getDescription()
     {
         return this.Description;
     }
@@ -60,7 +61,7 @@ public class GenericChallenge
     {
         return this.completed;
     }
-    public List<Booster> getRewards()
+    public Booster.Model getRewards()
     {
         return this.rewards;
     }
@@ -74,6 +75,10 @@ public class GenericChallenge
     }
 
     //SETTERS
+    public virtual void setDescription(String DescriptionToSet)
+    {
+        this.Description = DescriptionToSet;
+    }
     public void setCompleted()
     {
         this.completed = true;

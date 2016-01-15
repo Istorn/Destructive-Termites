@@ -44,8 +44,15 @@ public class DefenseChallenge : GenericChallenge
     {
         return this.menace.GetType();
     }
-    public void setDescription()
+
+    public override void setDescription(string DescriptionToSet)
     {
-        this.Description = "DEFENSE A COLONY FROM A " + this.getMenaceText();
+        base.setDescription(DescriptionToSet);
+        this.Description = this.Description + " ";//menace
     }
+    public override string getDescription()
+    {
+        return base.getDescription();
+    }
+
 }
