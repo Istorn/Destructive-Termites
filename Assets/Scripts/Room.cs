@@ -15,6 +15,11 @@ public class Room{
         objects = new List<GenericObject>();
     }
 
+    public int getNumber()
+    {
+        return number;
+    }
+
     public void addObject(GenericObject gameObject)
     {
         objects.Add(gameObject);

@@ -163,6 +163,19 @@ public class Graph {
         return path;
     }
 
+    public int distance(int startNodeNumber, int endNodeNumber)
+    {
+        List<Node> path = getPath(startNodeNumber, endNodeNumber);
+        int d = 0;
+        for(int i = 0; i < path.Count - 1; i++)
+        {
+            Node n1 = path[i];
+            Node n2 = path[i + 1];
+            d += n1.getDistance(n2);
+        }
+        return d;
+    }
+
     //Classe Nodo
     public class Node
     {

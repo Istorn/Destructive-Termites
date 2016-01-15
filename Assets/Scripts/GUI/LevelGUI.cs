@@ -66,7 +66,8 @@ public class LevelGUI : MonoBehaviour
             bottomBarPanel.transform.Find("AvailableTermitesPanelMobile").gameObject.SetActive(false);
             availableTermitesPanel = bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop").gameObject;
             termitesCounter = bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop/Number").GetComponent<Text>();
-    #endif
+        #endif
+        initChallengesList();
     }
 
     public float getBottomBarBottomCoord()
@@ -178,7 +179,10 @@ public class LevelGUI : MonoBehaviour
         selectedColony.select();
 
         colonyInformationPanel.transform.Find("Title").gameObject.GetComponent<Text>().text = "COLONY: " + selectedColony.getTermites() + " TERMITES";
-        colonyInformationPanel.transform.Find("Slider/Max").GetComponent<Text>().text = selectedColony.getTermites() + "";
+        if (selectedColony.getTermites() == 1)
+            colonyInformationPanel.transform.Find("Slider/Max").GetComponent<Text>().text = "1";
+        else
+            colonyInformationPanel.transform.Find("Slider/Max").GetComponent<Text>().text = (selectedColony.getTermites() - 1) + "";
 
         for (int i = 0; i < 5; i++)
             colonyActiveBoostersIcons[i].SetActive(false);
@@ -232,9 +236,8 @@ public class LevelGUI : MonoBehaviour
 
     public void sliderValueChanged()
     {
-        int newSize = Convert.ToInt32(colonyInformationPanel.transform.Find("Slider").GetComponent<Slider>().value);
-        selectedColony.split(newSize);
-        //Refresh info
+        float splitRatio = colonyInformationPanel.transform.Find("Slider").GetComponent<Slider>().value;
+        selectedColony.split(splitRatio);
         colonySelected(selectedColony);
     }
 
@@ -246,14 +249,18 @@ public class LevelGUI : MonoBehaviour
         miniMapCursor.layer = LayerMask.NameToLayer("Map");
 
         GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
-        colCursor.transform.SetParent(gameAreaPanel.transform);
+        //colCursor.transform.SetParent(gameAreaPanel.transform);
+        colCursor.transform.SetParent(bottomBarPanel.transform.Find("MessagePanel").transform);
         Colony colony = colCursor.GetComponent<Colony>();
         colCursor.GetComponent<Button>().onClick.AddListener(() => colonySelected(colony));
         colony.setMiniMapCursor(miniMapCursor);
 
         return colony;
+    }
 
-
+    public GameObject getGameAreaPanel()
+    {
+        return gameAreaPanel;
     }
 
     public StartAttackCursor instantiateStartAttackCursor()
@@ -333,4 +340,26 @@ public class LevelGUI : MonoBehaviour
         return tr1.transform.position.y - mousePos.y < 0;
     }
     
+    public Vector2 getMessageAnchorPoint()
+    {
+        return bottomBarPanel.transform.Find("MessagePanel/Anchor").gameObject.transform.position;
+    }
+
+    public void setMessageEnabled(bool enabled)
+    {
+        bottomBarPanel.transform.Find("MessagePanel").gameObject.SetActive(enabled);
+    }
+
+    private void initChallengesList()
+    {
+        List<GenericChallenge> challenges = GameManager.initChallengesMonitor();
+        GameObject list = gamePausedPanel.transform.Find("ChallengesPanel/ListSpace/List").gameObject;
+        foreach (GenericChallenge challenge in challenges)
+        {
+            GameObject chal = (GameObject)Instantiate(Resources.Load("Prefabs/Challenges/ChallengeDisplay", typeof(GameObject))) as GameObject;
+            chal.transform.SetParent(list.transform);
+            chal.transform.localScale = new Vector3(1, 1, 1);
+            chal.transform.Find("Goal").GetComponent<Text>().text = challenge.getDescription();
+        }
+    }
 }
