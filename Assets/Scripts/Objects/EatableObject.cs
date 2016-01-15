@@ -32,6 +32,9 @@ public class EatableObject : GenericObject {
         obj.GetComponent<PolygonCollider2D>().tag = Costants.TAG_OBJ_COLLIDER_PHYSICS;
 
         dust = transform.Find("Dust").gameObject;
+        defaultColor = new Color(1, 1, 1, 1);
+        actualColor = defaultColor;
+        //actualColor = obj.GetComponent<SpriteRenderer>().color;
     }
 
     public override void setPosition(Vector3 coordinates, int z_index)
@@ -99,12 +102,7 @@ public class EatableObject : GenericObject {
             currentDustSprite++;
             if (currentDustSprite >= 0 && currentDustSprite < dustSprites.Length)
                 dust.GetComponent<SpriteRenderer>().sprite = dustSprites[currentDustSprite];
-            if (currentObjSprite == 0)
-            {
-                defaultColor = obj.GetComponent<SpriteRenderer>().color;
-                actualColor = obj.GetComponent<SpriteRenderer>().color;
-            }
-                
+
             PolygonCollider2D tempCollider = obj.gameObject.AddComponent<PolygonCollider2D>();
             physicsCollider.pathCount = tempCollider.pathCount;
             for (int p = 0; p < tempCollider.pathCount; p++ )

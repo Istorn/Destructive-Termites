@@ -357,9 +357,11 @@ public class LevelGUI : MonoBehaviour
         foreach (GenericChallenge challenge in challenges)
         {
             GameObject chal = (GameObject)Instantiate(Resources.Load("Prefabs/Challenges/ChallengeDisplay", typeof(GameObject))) as GameObject;
+            ChallengeDisplay cD = chal.GetComponent<ChallengeDisplay>();
             chal.transform.SetParent(list.transform);
             chal.transform.localScale = new Vector3(1, 1, 1);
-            chal.transform.Find("Goal").GetComponent<Text>().text = challenge.getDescription();
+            cD.setChallenge(challenge);
+            
         }
     }
 }

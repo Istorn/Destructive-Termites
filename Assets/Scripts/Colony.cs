@@ -204,7 +204,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             Image image = indicator.GetComponent<Image>();
             Color color = image.color;
             image.color = new Color(color.r, color.g, color.b, 1);
-            image.sprite = Resources.Load<Sprite>("GUI/AttackgameObject/Booster_" + (int)boosters[b].getModel() + "_background");
+            image.sprite = Resources.Load<Sprite>("GUI/Boosters/Booster_" + (int)boosters[b].getModel() + "_background");
             image.enabled = true;
             indicator.transform.localPosition = new Vector3(xPos, yPos, 0);
         }
@@ -219,13 +219,13 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             {
                  spriteIndex = 0;
                  if (boosters.Count == 0)
-                     sprites = Resources.LoadAll<Sprite>("GUI/AttackCursor/Booster_0");
+                     sprites = Resources.LoadAll<Sprite>("GUI/Boosters/Booster_0");
                  else
                  {
                      b++;
                      if (b == boosters.Count)
                          b = 0;
-                     sprites = Resources.LoadAll<Sprite>("GUI/AttackCursor/Booster_" + (int)boosters[b].getModel());
+                     sprites = Resources.LoadAll<Sprite>("GUI/Boosters/Booster_" + (int)boosters[b].getModel());
                  }
             }
             gameObject.GetComponent<Image>().sprite = sprites[spriteIndex];
@@ -288,7 +288,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
       /*  GenericObject oldTarget = target;
         target = findNewTarget(target);
-        Destroy(oldTarget.gameObject);*/
+        Destroy(oldTarget.gameObject);
+        ChallengeMonitor.refresh(oldTarget);
+       */
     }
 
 
@@ -404,34 +406,26 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 1f);
         gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
 
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, mask);
-
-        if (hit.collider != null)
+        if (previousSelected)
         {
-            GenericObject obj = hit.collider.gameObject.transform.parent.GetComponent<GenericObject>();
-            if (obj)
-                setTarget(obj);
+            setTarget(previousSelected);
             if (!isToBePlaced)
             {
                 setIsToBePlaced(false);
                 GameManager.removeMessage();
             }
+            previousSelected.deselect(ObjectSelection.Model.ColonyTarget);
+            previousSelected = null;
         }
         else
         {
             if (!isToBePlaced)
                 if (!target)
                     target = findNewTarget();
-                if (target)
-                    gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
-                else
-                    GameManager.gameEnd();
-        }
-
-        if (previousSelected)
-        {
-            previousSelected.deselect(ObjectSelection.Model.ColonyTarget);
-            previousSelected = null;
+            if (target)
+                gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+            else
+                GameManager.gameEnd();
         }
         
         startDrag = false;
