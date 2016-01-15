@@ -10,7 +10,7 @@ public class DefenseChallenge : GenericChallenge
 {
     private int menaceId = 0;
     private String menaceText = "";
-    private LiveObject menace = null;
+    private LiveObject.Model menace = 0;
 
     protected override void Awake()
     {
@@ -18,24 +18,16 @@ public class DefenseChallenge : GenericChallenge
 
     }
     //METODO PER ATTIVARE LE MINACCE
-   /* public void setMenace(LiveObject menaceToSet)
+    public void setMenace(LiveObject.Model menaceToSet)
     {
         this.menace = menaceToSet;
-        this.menaceId = menaceToSet.getId();
-        if (menaceToSet.GetType().Equals(typeof(Human)))
-        {
-            this.menaceText = "HUMAN";
-        }
-        else if (menaceToSet.GetType().Equals(typeof(Wizard)))
-        {
-            this.menaceText = "WIZARD";
-        }
-        else if (menaceToSet.GetType().Equals(typeof(Frog)))
-        {
-            this.menaceText = "FROG";
-        }
+        this.menaceText =(string) Utils.GetEnumDescription(menaceToSet);
 
-    }*/
+    }
+    public LiveObject.Model getMenace()
+    {
+        return this.menace;
+    }
     public String getMenaceText()
     {
         return this.menaceText;
@@ -48,7 +40,7 @@ public class DefenseChallenge : GenericChallenge
     public override void setDescription(string DescriptionToSet)
     {
         base.setDescription(DescriptionToSet);
-        this.Description = this.Description + " ";//menace
+        this.Description = this.Description + " " + this.menaceText;
     }
     public override string getDescription()
     {

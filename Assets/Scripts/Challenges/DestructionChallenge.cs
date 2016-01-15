@@ -84,7 +84,7 @@ public class DestructionChallenge : GenericChallenge {
         {
             case 0:
                 {
-                    Desc += "DESTROY A "+((int)this.getTypeOfObject())+"OBJECT";
+                    Desc += "DESTROY A "+(Utils.GetEnumDescription(this.getTypeOfObject()))+" OBJECT";
                 }; break;
             case 1:
                 {
@@ -92,7 +92,7 @@ public class DestructionChallenge : GenericChallenge {
                 }; break;
             case 2:
                 {
-                    Desc += "DESTROY " + this.getNumOfObj()+" "+((int)this.getTypeOfObject()) + " OBJECTS";
+                    Desc += "DESTROY " + this.getNumOfObj()+" "+ (Utils.GetEnumDescription(this.getTypeOfObject())) + " OBJECTS";
                 }; break;
         }
         this.Description = Desc;

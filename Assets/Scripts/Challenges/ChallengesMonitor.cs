@@ -60,6 +60,7 @@ public class ChallengesMonitor {
             DestructionChallenge chl = new DestructionChallenge();
             int TypeDestr =(int) Mathf.Round(Random.Range(0.0F, 2.0F));
             int TypeObj = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
+            chl.setDescription();
             chl.setDestruction(TypeDestr);
             chl.setObjectType(TypeObj);
             boost = Booster.Model.IronDenture;
@@ -80,6 +81,7 @@ public class ChallengesMonitor {
             DestructionChallenge chl = new DestructionChallenge();
             int TypeDestr = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
             int TypeObj = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
+            chl.setDescription();
             chl.setDestruction(TypeDestr);
             chl.setObjectType(TypeObj);
             boost = Booster.Model.GasEquipment;
