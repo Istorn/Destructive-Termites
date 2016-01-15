@@ -17,7 +17,8 @@ public class ChallengeDisplay : MonoBehaviour
 
     private void setReward(Booster.Model booster)
     {
-        transform.Find("Reward").GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("GUI/Boosters/Booster_" + (int)booster)[0];
+        int b = (int)booster;
+        transform.Find("Reward").GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("GUI/Boosters/Booster_" + b)[0];
     }
 
     private void setGoal(string goal)

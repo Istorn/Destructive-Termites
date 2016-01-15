@@ -1,8 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 public class LiveObject : GenericObject {
+
+    public enum Model {
+        [Description("HUMAN")]
+        Human = 0,
+        [Description("FROG")]
+        Frog = 1,
+        [Description("WIZARD")]
+        Wizard = 2
+    }
 
     protected Animator animator;
     protected bool isMoving = false;
@@ -20,7 +30,7 @@ public class LiveObject : GenericObject {
 	
     protected override void Awake(){
         base.Awake();
-        this.model = Model.Live;
+        this.model = GenericObject.Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
 		animator = obj.AddComponent<Animator>();
 		obj.AddComponent<BoxCollider2D>();
