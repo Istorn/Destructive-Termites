@@ -67,7 +67,7 @@ public class ChallengesMonitor {
         }
         //creation of defense challenge
         //humans
-        for (int i = 0; i < 1; i++)
+   /*     for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
             chl.setMenace(new Human());
@@ -118,7 +118,7 @@ public class ChallengesMonitor {
             challengesInGame.Add(chl);
         }
         //mage
-       /* for (int i = 0; i < 1; i++)
+        for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
             chl.setMenace(new Wizard());
