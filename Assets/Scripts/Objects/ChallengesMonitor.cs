@@ -22,6 +22,7 @@ public class ChallengesMonitor : MonoBehaviour {
     //METHOD TO GENERATE 20 CHALLENGES
     public void generateChallenges()
     {
+        this.challengesInGame = new List<GenericChallenge>();
         if (challengesInGame != null)
         {
             challengesInGame = null;
