@@ -14,6 +14,20 @@ public class ChallengesMonitor {
         challengesInGame.Add(challengeToAdd);
 
     }
+    //GETTER/SETTER ACTIVE CHALLENGE
+    public GenericChallenge getActiveChallenge()
+    {
+        int i = 0;
+        while (!(challengesInGame[i].getActive()))
+        {
+            i++;
+        }
+        return challengesInGame[i];
+    }
+    public void setActiveChallenge(GenericChallenge challengetoActive)
+    {
+        challengesInGame[challengesInGame.IndexOf(challengetoActive)].setActive();
+    }
     public static void activeDefenseChallenge(int id)
     {
         challengesInGame[id].setActive();
@@ -38,6 +52,7 @@ public class ChallengesMonitor {
     //METHOD TO GENERATE 20 CHALLENGES
     public static void generateChallenges()
     {
+        Booster.Model boost = Booster.Model.IronDenture;
         challengesInGame = new List<GenericChallenge>();
         //creation of destruction challenges
         for (int i = 0; i < 5; i++)
@@ -47,8 +62,7 @@ public class ChallengesMonitor {
             int TypeObj = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
             chl.setDestruction(TypeDestr);
             chl.setObjectType(TypeObj);
-            List<Booster> boost = new List<Booster>();
-            boost.Add(Booster.initFromModel(Booster.Model.IronDenture));
+            boost = Booster.Model.IronDenture;
             if ((int)chl.getTypeOfDestruction() > 0)
             {
                 chl.setNumOfObj((int)Mathf.Round(Random.Range(2.0F, 5.0F)));
@@ -68,8 +82,7 @@ public class ChallengesMonitor {
             int TypeObj = (int)Mathf.Round(Random.Range(0.0F, 2.0F));
             chl.setDestruction(TypeDestr);
             chl.setObjectType(TypeObj);
-            List<Booster> boost = new List<Booster>();
-            boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
+            boost = Booster.Model.GasEquipment;
             if ((int)chl.getTypeOfDestruction() > 0)
             {
                 chl.setNumOfObj((int)Mathf.Round(Random.Range(2.0F, 5.0F)));
@@ -86,12 +99,11 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-           
 
-            List<Booster> boost = new List<Booster>();
-            boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
 
-            chl.setDescription();
+             boost = Booster.Model.GasEquipment;
+
+            chl.setDescription("DEFENSE A COLONY FROM ");//TO ADD MENACE
             chl.setChallenge(i+10, 0, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
             challengesInGame.Add(chl);
         }
@@ -99,23 +111,20 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            
 
-            List<Booster> boost = new List<Booster>();
-            boost.Add(Booster.initFromModel(Booster.Model.IronDenture));
-            boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
-            chl.setDescription();
+
+            boost = Booster.Model.IronDenture;
+            chl.setDescription("DEFENSE A COLONY FROM ");//TO ADD MENACE
             chl.setChallenge(i + 12, 0, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
             challengesInGame.Add(chl);
         }
         //frog
         DefenseChallenge chl2 = new DefenseChallenge();
-        
 
-        List<Booster> boost2 = new List<Booster>();
-        boost2.Add(Booster.initFromModel(Booster.Model.IronDenture));
 
-        chl2.setDescription();
+        Booster.Model boost2 = Booster.Model.IronDenture;
+
+        chl2.setDescription("DEFENSE A COLONY FROM ");//TO ADD MENACE
         chl2.setChallenge(14, 0, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
         challengesInGame.Add(chl2);
         //TIMED CHALLENGE DEFENSE
@@ -123,13 +132,11 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            
 
-            List<Booster> boost = new List<Booster>();
-            boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
-            boost.Add(Booster.initFromModel(Booster.Model.IronDenture));
 
-            chl.setDescription();
+            boost = Booster.Model.GasEquipment;
+
+            chl.setDescription("DEFENSE A COLONY FROM ");//TO ADD MENACE
             chl.setChallenge(i + 15, 180, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
             challengesInGame.Add(chl);
         }
@@ -137,23 +144,19 @@ public class ChallengesMonitor {
         for (int i = 0; i < 1; i++)
         {
             DefenseChallenge chl = new DefenseChallenge();
-            
 
-            List<Booster> boost = new List<Booster>();
-            boost.Add(Booster.initFromModel(Booster.Model.IronDenture));
-            boost.Add(Booster.initFromModel(Booster.Model.Mushroom));
-            chl.setDescription();
+
+             boost = Booster.Model.IronDenture;
+            chl.setDescription("DEFENSE A COLONY FROM ");//TO ADD MENACE
             chl.setChallenge(i + 12, 360, chl.getDescription(), boost, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl.getTypeChallenge());
             challengesInGame.Add(chl);
         }
         //frog
         chl2 = new DefenseChallenge();
-        
 
-        boost2 = new List<Booster>();
-        boost2.Add(Booster.initFromModel(Booster.Model.IronDenture));
-        boost2.Add(Booster.initFromModel(Booster.Model.Mushroom));
-        chl2.setDescription();
+
+         boost = Booster.Model.GasEquipment;
+        chl2.setDescription("DEFENSE A COLONY FROM ");//TO ADD MENACE
         chl2.setChallenge(14, 240, chl2.getDescription(), boost2, (int)Mathf.Round(Random.Range(100.0F, 1000.0F)), chl2.getTypeChallenge());
         challengesInGame.Add(chl2);
     }
@@ -183,22 +186,18 @@ public class ChallengesMonitor {
     }
 
     //remove a challenge and get all the boosters and score
-    private List<Booster> boostersWon(GenericChallenge ChallengeCompleted) {
-        if (challengesInGame[challengesInGame.IndexOf(ChallengeCompleted)].getRewards() != null)
-        {
+    private Booster.Model boostersWon(GenericChallenge ChallengeCompleted) {
+        
             return challengesInGame[challengesInGame.IndexOf(ChallengeCompleted)].getRewards();
-        }
-        else
-        {
-            return null;
-        }
+        
+       
     }
     private int scoreWon(GenericChallenge ChallengeCompleted)
     {
         return challengesInGame[challengesInGame.IndexOf(ChallengeCompleted)].getScore();
     }
     //TO GET BOOSTERS AND SCORE OF THE CHALLENGE COMPLETED, YOU HAVE TO CALL THIS METHOD!!!!!
-    public void finishedChallenge(GenericChallenge ChallengeCompleted, List<Booster> boostersWon, int scoreWon)
+    public void finishedChallenge(GenericChallenge ChallengeCompleted, Booster.Model boostersWon, int scoreWon)
     {   
         if (challengesInGame.IndexOf(ChallengeCompleted) == -1)
         {
