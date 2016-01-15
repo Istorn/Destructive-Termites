@@ -26,6 +26,8 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private bool startDrag = false;
 
+    private int roomNumber = 0;
+
     private IEnumerator attackTargetCorountine = null;
     private IEnumerator animateCoroutine = null;
 
@@ -33,10 +35,24 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private GenericObject previousSelected = null;
 
+    private bool isToBePlaced = false;
+
+    private LayerMask mask;
+
+    private int remainingSecondsToPlace = Costants.COLONY_SECONDS_TO_PLACE;
+
+    private IEnumerator placementCountdownCoroutine = null;
+
 	void Awake () {
         boosters = new List<Booster>();
         attackTargetCorountine = null;
         label = gameObject.transform.Find("LabelBackground/Label").GetComponent<Text>();
+
+        transform.Find("LabelBackground").gameObject.SetActive(false);
+        mask = 1 << 13;
+        mask = ~mask;
+        placementCountdownCoroutine = placementCountdown();
+        StartCoroutine(placementCountdownCoroutine);
 	}
 
     public void setMiniMapCursor(GameObject miniMapCursor)
@@ -50,6 +66,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (lost < 5)
             lost = 5;
         termites -= lost;
+        GameManager.getCurrentLevel().decreaseAvailableTermites(lost);
         if (termites <= 0)
         {
             target.setAttacker(null);
@@ -59,18 +76,33 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             label.text = termites + "";
     }
 
-    void Update()
-    {
-        if (target && !startDrag)
-        {
-            gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
-            miniMapCursor.transform.position = target.gameObject.transform.position;
-        }
-    }
-
     void FixedUpdate()
     {
-       /* for (int i = boosters.Count - 1; i >= 0; i--)
+        if (!startDrag)
+            if (isToBePlaced)
+                gameObject.transform.position = GameManager.getLevelGUI().getMessageAnchorPoint();
+            else
+                if (target)
+                {
+                    gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+                    miniMapCursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+                }
+            else
+                gameObject.transform.position = GameManager.getLevelGUI().getMessageAnchorPoint();
+
+        if (startDrag)
+            transform.Find("LabelBackground").gameObject.SetActive(true);
+        else
+            if (!startDrag && isToBePlaced)
+                transform.Find("LabelBackground").gameObject.SetActive(false);
+            else
+                if (!startDrag && !isToBePlaced)
+                    transform.Find("LabelBackground").gameObject.SetActive(true);
+    }
+
+  /*  void FixedUpdate()
+    {
+        for (int i = boosters.Count - 1; i >= 0; i--)
         {
             Booster b = boosters[i];
             b.activationTime -= Time.deltaTime;
@@ -80,8 +112,8 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 applyBooster(null);
                 Debug.Log("STOP");
             }
-        }*/
-    }
+        }
+    }*/
 
     public GenericObject getTarget()
     {
@@ -90,11 +122,10 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     void setAttackPossibility(bool possibility)
     {
-        Color col = gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color;
         if (possibility)
-            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(col.r, col.g, col.b, 0f);
+            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 0f);
         else
-            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(col.r, col.g, col.b, 1f);
+            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 1f);
     }
 
     public void setTarget(GenericObject target)
@@ -102,7 +133,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (this.target)
             this.target.setAttacker(null);
         this.target = target;
-
+        roomNumber = target.getRoom().getNumber();
         /*if (!this.target.getModel().Equals(GenericObject.Model.Live))
             GameManager.getCurrentLevel().alertObjectsQueue.Enqueue(this.target);*/
 
@@ -120,7 +151,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
         
         this.target.setAttacker(this);
-        
+        setIsToBePlaced(false);
       /*  if (animateCoroutine == null)
         {
             animateCoroutine = animate();
@@ -203,6 +234,19 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         }
     }
 
+    IEnumerator placementCountdown()
+    {
+        while (remainingSecondsToPlace > 0)
+        {
+            transform.Find("Timer").GetComponent<Text>().text = remainingSecondsToPlace + "";
+            remainingSecondsToPlace--;
+            yield return new WaitForSeconds(1f);
+        }
+        GameManager.removeMessage();
+        GameManager.getCurrentLevel().decreaseAvailableTermites(termites);
+        Destroy(gameObject);
+    }
+
     public void removeBooster(Booster.Model type)
     {
         for (int i = 0; i< boosters.Count; i++)
@@ -242,7 +286,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
             }
             yield return new WaitForSeconds(Costants.COLONY_ATTACK_FREQUENCY);
         }
-        changeTarget(null);
+      /*  GenericObject oldTarget = target;
+        target = findNewTarget(target);
+        Destroy(oldTarget.gameObject);*/
     }
 
 
@@ -262,63 +308,44 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         label.color = Color.white;
     }
 
-    public void changeTarget(GenericObject target)
+    public void split(float splitRatio)
     {
-        StopCoroutine(attackTargetCorountine);
-
-        if (target)
-            setTarget(target); 
-        else
+        int newNumber = Convert.ToInt32(termites * splitRatio);
+        if (newNumber == termites)
+            newNumber = termites - 1;
+        
+        if (newNumber == 0)
+            termites = 1;
+        if ((newNumber > 0) && (newNumber < termites))
         {
-            GenericObject newTarget = null;
-            if (this.target)
-            {
-                newTarget = this.target.getRoom().getOtherObject(this.target);
-                this.target.getRoom().removeObject(this.target);
-                GenericObject selected = GameManager.getLevelGUI().getSelectedObject();
-                if (selected && selected.getId() == this.target.getId())
-                    GameManager.getLevelGUI().colonySelected(this);
-                Destroy(this.target.gameObject);
-                this.target = null; 
-            }
-            else
-            {
-                oldRoom.getObject(oldPosition);
-            }
-                
+            Colony colony = GameManager.getLevelGUI().instantiateColony();
+            colony.addTermites(newNumber);
+            colony.setIsToBePlaced(true);
+            termites = termites - newNumber;
+            label.text = termites + "";
+            GameManager.addMessage();
+            /*EatableObject newTarget = findNewTarget(target);
             if (newTarget)
-                setTarget(newTarget);
-            else
-            {//DA AGGIORNARE->ELIMINA COLONIA SE NON TROVA OGETTI NELLA STANZA
-                Destroy(gameObject);
+            {
+                Colony colony = GameManager.getLevelGUI().instantiateColony();
+                colony.setTarget(newTarget);
+                Debug.Log(target.getId() + "   " + newTarget.getId());
+                colony.addTermites(newNumber);
+                newTarget.select(ObjectSelection.Model.BoosterApplication);
+                termites = termites - newNumber;
+                label.text = termites + "";
             }
-            
+            else
+                GameManager.gameEnd();*/
+
         }
-        attackTargetCorountine = attackTarget();
-       /* StartCoroutine(attackTargetCorountine);*/
-    }
-
-    public void split(int newNumber)
-    {
-        GameObject colgameObject = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
-        Colony colony = colgameObject.GetComponent<Colony>();
-        Button im = colgameObject.transform.Find("gameObject").gameObject.GetComponent<Button>();
-        im.onClick.AddListener(() => GameManager.getLevelGUI().colonySelected(colony));
-
-        GenericObject newTarget = this.target.getRoom().getOtherObject(this.target);
-        if (newTarget)
-            //DA CERCARE IN OGNI STANZA
-            colony.setTarget(newTarget);
-        colony.addTermites(termites - newNumber);
-        termites = newNumber;
-        label.text = termites + "";
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         gameObject.transform.position = Input.mousePosition;
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,  Mathf.Infinity, mask);
+        
         if (hit.collider != null)
         {
             GenericObject obj = hit.collider.gameObject.transform.parent.GetComponent<GenericObject>();
@@ -337,36 +364,96 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 previousSelected = null;
             }
     }
+
     public void setTermites(int numOftermites)
     {
         this.termites = numOftermites;
     }
+
+    public EatableObject findNewTarget(GenericObject other = null)
+    {
+        List<EatableObject> objects = GameManager.getCurrentLevel().getObjects();
+        IEnumerable<EatableObject> others = null;
+
+        Graph g = GameManager.getCurrentLevel().getGraphLiveObjects();
+
+        int nO = g.findNearestNode(roomNumber, Camera.main.ScreenToWorldPoint(gameObject.transform.position));
+
+        if (other)
+            others = from o in objects
+                     let distance = g.distance(nO, g.findNearestNode(o.getRoom().getNumber(), o.gameObject.transform.position))
+                     where o.getId() != other.getId()
+                     orderby distance
+                     select (EatableObject)o;
+        else
+            others = from o in objects
+                     let distance = g.distance(nO, g.findNearestNode(o.getRoom().getNumber(), o.gameObject.transform.position))
+                     orderby distance
+                     select (EatableObject)o;
+            
+        if (others.Count() == 0)
+            return null;
+        else
+            return others.First();
+    }
+
     public void OnEndDrag(PointerEventData eventData)
     {
-       /* RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        Color color = gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color;
+        if (color.a > 0)
+            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+        gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, mask);
 
         if (hit.collider != null)
         {
-          /*  Debug.Log("COLONY");
-            if (hit.collider.gameObject.tag.Equals("Colony"))
-                Debug.Log("COLONY");*
-           GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
-           //if (!obj.getModel().Equals(GenericObject.Model.NotEatable))
+            GenericObject obj = hit.collider.gameObject.transform.parent.GetComponent<GenericObject>();
+            if (obj)
                 setTarget(obj);
+            if (!isToBePlaced)
+            {
+                setIsToBePlaced(false);
+                GameManager.removeMessage();
+            }
         }
         else
         {
-            gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position); 
-        }*/
-        gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
-        startDrag = false;
+            if (!isToBePlaced)
+                if (!target)
+                    target = findNewTarget();
+                if (target)
+                    gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+                else
+                    GameManager.gameEnd();
+        }
 
+        if (previousSelected)
+        {
+            previousSelected.deselect(ObjectSelection.Model.ColonyTarget);
+            previousSelected = null;
+        }
+        
+        startDrag = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
         startDrag = true;
+        gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.4f);
+        Color color = gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color;
+        if (color.a > 0)
+            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 0.4f);
     }
 
+    public void setIsToBePlaced(bool isToBePlaced)
+    {
+        this.isToBePlaced = isToBePlaced;
+        if (!isToBePlaced)
+        {
+            transform.SetParent(GameManager.getLevelGUI().getGameAreaPanel().transform);
+            StopCoroutine(placementCountdownCoroutine);
+            transform.Find("Timer").gameObject.SetActive(false);
+        }
+    }
 }

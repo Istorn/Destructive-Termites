@@ -5,7 +5,7 @@ using System.ComponentModel;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
-public class GenericChallenge : MonoBehaviour
+public class GenericChallenge
 {
     public enum TypeChallenge
     {

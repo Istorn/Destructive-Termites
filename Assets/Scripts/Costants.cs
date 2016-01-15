@@ -39,6 +39,7 @@ public static class Costants{
 
     //COLONY
     public static float COLONY_ATTACK_FREQUENCY = 1f;
+    public static int COLONY_SECONDS_TO_PLACE = 10;
 
     //HUMAN
     public static float HUMAN_WAIT_TIME = 0.7f;

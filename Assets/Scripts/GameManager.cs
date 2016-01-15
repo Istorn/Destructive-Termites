@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 public class GameManager {
 
@@ -13,6 +13,8 @@ public class GameManager {
     private static bool isGamePaused = false;
 
     private static bool isInitialPhase = true;
+
+    private static int nMessages = 0;
 
     public static void setMainCamer(MainCamera mainCamera)
     {
@@ -94,5 +96,30 @@ public class GameManager {
     public static void gameWon()
     {
 
+    }
+
+    public static void gameEnd()
+    {
+
+    }
+    
+    public static void addMessage()
+    {
+        nMessages++;
+        if (nMessages == 1)
+            levelGUI.setMessageEnabled(true);
+    }
+
+    public static void removeMessage()
+    {
+        nMessages--;
+        if (nMessages == 0)
+            levelGUI.setMessageEnabled(false);
+    }
+
+    public static List<GenericChallenge> initChallengesMonitor()
+    {
+        ChallengesMonitor.generateChallenges();
+        return ChallengesMonitor.getChallenges();
     }
 }
