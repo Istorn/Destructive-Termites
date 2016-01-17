@@ -12,12 +12,8 @@ public class Wizard : LiveObject {
         movementPath = new ConcurrentQueue<Graph.Node>();
 		setMovementCoroutine();
 		setAttackCoroutine();
+		// setBoxCollider();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/WizardAnimController"));
-		BoxCollider2D b = GetComponent<BoxCollider2D>();
-		if(b != null){
-			b.size = new Vector2(0.35f, 1.5f);
-			b.offset = new Vector2(-0.1f, 0.2f);
-		}
 	}
 
 	protected override void setMovementCoroutine(){
@@ -26,6 +22,14 @@ public class Wizard : LiveObject {
 	
 	protected override void setAttackCoroutine(){		
         attackCoroutine = attackColony(6); // can only cast a spell (=6)
+	}
+	
+	protected override void setBoxCollider(){
+		BoxCollider2D b = GetComponent<BoxCollider2D>();
+		if(b != null){
+			b.size = new Vector2(0.35f, 1.5f);
+			b.offset = new Vector2(-0.1f, 0.2f);
+		}
 	}
 	
     protected override void move()

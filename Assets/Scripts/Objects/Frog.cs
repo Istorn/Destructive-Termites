@@ -12,12 +12,8 @@ public class Frog : LiveObject {
         movementPath = new ConcurrentQueue<Graph.Node>();
 		setMovementCoroutine();
 		setAttackCoroutine();
+		// setBoxCollider();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/FrogAnimController"));
-		BoxCollider2D b = GetComponent<BoxCollider2D>();
-		if(b != null){
-			b.size = new Vector2(1f, 0.7f);
-			b.offset = new Vector2(0.18f, -0.86f);
-		}
 	}
 
 	protected override void setMovementCoroutine(){
@@ -26,6 +22,14 @@ public class Frog : LiveObject {
 	
 	protected override void setAttackCoroutine(){		
         attackCoroutine = attackColony(5); // can only eat termites (=5)
+	}
+	
+	protected override void setBoxCollider(){
+		BoxCollider2D b = GetComponent<BoxCollider2D>();
+		if(b != null){
+			b.size = new Vector2(1f, 0.7f);
+			b.offset = new Vector2(0.18f, -0.86f);
+		}
 	}
 	
     protected override void move()

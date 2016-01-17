@@ -75,4 +75,7 @@ public static class Costants{
     //BOOSTERS
     public static int QUEEN_TERMITE_THRESHOLD = 50;
     public static float QUEEN_TERMITE_MULT_FACTOR = 0.5f;
+	
+	//GRAPH
+	public static int MAX_NODE_IN_GRAPH = 151;
 }

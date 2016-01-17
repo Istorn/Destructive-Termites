@@ -39,6 +39,7 @@ public class LiveObject : GenericObject {
     protected virtual void move(){}
     protected virtual void setMovementCoroutine(){}
     protected virtual void setAttackCoroutine(){}
+	protected virtual void setBoxCollider(){}
 	
 	protected IEnumerator movement(string AtkAnimStr, string walkAnimStr, float objectWaitingTime, float objectSpeed){
         while (true)
