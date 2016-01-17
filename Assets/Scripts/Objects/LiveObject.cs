@@ -33,7 +33,7 @@ public class LiveObject : GenericObject {
         this.model = GenericObject.Model.Live;
         gameObject.layer = LayerMask.NameToLayer(Costants.LAYER_LIVE_OBJECTS);
 		animator = obj.AddComponent<Animator>();
-		obj.AddComponent<BoxCollider2D>();
+		// obj.AddComponent<BoxCollider2D>();
     }
 
     protected virtual void move(){}

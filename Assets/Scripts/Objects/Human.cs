@@ -18,7 +18,6 @@ public class Human : LiveObject {
 		this.atkAnimStr = sprayAtkAnimStr; // defaut attack is spray
 		setMovementCoroutine();
 		setAttackCoroutine();
-		// setBoxCollider();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/OliAnimatorController"));
 	}
 

@@ -12,7 +12,6 @@ public class Wizard : LiveObject {
         movementPath = new ConcurrentQueue<Graph.Node>();
 		setMovementCoroutine();
 		setAttackCoroutine();
-		// setBoxCollider();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/WizardAnimController"));
 	}
 
