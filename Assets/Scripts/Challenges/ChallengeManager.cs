@@ -14,15 +14,56 @@ public class ChallengeManager {
 
     public static void setActiveChallenge(GenericChallenge activeChallenge)
     {
-        ChallengeManager.activeChallenge = activeChallenge;
+        if (activeChallenge != null)
+        {
+            GameManager.getLevelGUI().getChallengeDisplay().setChallenge(activeChallenge);
+        }
+        else
+        {
+            if (ChallengeManager.activeChallenge != null)
+            {
+                ChallengeManager.activeChallenge.setStatus(GenericChallenge.Status.Failed);
+                removeActiveChallenge();
+            }
+        }
         foreach (GenericChallenge chal in challenges)
             chal.getChallengePauseDisplay().activeChallengeChanged(activeChallenge);
-        GameManager.getLevelGUI().getChallengeDisplay().setChallenge(activeChallenge);
+        ChallengeManager.activeChallenge = activeChallenge;
+    }
+
+    private static void removeActiveChallenge()
+    {
+        int index = 0;
+        foreach (GenericChallenge c in challenges)
+        {
+            if (c.getId() == ChallengeManager.activeChallenge.getId())
+            {
+                challenges.RemoveAt(index);
+                break;
+            }
+            index++;
+        }
     }
   
+    public static void challengeCompleted()
+    {
+        removeActiveChallenge();
+        activeChallenge.getChallengePauseDisplay().completed();
+        activeChallenge = null;
+        foreach (GenericChallenge chal in challenges)
+            chal.getChallengePauseDisplay().activeChallengeChanged(activeChallenge);
+    }
+
     public static List<GenericChallenge> getChallenges()
     {
         return challenges;
+    }
+
+    public static void objectDestroyed(GenericObject obj)
+    {
+        if (activeChallenge != null)
+            if ((activeChallenge.getModel() == GenericChallenge.Model.Destruction) || (activeChallenge.getModel() == GenericChallenge.Model.TimeDestruction))
+                ((DestructionChallenge)activeChallenge).objectDestroyed(obj);
     }
 
     public static void generateChallenges(int number)
@@ -56,7 +97,7 @@ public class ChallengeManager {
                     nTargets = UnityEngine.Random.Range(1, 11);
                     nModels = UnityEngine.Random.Range(1, 4);
                     List<LiveObject.Model> menaceModels = Utils.RandomEnumValues<LiveObject.Model>(nModels, true);
-                    seconds = 5;//(int)System.Math.Ceiling((float)UnityEngine.Random.Range(60, 181) / 5) * 5;
+                    seconds = (int)System.Math.Ceiling((float)UnityEngine.Random.Range(60, 181) / 5) * 5;
                     c = new TimeSurviveChallenge(menaceModels, seconds);
                     break;
             }

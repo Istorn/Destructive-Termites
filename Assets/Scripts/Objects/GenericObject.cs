@@ -203,6 +203,7 @@ public class GenericObject : MonoBehaviour {
             index++;
         }
         room.objects.RemoveAt(index);
+        ChallengeManager.objectDestroyed(this);
         Destroy(gameObject);
     }
 }

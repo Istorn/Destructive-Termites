@@ -73,6 +73,7 @@ public class GenericChallenge
         this.status = status;
         if (status == Status.Completed)
         {
+            ChallengeManager.challengeCompleted();
             GameManager.getCurrentLevel().dropBooster(boosterReward);
         }
     }

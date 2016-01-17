@@ -47,7 +47,7 @@ public class ChallengeDisplay : MonoBehaviour
         {
             if (challenge.getStatus() == GenericChallenge.Status.Completed)
             {
-                progress.color = new Color(0, 1, 0.14f, 1);
+                progress.color = new Color(0, 1, 0.09f, 1);
                 progress.text = "COMPLETED";
             }
             else

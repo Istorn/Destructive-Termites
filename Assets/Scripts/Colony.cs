@@ -8,7 +8,11 @@ using UnityEngine.EventSystems;
 
 public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler{
 
-    private Text label;
+    public GameObject colony = null;
+
+    public Text label = null;
+
+    public GameObject labelBackground = null;
 
     private int termites = 0;
 
@@ -42,15 +46,17 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     
 
+    
+
     private int remainingSecondsToPlace = Costants.COLONY_SECONDS_TO_PLACE;
 
     private IEnumerator placementCountdownCoroutine = null;
 
 	void Awake () {
         boosters = new List<Booster>();
-        label = gameObject.transform.Find("LabelBackground/Label").GetComponent<Text>();
 
-        transform.Find("LabelBackground").gameObject.SetActive(false);
+        labelBackground.SetActive(false);
+        
         placementCountdownCoroutine = placementCountdown();
         animateCoroutine = animate();
         attackTargetCoroutine = attackTarget();
@@ -60,7 +66,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         for (int i = 0; i < 7; i++)
             sprites.Add(Resources.LoadAll<Sprite>("GUI/Boosters/Booster_" + i));
 
-        boosterImage = gameObject.GetComponent<Image>();
+        boosterImage = colony.GetComponent<Image>();
 	}
 
     void Start()
@@ -102,7 +108,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 GameManager.getCurrentLevel().decreaseAvailableTermites(termites);
                 Destroy(gameObject);
             }
-            transform.Find("Timer").GetComponent<Text>().text = remainingSecondsToPlace + "";
+            colony.transform.Find("Timer").GetComponent<Text>().text = remainingSecondsToPlace + "";
             remainingSecondsToPlace--;
             yield return new WaitForSeconds(1f);
         }
@@ -135,7 +141,6 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                     GenericObject oldTarget = target;
                     target = findNewTarget(target);
                     oldTarget.destroy();
-                    //ChallengeManager.refreshDestruction(oldTarget);
                 }
             }
             yield return new WaitForSeconds(Costants.COLONY_ATTACK_FREQUENCY);
@@ -168,24 +173,24 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     {
         if (!startDrag)
             if (isToBePlaced)
-                gameObject.transform.position = GameManager.getLevelGUI().getMessageAnchorPoint();
+                colony.transform.position = GameManager.getLevelGUI().getMessageAnchorPoint();
             else
                 if (target)
                 {
-                    gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+                    colony.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
                     miniMapCursor.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
                 }
             else
-                gameObject.transform.position = GameManager.getLevelGUI().getMessageAnchorPoint();
+                    colony.transform.position = GameManager.getLevelGUI().getMessageAnchorPoint();
 
         if (startDrag)
-            transform.Find("LabelBackground").gameObject.SetActive(true);
+            labelBackground.SetActive(true);
         else
             if (!startDrag && isToBePlaced)
-                transform.Find("LabelBackground").gameObject.SetActive(false);
+                labelBackground.SetActive(false);
             else
                 if (!startDrag && !isToBePlaced)
-                    transform.Find("LabelBackground").gameObject.SetActive(true);
+                    labelBackground.SetActive(true);
     }
 
   /*  void FixedUpdate()
@@ -211,9 +216,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     void setAttackPossibility(bool possibility)
     {
         if (possibility)
-            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 0f);
+            GetComponent<Image>().color = new Color(1, 1, 1, 0f);
         else
-            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
+            GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
     }
 
     public void setTarget(GenericObject target)
@@ -264,7 +269,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     private void updateIndicators()
     {
-        GameObject indicatorsBackground = gameObject.transform.Find("IndicatorsBackground").gameObject;
+        GameObject indicatorsBackground = colony.transform.Find("IndicatorsBackground").gameObject;
         float xWidth = indicatorsBackground.GetComponent<RectTransform>().rect.width;
         float xInc = xWidth / boosters.Count;
 
@@ -345,7 +350,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        gameObject.transform.position = Input.mousePosition;
+        colony.transform.position = Input.mousePosition;
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,  Mathf.Infinity, Costants.RAYCAST_MASK);
         
         if (hit.collider != null)
@@ -393,7 +398,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
         Graph g = GameManager.getCurrentLevel().getGraphLiveObjects();
 
-        int nO = g.findNearestNode(roomNumber, Camera.main.ScreenToWorldPoint(gameObject.transform.position));
+        int nO = g.findNearestNode(roomNumber, Camera.main.ScreenToWorldPoint(colony.transform.position));
 
         if (other)
             others = from o in objects
@@ -415,9 +420,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnEndDrag(PointerEventData eventData)
     {
-       /* Color color = gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color;
+       /* Color color = gameObject.transform.parent.transform.Find("NotAttackImage").GetComponent<Image>().color;
         if (color.a > 0)
-            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 1f);
+            gameObject.transform.parent.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 1f);
         gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1f);*/
 
         if (previousSelected)
@@ -432,7 +437,7 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
                 if (!target)
                     target = findNewTarget();
             if (target)
-                gameObject.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
+                colony.transform.position = Camera.main.WorldToScreenPoint(target.gameObject.transform.position);
             else
                 GameManager.gameEnd();
         }
@@ -444,9 +449,9 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
     {
         startDrag = true;
        /* gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
-        Color color = gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color;
+        Color color = gameObject.transform.parent.transform.Find("NotAttackImage").GetComponent<Image>().color;
         if (color.a > 0)
-            gameObject.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);*/
+            gameObject.transform.parent.transform.Find("NotAttackImage").GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);*/
     }
 
     public void setIsToBePlaced(bool isToBePlaced)
@@ -454,8 +459,8 @@ public class Colony : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         if (!isToBePlaced)
         {
             GameManager.removeMessage();
-            transform.Find("Timer").gameObject.SetActive(false);
-            transform.SetParent(GameManager.getLevelGUI().getGameAreaPanel().transform);
+            colony.transform.Find("Timer").gameObject.SetActive(false);
+            colony.transform.SetParent(GameManager.getLevelGUI().getGameAreaPanel().transform);
             StopCoroutine(placementCountdownCoroutine);
             StartCoroutine(animateCoroutine);
             StartCoroutine(attackTargetCoroutine);

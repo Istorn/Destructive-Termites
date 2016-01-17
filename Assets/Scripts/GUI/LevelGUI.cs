@@ -270,8 +270,8 @@ public class LevelGUI : MonoBehaviour
         GameObject colCursor = Instantiate(Resources.Load("Prefabs/Colony", typeof(GameObject))) as GameObject;
         //colCursor.transform.SetParent(gameAreaPanel.transform);
         colCursor.transform.SetParent(bottomBarPanel.transform.Find("MessagePanel").transform);
-        Colony colony = colCursor.GetComponent<Colony>();
-        colCursor.GetComponent<Button>().onClick.AddListener(() => colonySelected(colony));
+        Colony colony = colCursor.transform.Find("NotAttackImage").GetComponent<Colony>();
+        colCursor.transform.Find("NotAttackImage").gameObject.GetComponent<Button>().onClick.AddListener(() => colonySelected(colony));
         colony.setMiniMapCursor(miniMapCursor);
 
         return colony;

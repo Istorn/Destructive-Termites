@@ -9,6 +9,9 @@ public class ChallengePauseDisplay : MonoBehaviour
     private GenericChallenge challenge = null;
     public Button activateButton = null;
     public Button giveUpButton = null;
+    public Text statusOK = null;
+    public Text statusNO = null;
+    public Text progress = null;
 
     public void setChallenge(GenericChallenge challenge)
     {
@@ -29,6 +32,11 @@ public class ChallengePauseDisplay : MonoBehaviour
         transform.Find("Goal").GetComponent<Text>().text = goal;
     }
 
+    public void setProgress(string progress)
+    {
+        this.progress.text = progress;
+    }
+
     public void activate()
     {
         ChallengeManager.setActiveChallenge(challenge);
@@ -36,7 +44,17 @@ public class ChallengePauseDisplay : MonoBehaviour
 
     public void giveUp()
     {
+        giveUpButton.gameObject.SetActive(false);
+        progress.gameObject.SetActive(false);
+        statusNO.gameObject.SetActive(true);
         ChallengeManager.setActiveChallenge(null);
+    }
+
+    public void completed()
+    {
+        giveUpButton.gameObject.SetActive(false);
+        progress.gameObject.SetActive(false);
+        statusOK.gameObject.SetActive(true);
     }
 
     public void activeChallengeChanged(GenericChallenge challenge)
