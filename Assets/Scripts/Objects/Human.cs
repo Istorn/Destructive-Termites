@@ -18,12 +18,8 @@ public class Human : LiveObject {
 		this.atkAnimStr = sprayAtkAnimStr; // defaut attack is spray
 		setMovementCoroutine();
 		setAttackCoroutine();
+		// setBoxCollider();
         animator.runtimeAnimatorController = (RuntimeAnimatorController)RuntimeAnimatorController.Instantiate(Resources.Load("Animations/OliAnimatorController"));
-		BoxCollider2D b = GetComponent<BoxCollider2D>();
-		if(b != null){
-			b.size = new Vector2(0.35f, 1.5f);
-			b.offset = new Vector2(-0.1f, 0.2f);
-		}
 	}
 
 	protected override void setMovementCoroutine(){
@@ -51,6 +47,14 @@ public class Human : LiveObject {
 				break;
 		}
         attackCoroutine = attackColony(atk);
+	}
+	
+	protected override void setBoxCollider(){
+		BoxCollider2D b = GetComponent<BoxCollider2D>();
+		if(b != null){
+			b.size = new Vector2(0.35f, 1.5f);
+			b.offset = new Vector2(-0.1f, 0.2f);
+		}
 	}
 	
     protected override void move()
