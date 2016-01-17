@@ -59,6 +59,15 @@ public class Booster
             case Model.Mushroom:
                 booster = new Mushroom();
                 break;
+            case Model.GasEquipment:
+                booster = new GasEquipment();
+                break;
+            case Model.MagicShield:
+                booster = new MagicShield();
+                break;
+            case Model.QueenTermite:
+                booster = new QueenTermite();
+                break;
         }
         return booster;
     }

@@ -7,97 +7,93 @@ using UnityEngine.UI;
 using System;
 public class GenericChallenge
 {
-    public enum TypeChallenge
+    public enum Model
     {
         [Category("DESTRUCTION CHALLENGE")]
         Destruction = 0,
-        [Category("DEFENSE CHALLENGE")]
-        Defense = 1,
         [Category("TIME DESTRUCTION CHALLENGE")]
-        TimeDestruction = 2,
-        [Category("TIME DEFENSE CHALLENGE")]
-        TimeDefense = 3
+        TimeDestruction = 1,
+        [Category("TIME SURVIVE CHALLENGE")]
+        TimeSurvive = 2
     }
-    //SET VALUES FOR THE CHALLENGE
-    public void setChallenge(int id, int time, String Description, Booster.Model rewards, int score, TypeChallenge typeChl)
+
+    public enum Status
+    {
+        [Category("AVAILABLE")]
+        Available = 0,
+        [Category("ACTIVE")]
+        Active = 1,
+        [Category("COMPLETED")]
+        Completed = 2,
+        [Category("FAILED")]
+        Failed = 3
+    }
+
+    private int id = 0;
+    private ChallengePauseDisplay challengePauseDisplay = null;
+    protected Model model = 0;
+    protected Status status;
+    private Booster.Model boosterReward;
+    private int scoreReward;
+
+    public void setChallenge(int id, Booster.Model boosterReward, int scoreReward)
     {
         this.id = id;
-        this.time = time;
-        this.Description = Description;
-        this.rewards = rewards;
-        this.score = score;
-        this.ChallengeType = typeChl;
-    }
-    //ATTRIBUTES
-    public TypeChallenge ChallengeType = 0;
-    private int id = 0;
-    private int time = 0;
-    public String Description = "";
-    private Boolean completed = false;
-    private Boolean active = false;
-    private Booster.Model rewards= 0;
-    private int score = 0;
-    private bool failed = false;
-
-    //GENERAL GETTERS
-    public int getId()
-    {
-        return this.id;
-    }
-    public int getTime()
-    {
-        return this.time;
+        this.boosterReward = boosterReward;
+        this.scoreReward = scoreReward;
     }
     
-    public virtual String getDescription()
+    public virtual string getGoal()
     {
-        return this.Description;
-    }
-    public Boolean getCompleted()
-    {
-        return this.completed;
-    }
-    public Boolean getActive()
-    {
-        return this.completed;
-    }
-    public Booster.Model getRewards()
-    {
-        return this.rewards;
-    }
-    public int getScore()
-    {
-        return this.score;
-    }
-    public TypeChallenge getTypeChallenge()
-    {
-        return this.ChallengeType;
+        return "";
     }
 
-    //SETTERS
-    public virtual void setDescription(String DescriptionToSet)
+    public int getId()
     {
-        this.Description = DescriptionToSet;
+        return id;
     }
-    public void setCompleted()
-    {
-        this.completed = true;
-    }
-    public void setActive()
-    {
-        active = true;
-    }
-    protected virtual void Awake()
-    {
-        active = false;
 
-    }
-    public void setTime(int timeToset)
+    public Status getStatus()
     {
-        this.time = timeToset;
+        return status;
     }
-    public void setFailed()
+
+    public Booster.Model getBoosterRewards()
     {
-        this.failed = true;
+        return boosterReward;
+    }
+
+    public int getScoreReward()
+    {
+        return scoreReward;
+    }
+
+    public void setStatus(Status status)
+    {
+        this.status = status;
+        if (status == Status.Completed)
+        {
+            GameManager.getCurrentLevel().dropBooster(boosterReward);
+        }
+    }
+
+    public void setChallengePauseDisplay(ChallengePauseDisplay challengePauseDisplay)
+    {
+        this.challengePauseDisplay = challengePauseDisplay;
+    }
+
+    public ChallengePauseDisplay getChallengePauseDisplay()
+    {
+        return challengePauseDisplay;
+    }
+
+    public Model getModel()
+    {
+        return model;
+    }
+
+    public virtual string getProgress()
+    {
+        return "";
     }
 }

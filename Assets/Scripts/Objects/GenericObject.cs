@@ -184,4 +184,25 @@ public class GenericObject : MonoBehaviour {
                     // }; break;
             }
 	}
+
+    public void destroy()
+    {
+        int index = 0;
+        foreach(EatableObject eO in GameManager.getCurrentLevel().getObjects())
+        {
+            if (eO.getId() == id)
+                break;
+            index++;
+        }
+        GameManager.getCurrentLevel().getObjects().RemoveAt(index);
+        index = 0;
+        foreach (EatableObject eO in room.objects)
+        {
+            if (eO.getId() == id)
+                break;
+            index++;
+        }
+        room.objects.RemoveAt(index);
+        Destroy(gameObject);
+    }
 }

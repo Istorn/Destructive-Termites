@@ -256,9 +256,10 @@ public class Level : MonoBehaviour {
         obj.setRoom(rooms[roomNumber]);
     }    
 
-    public void dropBooster(Booster booster)
+    public void dropBooster(Booster.Model model)
     {
-        collectedBoosters.Add(booster);
+        GameManager.getLevelGUI().droppedBooster(model);
+        collectedBoosters.Add(Booster.initFromModel(model));
     }
 
     public List<Room> getRooms()

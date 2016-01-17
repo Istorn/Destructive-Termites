@@ -19,13 +19,18 @@ public class LevelGUI : MonoBehaviour
     private GameObject noInformationPanel = null;
     private GameObject colonyInformationPanel = null;
     private GameObject objectInformationPanel = null;
+    private GameObject availableBoostersPanel = null;
 
     private GameObject[] colonyActiveBoostersIcons = null;
+
+    private Text[] availableBoostersIcons = null;
 
     private GameObject availableTermitesPanel = null;
     private Text termitesCounter = null;
 
     private GameObject mapDisplay = null;
+
+    private ChallengeDisplay activeChallengeDisplay = null;
 
 	private int gameplayTime = 0;
 
@@ -40,13 +45,22 @@ public class LevelGUI : MonoBehaviour
         noInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/NoInformationPanel").gameObject;
         colonyInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/ColonyInformationPanel").gameObject;
         objectInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/ObjectInformationPanel").gameObject;
+        availableBoostersPanel = bottomBarPanel.transform.Find("SecondPhasePanel/AvailableBoostersPanel").gameObject;
 
-        colonyActiveBoostersIcons = new GameObject[6];
+        colonyActiveBoostersIcons = new GameObject[5];
         colonyActiveBoostersIcons[0] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/IronImg").gameObject;
         colonyActiveBoostersIcons[1] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/MushImg").gameObject;
         colonyActiveBoostersIcons[2] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/GiantImg").gameObject;
         colonyActiveBoostersIcons[3] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/MaskImg").gameObject;
         colonyActiveBoostersIcons[4] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/ShieldImg").gameObject;
+
+        availableBoostersIcons = new Text[6];
+        availableBoostersIcons[0] = availableBoostersPanel.transform.Find("IronImg/IronText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[1] = availableBoostersPanel.transform.Find("MushImg/MushText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[2] = availableBoostersPanel.transform.Find("GiantImg/GiantText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[3] = availableBoostersPanel.transform.Find("MaskImg/MaskText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[4] = availableBoostersPanel.transform.Find("ShieldImg/ShieldText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[5] = availableBoostersPanel.transform.Find("QueenImg/QueenText").gameObject.GetComponent<Text>();
 
         noInformationPanel.SetActive(true);
         colonyInformationPanel.SetActive(false);
@@ -67,6 +81,9 @@ public class LevelGUI : MonoBehaviour
             availableTermitesPanel = bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop").gameObject;
             termitesCounter = bottomBarPanel.transform.Find("AvailableTermitesPanelDesktop/Number").GetComponent<Text>();
         #endif
+
+        activeChallengeDisplay = bottomBarPanel.transform.Find("SecondPhasePanel/CurrentChallengePanel").gameObject.GetComponent<ChallengeDisplay>();
+
         initChallengesList();
     }
 
@@ -117,6 +134,7 @@ public class LevelGUI : MonoBehaviour
         while (true)
         {
             timerTick();
+            activeChallengeDisplay.updateProgress();
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -128,6 +146,7 @@ public class LevelGUI : MonoBehaviour
     private void timerTick()
     {
         this.timer();
+
         updateTermitesCounter();
     }
 
@@ -299,7 +318,7 @@ public class LevelGUI : MonoBehaviour
 
     public void changeGameState(bool gamePaused)
     {
-        gameAreaPanel.SetActive(!gamePaused);
+        //gameAreaPanel.SetActive(!gamePaused);
         bottomBarPanel.SetActive(!gamePaused);
         gamePausedPanel.SetActive(gamePaused);
         mapDisplay.GetComponent<MeshRenderer>().materials[0].color = new Color(1, 1, 1, gamePaused?1:0);
@@ -356,12 +375,26 @@ public class LevelGUI : MonoBehaviour
         GameObject list = gamePausedPanel.transform.Find("ChallengesPanel/ListSpace/List").gameObject;
         foreach (GenericChallenge challenge in challenges)
         {
-            GameObject chal = (GameObject)Instantiate(Resources.Load("Prefabs/Challenges/ChallengeDisplay", typeof(GameObject))) as GameObject;
-            ChallengeDisplay cD = chal.GetComponent<ChallengeDisplay>();
+            GameObject chal = (GameObject)Instantiate(Resources.Load("Prefabs/Challenges/ChallengePauseDisplay", typeof(GameObject))) as GameObject;
+            ChallengePauseDisplay cD = chal.GetComponent<ChallengePauseDisplay>();
             chal.transform.SetParent(list.transform);
             chal.transform.localScale = new Vector3(1, 1, 1);
             cD.setChallenge(challenge);
-            
         }
+    }
+
+    public ChallengeDisplay getChallengeDisplay()
+    {
+        return activeChallengeDisplay;
+    }
+
+    public void droppedBooster(Booster.Model model)
+    {
+        availableBoostersIcons[(int)model - 1].text = (Int32.Parse(availableBoostersIcons[(int)model - 1].text) + 1) + "";
+    }
+
+    public void usedBooster(Booster.Model model)
+    {
+        availableBoostersIcons[(int)model - 1].text = (Int32.Parse(availableBoostersIcons[(int)model - 1].text) - 1) + "";
     }
 }

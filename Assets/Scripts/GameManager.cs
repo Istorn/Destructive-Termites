@@ -119,7 +119,7 @@ public class GameManager {
 
     public static List<GenericChallenge> initChallengesMonitor()
     {
-        ChallengesMonitor.generateChallenges();
-        return ChallengesMonitor.getChallenges();
+        ChallengeManager.generateChallenges(20);
+        return ChallengeManager.getChallenges();
     }
 }

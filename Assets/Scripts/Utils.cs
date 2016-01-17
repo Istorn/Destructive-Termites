@@ -32,4 +32,67 @@ public class Utils{
         else
             return value.ToString();
     }
+
+    public static T RandomEnumValue<T>(T[] excluded = null)
+    {
+        List<T> copy = Enum.GetValues(typeof(T)).Cast<T>().Select(v => v).ToList();
+        do
+        {
+            int index = UnityEngine.Random.Range(0, copy.Count);
+            if ((excluded == null) || (!excluded.Contains(copy[index])))
+                return copy[index];
+            else
+                copy.RemoveAt(index);
+        }
+        while (copy.Count > 0);
+        return default(T);
+    }
+
+    public static List<T> RandomEnumValues<T>(int n, bool repeat, T[] excluded = null)
+    {
+        List<T> copy = Enum.GetValues(typeof(T)).Cast<T>().Select(v => v).ToList();
+        List<T> values = new List<T>();
+        if (repeat)
+        {
+            do
+            {
+                int index = UnityEngine.Random.Range(0, copy.Count);
+                if ((excluded == null) || (!excluded.Contains(copy[index])))
+                    values.Add(copy[index]);
+                else
+                    copy.RemoveAt(index);
+            }
+            while ((copy.Count > 0) && (values.Count < n));
+        }
+        else
+        {
+            do
+            {
+                int index = UnityEngine.Random.Range(0, copy.Count);
+                if ((excluded == null) || (!excluded.Contains(copy[index])))
+                    values.Add(copy[index]);
+                copy.RemoveAt(index);
+            }
+            while ((copy.Count > 0) && (values.Count < n));
+        }
+        return values;
+    }
+
+    public static Dictionary<T, int> groupCountList<T>(List<T> list)
+    {
+        return list.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
+    }
+
+    public static IEnumerator WaitForRealTime(float delay)
+    {
+        while (true)
+        {
+            float pauseEndTime = Time.realtimeSinceStartup + delay;
+            while (Time.realtimeSinceStartup < pauseEndTime)
+            {
+                yield return 0;
+            }
+            break;
+        }
+    }
 }

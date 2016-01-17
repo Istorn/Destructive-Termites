@@ -6,11 +6,11 @@ using System.ComponentModel;
 public class LiveObject : GenericObject {
 
     public enum Model {
-        [Description("HUMAN")]
+        [Category("HUMAN")]
         Human = 0,
-        [Description("FROG")]
+        [Category("FROG")]
         Frog = 1,
-        [Description("WIZARD")]
+        [Category("WIZARD")]
         Wizard = 2
     }
 

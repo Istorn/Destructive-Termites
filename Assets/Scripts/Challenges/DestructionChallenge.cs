@@ -7,95 +7,64 @@ using UnityEngine.UI;
 using System;
 
 public class DestructionChallenge : GenericChallenge {
-    //TO SET THE KIND OF DESTRUCTION CHALLENGE
-    public enum TypeDestr
-    {
-        [Category("DESTROY A OBJECT")]
-        Single = 0,
-        [Category("DESTROY A BUNCH OF OBJECTS")]
-        Multiple = 1,
-        [Category("DESTROY A BUNCH OF SPECIFIED OBJECTS")]
-        MultipleSpec = 2,
-        [Category("DESTROY OBJECTS IN A ROOM")]
-        RoomDestr = 3
-    }
-    //TO SET THE KIND OF OBJECT TO DESTROY, WHERE THERE'S
-    public enum Model
-    {
 
-        [Category("SOFT OBJECT")]
-        Soft = 0,
-        [Category("HARD OBJECT")]
-        Hard = 1,
-        [Category("LIVE OBJECT")]
-        Live = 2/*,
-        [Category("NOT EATABLE"), Description("THIS OBJECT IS NOT EATABLE")]
-        NotEatable = 3*/
-    }
-    private TypeDestr typeDestruction = 0;
-    private Model modelObj = 0;
-    private int numOfobject=0;
-    private int remainedObj = 0;
+    protected List<GenericObject.Model> targetModels = null;
+    protected int nTargets = 0;
+    protected int destroyed = 0;
     
-	protected override void Awake()
+    public DestructionChallenge()
     {
-        this.ChallengeType = 0;
-        
-    }
-    //GENERIC SETTERS AND GETTERS
-    public void setDestruction(int destructionType)
-    {
-        this.typeDestruction = (TypeDestr)destructionType;
-    }
-    public void setObjectType(int objectType)
-    {
-        this.modelObj =(Model) objectType;
-    }
-    public void setNumOfObj(int numOfObjectTodestroy)
-    {
-        this.numOfobject = numOfObjectTodestroy;
-    }
-    public int getNumOfObj()
-    {
-        return this.numOfobject;
-    }
-    public TypeDestr getTypeOfDestruction()
-    {
-        return this.typeDestruction;
-    }
-    public Model getTypeOfObject()
-    {
-        return this.modelObj;
-    }
-    public int getRemainedObj()
-    {
-        return this.remainedObj;
     }
 
-    public void increasesRemainedObj()
+    public DestructionChallenge(List<GenericObject.Model> targetModels, int nTargets)
     {
-        this.remainedObj++;
+        model = GenericChallenge.Model.Destruction;
+        this.targetModels = targetModels;
+        this.nTargets = nTargets;
     }
-   public void setDescription()
+
+    public void objectDestroyed(GenericObject obj)
     {
-        String Desc = "";
-        //KIND OF DESTRUCTION
-        switch ((int)getTypeOfDestruction())
+        if (targetModels.Contains(obj.getModel()) || targetModels == null)
+            destroyed++;
+        if (nTargets == destroyed)
+            setStatus(Status.Completed);
+    }
+
+    public override string getGoal()
+    {
+        string goalStr = "";
+        if (nTargets == 1)
         {
-            case 0:
+            goalStr = "DESTROY A ";
+            if (targetModels.Count == 1)
+                goalStr += Utils.GetEnumCategory(targetModels[0]);
+            else
+                if (targetModels.Count > 1)
                 {
-                    Desc += "DESTROY A "+(Utils.GetEnumDescription(this.getTypeOfObject()))+" OBJECT";
-                }; break;
-            case 1:
-                {
-                    Desc += "DESTROY "+this.getNumOfObj()+" OBJECTS";
-                }; break;
-            case 2:
-                {
-                    Desc += "DESTROY " + this.getNumOfObj()+" "+ (Utils.GetEnumDescription(this.getTypeOfObject())) + " OBJECTS";
-                }; break;
+                    goalStr += Utils.GetEnumCategory(targetModels[0]);
+                    for (int i = 1; i < targetModels.Count; i++)
+                        goalStr += " OR " + Utils.GetEnumCategory(targetModels[i]);
+                }
         }
-        this.Description = Desc;
+        else
+        {
+            goalStr = "DESTROY " + nTargets + " ";
+            if (targetModels.Count == 1)
+                goalStr += Utils.GetEnumCategory(targetModels[0]) + "S";
+            else
+                if (targetModels.Count > 1)
+                {
+                    goalStr += Utils.GetEnumCategory(targetModels[0]) + "S";
+                    for (int i = 1; i < targetModels.Count; i++)
+                        goalStr += " OR " + Utils.GetEnumCategory(targetModels[i]) + "S";
+                }
+        }
+        return goalStr;
+    }
+    public override string getProgress()
+    {
+        return destroyed + "/" + nTargets;
     }
 
 }

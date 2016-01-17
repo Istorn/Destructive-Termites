@@ -69,4 +69,10 @@ public static class Costants{
     //CAMERA
     public static int CAMERA_MOVEMENT = 10;
 
+    //MASK
+    public static LayerMask RAYCAST_MASK = ~(1 << 13);
+
+    //BOOSTERS
+    public static int QUEEN_TERMITE_THRESHOLD = 50;
+    public static float QUEEN_TERMITE_MULT_FACTOR = 0.5f;
 }

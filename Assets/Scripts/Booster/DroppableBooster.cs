@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DroppableBooster : MonoBehaviour {
 
-    private Booster booster = null;
+    private Booster.Model model;
 
     void Awake()
     {
@@ -12,11 +12,11 @@ public class DroppableBooster : MonoBehaviour {
 
     public void setModel(Booster.Model model)
     {
-        booster = Booster.initFromModel(model);
+        this.model = model;
         gameObject.GetComponent<MeshRenderer>().material = Resources.Load<Material>("Materials/Boosters/Booster_" + (int)model);
     }
     void OnMouseDown(){
-        GameManager.getCurrentLevel().dropBooster(booster);
+        GameManager.getCurrentLevel().dropBooster(model);
 	}
 	
 	void FixedUpdate () 

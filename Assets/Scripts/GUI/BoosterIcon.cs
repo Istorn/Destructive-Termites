@@ -13,27 +13,59 @@ public class BoosterIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public Booster.Model model;
 
-    private Booster booster = null;
-
     private Sprite sprite = null;
 
-    private Level level = null;
-
-    
-
     private bool contains = false;
+
     private Vector3 startPosition;
 
-    void Awake()
-    {
-        booster = Booster.initFromModel(model);
-    }
+    private GenericObject previousSelectedObject = null;
+    private Colony previousSelectedColony = null;
 
     void Start()
     {
         startPosition = cursor.transform.position;
-        level = GameObject.Find("Level").GetComponent<Level>();
     }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (isDraggable)
+        {
+            if (previousSelectedObject)
+                if (previousSelectedColony)
+                {
+                    if (previousSelectedColony.applyBooster(model))
+                    {
+                        GameManager.getLevelGUI().usedBooster(model);
+                        for (int i = 0; i < GameManager.getCurrentLevel().getCollectedBoosters().Count; i++)
+                        {
+                            Booster b = GameManager.getCurrentLevel().getCollectedBoosters()[i];
+                            if (b.getModel().Equals(model))
+                            {
+                                GameManager.getCurrentLevel().getCollectedBoosters().RemoveAt(i);
+                                break;
+                            }
+                        }
+                    }
+                    previousSelectedObject.deselect(ObjectSelection.Model.ColonyTarget);
+                    previousSelectedObject = null;
+                    previousSelectedColony = null;
+                }
+            cursor.transform.position = startPosition;
+        }
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        contains = false;
+        foreach (Booster b in GameManager.getCurrentLevel().getCollectedBoosters())
+            if (b.getModel().Equals(model))
+            {
+                contains = true;
+                break;
+            }
+    }
+
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -41,57 +73,34 @@ public class BoosterIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             if (contains)
             {
                 cursor.transform.position = Input.mousePosition;
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, Mathf.Infinity, Costants.RAYCAST_MASK);
 
                 if (hit.collider != null)
                 {
-                    GenericObject obj = hit.collider.gameObject.GetComponent<GenericObject>();
-                    if (obj.getAttacker())
-                        GameManager.getLevelGUI().objectSelected(obj);
-                }
-            }
-    }
-   
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (isDraggable)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
-            if (hit.collider != null)
-            {
-                GenericObject obj = hit.collider.transform.parent.GetComponent<GenericObject>();
-                if (obj.getAttacker())
-                {
-                    if (obj.getAttacker().applyBooster(booster))
+                    GenericObject obj = hit.collider.gameObject.transform.parent.GetComponent<EatableObject>();
+                    if ((obj) && (obj.getAttacker()))
                     {
-                        for (int i = 0; i < level.getCollectedBoosters().Count; i++)
-                        {
-                            Booster b = level.getCollectedBoosters()[i];
-                            if (b.getModel().Equals(booster.getModel()))
-                            {
-                                level.getCollectedBoosters().RemoveAt(i);
-                                break;
-                            }
-                        }
+                        if (previousSelectedObject)
+                            previousSelectedObject.deselect(ObjectSelection.Model.BoosterApplication);
+                        previousSelectedObject = obj;
+                        previousSelectedColony = obj.getAttacker();
+                        obj.select(ObjectSelection.Model.ColonyTarget);
                     }
-
+                    else
+                        if (previousSelectedObject)
+                        {
+                            previousSelectedObject.deselect(ObjectSelection.Model.BoosterApplication);
+                            previousSelectedObject = null;
+                            previousSelectedColony = null;
+                        }
                 }
-                cursor.transform.position = startPosition;
-            }
-            else
-                cursor.transform.position = startPosition;
-        }
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        contains = false;
-        foreach (Booster b in level.getCollectedBoosters())
-            if (b.getModel().Equals(booster.getModel()))
-            {
-                contains = true;
-                break;
+                else
+                    if (previousSelectedObject)
+                    {
+                        previousSelectedObject.deselect(ObjectSelection.Model.BoosterApplication);
+                        previousSelectedObject = null;
+                        previousSelectedColony = null;
+                    }
             }
     }
 }

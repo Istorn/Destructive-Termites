@@ -63,6 +63,7 @@ public class EatableObjectSelector : MonoBehaviour {
             {
                 Colony colony = GameManager.getLevelGUI().instantiateColony();
                 colony.setTarget(obj);
+                colony.setIsToBePlaced(false);
             }
             obj.getAttacker().addTermites(attackers);
             GameManager.getCurrentLevel().decreaseAvailableTermites(attackers);
