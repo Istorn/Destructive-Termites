@@ -47,20 +47,16 @@ public class LevelGUI : MonoBehaviour
         objectInformationPanel = bottomBarPanel.transform.Find("SecondPhasePanel/ObjectInformationPanel").gameObject;
         availableBoostersPanel = bottomBarPanel.transform.Find("SecondPhasePanel/AvailableBoostersPanel").gameObject;
 
-        colonyActiveBoostersIcons = new GameObject[5];
+        colonyActiveBoostersIcons = new GameObject[3];
         colonyActiveBoostersIcons[0] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/IronImg").gameObject;
-        colonyActiveBoostersIcons[1] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/MushImg").gameObject;
-        colonyActiveBoostersIcons[2] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/GiantImg").gameObject;
-        colonyActiveBoostersIcons[3] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/MaskImg").gameObject;
-        colonyActiveBoostersIcons[4] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/ShieldImg").gameObject;
+        colonyActiveBoostersIcons[1] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/MaskImg").gameObject;
+        colonyActiveBoostersIcons[2] = colonyInformationPanel.transform.Find("ActiveBoostersBackground/ShieldImg").gameObject;
 
-        availableBoostersIcons = new Text[6];
+        availableBoostersIcons = new Text[4];
         availableBoostersIcons[0] = availableBoostersPanel.transform.Find("IronImg/IronText").gameObject.GetComponent<Text>();
-        availableBoostersIcons[1] = availableBoostersPanel.transform.Find("MushImg/MushText").gameObject.GetComponent<Text>();
-        availableBoostersIcons[2] = availableBoostersPanel.transform.Find("GiantImg/GiantText").gameObject.GetComponent<Text>();
-        availableBoostersIcons[3] = availableBoostersPanel.transform.Find("MaskImg/MaskText").gameObject.GetComponent<Text>();
-        availableBoostersIcons[4] = availableBoostersPanel.transform.Find("ShieldImg/ShieldText").gameObject.GetComponent<Text>();
-        availableBoostersIcons[5] = availableBoostersPanel.transform.Find("QueenImg/QueenText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[1] = availableBoostersPanel.transform.Find("MaskImg/MaskText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[2] = availableBoostersPanel.transform.Find("ShieldImg/ShieldText").gameObject.GetComponent<Text>();
+        availableBoostersIcons[3] = availableBoostersPanel.transform.Find("QueenImg/QueenText").gameObject.GetComponent<Text>();
 
         noInformationPanel.SetActive(true);
         colonyInformationPanel.SetActive(false);

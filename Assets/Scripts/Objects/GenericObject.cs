@@ -160,7 +160,7 @@ public class GenericObject : MonoBehaviour {
                     {
                         GameObject droppedBooster = Instantiate(Resources.Load("Prefabs/Boosters/DroppableBooster", typeof(GameObject))) as GameObject;
                         droppedBooster.GetComponent<Transform>().position = this.transform.position;
-                        droppedBooster.GetComponent<DroppableBooster>().setModel(Booster.Model.Mushroom);
+                       // droppedBooster.GetComponent<DroppableBooster>().setModel(Booster.Model.Mushroom);
                     };
                     break;
                 // case 3:

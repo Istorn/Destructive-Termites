@@ -8,16 +8,16 @@ public class Booster
     public enum Model {
         [Description("IRON DENTURE")]
         IronDenture = 1,
-        [Description("MUSHROOM")]
+       /* [Description("MUSHROOM")]
         Mushroom = 2,
         [Description("GIANT TERMITE")]
-        GiantTermite = 3,
+        GiantTermite = 3,*/
         [Description("GAS EQUIPMENT")]
-        GasEquipment = 4,
+        GasEquipment = 2,
         [Description("MAGIC SHIELD")]
-        MagicShield = 5,
+        MagicShield = 3,
         [Description("QUEEN TERMITE")]
-        QueenTermite = 6
+        QueenTermite = 4
     } ;
 
     protected Model model;
@@ -56,9 +56,9 @@ public class Booster
             case Model.IronDenture:
                 booster = new IronDenture();
                 break;
-            case Model.Mushroom:
+            /*case Model.Mushroom:
                 booster = new Mushroom();
-                break;
+                break;*/
             case Model.GasEquipment:
                 booster = new GasEquipment();
                 break;

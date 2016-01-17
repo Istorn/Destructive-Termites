@@ -73,11 +73,10 @@ public class ChallengeManager {
         for (int n = 0; n < number; n++)
         {
             GenericObject.Model[] excludedObjectModels = { GenericObject.Model.Live };
-            Booster.Model[] excludedBoosterRewards = { Booster.Model.Mushroom, Booster.Model.GiantTermite };
             GenericChallenge c = null;
             GenericChallenge.Model chal = Utils.RandomEnumValue<GenericChallenge.Model>();
             int pointReward = Random.Range(0, 100);
-            Booster.Model boosterReward = Utils.RandomEnumValue<Booster.Model>(excludedBoosterRewards);
+            Booster.Model boosterReward = Utils.RandomEnumValue<Booster.Model>();
             switch (chal)
             {
                 case GenericChallenge.Model.Destruction:
